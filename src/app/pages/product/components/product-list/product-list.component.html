@@ -1,0 +1,31 @@
+<ion-list>
+  <ion-item *ngFor="let p of products" (click)="showDetail(p)">
+    <ion-label>{{p.nombre}}</ion-label>
+  </ion-item>
+</ion-list> 
+
+<!-- <table class="table table-sm table-hover table-bordered table-responsive px-0 py-0">
+    <thead>
+      <tr>
+        <th>id</th>
+        <th>nombre</th>
+        <th>imagen</th>
+        <th>descripcion</th>
+        <th>tmstmp</th>
+        <th>editar</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let p of products" (click)="showDetail(p)" >
+        <td>{{p.id}}</td>
+        <td>{{p.nombre}}</td>
+        <td>{{p.imagen}}</td>
+        <td>{{p.descripcion}}</td>
+        <td>{{p.tmstmp}}</td>
+        <td><i class="fas fa-edit" (click)="edit(p)"></i></td>
+      </tr>
+    </tbody>
+  </table>
+  <button (click)="showForm()">ver form</button>
+   -->
+  
