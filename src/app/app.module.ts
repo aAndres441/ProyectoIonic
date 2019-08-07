@@ -1,4 +1,4 @@
-import { HomePageModule } from './home/home.module';
+import { SharedModule } from './shared/shared.module';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
@@ -19,11 +19,17 @@ import {
   MatIconModule,
   MatButtonModule,
   MatCardModule,
-  MatFormFieldModule } from "@angular/material";
+  MatFormFieldModule } from '@angular/material';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { PagesModule } from './pages/pages.module';
+
+const MODULES = [
+  SharedModule,
+  PagesModule
+];
 
 @NgModule({
   declarations: [AppComponent],
@@ -46,7 +52,7 @@ import { HttpClientModule } from '@angular/common/http';
     MatFormFieldModule,
     FormsModule,
     HttpClientModule,
-    HomePageModule
+    ...MODULES
   ],
   providers: [
     StatusBar,

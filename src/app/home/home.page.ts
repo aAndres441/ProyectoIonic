@@ -1,4 +1,8 @@
-import { Component } from '@angular/core';
+
+
+    /* NO VA ESTE HOME */
+
+/* import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-home',
@@ -10,3 +14,4 @@ export class HomePage {
   constructor() {}
 
 }
+ */
