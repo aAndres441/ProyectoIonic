@@ -1,8 +1,11 @@
-<ion-list>
-  <ion-item *ngFor="let p of products" (click)="showDetail(p)">
-    <ion-label>{{p.nombre}}</ion-label>
-  </ion-item>
-</ion-list> 
+<ion-content>
+    <ion-list>
+        <ion-item *ngFor="let p of products" (click)="showDetail(p)">
+          <ion-label>{{p.nombre}}</ion-label>
+        </ion-item>
+      </ion-list>
+</ion-content>
+ 
 
 <!-- <table class="table table-sm table-hover table-bordered table-responsive px-0 py-0">
     <thead>
