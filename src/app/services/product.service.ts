@@ -15,11 +15,11 @@ export class ProductService {
   getProductos(): Observable<Product[]> {
     return this.http.get<Array<Product>>(environment.API_BASE + 'products').pipe(
       map(
-          (data:Array<Product>) => this.productTransform(data)
+        (data: Array<Product>) => this.productTransform(data)
       )
     )
-  } 
-  productTransform(data:Array<Product>):Array<Product>{
+  }
+  productTransform(data: Array<Product>): Array<Product> {
     return data;
   }
 

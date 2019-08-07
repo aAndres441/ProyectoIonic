@@ -1,23 +1,22 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-
 import {
-  ProductListComponent,
-  ProductFormComponent,
-  ProductDetailComponent
+  PurchaseDetailComponent,
+  PurchaseFormComponent,
+  PurchaseListComponent
 } from './components/index';
 
-import { ProductComponent } from './container/index';
+import { PurchaseComponent } from './container/index';
 
 const COMPONENTS = [
-  ProductFormComponent,
-  ProductListComponent,
-  ProductDetailComponent
+  PurchaseDetailComponent,
+  PurchaseFormComponent,
+  PurchaseListComponent
 ];
 
 const CONTAINER = [
-  ProductComponent
+  PurchaseComponent
 ];
 
 @NgModule({
@@ -30,7 +29,9 @@ const CONTAINER = [
     ReactiveFormsModule,
     FormsModule
   ],
+
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
+
 })
 
-export class ProductModule { }
+export class PurchaseModule { }

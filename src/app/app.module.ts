@@ -19,7 +19,7 @@ import {
   MatIconModule,
   MatButtonModule,
   MatCardModule,
-  MatFormFieldModule } from "@angular/material";
+  MatFormFieldModule } from '@angular/material';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { FormsModule } from '@angular/forms';
@@ -29,7 +29,7 @@ import { PagesModule } from './pages/pages.module';
 const MODULES = [
   SharedModule,
   PagesModule
-]
+];
 
 @NgModule({
   declarations: [AppComponent],

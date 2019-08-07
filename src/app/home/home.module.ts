@@ -1,4 +1,11 @@
-import { NgModule,CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
+
+/* NO VA ESTE HOME */
+
+
+
+
+/* import { NgModule,CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
@@ -33,3 +40,4 @@ const PAGES_MODULES = [
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })
 export class HomePageModule {}
+ */
