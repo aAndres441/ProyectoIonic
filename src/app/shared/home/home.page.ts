@@ -7,6 +7,11 @@ import { Component } from '@angular/core';
 })
 export class HomePage {
   title = 'Barraca Cardona'
-  constructor() {}
+  constructor() { }
+  
+  ngOnInit(){
+
+  }
+
 
 }

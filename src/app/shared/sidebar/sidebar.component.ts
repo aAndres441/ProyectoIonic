@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MenuController } from '@ionic/angular';
+import { Router, NavigationEnd } from '@angular/router';
 
 @Component({
   selector: 'app-sidebar',
@@ -7,25 +7,17 @@ import { MenuController } from '@ionic/angular';
   styleUrls: ['./sidebar.component.scss'],
 })
 export class SidebarComponent implements OnInit {
-
-  constructor(private menu: MenuController) { }
+  title;
+  constructor(private route:Router) { }
   
   ngOnInit(){
-
+    this.route.events.subscribe(
+      elem => {
+        console.log('titulo: ')
+        console.log(elem)
+    }
+    )
   }
 
-  openFirst() {
-    this.menu.enable(true, 'first');
-    this.menu.open('first');
-  }
-
-  openEnd() {
-    this.menu.open('end');
-  }
-
-  openCustom() {
-    this.menu.enable(true, 'custom');
-    this.menu.open('custom');
-  }
 }
 

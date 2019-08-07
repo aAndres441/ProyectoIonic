@@ -1,4 +1,4 @@
-import { RouterModule, Routes } from '@angular/router';
+import { RouterModule, Routes ,ActivatedRoute} from '@angular/router';
 import { NgModule } from '@angular/core';
 import { ProductComponent } from './product/container/product/product.component';
 
@@ -11,13 +11,14 @@ import { PagesComponent } from './pages.component';
     children: [
       {
         path: 'products',
-        component: ProductComponent
+        component: ProductComponent,
+        data: { title : 'Productos' }
       }
     ]}
   ];
 
 @NgModule({
-    imports: [ RouterModule.forChild(routes)],
+    imports: [RouterModule.forChild(routes)],
     exports: [RouterModule]
   })
   export class PagesRoutingModule { }
