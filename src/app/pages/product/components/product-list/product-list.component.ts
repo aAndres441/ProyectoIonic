@@ -18,6 +18,9 @@ export class ProductListComponent implements OnInit {
   unread(item:any){
 
   }
+  GetProduct($event){
+
+  }
   showDetail(p:Product){
     return this.showComponent.emit({"page":"detail","product":p});
   }
