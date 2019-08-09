@@ -33,11 +33,15 @@ export class ProductComponent implements OnInit {
 
   showPage(obj:any):string {
     console.log(obj);
+    let prod;
     this.showComponent = obj.page;
     if(this.showComponent == "detail"){
       this.detailProduct = obj.product;
     }else if(this.showComponent == "list"){
-      
+      prod = obj.product;
+      if(prod){
+        this.deleteProduct(prod);
+      }
     }else if(this.showComponent == "form"){
       if(obj.product){
         this.prod = obj.product;
@@ -48,4 +52,12 @@ export class ProductComponent implements OnInit {
     
     return this.showComponent;
   } 
+  deleteProduct(prod:Product){
+    this.productoService.deleteProduct(prod).subscribe(
+      (data) => {
+        this.products = data
+        console.log(data);
+      }
+    );
+  }
 }
