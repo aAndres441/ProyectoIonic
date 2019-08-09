@@ -1,83 +1,67 @@
-<ion-header>
-  <ion-navbar color="secundary">
+<ion-header no-border>
+  <ion-button  ng-click="data.showDelete = !data.showDelete">
+    <ion-icon name="remove-circle-outline"> </ion-icon>   
+  </ion-button>
+  <ion-toolbar>
     <ion-title>
-      Practico
+      <h3>{{title}}</h3>
     </ion-title>
-  </ion-navbar>
+  </ion-toolbar>
+  <!-- < ion-button id="btnMedida" size="large" expand="full">Button</ion-button> -->
 </ion-header>
 
-<ion-content padding>
-  <ion-searchbar (ionInput)="GetProduct($event)">Get Product</ion-searchbar>
-  <ion-list>
-    <ion-item-sliding>
-        <ion-item>
-            <ion-avatar item-start>
-              <img src="assets/cardona.jpg">
-            </ion-avatar>
-            <h3>Titulo</h3>
-            <p style="word-wrap: break-word; white-space:normal">Texto re largo que si no entra salta al otro renglon</p>
-          </ion-item>
+<ion-content>
+  <!-- padding -->
+  <ion-item>
+    <ion-icon name="search" slot="srart"></ion-icon>
+    <ion-searchbar (ionInput)="getProduct($event)"></ion-searchbar>
+  </ion-item>
 
-      <ion-item-option side="right">
+  <ion-list edit mode="ios" showDelete = "data.showDelete">
+    <!-- *ngIf="products.length; else cargando" -->
+    <ion-item color="light" *ngFor="let p of products" (click)="showDetail(p)">        
+      <ion-label>{{p.nombre}}</ion-label>
+      <ion-icon name="create" color="dark" (click)="delete(p)"></ion-icon>
+    </ion-item>
+  </ion-list>
+
+  <ion-fab right bottom>
+    <button ion-fab color="tertiary">
+      <ion-icon name="add-circle"></ion-icon>
+    </button>
+  </ion-fab>
+</ion-content>
+
+<ng-template #cargando>
+  <div>
+    <h3>CARGANDO..</h3>
+    <i class="fa fa-spin fa-spinner fa-3x"></i>
+  </div>
+</ng-template>
+<!--  <ion-searchbar (ionInput)="GetProduct($event)">Get </ion-searchbar>
+-->
+
+<!--  <ion-item-sliding>
+    <ion-item-option side="right">
         <button ion-button color="primary">
             <ion-icon name="create"></ion-icon>editar
         </button>
         <button ion-button color="danger">
             <ion-icon name="trash"></ion-icon>Delete
-        </button>
+        </button>    
       </ion-item-option>
-    </ion-item-sliding>
-   
-  </ion-list>
+ </ion-item-sliding> -->
 
-  <ion-fab right bottom>
-    <button ion-fab color="tertiary"></button>
-    <ion-icon name="contacts"></ion-icon>
-  </ion-fab>
-
-  <ion-item>
-    <ion-avatar slot="start">
-      <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
-    </ion-avatar>
-    <ion-label>Item Avatar</ion-label>
-  </ion-item>
-
-  <ion-fab vertical="bottom" horizontal="end">
-    <ion-fab-button>Share</ion-fab-button>
-
-    <ion-fab-list side="top">
-      <ion-fab-button>Facebook</ion-fab-button>
-      <ion-fab-button>Twitter</ion-fab-button>
-      <ion-fab-button>Youtube</ion-fab-button>
-    </ion-fab-list>
-
-    <ion-fab-list side="start">
-      <ion-fab-button>Vimeo</ion-fab-button>
-    </ion-fab-list>
-
-  </ion-fab>
-
-
-  <ion-list >  <!-- *ngIf="products.length; else cargando" -->
-    <ion-item *ngFor="let p of products" (click)="showDetail(p)">
-      <ion-label>{{p.nombre}}</ion-label>
-    </ion-item>
-  </ion-list>
-</ion-content>
-<ng-template #cargando>
-  <div>
-    <h3>CARGANDO..</h3> 
-    <i class="fa fa-spin fa-spinner fa-3x"></i>
-  </div>
-</ng-template>
-<ion-card>
+<!-- <ion-card>
   <ion-card-header>
-  Mi encabezado de tarjeta
+    <div class="item item-divider">
+    Mi encabezado de tarjeta
+  </div>
   </ion-card-header>
   <ion-card-content>
-  <p> Contenido de mi tarjeta ... </p>
+    <p> Contenido de mi tarjeta ... </p>
   </ion-card-content>
-  </ion-card>
+</ion-card> -->
 
 <!-- <table class="table table-sm table-hover table-bordered table-responsive px-0 py-0">
     <thead>
@@ -103,4 +87,3 @@
   </table>
   <button (click)="showForm()">ver form</button>
    -->
-  

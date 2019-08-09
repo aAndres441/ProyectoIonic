@@ -9,7 +9,8 @@ import { Product } from '../../model/product.model';
 export class ProductListComponent implements OnInit {
   @Input() products : Array<Product>;
   @Output() showComponent = new EventEmitter<any>();
-
+  data: boolean;
+title = 'List';
   constructor() {  }
 
   ngOnInit() {
@@ -32,5 +33,11 @@ export class ProductListComponent implements OnInit {
   edit(p:Product){
     
     return this.showComponent.emit({"page":"form","product":p});
+  }
+
+  getProduct($event){
+  }
+  delete(p:Product){
+    console.log("SEMILLA: " + p.nombre +  " ID: " +p.id);
   }
 }

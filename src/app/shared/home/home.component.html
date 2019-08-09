@@ -1,19 +1,112 @@
-
-
 <ion-content>
-  <div class="ion-card">
-    <!-- <div class='card-header'></div> -->
-    <div class="ion-padding">
-      <a routerLink="/layout/products">
-        <div class="text-center">
-          <h4>PRODUCTOS<i class="fas fa-shopping-cart ml-3" style="color: rgb(223, 129, 6);font-size: 34px"></i></h4>
-        </div>
-      </a>
-    </div>
-    <!-- <div class='ion-footer'>nnnn</div> -->
-  </div>
-  <!-- <ion-header>sasasa</ion-header>
-  <div class="ion-padding">
-    <a routerLink="/layout/products">Products and pins </a>
-  </div> -->
+  <!-- fullscreen -->
+  <ion-list no-lines>
+    <img src="../footer/../../../assets/cardona.jpg" class="img-responsive  " />
+    <ion-label item-right slot="end"><span>{{title}}</span> </ion-label>
+
+  </ion-list>
+
+  <ion-card>
+    <ion-button  expand="full" fill="outline">
+      <!-- shape="round" -->
+      <a routerLink="/layout/products">VENTAS</a>
+    </ion-button>
+  </ion-card>
+
+  <ion-card>
+    <ion-button  expand="full" fill="outline">
+      <a routerLink="/layout/products">COMPRAS</a>
+    </ion-button>
+  </ion-card>
+
+  <ion-card>
+      <ion-button  expand="full" fill="outline">
+          <!-- shape="round" -->
+          <a routerLink="/layout/products">PRODUCTOS</a>
+        </ion-button>    
+  </ion-card>
+
+  <ion-card>
+      <ion-button expand="full" fill="outline">
+          <a routerLink="/layout/products">PERSONAS</a>
+        </ion-button>
+  </ion-card>
+
+  <ion-card>
+      <ion-button expand="full" fill="outline">
+          <a routerLink="/layout/formu">MAS</a>
+        </ion-button>
+  </ion-card>
+
+
+  <ion-fab vertical="bottom" horizontal="center" slot="fixed">
+    <ion-fab-button>
+      <ion-icon name="share"></ion-icon>
+    </ion-fab-button>
+    <ion-fab-list side="top">
+      <ion-fab-button>
+        <ion-icon name="logo-vimeo"></ion-icon>
+      </ion-fab-button>
+    </ion-fab-list>
+    <ion-fab-list side="bottom">
+      <ion-fab-button>
+        <ion-icon name="logo-facebook"></ion-icon>
+      </ion-fab-button>
+    </ion-fab-list>
+    <ion-fab-list side="start">
+      <ion-fab-button><a routerLink="/layout/products">
+          <ion-icon name="logo-instagram"></ion-icon>
+        </a></ion-fab-button>
+    </ion-fab-list>
+    <ion-fab-list side="end">
+      <ion-fab-button>
+        <ion-icon name="logo-twitter"></ion-icon>
+      </ion-fab-button>
+    </ion-fab-list>
+  </ion-fab>
+
 </ion-content>
+
+<!-- fab placed in the center of the content with a list on each side -->
+<!--     <ion-fab vertical="center" horizontal="center" slot="fixed">
+        <ion-fab-button>
+          <ion-icon name="share"></ion-icon>
+        </ion-fab-button>
+        <ion-fab-list side="top">
+          <ion-fab-button><ion-icon name="logo-vimeo"></ion-icon></ion-fab-button>
+        </ion-fab-list>
+        <ion-fab-list side="bottom">
+          <ion-fab-button><ion-icon name="logo-facebook"></ion-icon></ion-fab-button>
+        </ion-fab-list>
+        <ion-fab-list side="start">
+          <ion-fab-button><a routerLink="/layout/products"><ion-icon name="logo-instagram"></ion-icon></a></ion-fab-button>
+        </ion-fab-list>
+        <ion-fab-list side="end">
+          <ion-fab-button><ion-icon name="logo-twitter"></ion-icon></ion-fab-button>
+        </ion-fab-list>
+      </ion-fab> -->
+
+<!-- <ion-card-header>
+      <ion-label>mi invento</ion-label>
+    </ion-card-header>
+    <ion-card-content>
+      <p> INVENTO ... </p>
+      <ion-item>
+        <ion-icon name="pin" slot="start"></ion-icon>
+        <ion-label>ion in a card</ion-label>
+        <ion-button fill="outline" slot="end">View</ion-button>
+      </ion-item>
+    </ion-card-content> -->
+
+    <!--  <ion-card>
+    <ion-item>
+      <ion-icon name="pin" slot="start"></ion-icon>
+      <ion-label>ion-item in a card, icon left, button right</ion-label>
+      <ion-button fill="outline" slot="end">View</ion-button>
+    </ion-item>
+  
+    <ion-card-content>
+      This is content, without any paragraph or header tags,
+      within an ion-card-content element.
+    </ion-card-content>
+  </ion-card> -->

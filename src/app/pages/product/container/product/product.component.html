@@ -1,4 +1,6 @@
-<ion-content>
+
+
+<ion-content >  <!-- fullscreen -->
     <app-product-list *ngIf="showComponent == 'list' else list" #list
         [products]="products"
         (showComponent)="showPage($event)">

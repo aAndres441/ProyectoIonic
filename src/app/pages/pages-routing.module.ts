@@ -1,10 +1,11 @@
 import { RouterModule, Routes ,ActivatedRoute} from '@angular/router';
 import { NgModule } from '@angular/core';
-import { ProductComponent } from './product/container/product/product.component';
+import { ProductComponent } from './product/container/index';
 
 import { PagesComponent } from './pages.component';
 import { SaleComponent } from './sale/container';
 
+import { ProductFormComponent } from './product/components/product-form/product-form.component';
 
 const routes: Routes = [{
   path: '',
@@ -13,11 +14,15 @@ const routes: Routes = [{
     {
       path: 'products',
       component: ProductComponent
-    }/* ,
+    } ,
     {
       path: 'sale',
       component: SaleComponent
-    } */
+    } ,
+    {
+      path: 'formu',
+      component: ProductFormComponent
+    } 
   ]
 }
 ];

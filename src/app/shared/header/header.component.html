@@ -1,10 +1,15 @@
 
-<ion-content>
-  <div class="container " id="back">
-
+<!-- <ion-content>
     <a class="nav-link" (click)="back()">
       <img src="../footer/../../../assets/cardona.jpg" class="img-responsive  " style="max-height:40px" />
       <span>{{title}}</span>
     </a>
-  </div>
-</ion-content>
+</ion-content> -->
+
+<ion-list>
+    <a routerLink="/layout/products"> 
+      <!--  <a class="nav-link" (click)="back()" > -->
+          <img src="../footer/../../../assets/cardona.jpg" class="img-responsive  " style="max-height:40px" />           
+          <ion-label slot="end"><span>{{title}}</span> </ion-label>
+    </a>
+</ion-list>

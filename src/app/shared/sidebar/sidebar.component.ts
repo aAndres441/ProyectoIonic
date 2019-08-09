@@ -7,15 +7,15 @@ import { Router, NavigationEnd } from '@angular/router';
   styleUrls: ['./sidebar.component.scss'],
 })
 export class SidebarComponent implements OnInit {
-  title;
-  constructor(private route:Router) { }
-  
-  ngOnInit(){
+  title = 'awesome sidebar';
+  constructor(private route: Router) { }
+
+  ngOnInit() {
     this.route.events.subscribe(
       elem => {
         console.log('titulo: ')
-        console.log(elem)
-    }
+        console.log(elem + 'tt')
+      }
     )
   }
 

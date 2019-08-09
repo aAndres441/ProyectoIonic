@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProductDetailComponent implements OnInit {
 
+  numero: number;  /* Math.floor(Math.random() * */
+ 
   constructor() { }
 
   ngOnInit() {}
