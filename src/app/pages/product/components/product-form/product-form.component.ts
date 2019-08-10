@@ -14,22 +14,44 @@ import { Product } from '../../model/product.model';
 })
 export class ProductFormComponent implements OnInit {
 
-  myForm: FormGroup;
-
   @Input() product: Product;
   @Output() submitFormNotification = new EventEmitter<FormGroup>();
   @Output() showListForm = new EventEmitter<any>();
 
-  productForm: FormGroup;
+  public fGroup: FormGroup;
   title = 'Add product';
-  losProducts: Product[] = [];
+  public losProducts: Product[] = [];
 
   constructor(private fb: FormBuilder, public navCtrl: NavController) {
 
   }
 
   ngOnInit() {
-    this.myForm = this.createForm();
+    this.fGroup = this.createForm();
+
+    /* setTimeout(() => {
+      alert('Cardona putazo');
+    }, 2000); */
+  }
+
+  createForm() {
+    return this.fb.group({
+      name: ['', Validators.required],
+      description: ['', Validators.required, Validators.minLength(4)]
+    });
+  }
+
+  submitForm() {
+    if (this.fGroup.valid) {
+      /*  this.submitFormNotification.emit(this.fGroup.value); */
+      console.log(this.fGroup.value);
+    } else {
+      this.showErrorAlert(' Debe completar todos los campos.')
+    }
+    /* this.productForm.reset(); */
+  }
+  showErrorAlert(arg0: string) {
+    alert('ERROR ' + arg0);
   }
 
   showList() {
@@ -39,41 +61,10 @@ export class ProductFormComponent implements OnInit {
     return this.showListForm.emit('detail');
   }
 
-  createForm() {
-    return this.fb.group({
-      name: ['', Validators.required],
-      lastName: ['', Validators.required],
-      email: ['', Validators.required],
-      dateBirth: ['', Validators.required],
-      gender: ['', Validators.required]
-    });
-  }
-  saveData(){
-    console.log(this.myForm.value);
-  }
-
   cancel() {
     console.log('cancelo');
     alert('cancelo');
   }
 
-  onSubmit(): void {
-    const form: Product = Object.assign({}, this.product);
-    console.warn('Your order has been submitted');
-    if (this.productForm.valid) {
-      this.submitFormNotification.emit(this.productForm.value);
-      console.log(form.nombre.toUpperCase());
-    }
-    // this.productForm.reset();
-  }
-  submit() {
-    if (this.productForm.valid) {
-      console.log(this.productForm.value);
-    } else {
-      this.showErrorAlert('Debe completar todos los campos.')
-    }
-  }
-  showErrorAlert(arg0: string) {
-   alert( ' Method not implemented.');
-  }
+  
 }

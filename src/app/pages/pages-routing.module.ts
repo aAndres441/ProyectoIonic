@@ -5,7 +5,9 @@ import { ProductComponent } from './product/container/index';
 import { PagesComponent } from './pages.component';
 import { SaleComponent } from './sale/container';
 
-import { ProductFormComponent } from './product/components/product-form/product-form.component';
+import { ProductFormComponent} from './product/components/product-form/product-form.component';
+import { ProductListComponent} from './product/components/product-list/product-list.component';
+
 
 const routes: Routes = [{
   path: '',
@@ -22,7 +24,11 @@ const routes: Routes = [{
     {
       path: 'formu',
       component: ProductFormComponent
-    } 
+    },
+    {
+      path: 'lst',
+      component: ProductListComponent
+    }
   ]
 }
 ];

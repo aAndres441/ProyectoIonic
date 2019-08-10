@@ -1,60 +1,54 @@
-<ion-card mode="ios" color="danger">
+<ion-card no-border mode="ios" color="success">
+
   <ion-card-header>
-    <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
-    <ion-card-title>Card Title</ion-card-title>
+    <ion-card-title>{{detailProduct.nombre}}</ion-card-title>
+    <ion-buttons>
+      <ion-button><a href="#">
+          <ion-icon color="dark" name="arrow-round-back" item-start></ion-icon>
+        </a></ion-button>
+    </ion-buttons>
   </ion-card-header>
 
-  <ion-card-content>
-    Keep close to Nature's heart... and break clear away, once in awhile,
-    and climb a mountain or spend a week in the woods. Wash your spirit clean.
+  <ion-card-content mode="ios" color="light">
+    <ion-list>
+      <ion-item>
+        <ion-label>Code</ion-label>
+        <ion-p>{{detailProduct.id}}</ion-p>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>Description</ion-label>
+        <ion-p>{{detailProduct.descripcion}}</ion-p>
+      </ion-item>
+      <ion-item>
+        <ion-p>{{detailProduct.tmstmp}}</ion-p>
+      </ion-item>
+    </ion-list>
   </ion-card-content>
+  <ion-footer no-border mode="ios" color="success">
+    <ion-tabs>
+      <ion-tab-bar color="succes">
+        <!-- 
+              <ion-button href="#" >   -->
+        <a href="#"><ion-icon size="large" name="arrow-back"></ion-icon></a>Back
+        <!--  </ion-button> -->
+
+        <ion-icon icon-right size="large" name="create" (click)="delete(i)"></ion-icon>
+        <ion-label>Edit</ion-label>
+
+        <ion-icon size="large" name="close-circle-outline" (click)="delete(i)"></ion-icon>
+        <ion-label>Delete</ion-label>
+
+      </ion-tab-bar>
+    </ion-tabs>
+  </ion-footer>
+
 </ion-card>
-
-
-<ion-card mode="ios" color="danger">
-
-  <ion-item href="#">
-    <ion-icon name="wine" slot="start"></ion-icon>
-    <ion-label>Item 1 </ion-label>
-  </ion-item>
-
-  <ion-item>
-    <ion-icon name="walk" slot="start"></ion-icon>
-    <ion-label>Item 2</ion-label>
-  </ion-item>
-
-</ion-card>
-
-<ion-list mode="ios" color="light" >
-   <!-- <ion-virtual-scroll [items]="items" approxItemHeight="320px"> -->
-    <ion-item>
-      <ion-label>Input</ion-label>
-      <ion-input></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label>Toggle</ion-label>
-      <ion-toggle slot="end"></ion-toggle>
-    </ion-item>
-    <ion-item>
-      <ion-label>Radio</ion-label>
-      <ion-radio slot="end"></ion-radio>
-    </ion-item>
-    <ion-item>
-      <ion-label>Checkbox</ion-label>
-      <ion-checkbox slot="start"></ion-checkbox>
-    </ion-item>
-    <ion-img src="src\assets\icon\favicon.png" style="height: 88;">
-
-    </ion-img>
-    <ion-item>
-    <ion-button color="success" (click)="calcula()" fill="outline" slot="end">calcula</ion-button>
-<ion-text>{{numero}}</ion-text>
-</ion-item>
-  </ion-list>
-<!-- <ion-card color="dark">
-  <ion-icon color="light" slot="right" name="trash"></ion-icon>
-  <ion-img src="src\assets\certificado.jpg"></ion-img>
-  <ion-contetnt>
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique magnam consectetur quaerat est nesciunt harum dolorum nulla libero repudiandae! Voluptates facere deleniti dolore nihil. Incidunt itaque error tempora doloremque ipsam?
-  </ion-contetnt>
-</ion-card> -->
+<!-- 
+<button (click)="showList()">Atras</button>
+<button (click)="showDetail()">Atras</button> -->
+<!--   <ion-item-sliding no-borde>
+       <ion-item-options side="left">
+        <ion-item-option (click)="showPage()">Unread</ion-item-option>
+      </ion-item-options> 
+    </ion-item-sliding>
+ -->

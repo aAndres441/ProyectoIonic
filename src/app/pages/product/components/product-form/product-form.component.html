@@ -1,60 +1,73 @@
 
-<!-- ***************************************** -->
-<ion-header no-border>
-  <ion-toolbar>    
-    <ion-title><h3>Formulario<!-- {{title}} --></h3></ion-title>
+<ion-header mode="ios" no-border>
+    <ion-toolbar>    
+      <ion-title><h3>FORMULARIO</h3></ion-title>
+      <a href="/layout/products"><ion-icon name="arrow-round-back" item-start></ion-icon></a>
+     
+     <!--  <ion-buttons slot="start" color="light">
+          <a href="#"><ion-icon name="arrow-round-back" item-start></ion-icon></a>
+        </ion-buttons> -->
+    
+    </ion-toolbar>
+  </ion-header>
+
+<ion-content padding class="alturaBarra" mode="ios">
+  <form [formGroup]="fGroup">
+  <ion-item>
+      <ion-label position="floating">Nombre del producto</ion-label>
+    <ion-input  formControlName="name" type="text"></ion-input>
+    <div *ngIf='fGroup.control.name.errors'>
+    <ion-p *ngIf='fGroup.control.name.errors.required'>Debe completar </ion-p>
+  </div>
+  </ion-item>
+  <ion-item>
+    <ion-label position="floating">Description</ion-label>
+    <ion-textarea  formControlName="description"></ion-textarea>
+    <div *ngIf='fGroup.control.name.errors'>
+        <ion-p *ngIf='fGroup.control.name.errors.required'>Debe completar </ion-p>
+        <ion-p *ngIf='fGroup.control.name.errors.minLength'>Minimo 4 </ion-p>
+      </div>
+  </ion-item>
+</form>
+</ion-content>
+<!-- [{ngModel}]="product.nombre" -->
+<ion-footer>
+  <ion-toolbar>
+    <ion-button color="success" expand="full" type="submit" (click)="submitForm()"
+    [disabled]="!fGroup.valid" >Guardar</ion-button>
   </ion-toolbar>
+</ion-footer>
+
+<ion-item-sliding no-borde>
+     <ion-item-options side="left">
+      <ion-item-option (click)="showPage()">Unread</ion-item-option>
+    </ion-item-options> 
+  </ion-item-sliding>
+
+
+<!-- ***************************************** -->
+<!-- <ion-header mode="ios" no-border>
+  <ion-toolbar>    
+    <ion-title><h3>{{title}} </h3></ion-title>
+    <a href="/layout/products"><ion-icon name="arrow-round-back" item-start></ion-icon></a>
+   </ion-toolbar>
 </ion-header>
-<!-- <ion-header>
-    <ion-navbar color="primary">
-      <ion-title>Formulario</ion-title>
-    </ion-navbar>
-    <ion-list>
-        <ion-label item-right slot="end">{{title}}</ion-label>
-    </ion-list>
-  </ion-header> -->
   
-  <ion-content class="barra" mode="ios">
+  <ion-content padding class="alturaBarra" mode="ios" fullscreen>
     <form [formGroup]="myForm" (ngSubmit)="saveData()">
       <ion-list>
         <ion-item>
-          <ion-icon name="person" item-start></ion-icon>
-          <ion-input formControlName="name" type="text" placeholder="Nombre"></ion-input>
+          <ion-input formControlName="name" type="text" placeholder="Nombre del producto"></ion-input>
         </ion-item>
-        <ion-item>
-          <ion-icon name="person" item-start></ion-icon>
-          <ion-input formControlName="lastName" type="text" placeholder="Apellidos"></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-icon name="mail" item-start></ion-icon>
-          <ion-input formControlName="email" type="email" placeholder="Email"></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-icon name="calendar" item-start></ion-icon>
-          <ion-datetime formControlName="dateBirth" displayFormat="MM-DD-YYYY" placeholder="MM-DD-YYY"></ion-datetime>
-        </ion-item>
-        <ion-item>
-            <ion-label>Toggle</ion-label>
-            <ion-toggle slot="end"></ion-toggle>
-          </ion-item>
-        <ion-row radio-group formControlName="gender">
-          <ion-col>
-            <ion-item>
-              <ion-icon name="woman" item-start></ion-icon>
-              <ion-label>Mujer</ion-label>
-              <ion-radio value="2"></ion-radio>
+
+          <ion-item>
+              <ion-label position="floating">Description</ion-label>
+              <ion-textarea formControlName="description"></ion-textarea>
             </ion-item>
-          </ion-col>
-          <ion-col>
-            <ion-item>
-              <ion-icon name="man" item-start></ion-icon>
-              <ion-label>Hombre</ion-label>
-              <ion-radio value="1"></ion-radio>
-            </ion-item>
-          </ion-col>
-        </ion-row>
+
+        
         <ion-item>
-            <ion-label>Checkbox</ion-label>
+            <ion-label>we whish see options</ion-label>
             <ion-checkbox slot="start"></ion-checkbox>
           </ion-item>
       </ion-list>
@@ -62,9 +75,7 @@
       
     </form>
   </ion-content>
-  <ion-footer>
-    <!--(click)=" showDetail() "  -->
-    <!-- (click)=" showList() " -->
+  <ion-footer>    
     <ion-item>
       <ion-button color="success" (click)="cancel()" fill="outline" slot="end">
         <ion-icon name="close-circle-outline"></ion-icon>
@@ -72,14 +83,17 @@
     </ion-item>
 
     <ion-button color="success" expand="full" fill="outline" shape="round">
-      <!-- <a routerLink="/layout/products">products</a> -->
       <ion-icon name="arrow-round-back"></ion-icon>
-    </ion-button>
-  
-  </ion-footer>
+    </ion-button>  
+  </ion-footer> -->
 
+  <!--(click)=" showDetail() "  -->
+    <!-- (click)=" showList() " -->
 <!-- ///////////////////////////////////////////// -->
 
+
+
+<!-- ////////////////////////////////////////// -->
 <!-- <div class="class-row mx-0">    
     <button (click)=" showList() " class="col-auto  mr-2 mt-4"> <i class="fas fa-list-ul mr-2"
         style="color:rgb(173, 226, 28) "></i>ver lista </button>

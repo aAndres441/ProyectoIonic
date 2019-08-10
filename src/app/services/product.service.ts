@@ -23,4 +23,14 @@ export class ProductService {
     return data;
   }
 
+  deleteProduct(prod: Product): Observable<any>{
+    return this.http.delete<any>(environment.API_BASE + 'products').pipe(
+      map(
+          (data: Array<Product>) => {
+           this.productTransform(data);
+        }
+      )
+    )
+  }
+
 }

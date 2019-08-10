@@ -1,0 +1,48 @@
+
+.barra{
+    height:500px;
+}
+
+.form-group{
+    background: rgb(203, 236, 175) ;
+    padding : 5px;
+    margin  : 0;
+    position: relative;
+}
+h4, h3{
+    color: mediumseagreen;
+}
+
+.card{
+    
+    border-top-color: greenyellow;
+    top: 10px;
+    margin-bottom: 15px;
+    margin-top: 15px;
+
+}
+
+#btnAdd, #btncncel {
+    background-color: whitesmoke;
+    border-color: greenyellow;
+    font-size: 18px;
+    text-align: center;
+}
+
+textarea{
+    display : block;
+    padding : 10px;
+    margin  : 0px;  
+}
+.class{
+    padding : 20px;
+    margin  : 5px;
+}
+#addProd{
+    padding : 10px;
+    margin  : 5px;
+    border-radius: 10px
+}
+.ng-valid[required], .ng-valid.required  {
+    border-left: 5px solid #42A948; /* green */
+  }

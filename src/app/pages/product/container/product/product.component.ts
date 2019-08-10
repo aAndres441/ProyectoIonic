@@ -9,10 +9,10 @@ import { Router } from '@angular/router';
   styleUrls: ['./product.component.scss'],
 })
 export class ProductComponent implements OnInit {
-  products : Product[];
-  detailProduct : Product = new Product();
-  prod : Product = null;
-  showComponent:string = 'list';
+  products: Product[];
+  detailProduct: Product = new Product();
+  prod: Product = null;
+  showComponent: string = 'list';
   
   constructor( private productoService: ProductService, private router: Router ) { }
 
@@ -21,31 +21,38 @@ export class ProductComponent implements OnInit {
     this.getProductos();
   }
 
-  getProductos():void{
+  getProductos(): void {
     this.productoService.getProductos().subscribe(
+      (data) => {
+        this.products = data;
+        console.log(data);
+      }
+    );
+  }
+
+  showPage(obj: any): string {
+    console.log(obj);
+    this.showComponent = obj.page;
+    if (this.showComponent === 'detail') {
+      this.detailProduct = obj.product;
+    } else if (this.showComponent === 'list') {
+
+    } else if (this.showComponent === 'form') {
+      if (obj.product) {
+        this.prod = obj.product;
+      } else {
+        this.prod = null;
+      }
+    }
+    return this.showComponent;
+  }
+  
+  deleteProduct(prod:Product){
+    this.productoService.deleteProduct(prod).subscribe(
       (data) => {
         this.products = data
         console.log(data);
       }
     );
   }
-
-
-  showPage(obj:any):string {
-    console.log(obj);
-    this.showComponent = obj.page;
-    if(this.showComponent == "detail"){
-      this.detailProduct = obj.product;
-    }else if(this.showComponent == "list"){
-      
-    }else if(this.showComponent == "form"){
-      if(obj.product){
-        this.prod = obj.product;
-      }else {
-        this.prod = null;
-      }
-    }
-    
-    return this.showComponent;
-  } 
 }
