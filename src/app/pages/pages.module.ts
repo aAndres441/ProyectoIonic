@@ -10,11 +10,12 @@ import { ProductModule } from './product/product.module';
 import { SaleModule } from './sale/sale.module';
 import { PurchaseModule } from './purchase/purchase.module';
 import { PersonModule } from './person/person.module';
+import { ShippingModule } from './shipping/shipping.module';
 
 import { SaleService } from '../services/sale.service';
 import { PurchaseService } from '../services/purchase.service';
 import { ProductService } from '../services/product.service';
-import { PersonService } from '../services/person.service';
+import { PersonService } from '../services/person.service'
 
 
 const MODULES = [
@@ -22,7 +23,8 @@ const MODULES = [
   SaleModule,
   PurchaseModule,
   PersonModule,
-  SharedModule
+  SharedModule,
+  ShippingModule
 ];
 
 @NgModule({

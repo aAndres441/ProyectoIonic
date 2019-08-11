@@ -8,10 +8,12 @@ import { Product } from '../../model/product.model';
   styleUrls: ['./product-list.component.scss'],
 })
 export class ProductListComponent implements OnInit {
-  @Input() products : Array<Product>;
+  @Input() products: Array<Product>;
   @Output() showComponent = new EventEmitter<any>();
   data: boolean;
-title = 'List';
+  title = 'List';
+  productSelected = 0;
+
   constructor() {  }
 
   ngOnInit() {
@@ -31,15 +33,15 @@ title = 'List';
     if (!p) { p = new Product(); }
     return this.showComponent.emit({ page: 'form', product: p });
   }
-  edit(p:Product){
+  edit(p: Product){
     return this.showComponent.emit({"page":"form","product":p});
   }
  
-  delete(i:number){
+  delete(i: number){
     let p = this.products[i];
     return this.showComponent.emit({"page":"form","product":p});
   }
-  setProduct(i:number){
+  setProduct(i: number) {
     this.productSelected = i
   }
 

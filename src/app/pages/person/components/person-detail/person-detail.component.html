@@ -1,3 +1,57 @@
 <p>
   person-detail works!
 </p>
+<ion-card no-border mode="ios" color="success">
+
+  <ion-card-header>
+    <ion-card-title>detailPerson.nombre</ion-card-title>
+    <ion-buttons>
+      <ion-button><a href="#">
+          <ion-icon color="dark" name="arrow-round-back" item-start></ion-icon>
+        </a></ion-button>
+    </ion-buttons>
+  </ion-card-header>
+
+  <ion-card-content mode="ios" color="light">
+    <ion-list>
+      <ion-item>
+        <ion-label>Code</ion-label>
+        <ion-p>detailPerson.id</ion-p>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>Description</ion-label>
+        <ion-p>detailPerson.descripcion</ion-p>
+      </ion-item>
+      <ion-item>
+        <ion-p>Hora</ion-p>
+      </ion-item>
+    </ion-list>
+  </ion-card-content>
+  <ion-footer no-border mode="ios" color="success">
+    <ion-tabs>
+      <ion-tab-bar color="succes">
+        <!-- 
+              <ion-button href="#" >   -->
+        <a href="#"><ion-icon size="large" name="arrow-back"></ion-icon></a>Back
+        <!--  </ion-button> -->
+
+        <ion-icon icon-right size="large" name="create" (click)="delete(i)"></ion-icon>
+        <ion-label>Edit</ion-label>
+
+        <ion-icon size="large" name="close-circle-outline" (click)="delete(i)"></ion-icon>
+        <ion-label>Delete</ion-label>
+
+      </ion-tab-bar>
+    </ion-tabs>
+  </ion-footer>
+
+</ion-card>
+<!-- 
+<button (click)="showList()">Atras</button>
+<button (click)="showDetail()">Atras</button> -->
+<!--   <ion-item-sliding no-borde>
+       <ion-item-options side="left">
+        <ion-item-option (click)="showPage()">Unread</ion-item-option>
+      </ion-item-options> 
+    </ion-item-sliding>
+ -->

@@ -1,8 +1,9 @@
 export class Sale {
-    id : number;
-    nombre : string;
-    imagen? : string;
-    descripcion? : string;
-    tmstmp? : Date
-    constructor(){}
+    id: number;
+    producto: number;
+    cliente: number;
+    fecha: Date;
+    description: string;
+    tmstmp?: Date;
+    constructor() { }
 }

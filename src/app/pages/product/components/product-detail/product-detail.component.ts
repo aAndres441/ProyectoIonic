@@ -22,7 +22,6 @@ export class ProductDetailComponent implements OnInit {
     return  this.showComponent. emit ({ page : ' list ' });
   }
 
-
   showForm(p: Product) {
     if (!p) { p = new Product(); }
     return this.showComponent.emit({ page: 'form', product: p });
@@ -32,17 +31,14 @@ export class ProductDetailComponent implements OnInit {
     return this.showComponent.emit({ page: 'detail', product: p });
   }
 
-  showForm(p: Product) {
-    if (!p) { p = new Product(); }
-    return this.showComponent.emit({ page: 'form', product: p });
-  }
-  edit(p:Product){
-    return this.showComponent.emit({"page":"form","product":p});
+  edit(p: Product) {
+    return this.showComponent.emit({page: 'form', product: p});
   }
  
-  delete(i:number){
-    let p = this.products[i];
-    return this.showComponent.emit({"page":"form","product":p});
+  delete(p: Product){
+   
+    return this.showComponent.emit({page: 'form', product: p});
   }
+
 
 }

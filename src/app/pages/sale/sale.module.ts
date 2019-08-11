@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {SaleDetailComponent,SaleFormComponent,SaleListComponent} from './components/index'
 import {SaleComponent} from './container/index'
@@ -19,6 +19,8 @@ const COMPONENTS = [
     CommonModule,
     ReactiveFormsModule,
     FormsModule
-  ]
+  ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+
 })
 export class SaleModule { }

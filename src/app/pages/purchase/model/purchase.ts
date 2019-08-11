@@ -1,6 +1,9 @@
 export class Purchase {
-    id : number;
-   
-    tmstmp? : Date
-    constructor(){}
+    id: number;
+    producto: number;
+    cliente: number;
+    fecha: Date;
+    description: string;
+    tmstmp?: Date;
+    constructor() { }
 }

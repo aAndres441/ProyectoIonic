@@ -14,7 +14,7 @@ export class SidebarComponent implements OnInit {
     this.route.events.subscribe(
       elem => {
         console.log('titulo: ')
-        console.log(elem + 'tt')
+        console.log(elem + 'viene del onint sidebar')
       }
     )
   }

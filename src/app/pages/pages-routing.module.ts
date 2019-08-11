@@ -1,12 +1,19 @@
-import { RouterModule, Routes ,ActivatedRoute} from '@angular/router';
+import { RouterModule, Routes, ActivatedRoute} from '@angular/router';
 import { NgModule } from '@angular/core';
+
 import { ProductComponent } from './product/container/index';
+import { PurchaseComponent } from './purchase/container/index';
+import { SaleComponent } from './sale/container/index';
+import { ShippingComponent } from './shipping/container/index';
+import { PersonComponent } from './person/container/index';
 
 import { PagesComponent } from './pages.component';
-import { SaleComponent } from './sale/container';
 
 import { ProductFormComponent} from './product/components/product-form/product-form.component';
 import { ProductListComponent} from './product/components/product-list/product-list.component';
+import { ShippingFormComponent } from './shipping/components';
+
+
 
 
 const routes: Routes = [{
@@ -28,6 +35,22 @@ const routes: Routes = [{
     {
       path: 'lst',
       component: ProductListComponent
+    },
+    {
+      path: 'purchase',
+      component: PurchaseComponent
+    },
+    {
+      path: 'shipping',
+      component: ShippingComponent
+    },
+    {
+      path: 'person',
+      component: PersonComponent
+    },
+    {
+      path: 'shippingForm',
+      component: ShippingFormComponent
     }
   ]
 }

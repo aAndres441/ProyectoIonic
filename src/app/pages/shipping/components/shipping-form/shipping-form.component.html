@@ -1,0 +1,116 @@
+<!-- ***************************************** -->
+<ion-header no-border>
+  <ion-toolbar>
+    <ion-title>
+      <h3>Shippimg form
+         {{title}} 
+      </h3>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="barra" mode="ios">
+  <form [formGroup]="shippingForm" (submit)="addShipping(text,precio)"> <!-- fletero,fletes,precio,fecha -->
+    <ion-list>
+
+      <!-- //////////////////////////////////////////////////// -->
+      <ion-item>
+          <ion-label>Nombre</ion-label>
+          <div class="form-group">
+              <input #text type="text" class="form-control form-control-sm" placeholder="* "  autofocus required minlength="4">
+            </div>
+      </ion-item>
+      <ion-item>
+          <ion-label>Precio</ion-label>
+          <div class="form-group">
+              <input #precio type="text"  class="form-control form-control-sm" placeholder="* " required>
+            </div>
+      </ion-item>
+<!-- //////////////////////////////////////////////////// -->
+
+    <!--   <ion-item>
+          <ion-label>Fletero</ion-label>
+        <ion-input  formControlName="fletero" type="text" placeholder="Nombre Fletero" autofocus required minlength="4"></ion-input>
+      </ion-item>
+      
+      <ion-item>
+        <ion-label>Seleccione fletes</ion-label>
+        <select #fletes formControlName="fletes" >
+          <option>a</option>
+          <option>b</option>
+          <option>c</option> -->
+            <!-- <option *ngfor='let f of fletes' value={{f.id}}> {{f.id}} </option>  -->
+<!--          </select>
+      </ion-item>
+
+      <ion-item>
+        <ion-input #precio formControlName="precioShipping" type="text" placeholder="Precio" required></ion-input>
+      </ion-item>
+      
+      <ion-item>
+        <ion-datetime #fecha formControlName="fechaShippimg" displayFormat="MM-DD-YYYY" placeholder="MM-DD-YYY"></ion-datetime>
+      </ion-item> -->
+      
+
+    <ion-button color="success" expand="full" type="submit"  (click)="addShipping()">Guardar</ion-button> <!-- [disabled]="!myForm.valid" -->
+</ion-list>
+  </form>
+
+  <ion-button color="dark" expand="full" type="submit"  (click)="addAlgo()">Guardar</ion-button> <!-- [disabled]="!myForm.valid" -->
+
+</ion-content>
+<ion-footer>
+  <!--(click)=" showDetail() "  -->
+  <!-- (click)=" showList() " -->
+  <ion-item>
+    <ion-button color="success" (click)="cancel()" fill="outline" slot="end">
+      <ion-icon name="close-circle-outline"></ion-icon>
+    </ion-button>
+  </ion-item>
+
+  <ion-button color="success" expand="full" fill="outline" shape="round">
+    <!-- <a routerLink="/layout/products">products</a> -->
+    <ion-icon name="arrow-round-back"></ion-icon>
+  </ion-button>
+
+</ion-footer>
+
+<!-- ///////////////////////////////////////////// -->
+
+<!-- <div class="class-row mx-0">    
+      <button (click)=" showList() " class="col-auto  mr-2 mt-4"> <i class="fas fa-list-ul mr-2"
+          style="color:rgb(173, 226, 28) "></i>ver lista </button>
+      <button (click)=" showDetail() " class="col-auto ml-2 mt-4"> <i class="fas fa-info-circle mr-2"
+          style="color: rgb(173, 226, 28)"></i> ver detalle </button>
+    </div> -->
+
+    <!-- ///////////////////////////////////////////////////// -->
+
+    
+      <!-- <ion-item>
+        <ion-label>Toggle</ion-label>
+        <ion-toggle slot="end"></ion-toggle>
+      </ion-item> -->
+
+     <!--  <ion-row radio-group formControlName="gender">
+        <ion-col>
+          <ion-item>
+            <ion-icon name="woman" item-start></ion-icon>
+            <ion-label>Mujer</ion-label>
+            <ion-radio value="2"></ion-radio>
+          </ion-item>
+        </ion-col>
+        <ion-col>
+          <ion-item>
+            <ion-icon name="man" item-start></ion-icon>
+            <ion-label>Hombre</ion-label>
+            <ion-radio value="1"></ion-radio>
+          </ion-item>
+        </ion-col>
+      </ion-row> -->
+
+     <!--  <ion-item>
+        <ion-label>Checkbox</ion-label>
+        <ion-checkbox slot="start"></ion-checkbox>
+      </ion-item>
+    </ion-list> -->

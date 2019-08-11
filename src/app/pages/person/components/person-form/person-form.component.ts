@@ -27,7 +27,7 @@ export class PersonFormComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.myForm = this.createForm();
+    this.productForm = this.createForm();
   }
   showList() {
     return this.showListForm.emit('list');
