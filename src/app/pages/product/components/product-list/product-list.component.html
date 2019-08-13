@@ -9,10 +9,9 @@
     <ion-buttons slot="start">
       <a href="#"><ion-icon name="arrow-round-back" item-start></ion-icon></a>
     </ion-buttons>
-
     <ion-buttons slot="primary">
       <ion-button>
-        <ion-icon name="add-circle-outline"></ion-icon>
+        <ion-icon name="add-circle-outline" (click)="showForm()"></ion-icon>       
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
@@ -23,7 +22,7 @@
     <ion-searchbar (ionInput)="getProduct($event)"></ion-searchbar>
   </ion-item>
 
-  <ion-tabs color="light">
+  <ion-tabs color="light" *ngIf="products && products.length; else cargando">
       <ion-tab *ngFor="let p of products; let i=index" (click)="showDetail(p)" [label]="p.nombre" (ionSelect)="setProduct(i)"> 
        
         <ion-list #myList lines="full">
@@ -38,6 +37,34 @@
         </ion-list>
       </ion-tab>
     </ion-tabs>
+
+    <!-- ///////////  PRUEBA ////////// -->
+<!-- <ion-list>
+  <ion-item.sliding *ngFor= "g of products">
+    <ion-item>
+      <h2>{{g.nombre}}</h2>
+      <p>{{g.nombre}}</p>
+    </ion-item>
+    <ion-item-options  side="left">
+      <button ion-button color="primary">
+        <ion-icon name="text"></ion-icon>
+        text
+      </button>
+      <button ion-button color="secondary">
+          <ion-icon name="call"></ion-icon>
+          call
+        </button>
+    </ion-item-options>
+    <ion-item-options  side="right">
+        <button ion-button color="danger">
+          <ion-icon name="delete"></ion-icon>
+          Delete
+        </button>
+      </ion-item-options>
+  </ion-item.sliding>
+</ion-list> -->
+
+       <!-- /////////// TERMINA  PRUEBA ////////// -->
 </ion-content>
 <ion-footer>
     <ion-icon name="create" color="dark" (click)="delete(p)"></ion-icon>

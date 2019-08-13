@@ -13,22 +13,22 @@
 
 <ion-content padding class="alturaBarra" mode="ios">
   <form [formGroup]="fGroup">
-  <ion-item>
+    <ion-item>
       <ion-label position="floating">Nombre del producto</ion-label>
-    <ion-input  formControlName="name" type="text"></ion-input>
-    <div *ngIf='fGroup.control.name.errors'>
-    <ion-p *ngIf='fGroup.control.name.errors.required'>Debe completar </ion-p>
-  </div>
-  </ion-item>
-  <ion-item>
-    <ion-label position="floating">Description</ion-label>
-    <ion-textarea  formControlName="description"></ion-textarea>
-    <div *ngIf='fGroup.control.name.errors'>
+      <ion-input formControlName="name" type="text"></ion-input>
+      <div *ngIf='fGroup.control.name.errors'>
+        <ion-p *ngIf='fGroup.control.name.errors.required'>Debe completar </ion-p>
+      </div>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Description</ion-label>
+      <ion-textarea formControlName="description"></ion-textarea>
+      <div *ngIf='fGroup.control.name.errors'>
         <ion-p *ngIf='fGroup.control.name.errors.required'>Debe completar </ion-p>
         <ion-p *ngIf='fGroup.control.name.errors.minLength'>Minimo 4 </ion-p>
       </div>
-  </ion-item>
-</form>
+    </ion-item>
+  </form>
 </ion-content>
 <!-- [{ngModel}]="product.nombre" -->
 <ion-footer>

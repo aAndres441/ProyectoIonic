@@ -1,16 +1,17 @@
 
 .barra{
-    height:500px;
+    height:400px;
 }
 
 .form-group{
-    background: rgb(203, 236, 175) ;
+   /*  background: rgb(234, 248, 221) ; */
     padding : 5px;
     margin  : 0;
     position: relative;
 }
+
 h4, h3{
-    color: mediumseagreen;
+   border-bottom: 4px solid mediumseagreen;
 }
 
 .card{
