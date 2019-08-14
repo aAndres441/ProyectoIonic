@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Product } from '../../model/product.model';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-product-form',
@@ -13,20 +13,26 @@ export class ProductFormComponent implements OnInit {
 
   public productForm:FormGroup;
 
-  constructor() { }
+  constructor(private fb : FormBuilder) { }
 
   ngOnInit() {
     this.productForm = new FormGroup({
+        id : new FormControl(this.product.id, ),
         nombre : new FormControl(this.product.nombre,[Validators.required]),
-        imagen : new FormControl(this.product.imagen,[Validators.required]),
         descripcion : new FormControl(this.product.descripcion, [Validators.required])
       }
     );
   }
+
   onSubmit(){
-    console.log("form value: ");
-    console.log(this.productForm);
-    //this.showComponent.emit({"page":"list","form" : this.productForm.value});
+    //si es editar
+    if(this.productForm.valid && this.product.id){
+      this.productForm.value.id = this.product.id;
+    }
+    //else si es agregar nuevo
+    if (this.productForm.valid){
+      return this.showComponent.emit({"page":"add","product":this.productForm.value});
+    }
   }
 
   guardar() {
@@ -34,16 +40,6 @@ export class ProductFormComponent implements OnInit {
 
   editProducto(){
   }
-
-  get nombre (){
-    return this.productForm.get('nombre');
-  }
-  get imagen (){
-    return this.productForm.get('imagen');
-  }
-  get descripcion (){
-    return this.productForm.get('descripcion');
-  } 
 
   showList(){
     this.showComponent.emit({"page":"list"});

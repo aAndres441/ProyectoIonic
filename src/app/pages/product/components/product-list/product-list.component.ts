@@ -26,15 +26,13 @@ export class ProductListComponent implements OnInit {
     }
     return this.showComponent.emit({"page":"form","product":p});
   }
-  edit(p:Product){
-    return this.showComponent.emit({"page":"form","product":p});
-  }
 
   setProduct(i:number){
     this.productSelected = i
   }
+
   deleteProduct(i:number){
     let p = this.products[i];
-    return this.showComponent.emit({"page":"form","product":p});
+    return this.showComponent.emit({"page":"delete","product":p});
   }
 }

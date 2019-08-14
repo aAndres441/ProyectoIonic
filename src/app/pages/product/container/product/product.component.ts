@@ -31,32 +31,70 @@ export class ProductComponent implements OnInit {
   }
 
 
-  showPage(obj:any):string {
-    console.log(obj);
+  showPage(obj:any) {
     let prod;
-    this.showComponent = obj.page;
-    if(this.showComponent == "detail"){
-      this.detailProduct = obj.product;
-    }else if(this.showComponent == "list"){
-      prod = obj.product;
-      if(prod){
-        this.deleteProduct(prod);
+    let showAction = obj.page;
+    switch(showAction) { 
+      case "detail": { 
+        this.showComponent = "detail";
+        this.detailProduct = obj.product; 
+        break; 
+      } 
+      case "list": { 
+        this.showComponent = "list";
+        break; 
+      } 
+      case "form": { 
+        this.showComponent = "form";
+        if(obj.product){
+          this.prod = obj.product;
+        }else {
+          this.prod = null;
+        }
+        break; 
       }
-    }else if(this.showComponent == "form"){
-      if(obj.product){
-        this.prod = obj.product;
-      }else {
-        this.prod = null;
+      case "add": { 
+        this.addProduct(obj.product);
+        break; 
       }
-    }
-    
-    return this.showComponent;
+      case "delete": { 
+        prod = obj.product;
+        if(prod){
+          this.deleteProduct(prod);
+        }
+        break; 
+      }   
+      default: { 
+        this.showComponent = "list";
+        break; 
+      } 
+   } 
   } 
+
+  addProduct(prod:Product){
+    this.productoService.addProduct(prod).subscribe(
+      (data) => {
+        console.log("Producto agregado!")
+        this.getProductos();
+        this.showComponent = "list";
+      },(error) => {
+        console.log('ERROR addProduct:');
+        console.log(error);
+        this.showComponent = "form";
+      }
+    );
+  }
+
   deleteProduct(prod:Product){
     this.productoService.deleteProduct(prod).subscribe(
       (data) => {
-        this.products = data
-        console.log(data);
+        console.log("Producto borrado!")
+        this.getProductos();
+        this.showComponent = "list";
+      },(error) => {
+        console.log('ERROR deleteProduct:');
+        console.log(error);
+        this.showComponent = "list";
       }
     );
   }

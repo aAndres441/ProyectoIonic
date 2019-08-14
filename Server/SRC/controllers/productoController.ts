@@ -13,9 +13,10 @@ class ProductoController {
     }
 
     public async delete (req:Request,res:Response):Promise<any>{
+        console.log('llego a delete');
         const {id} = req.params;
-        await pool.query('delete producto where id = ?', [id]); 
-        res.json({text:'borrando producto :'+ req.params.id});
+        await pool.query('delete from producto where id = ?', [id]); 
+        res.json({text:'Producto borrado:'+ req.params.id});
     }
 
     public async update (req:Request,res:Response){

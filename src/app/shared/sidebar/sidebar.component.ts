@@ -11,12 +11,12 @@ export class SidebarComponent implements OnInit {
   constructor(private route:Router) { }
   
   ngOnInit(){
-    this.route.events.subscribe(
+    /* this.route.events.subscribe(
       elem => {
         console.log('titulo: ')
         console.log(elem)
     }
-    )
+    ) */
   }
 
 }

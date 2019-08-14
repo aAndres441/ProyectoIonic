@@ -26,9 +26,10 @@ class ProductoController {
     }
     delete(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
+            console.log('llego a delete');
             const { id } = req.params;
-            yield database_1.default.query('delete producto where id = ?', [id]);
-            res.json({ text: 'borrando producto :' + req.params.id });
+            yield database_1.default.query('delete from producto where id = ?', [id]);
+            res.json({ text: 'Producto borrado:' + req.params.id });
         });
     }
     update(req, res) {
