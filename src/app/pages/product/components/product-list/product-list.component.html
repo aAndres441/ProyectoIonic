@@ -1,46 +1,56 @@
-<ion-header no-border mode="ios">
-  <!--  <ion-button  ng-click="data.showDelete = !data.showDelete">
-       <ion-icon name="remove-circle-outline"> </ion-icon>   
-     </ion-button> -->
-  <ion-toolbar>
-    <ion-title>
-      <h3>{{title}}</h3>
-    </ion-title>
-    <ion-buttons slot="start">
-      <a href="#"><ion-icon name="arrow-round-back" item-start></ion-icon></a>
+<ion-header  mode="ios">  <!-- no-border -->
+
+  <app-header></app-header>
+
+  <ion-toolbar>   
+    <ion-title><h3>{{title}}</h3></ion-title>
+
+    <ion-buttons slot="end"><a  routerLink="/layout/formu">
+      <ion-button >
+        <ion-icon name="add-circle-outline" ></ion-icon>       
+      </ion-button></a>
     </ion-buttons>
-    <ion-buttons slot="primary">
-      <ion-button>
-        <ion-icon name="add-circle-outline" (click)="showForm()"></ion-icon>       
-      </ion-button>
-    </ion-buttons>
-  </ion-toolbar>
+  </ion-toolbar> 
+  <!-- (click)="addNew()" -->
+
+  <ion-toolbar color="light">
+    <ion-searchbar aria-placeholder="Buscar"  animated (ionChange)="buscarAlgo($event)"  >      
+    </ion-searchbar>
+  </ion-toolbar> 
+
 </ion-header>
 
 <ion-content padding [scrollEvents]="true" fullscreen mode="ios">  
-  <ion-item>
-    <ion-searchbar (ionInput)="getProduct($event)"></ion-searchbar>
-  </ion-item>
-
-  <ion-tabs color="light" *ngIf="products && products.length; else cargando">
+   <ion-tabs color="light" *ngIf="products && products.length; else cargando">
       <ion-tab *ngFor="let p of products; let i=index" (click)="showDetail(p)" [label]="p.nombre" (ionSelect)="setProduct(i)"> 
        
         <ion-list #myList lines="full">
-          <ion-item [routerLink]="['/AddEditItem', { tab:i, item:j }]">
+          <ion-item >
             <ion-label text-wrap>
               <h2>{{p.nombre}}</h2>
             </ion-label>
             <ion-icon slot="end" name="trash" color="danger" (click)="delete(i)"></ion-icon>
-            <ion-icon slot="end" name="create" color="tertiary" (click)="edit(i)"></ion-icon>
-
+            <ion-icon slot="end" name="create" color="tertiary" (click)="showForm(i)"></ion-icon>
           </ion-item> 
         </ion-list>
+        
       </ion-tab>
     </ion-tabs>
 
     <!-- ///////////  PRUEBA ////////// -->
-<!-- <ion-list>
-  <ion-item.sliding *ngFor= "g of products">
+
+    <!-- /    BOON ATRAS    -->
+    
+    
+   <!--  <ion-buttons slot="start"> -->
+<!--       <a href="#"><ion-icon name="arrow-back" item-start></ion-icon></a>-->     
+ <!--      <ion-back-button defaultl-href='/' text='Regresa'></ion-back-button>
+    </ion-buttons> -->
+
+    <!-- ///////////////////////////
+     -->
+ <!-- <ion-list>
+  <ion-item.sliding *ngFor= "let g of products">
     <ion-item>
       <h2>{{g.nombre}}</h2>
       <p>{{g.nombre}}</p>
@@ -62,13 +72,25 @@
         </button>
       </ion-item-options>
   </ion-item.sliding>
+</ion-list>  -->
+<!-- 
+<ion-list>
+  <ion-item *ngFor="let r of [1,2,3,4]">
+<ion-label>fenix </ion-label>
+  </ion-item>
+  <ion-item>dede</ion-item>
+  <ion-item>lala</ion-item>
+  <ion-item>lolo</ion-item>
 </ion-list> -->
-
        <!-- /////////// TERMINA  PRUEBA ////////// -->
+  
+       <app-footer></app-footer>
+       
 </ion-content>
-<ion-footer>
-    <ion-icon name="create" color="dark" (click)="delete(p)"></ion-icon>
-</ion-footer>
+<!--<ion-footer>
+     <ion-button routerLink='/layout/shippingForm'>Open</ion-button>
+    <ion-icon name="create" color="dark" (click)="delete(p)"></ion-icon> 
+</ion-footer>-->
 
 <ng-template #cargando>
   <div>

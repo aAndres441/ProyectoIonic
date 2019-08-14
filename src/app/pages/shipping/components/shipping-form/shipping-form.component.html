@@ -4,6 +4,13 @@
     <ion-title>
       <h3>{{title}}</h3>
     </ion-title>
+    <ion-buttons slot="start" color="tertiary">
+        <ion-back-button text="Principio" default-href='#'></ion-back-button>
+        <!-- <ion-button (click)="aInicio()">
+          <ion-icon name="return-left" item-start></ion-icon>
+        </ion-button> -->
+        <!--           <a routerLink="#"><ion-icon name="return-left" item-start></ion-icon></a> -->
+      </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -195,4 +202,15 @@
           </ion-item>
         </ion-radio-group>
       </ion-list> -->
-  
+
+
+      <!-- /////    RUTAAS  ////////// -->
+      
+<!-- <ion-button routerLink="/list">Open List</ion-button>
+
+<ion-button [routerLink]="['/', 'list']">Open List</ion-button>
+
+this.router.navigateByUrl("/list");
+
+this.router.navigate(["/", "list"]); -->
+<!-- //////////////////////////////////////////////////////////// -->

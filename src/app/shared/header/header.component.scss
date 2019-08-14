@@ -5,12 +5,17 @@ h4{
    /*  padding-top: 3px; */
    /*  align-content: center; */
    text-align: right;
+   text-decoration: none;
 }
  span{
-    color: white;
+    color: rgb(240, 224, 224);
     padding-left: 38px;
     font-size:24px;
-} 
+    font-weight: bolder;
+    text-decoration: none;
+} span :hover{
+    color:yellowgreen;
+}
 img{
     border-left: 1px;
      padding:1px;
@@ -18,12 +23,15 @@ img{
 }
 .container{
     margin-top:2px;
-    background-color: rgb(154, 148, 238);
+    background-color: rgb(74, 136, 207);
     /*  text-align: center;  */
     border-radius: 2px;
    /*  clear: both; */
     
 } 
+.container :hover{
+    color: greenyellow;
+}
 a:visited{
     color: #a72c2c;
 }

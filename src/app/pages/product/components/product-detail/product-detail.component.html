@@ -1,12 +1,25 @@
 <ion-card no-border mode="ios" color="success">
 
   <ion-card-header>
-    <ion-card-title>{{detailProduct.nombre}}</ion-card-title>
-    <ion-buttons>
-      <ion-button><a href="#">
+      <ion-toolbar>
+          <ion-title>
+              <ion-card-title>{{detailProduct.nombre}}</ion-card-title>
+            <h3>{{title}}</h3>
+          </ion-title>
+          <ion-buttons slot="start" color="tertiary">
+              <ion-back-button text="Principio" defaultHref='/'></ion-back-button>
+              <!-- <ion-button (click)="aInicio()">
+                <ion-icon name="return-left" item-start></ion-icon>
+              </ion-button> -->
+              <!--           <a routerLink="#"><ion-icon name="return-left" item-start></ion-icon></a> -->
+            </ion-buttons>
+        </ion-toolbar>
+   <!--  <ion-card-title>{{detailProduct.nombre}}</ion-card-title> -->
+   <!-- <ion-buttons>
+       <ion-button><a href="#">
           <ion-icon color="dark" name="arrow-round-back" item-start></ion-icon>
         </a></ion-button>
-    </ion-buttons>
+    </ion-buttons> -->
   </ion-card-header>
 
   <ion-card-content mode="ios" color="light">
@@ -16,10 +29,11 @@
         <ion-p>{{detailProduct.id}}</ion-p>
       </ion-item>
       <ion-item>
-        <ion-label floating>Description</ion-label>
+        <ion-label >Description</ion-label>
         <ion-p>{{detailProduct.descripcion}}</ion-p>
       </ion-item>
       <ion-item>
+        <ion-label >Fecha</ion-label>
         <ion-p>{{detailProduct.tmstmp}}</ion-p>
       </ion-item>
     </ion-list>

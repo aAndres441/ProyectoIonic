@@ -1,7 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Product } from '../../model/product.model';
 
-
 @Component({
   selector: 'app-product-list',
   templateUrl: './product-list.component.html',
@@ -14,17 +13,11 @@ export class ProductListComponent implements OnInit {
   title = 'List';
   productSelected = 0;
 
-  constructor() {  }
+  constructor() { }
 
   ngOnInit() {
-   
   }
-  unread(item: any){
 
-  }
-  GetProduct($event){
-
-  }
   showDetail(p: Product) {
     return this.showComponent.emit({ page: 'detail', product: p });
   }
@@ -33,19 +26,27 @@ export class ProductListComponent implements OnInit {
     if (!p) { p = new Product(); }
     return this.showComponent.emit({ page: 'form', product: p });
   }
-  edit(p: Product){
-    return this.showComponent.emit({"page":"form","product":p});
-  }
- 
-  delete(i: number){
-    let p = this.products[i];
-    return this.showComponent.emit({"page":"form","product":p});
-  }
-  setProduct(i: number) {
-    this.productSelected = i
+
+  edit(p: Product) {
+    return this.showComponent.emit({ page: 'form', product: p });
   }
 
-  getProduct($event){
+  delete(i: number) {
+    let p = this.products[i];
+    return this.showComponent.emit({ ' page': 'delete', ' product': p });
   }
- 
+
+  setProduct(i: number) {
+    this.productSelected = i;
+  }
+
+  addNew() {
+    return this.showComponent.emit({ page: 'form', product: null });
+  }
+
+
+  buscarAlgo(event) {
+    const texto = event.target.value;
+    console.log(texto);
+  }
 }

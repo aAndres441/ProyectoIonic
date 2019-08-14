@@ -6,7 +6,8 @@ const routes: Routes = [
   { path: '',   redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
   { path: 'layout', loadChildren: '../app/pages/pages.module#PagesModule'},
-  { path: '**', redirectTo: 'layout' }
+  { path: '**', redirectTo: 'layout' },  { path: 'error', loadChildren: './shared/error/error.module#ErrorPageModule' }
+
 ];
 
 @NgModule({

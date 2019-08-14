@@ -1,49 +1,57 @@
 
-<ion-header mode="ios" no-border>
-    <ion-toolbar>    
-      <ion-title><h3>FORMULARIO</h3></ion-title>
-      <a href="/layout/products"><ion-icon name="arrow-round-back" item-start></ion-icon></a>
-     
-     <!--  <ion-buttons slot="start" color="light">
-          <a href="#"><ion-icon name="arrow-round-back" item-start></ion-icon></a>
-        </ion-buttons> -->
+<app-header></app-header>
+<ion-header mode="ios"> <!-- no-border --> 
+  <ion-toolbar>
     
+    <!-- <ion-buttons slot="start" color="tertiary">
+      <ion-back-button text="Principio" (click)="showList()"></ion-back-button>
+      --> <!-- <ion-button (click)="aInicio()">
+        <ion-icon name="return-left" item-start></ion-icon>
+      </ion-button> -->
+      <!--           <a routerLink="#"><ion-icon name="return-left" item-start></ion-icon></a> -->
+   <!--  </ion-buttons> -->
+    <ion-buttons color="success">
+      <ion-button slot="start" (click)="showList()">
+        <ion-icon name="arrow-back" item-start></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>
+      <h3>ADD PRODUCT {{title}}</h3>
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="onSubmit()">
+        <ion-icon name="add-circle-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
     </ion-toolbar>
-  </ion-header>
+</ion-header>
+<ion-content>
 
-<ion-content padding class="alturaBarra" mode="ios">
-  <form [formGroup]="fGroup">
+<!--   CARDONA -->
+<form [formGroup]="productForm" novalidate>
     <ion-item>
-      <ion-label position="floating">Nombre del producto</ion-label>
-      <ion-input formControlName="name" type="text"></ion-input>
-      <div *ngIf='fGroup.control.name.errors'>
-        <ion-p *ngIf='fGroup.control.name.errors.required'>Debe completar </ion-p>
-      </div>
-    </ion-item>
+      <input type="text" formControlName="nombre" required placeholder="Nombre">
+    </ion-item>  
     <ion-item>
-      <ion-label position="floating">Description</ion-label>
-      <ion-textarea formControlName="description"></ion-textarea>
-      <div *ngIf='fGroup.control.name.errors'>
-        <ion-p *ngIf='fGroup.control.name.errors.required'>Debe completar </ion-p>
-        <ion-p *ngIf='fGroup.control.name.errors.minLength'>Minimo 4 </ion-p>
-      </div>
+      <textarea formControlName="descripcion" placeholder="Descripcion" ></textarea>
     </ion-item>
   </form>
 </ion-content>
+  <!--  TERMINA CARDONA -->
+  
 <!-- [{ngModel}]="product.nombre" -->
 <ion-footer>
   <ion-toolbar>
-    <ion-button color="success" expand="full" type="submit" (click)="submitForm()"
-    [disabled]="!fGroup.valid" >Guardar</ion-button>
-  </ion-toolbar>
+      <ion-button  color="light" expand="full" type="submit" (click)="go()">go to shipping Form</ion-button>
+   </ion-toolbar>
 </ion-footer>
-
+<!-- 
 <ion-item-sliding no-borde>
-     <ion-item-options side="left">
-      <ion-item-option (click)="showPage()">Unread</ion-item-option>
+     <ion-item-options side="end">
+      <ion-item-option (click)="aInicio()">Unread</ion-item-option>
     </ion-item-options> 
   </ion-item-sliding>
-
+ -->
 
 <!-- ***************************************** -->
 <!-- <ion-header mode="ios" no-border>

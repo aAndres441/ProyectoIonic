@@ -16,4 +16,5 @@ export class HomeComponent implements OnInit {
   back(): void {
     this.router.navigate(['/']);
   }
+  
 }
