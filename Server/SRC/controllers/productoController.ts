@@ -13,7 +13,6 @@ class ProductoController {
     }
 
     public async delete (req:Request,res:Response):Promise<any>{
-        console.log('llego a delete');
         const {id} = req.params;
         await pool.query('delete from producto where id = ?', [id]); 
         res.json({text:'Producto borrado:'+ req.params.id});
@@ -36,17 +35,3 @@ class ProductoController {
 }
 const productoController = new ProductoController();
 export default productoController;
-
-/*
-exports.removeById = (userId) => {
-    return new Promise((resolve, reject) => {
-        User.remove({_id: userId}, (err) => {
-            if (err) {
-                reject(err);
-            } else {
-                resolve(err);
-            }
-        });
-    });
-};
-*/

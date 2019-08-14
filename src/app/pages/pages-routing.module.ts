@@ -1,8 +1,8 @@
 import { RouterModule, Routes ,ActivatedRoute} from '@angular/router';
 import { NgModule } from '@angular/core';
-import { ProductComponent } from './product/container/product/product.component';
-
 import { PagesComponent } from './pages.component';
+import { ProductComponent } from './product/container/index';
+import { OrderComponent } from './order/container/index';
 
   
   const routes: Routes = [{
@@ -11,8 +11,11 @@ import { PagesComponent } from './pages.component';
     children: [
       {
         path: 'products',
-        component: ProductComponent,
-        data: { title : 'Productos' }
+        component: ProductComponent
+      },
+      {
+        path: 'orders',
+        component: OrderComponent
       }
     ]}
   ];

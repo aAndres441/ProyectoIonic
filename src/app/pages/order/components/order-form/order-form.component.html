@@ -1,0 +1,16 @@
+<ion-header>
+    <ion-toolbar color="primary">
+      <ion-title>Pedidos</ion-title>
+      <ion-buttons slot="primary">
+        <ion-button (click)="onSubmit()" ><ion-icon name="add-circle-outline"></ion-icon></ion-button>
+      </ion-buttons>
+    </ion-toolbar>       
+  </ion-header>
+  <form [formGroup]="orderForm" novalidate>
+    <ion-item>
+      <input type="text" formControlName="productoId" required placeholder="productoId">
+    </ion-item>  
+    <ion-item>
+      <textarea formControlName="descripcion" placeholder="Descripcion" ></textarea>
+    </ion-item>
+  </form>

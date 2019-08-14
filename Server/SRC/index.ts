@@ -6,7 +6,7 @@ import indexRoutes from './routes/indexRoutes';
 import productosRoutes from './routes/productosRoutes';
 import employeeRoutes from './routes/employeeRoutes';
 import personRoutes from './routes/personRoutes';
-
+import orderRoutes from './routes/orderRoutes';
 class Server {
 
     public app : Application;
@@ -28,6 +28,7 @@ class Server {
         this.app.use('/api/products', productosRoutes);
         this.app.use('/api/employees', employeeRoutes);
         this.app.use('/api/persons', personRoutes);
+        this.app.use('/api/orders', orderRoutes);
     }
     start():void{
         this.app.listen(this.app.get('port'), () => {

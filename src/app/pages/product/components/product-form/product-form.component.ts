@@ -35,12 +35,6 @@ export class ProductFormComponent implements OnInit {
     }
   }
 
-  guardar() {
-  }
-
-  editProducto(){
-  }
-
   showList(){
     this.showComponent.emit({"page":"list"});
   }
