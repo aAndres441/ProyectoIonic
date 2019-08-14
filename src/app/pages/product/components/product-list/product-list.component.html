@@ -1,24 +1,26 @@
-<ion-header >
+<ion-header>
   <ion-toolbar color="primary">
     <ion-title>Productos</ion-title>
     <ion-buttons slot="primary">
-      <ion-button ><ion-icon name="add-circle-outline"></ion-icon></ion-button>
+      <ion-button (click)="showForm(null)"><ion-icon name="add-circle-outline"></ion-icon></ion-button>
     </ion-buttons>
   </ion-toolbar>       
 </ion-header>
-<ion-content [scrollEvents]="true" fullscreen >
-    <ion-tabs #myTabs color="primary">
+<ion-content  fullscreen >
+    <ion-tabs>
       <ion-tab *ngFor="let p of products; let i=index" (click)="showDetail(p)" [label]="p.nombre" (ionSelect)="setProduct(i)"> 
         <ion-list #myList lines="full">
-          <ion-item [routerLink]="['/AddEditItem', { tab:i, item:j }]">
+          <ion-item >
             <ion-label text-wrap>
               <h2>{{p.nombre}}</h2>
               <p>{{p.descripcion}}</p>
             </ion-label>
-            <ion-icon slot="end" name="trash" color="danger" (click)="deleteProduct(i)"></ion-icon>
+            <ion-icon ios="ios-create" md="md-create" color="primary" (click)="showForm(p)" ></ion-icon>
+            <ion-icon slot="end" name="trash" color="danger" (click)="deleteProduct(i)" ></ion-icon>
           </ion-item> 
         </ion-list>
       </ion-tab>
     </ion-tabs>
 </ion-content>
+
 
