@@ -23,6 +23,19 @@ export class ProductService {
     return data;
   }
 
+  getProduct(id : number): Observable<Product> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json'
+      })
+    };
+    return this.http.get<Product>(environment.API_BASE + 'products/'+id , httpOptions).pipe(
+      map(
+          (data:Product) => data
+      )
+    )
+  } 
+  
   addProduct(prod:Product): Observable<any>{
     console.log('llego al post =>')
     const httpOptions = {

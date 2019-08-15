@@ -13,8 +13,8 @@
         <ion-list #myList lines="full">
           <ion-item >
             <ion-label text-wrap>
-              <h2>{{p.id}}</h2>
-              <p>{{p.descripcion}}</p>
+              <h2>{{p.productName}}  {{p.count}}  ${{p.totalAmount}}</h2>
+              <p>{{p.description}}</p>
             </ion-label>
             <ion-icon ios="ios-create" md="md-create" color="primary" (click)="showForm(p)" ></ion-icon>
             <ion-icon slot="end" name="trash" color="danger" (click)="deleteOrder(i)" ></ion-icon>

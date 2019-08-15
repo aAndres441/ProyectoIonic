@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { map } from 'rxjs/operators';
 import { Order } from '../pages/order/model/order.model';
+import { OrderSerializer } from './serializer/order.serializer';
 
 @Injectable({
   providedIn: 'root'
@@ -12,15 +13,29 @@ export class OrderService {
 
   constructor(private http: HttpClient) { }
 
-  getOrders(): Observable<Order[]> {
-    return this.http.get<Array<Order>>(environment.API_BASE + 'orders').pipe(
+  getOrders(): Observable<OrderSerializer[]> {
+    return this.http.get<Array<OrderSerializer>>(environment.API_BASE + 'orders').pipe(
       map(
-          (data:Array<Order>) => this.orderTransform(data)
+          (data:Array<OrderSerializer>) => this.orderTransform(data)
       )
     )
   } 
-  private orderTransform(data:Array<Order>):Array<Order>{
-    return data;
+  
+  private orderTransform(data:Array<OrderSerializer>):Array<OrderSerializer>{
+    let ordSerializer:OrderSerializer;
+    let resp = new Array<OrderSerializer>();
+    for(let i=0;i<data.length;i++){
+      ordSerializer = {
+        id:data[i].id,
+        product: data[i].product,
+        description:data[i].description,
+        count:data[i].count,
+        totalAmount:data[i].totalAmount,
+        tmstmp:data[i].tmstmp
+      }
+      resp.push(ordSerializer);
+    }
+    return resp;
   }
 
   addOrder(order:Order): Observable<any>{
@@ -30,12 +45,12 @@ export class OrderService {
       })
     };
     const body = {
-      'productoId':order.productoId,
-      'ventaId':order.ventaId,
-      'compraId':order.compraId,
-      'descripcion':order.descripcion,
-      'cantidad':order.cantidad,
-      'montoTotal':order.montoTotal,
+      'productoId':order.productId,
+      'ventaId':order.saleId,
+      'compraId':order.purchaseId,
+      'descripcion':order.description,
+      'cantidad':order.count,
+      'montoTotal':order.totalAmount,
     }
 
     if(order.id){

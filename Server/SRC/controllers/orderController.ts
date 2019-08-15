@@ -4,9 +4,18 @@ import pool from '../database';
 class OrderController {
     
     public async list (req:Request,res:Response){
-        res.json(await pool.query('SELECT * FROM item'));
+        res.json(await pool.query(
+        'select i.id as id,p.nombre as product,i.descripcion as description,i.cantidad as count,i.montoTotal as totalAmount,i.tmstmp as tmstmp from item i join producto p on i.productoId = p.id'));
     }
-    
+    /* id : number;
+    product : Product;
+    sale : Sale;
+    compraId : number;
+    fleteid:number;
+    descripcion : string;
+    cantidad : number;
+    montoTotal : number;
+    tmstmp : D */ate;
     public async create (req:Request,res:Response): Promise<any>{
         await pool.query('INSERT INTO item set ?',[req.body]);
         res.json({message:'Pedido creado y guardado!'})

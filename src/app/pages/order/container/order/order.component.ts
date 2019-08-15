@@ -1,7 +1,9 @@
+import { ProductService } from './../../../../services/product.service';
 import { Component, OnInit } from '@angular/core';
 import { OrderService } from 'src/app/services/order.service';
 import { Order } from '../../model/order.model';
 import { Router } from '@angular/router';
+import { OrderSerializer } from 'src/app/services/serializer/order.serializer';
 
 @Component({
   selector: 'app-order',
@@ -9,12 +11,13 @@ import { Router } from '@angular/router';
   styleUrls: ['./order.component.scss'],
 })
 export class OrderComponent implements OnInit {
-  orders : Order[];
+  orders : Array<Order> = new Array<Order>();
   detailOrder : Order = new Order();
   order : Order = null;
   showComponent:string = 'list';
   
-  constructor( private orderService: OrderService, private router: Router ) { }
+  constructor( private orderService: OrderService, 
+    private router: Router ) { }
 
   
   ngOnInit(): void {
@@ -22,10 +25,19 @@ export class OrderComponent implements OnInit {
   }
 
   getOrders():void{
+    let order : Order;
     this.orderService.getOrders().subscribe(
-      (data) => {
-        this.orders = data
-        console.log(data);
+      (data:Array<OrderSerializer>) => {
+        data.forEach(elem => {
+          order = new Order();
+          order.id = elem.id;
+          order.productName = elem.product;
+          order.description = elem.description;
+          order.count = elem.count;
+          order.totalAmount = elem. totalAmount;
+          order.tmstmp = elem.tmstmp;
+          this.orders.push(order);
+        });
       }
     );
   }

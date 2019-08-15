@@ -1,12 +1,15 @@
+import { Product } from '../../product/model/product.model';
+import { Sale } from '../../sale/model/sale.model';
+
 export class Order {
     id : number;
-    productoId : number;
-    ventaId : number;
-    compraId : number;
-    fleteid:number;
-    descripcion : string;
-    cantidad : number;
-    montoTotal : number;
+    productId:number;
+    productName : string;
+    purchaseId:number;
+    saleId:number;
+    description : string;
+    count : number;
+    totalAmount : number;
     tmstmp : Date;
     constructor(){}
 }

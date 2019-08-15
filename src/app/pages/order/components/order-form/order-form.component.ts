@@ -18,19 +18,15 @@ export class OrderFormComponent implements OnInit {
   ngOnInit() {
     this.orderForm = new FormGroup({
         id : new FormControl(this.order.id, ),
-        productoId : new FormControl(this.order.productoId,[Validators.required]),
-        descripcion : new FormControl(this.order.descripcion, [Validators.required])
+        productName : new FormControl(this.order.productName,[Validators.required]),
+        description : new FormControl(this.order.description, [Validators.required]),
+        cantidad : new FormControl(this.order.count,[Validators.required]),
+        totalAmount : new FormControl(this.order.totalAmount,[Validators.required]),
+        tmstmp : new FormControl(this.order.tmstmp,[Validators.required])
       }
     );
   }
- /*  id : number;
-    productoId : number;
-    ventaId : number;
-    compraId : number;
-    descripcion : string;
-    cantidad : number;
-    montoTotal : number;
-    tmstmp : Date; */
+
 
   onSubmit(){
     //si es editar

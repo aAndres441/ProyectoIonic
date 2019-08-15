@@ -8,9 +8,18 @@
   </ion-header>
   <form [formGroup]="orderForm" novalidate>
     <ion-item>
-      <input type="text" formControlName="productoId" required placeholder="productoId">
-    </ion-item>  
+      <ion-label>Product</ion-label>
+      <ion-select formControlName="productName">
+        <ion-select-option>Alice in Chains</ion-select-option>
+        <ion-select-option>Green Day</ion-select-option>
+        <ion-select-option selected>Nirvana</ion-select-option>
+        <ion-select-option>Pearl Jam</ion-select-option>
+        <ion-select-option>Smashing Pumpkins</ion-select-option>
+        <ion-select-option>Soundgarden</ion-select-option>
+        <ion-select-option>Stone Temple Pilots</ion-select-option>
+      </ion-select>
+    </ion-item>
     <ion-item>
-      <textarea formControlName="descripcion" placeholder="Descripcion" ></textarea>
+      <textarea formControlName="description" placeholder="Descripcion" ></textarea>
     </ion-item>
   </form>

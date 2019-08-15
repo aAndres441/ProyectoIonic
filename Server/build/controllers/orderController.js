@@ -15,7 +15,7 @@ const database_1 = __importDefault(require("../database"));
 class OrderController {
     list(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            res.json(yield database_1.default.query('SELECT * FROM item'));
+            res.json(yield database_1.default.query('select i.id as id,p.nombre as product,i.descripcion as description,i.cantidad as count,i.montoTotal as totalAmount,i.tmstmp as tmstmp from item i join producto p on i.productoId = p.id'));
         });
     }
     create(req, res) {
