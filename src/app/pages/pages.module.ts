@@ -6,10 +6,12 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { PagesRoutingModule } from './pages-routing.module';
 import { ProductModule } from './product/product.module';
 import { OrderModule } from './order/order.module';
+import { SaleModule } from './sale/sale.module';
 
 const MODULES = [
   ProductModule,
   OrderModule,
+  SaleModule,
   SharedModule
 ]
 

@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { PagesComponent } from './pages.component';
 import { ProductComponent } from './product/container/index';
 import { OrderComponent } from './order/container/index';
+import { SaleComponent } from './sale/container/index';
 
   
   const routes: Routes = [{
@@ -16,6 +17,10 @@ import { OrderComponent } from './order/container/index';
       {
         path: 'orders',
         component: OrderComponent
+      },
+      {
+        path: 'sales',
+        component: SaleComponent
       }
     ]}
   ];

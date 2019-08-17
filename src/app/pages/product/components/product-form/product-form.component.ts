@@ -1,11 +1,11 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, forwardRef } from '@angular/core';
 import { Product } from '../../model/product.model';
-import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+import { FormGroup, FormControl, Validators, FormBuilder, NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 
 @Component({
   selector: 'app-product-form',
   templateUrl: './product-form.component.html',
-  styleUrls: ['./product-form.component.scss'],
+  styleUrls: ['./product-form.component.scss']
 })
 export class ProductFormComponent implements OnInit {
   @Input() product : Product;
@@ -13,15 +13,22 @@ export class ProductFormComponent implements OnInit {
 
   public productForm:FormGroup;
 
-  constructor(private fb : FormBuilder) { }
+  constructor(private fb : FormBuilder) { 
+    this.productForm = new FormGroup({
+      id: new FormControl(''),
+      nombre: new FormControl('',[Validators.required]),
+      descripcion: new FormControl('', [Validators.required])
+    }
+  );
+  }
 
   ngOnInit() {
-    this.productForm = new FormGroup({
-        id : new FormControl(this.product.id, ),
-        nombre : new FormControl(this.product.nombre,[Validators.required]),
-        descripcion : new FormControl(this.product.descripcion, [Validators.required])
-      }
-    );
+    /* this.productForm.patchValue({
+      id: this.product.id,
+      //nombre : this.product.nombre,
+      descripcion : this.product.descripcion
+    }) */
+    
   }
 
   onSubmit(){

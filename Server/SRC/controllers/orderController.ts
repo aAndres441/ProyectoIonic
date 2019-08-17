@@ -15,7 +15,7 @@ class OrderController {
     descripcion : string;
     cantidad : number;
     montoTotal : number;
-    tmstmp : D */ate;
+    tmstmp : D */
     public async create (req:Request,res:Response): Promise<any>{
         await pool.query('INSERT INTO item set ?',[req.body]);
         res.json({message:'Pedido creado y guardado!'})
