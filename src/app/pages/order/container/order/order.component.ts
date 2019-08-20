@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { OrderService } from 'src/app/services/order.service';
 import { Order } from '../../model/order.model';
 import { Router } from '@angular/router';
+import { Product } from 'src/app/pages/product/model/product.model';
 
 @Component({
   selector: 'app-order',
@@ -14,7 +15,8 @@ export class OrderComponent implements OnInit {
   detailOrder : Order = new Order();
   order : Order = null;
   showComponent:string = 'list';
-  
+  products = new Array<Product>();
+
   constructor( private orderService: OrderService, 
     private router: Router ) { }
 
@@ -99,7 +101,7 @@ export class OrderComponent implements OnInit {
           this.getOrder(saleId);
         }
         break; 
-      }  
+      } 
       default: { 
         this.showComponent = "list";
         break; 
@@ -110,11 +112,9 @@ export class OrderComponent implements OnInit {
   addOrder(order:Order){
     this.orderService.addOrder(order).subscribe(
       (data) => {
-        console.log("Order agregado!")
         this.getOrders();
         this.showComponent = "list";
       },(error) => {
-        console.log('ERROR addOrder:');
         console.log(error);
         this.showComponent = "form";
       }
@@ -124,14 +124,13 @@ export class OrderComponent implements OnInit {
   deleteOrder(order:Order){
     this.orderService.deleteOrder(order).subscribe(
       (data) => {
-        console.log("Order borrado!")
         this.getOrders();
         this.showComponent = "list";
       },(error) => {
-        console.log('ERROR deleteOrder:');
         console.log(error);
         this.showComponent = "list";
       }
     );
   }
+
 }

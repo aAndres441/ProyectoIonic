@@ -4,9 +4,9 @@ import pool from '../database';
 class ProductController {
     
     public async list (req:Request,res:Response){
-        res.json(await pool.query('SELECT * FROM producto'));
+        res.json(await pool.query('select p.id as id,p.nombre as name,p.descripcion as description, p.tmstmp as tmstmp  from producto p'));
     }
-    
+
     public async create (req:Request,res:Response): Promise<any>{
         await pool.query('INSERT INTO producto set ?',[req.body]);
         res.json({message:'Producto creado y guardado!'})

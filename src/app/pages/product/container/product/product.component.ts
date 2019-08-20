@@ -18,14 +18,13 @@ export class ProductComponent implements OnInit {
 
   
   ngOnInit(): void {
-    this.getProductos();
+    this.getProducts();
   }
 
-  getProductos():void{
-    this.productoService.getProductos().subscribe(
+  getProducts():void{
+    this.productoService.getProducts().subscribe(
       (data) => {
         this.products = data
-        console.log(data);
       }
     );
   }
@@ -75,7 +74,7 @@ export class ProductComponent implements OnInit {
     this.productoService.addProduct(prod).subscribe(
       (data) => {
         console.log("Producto agregado!")
-        this.getProductos();
+        this.getProducts();
         this.showComponent = "list";
       },(error) => {
         console.log('ERROR addProduct:');
@@ -89,7 +88,7 @@ export class ProductComponent implements OnInit {
     this.productoService.deleteProduct(prod).subscribe(
       (data) => {
         console.log("Producto borrado!")
-        this.getProductos();
+        this.getProducts();
         this.showComponent = "list";
       },(error) => {
         console.log('ERROR deleteProduct:');

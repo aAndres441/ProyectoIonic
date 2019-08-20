@@ -1,36 +1,34 @@
-import { Component, OnInit, Input, Output, EventEmitter, forwardRef } from '@angular/core';
-import { FormGroup, FormControl, Validators, FormBuilder, NG_VALUE_ACCESSOR ,ControlValueAccessor} from '@angular/forms';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { FormGroup, FormControl, Validators, FormBuilder} from '@angular/forms';
 import { Sale } from '../../model/sale.model';
 import { PersonService } from 'src/app/services/person.service';
 import { Person } from 'src/app/pages/person/model/person.model';
 import { Order } from 'src/app/pages/order/model/order.model';
+import { Product } from 'src/app/pages/product/model/product.model';
+import { ProductService } from 'src/app/services/product.service';
 
 @Component({
   selector: 'app-sale-form',
   templateUrl: './sale-form.component.html',
   styleUrls: ['./sale-form.component.scss'],
-  providers: [
-    { 
-      provide: NG_VALUE_ACCESSOR,
-      multi: true,
-      useExisting: forwardRef(() => SaleFormComponent),
-    }
-  ]
 })
 export class SaleFormComponent implements OnInit {
   @Input() sale : Sale;
   @Output() showComponent = new EventEmitter<any>();
   @Input() clients = new Array<Person>();
+  @Input() products = new Array<Product>();
+
   orders = new Array<Order>();
-  myOrders = new Array<Order>();
+  saleId : number = -1;
+  order : Order;
+  
 
   public saleForm:FormGroup;
 
-  constructor(private fb : FormBuilder,private clientService :PersonService) { }
+  constructor(private fb : FormBuilder) { }
 
   ngOnInit() {
-    this.getClients();
-    this.saleForm = new FormGroup({
+    this.saleForm = this.fb.group({
         id : new FormControl(this.sale.id, ),
         clientName : new FormControl(this.sale.clientName,[Validators.required]),
         description : new FormControl(this.sale.description, [Validators.required]),
@@ -53,13 +51,6 @@ export class SaleFormComponent implements OnInit {
 
   showList(){
     this.showComponent.emit({"page":"list"});
-  }
-  getClients(){
-    this.clientService.getPersons().subscribe(
-      (data:Array<Person>)=>{
-        this.clients = data
-      } 
-    );
   }
 
   pushOrder(order:Order){

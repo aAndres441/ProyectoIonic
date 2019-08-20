@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Sale } from '../../model/sale.model';
 import { SaleService } from 'src/app/services/sale.service';
 import { Router } from '@angular/router';
+import { Person } from 'src/app/pages/person/model/person.model';
+import { Product } from 'src/app/pages/product/model/product.model';
+import { PersonService } from 'src/app/services/person.service';
+import { ProductService } from 'src/app/services/product.service';
 
 @Component({
   selector: 'app-sale',
@@ -13,8 +17,12 @@ export class SaleComponent implements OnInit {
   detailSale : Sale;
   sale : Sale = null;
   showComponent:string = 'list';
+  clients = new Array<Person>();
+  products = new Array<Product>();
   
   constructor( private saleService: SaleService, 
+    private clientService :PersonService,
+    private productService:ProductService,
     private router: Router ) { }
 
   
@@ -23,7 +31,6 @@ export class SaleComponent implements OnInit {
   }
 
   getSales():void{
-    let sale : Sale;
     this.saleService.getSales().subscribe(
       (data:Array<Sale>) => {
         this.sales = data;
@@ -31,6 +38,24 @@ export class SaleComponent implements OnInit {
     );
   }
 
+  getClients(){
+    this.clientService.getPersons().subscribe(
+      (data:Array<Person>)=>{
+        this.clients = data,
+        this.getProducts()
+      } 
+    );
+  }
+
+  getProducts(){
+    this.productService.getProducts().subscribe(
+      (data:Array<Product>)=>{
+        this.products = data
+        this.showComponent = "form";
+        console.log(data)
+      } 
+    );
+  }
 
   showPage(obj:any) {
     let sale;
@@ -46,12 +71,12 @@ export class SaleComponent implements OnInit {
         break; 
       } 
       case "form": { 
-        this.showComponent = "form";
         if(obj.sale){
           this.sale = obj.sale;
         }else {
           this.sale = null;
         }
+        this.getClients();
         break; 
       }
       case "add": { 

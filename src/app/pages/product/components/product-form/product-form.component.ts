@@ -21,9 +21,9 @@ export class ProductFormComponent implements OnInit {
   ngOnInit() {
     if(this.product){
       this.productForm = this.fb.group({
-        id: new FormControl(''),
-        nombre: new FormControl(this.product.nombre,[Validators.required]),
-        descripcion: new FormControl(this.product.descripcion, [Validators.required])
+        id: new FormControl(this.product.id,),
+        nombre: new FormControl(this.product.name,[Validators.required]),
+        descripcion: new FormControl(this.product.description, [Validators.required])
       });
     }
   }

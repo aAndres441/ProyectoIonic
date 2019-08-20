@@ -1,8 +1,7 @@
 export class Product {
     id : number;
-    nombre : string;
-    imagen? : string;
-    descripcion? : string;
-    tmstmp? : Date
+    name : string;
+    description : string;
+    tmstmp : Date
     constructor(){}
 }

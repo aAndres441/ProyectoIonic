@@ -12,15 +12,29 @@ export class ProductService {
 
   constructor(private http: HttpClient) { }
 
-  getProductos(): Observable<Product[]> {
+  getProducts(): Observable<Product[]> {
     return this.http.get<Array<Product>>(environment.API_BASE + 'products').pipe(
       map(
           (data:Array<Product>) => this.productTransform(data)
       )
     )
   } 
+
   productTransform(data:Array<Product>):Array<Product>{
-    return data;
+    let prod : Product;
+    let resp = new Array<Product>();
+    data.forEach(
+      (elem:any)=>{
+        prod = {
+          id:elem.id,
+          name:elem.name,
+          description:elem.description,
+          tmstmp : elem.tmstmp
+        }
+        resp.push(elem);
+      }
+    )
+    return resp;
   }
 
   getProduct(id : number): Observable<Product> {
@@ -44,9 +58,8 @@ export class ProductService {
       })
     };
     const body = {
-      'nombre':prod.nombre,
-      'imagen':'',
-      'descripcion':prod.descripcion
+      'nombre':prod.name,
+      'descripcion':prod.description
     }
     if(prod.id){
       return this.http.put<Product>(environment.API_BASE + 'products/' + prod.id,body,httpOptions).pipe(

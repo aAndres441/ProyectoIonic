@@ -1,26 +1,31 @@
 <ion-header>
     <ion-toolbar color="primary">
-      <ion-title>Pedidos</ion-title>
+      <ion-title>Nuevo Pedido</ion-title>
       <ion-buttons slot="primary">
         <ion-button (click)="onSubmit()" ><ion-icon name="add-circle-outline"></ion-icon></ion-button>
       </ion-buttons>
     </ion-toolbar>       
   </ion-header>
   <ion-form [formGroup]="orderForm" novalidate>
+   
     <ion-item>
-      <ion-label>Product</ion-label>
-      <ion-select formControlName="productName">
-        <ion-select-option>Alice in Chains</ion-select-option>
-        <ion-select-option>Green Day</ion-select-option>
-        <ion-select-option selected>Nirvana</ion-select-option>
-        <ion-select-option>Pearl Jam</ion-select-option>
-        <ion-select-option>Smashing Pumpkins</ion-select-option>
-        <ion-select-option>Soundgarden</ion-select-option>
-        <ion-select-option>Stone Temple Pilots</ion-select-option>
+      <ion-label>Producto:</ion-label>
+      <ion-select formControlName="productName" *ngFor="let p of products" >
+        <ion-select-option>SOJA</ion-select-option>
       </ion-select>
     </ion-item>
+
     <ion-item>
       <ion-textarea formControlName="description" placeholder="Descripcion" ></ion-textarea>
+    </ion-item>
+    <ion-item>
+      <ion-input formControlName="count" type="number" placeholder="Cantidad (Kg/Lt)"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input formControlName="totalAmount" type="number"  placeholder="Precio (Kg/Lt)" ></ion-input>
+    </ion-item>
+    <ion-item *ngIf="total > 0" >
+      <ion-label type="number" >Total: ${{order.count*order.totalAmount}}</ion-label>
     </ion-item>
   </ion-form>
 <!-- 

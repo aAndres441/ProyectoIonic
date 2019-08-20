@@ -17,9 +17,12 @@
     <ion-textarea formControlName="description" placeholder="Descripcion" ></ion-textarea>
   </ion-item>
   <ion-card>
-    <app-order-form></app-order-form>
+    <app-order-form 
+      [products]="products"
+      [order]="order">
+    </app-order-form>
   </ion-card>
-  <ion-card>
+  <ion-card *ngIf="orders.length > 0" >
     <app-order-list
       [saleId]="saleId">
     </app-order-list>
