@@ -1,28 +1,30 @@
 <ion-header>
   <ion-toolbar color="primary">
-    <ion-title>Pedidos</ion-title>
+    <ion-title>Nueva Venta</ion-title>
     <ion-buttons slot="primary">
       <ion-button (click)="onSubmit()" ><ion-icon name="add-circle-outline"></ion-icon></ion-button>
     </ion-buttons>
   </ion-toolbar>       
 </ion-header>
-<form [formGroup]="saleForm" >
+<ion-form [formGroup]="saleForm" >
   <ion-item>
-    <ion-label>Product</ion-label>
-    <ion-select formControlName="clientName">
-      <ion-select-option>Alice in Chains</ion-select-option>
-      <ion-select-option>Green Day</ion-select-option>
-      <ion-select-option selected>Nirvana</ion-select-option>
-      <ion-select-option>Pearl Jam</ion-select-option>
-      <ion-select-option>Smashing Pumpkins</ion-select-option>
-      <ion-select-option>Soundgarden</ion-select-option>
-      <ion-select-option>Stone Temple Pilots</ion-select-option>
+    <ion-label>Cliente:</ion-label>
+    <ion-select formControlName="clientName" *ngFor="let c of clients">
+      <ion-select-option>{{c.name}}</ion-select-option>
     </ion-select>
   </ion-item>
   <ion-item>
-    <textarea formControlName="description" placeholder="Descripcion" ></textarea>
+    <ion-textarea formControlName="description" placeholder="Descripcion" ></ion-textarea>
   </ion-item>
-</form>
+  <ion-card>
+    <app-order-form></app-order-form>
+  </ion-card>
+  <ion-card>
+    <app-order-list
+      [saleId]="saleId">
+    </app-order-list>
+  </ion-card>
+</ion-form>
 <!-- 
 id : new FormControl(this.sale.id, ),
 clientName : new FormControl(this.sale.clientName,[Validators.required]),

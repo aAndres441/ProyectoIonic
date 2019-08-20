@@ -9,11 +9,16 @@ import { Order } from '../../model/order.model';
 export class OrderListComponent implements OnInit {
   @Input() orders : Array<Order>;
   @Output() showComponent = new EventEmitter<any>();
+  @Input() saleId : number;
   orderSelected : number = 0;
+  
+
   constructor() {  }
 
   ngOnInit() {
-   
+    if(this.saleId){
+      return this.showComponent.emit({"page":"sale","saleId":this.saleId});
+    }
   }
   
   showDetail(p:Order){

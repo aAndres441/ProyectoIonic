@@ -15,8 +15,7 @@ const database_1 = __importDefault(require("../database"));
 class PersonController {
     list(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const person = yield database_1.default.query('SELECT * FROM person');
-            res.json({ person });
+            res.json(yield database_1.default.query('select p.id as id,p.nombre as name,p.apellido as lastname,p.email as email,p.direccion as direction,p.telefono as cellphone,p.tmstmp as tmstmp from persona p join cliente c on p.id = c.id'));
         });
     }
     create(req, res) {

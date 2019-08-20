@@ -4,7 +4,6 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { map } from 'rxjs/operators';
 import { Order } from '../pages/order/model/order.model';
-import { OrderSerializer } from './serializer/order.serializer';
 
 @Injectable({
   providedIn: 'root'
@@ -13,21 +12,24 @@ export class OrderService {
 
   constructor(private http: HttpClient) { }
 
-  getOrders(): Observable<OrderSerializer[]> {
-    return this.http.get<Array<OrderSerializer>>(environment.API_BASE + 'orders').pipe(
+  getOrders(): Observable<Order[]> {
+    return this.http.get<Array<Order>>(environment.API_BASE + 'orders').pipe(
       map(
-          (data:Array<OrderSerializer>) => this.orderTransform(data)
+          (data:Array<Order>) => this.orderTransform(data)
       )
     )
   } 
   
-  private orderTransform(data:Array<OrderSerializer>):Array<OrderSerializer>{
-    let ordSerializer:OrderSerializer;
-    let resp = new Array<OrderSerializer>();
+  private orderTransform(data:Array<Order>):Array<Order>{
+    let ordSerializer:Order;
+    let resp = new Array<Order>();
     for(let i=0;i<data.length;i++){
       ordSerializer = {
         id:data[i].id,
-        product: data[i].product,
+        productId:null,
+        productName:data[i].productName,
+        purchaseId:null,
+        saleId:null,
         description:data[i].description,
         count:data[i].count,
         totalAmount:data[i].totalAmount,
@@ -37,7 +39,13 @@ export class OrderService {
     }
     return resp;
   }
-
+  getOrder(id:number): Observable<Order[]> {
+    return this.http.get<Array<Order>>(environment.API_BASE + 'orders/'+id).pipe(
+      map(
+          (data:Array<Order>) => this.orderTransform(data)
+      )
+    )
+  } 
   addOrder(order:Order): Observable<any>{
     const httpOptions = {
       headers: new HttpHeaders({

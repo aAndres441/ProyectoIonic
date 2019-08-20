@@ -6,7 +6,7 @@
       </ion-buttons>
     </ion-toolbar>       
   </ion-header>
-  <form [formGroup]="orderForm" novalidate>
+  <ion-form [formGroup]="orderForm" novalidate>
     <ion-item>
       <ion-label>Product</ion-label>
       <ion-select formControlName="productName">
@@ -20,6 +20,13 @@
       </ion-select>
     </ion-item>
     <ion-item>
-      <textarea formControlName="description" placeholder="Descripcion" ></textarea>
+      <ion-textarea formControlName="description" placeholder="Descripcion" ></ion-textarea>
     </ion-item>
-  </form>
+  </ion-form>
+<!-- 
+  id : new FormControl(this.order.id, ),
+  productName : new FormControl(this.order.productName,[Validators.required]),
+  description : new FormControl(this.order.description, [Validators.required]),
+  cantidad : new FormControl(this.order.count,[Validators.required]),
+  totalAmount : new FormControl(this.order.totalAmount,[Validators.required]),
+  tmstmp :  -->

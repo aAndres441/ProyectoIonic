@@ -14,21 +14,18 @@ export class ProductFormComponent implements OnInit {
   public productForm:FormGroup;
 
   constructor(private fb : FormBuilder) { 
-    this.productForm = new FormGroup({
-      id: new FormControl(''),
-      nombre: new FormControl('',[Validators.required]),
-      descripcion: new FormControl('', [Validators.required])
-    }
-  );
+    
+ 
   }
 
   ngOnInit() {
-    /* this.productForm.patchValue({
-      id: this.product.id,
-      //nombre : this.product.nombre,
-      descripcion : this.product.descripcion
-    }) */
-    
+    if(this.product){
+      this.productForm = this.fb.group({
+        id: new FormControl(''),
+        nombre: new FormControl(this.product.nombre,[Validators.required]),
+        descripcion: new FormControl(this.product.descripcion, [Validators.required])
+      });
+    }
   }
 
   onSubmit(){

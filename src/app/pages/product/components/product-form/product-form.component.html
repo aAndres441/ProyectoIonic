@@ -6,11 +6,11 @@
     </ion-buttons>
   </ion-toolbar>       
 </ion-header>
-<form [formGroup]="productForm" novalidate>
-  <!-- <ion-item>
-    <ion-input type="text" formControlName="nombre" required placeholder="Nombre"></ion-input>
-  </ion-item>   -->
+<ion-form [formGroup]="productForm" novalidate>
   <ion-item>
-    <ion-textarea formControlName="descripcion" name="descripcion"></ion-textarea>
+    <ion-input type="text" formControlName="nombre" required placeholder="Nombre"></ion-input>
+  </ion-item>  
+  <ion-item>
+    <ion-textarea formControlName="descripcion"  placeholder="Descripcion" name="descripcion"></ion-textarea>
   </ion-item>
-</form>
+</ion-form>

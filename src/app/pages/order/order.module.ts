@@ -4,6 +4,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 import { OrderDetailComponent, OrderFormComponent, OrderListComponent } from './components/index';
 import { OrderComponent } from './container/index';
+import { IonicModule } from '@ionic/angular';
 
 const COMPONENTS =[OrderDetailComponent,OrderFormComponent,OrderListComponent]
 const CONTAINER = [OrderComponent]
@@ -17,7 +18,12 @@ const CONTAINER = [OrderComponent]
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    IonicModule
+  ],
+  exports:[
+    OrderFormComponent,
+    OrderListComponent
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })

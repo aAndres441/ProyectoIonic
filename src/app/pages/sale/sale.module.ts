@@ -5,6 +5,8 @@ import { ReactiveFormsModule, FormsModule, NG_VALUE_ACCESSOR } from '@angular/fo
 import {SaleDetailComponent,SaleFormComponent,SaleListComponent} from './components/index'
 import {SaleComponent} from './container/index'
 import { SaleService } from 'src/app/services/sale.service';
+import { IonicModule } from '@ionic/angular';
+import { OrderModule } from '../order/order.module';
 
 
 const CONTAINER = [
@@ -21,7 +23,9 @@ const COMPONENTS = [
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    IonicModule,
+    OrderModule
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
   providers: [
