@@ -54,7 +54,9 @@ export class SaleFormComponent implements OnInit {
   }
 
   pushOrder(order:Order){
+    console.log(order)
     this.orders.push(order);
+    console.log(this.orders)
   }
 
   removeOrder(order:Order){

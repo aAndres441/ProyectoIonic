@@ -8,10 +8,10 @@
   </ion-header>
   <ion-form [formGroup]="orderForm" novalidate>
    
-    <ion-item>
+    <ion-item >
       <ion-label>Producto:</ion-label>
-      <ion-select formControlName="productName" *ngFor="let p of products" >
-        <ion-select-option>SOJA</ion-select-option>
+      <ion-select formControlName="productName" >
+        <ion-select-option *ngFor="let p of products" >{{p.name}}</ion-select-option>
       </ion-select>
     </ion-item>
 

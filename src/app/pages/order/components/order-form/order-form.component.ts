@@ -13,6 +13,7 @@ export class OrderFormComponent implements OnInit {
   @Input() order : Order;
   @Output() showComponent = new EventEmitter<any>();
   @Input() products = new Array<Product>()
+  @Output() pushOrder = new EventEmitter<any>();
 
   public orderForm:FormGroup;
 
@@ -20,43 +21,30 @@ export class OrderFormComponent implements OnInit {
 
   ngOnInit() {
     if(isNullOrUndefined(this.order)){
-      this.order = {
-        id:null,
-        productId:null,
-        productName:null,
-        purchaseId:null,
-        saleId:null,
-        count:null,
-        description:null,
-        totalAmount:null,
-        tmstmp:null
-      }
+      this.initOrder();
     }
-    if(isNullOrUndefined(this.order.id)){
-      this.orderForm = this.fb.group({
-        id : new FormControl(null, ),
-        productName : new FormControl(this.order.productName,[Validators.required]),
-        description : new FormControl(this.order.description, [Validators.required]),
-        count : new FormControl(this.order.count,[Validators.required]),
-        totalAmount : new FormControl(this.order.totalAmount,[Validators.required]),
-        tmstmp : new FormControl(this.order.tmstmp,[Validators.required]),
-        total : new FormControl(this.order.count * this.order.totalAmount)
-      })
-    }else {
-      this.orderForm = this.fb.group({
-        id : new FormControl(this.order.id, ),
-        productName : new FormControl(this.order.productName,[Validators.required]),
-        description : new FormControl(this.order.description, [Validators.required]),
-        count : new FormControl(this.order.count,[Validators.required]),
-        totalAmount : new FormControl(this.order.totalAmount,[Validators.required]),
-        tmstmp : new FormControl(this.order.tmstmp,[Validators.required]),
-        total : new FormControl(this.order.count * this.order.totalAmount)
-      })
-    }
+    this.orderForm = this.fb.group({
+      id : new FormControl(null, ),
+      productName : new FormControl(this.order.productName,[Validators.required]),
+      description : new FormControl(this.order.description, [Validators.required]),
+      count : new FormControl(this.order.count,[Validators.required]),
+      totalAmount : new FormControl(this.order.totalAmount,[Validators.required]),
+      tmstmp : new FormControl(this.order.tmstmp,)
+    });
   }
 
-  get total (){
-    return this.orderForm.get('total').value;
+  initOrder(){
+    this.order = {
+      id:null,
+      productId:null,
+      productName:null,
+      purchaseId:null,
+      saleId:null,
+      count:null,
+      description:null,
+      totalAmount:null,
+      tmstmp:null
+    }
   }
 
   onSubmit(){
@@ -66,7 +54,9 @@ export class OrderFormComponent implements OnInit {
     }
     //else si es agregar nuevo
     if (this.orderForm.valid){
-      return this.showComponent.emit({"page":"add","order":this.orderForm.value});
+      this.pushOrder.emit(this.orderForm.value);
+      this.orderForm.reset();
+      //return this.showComponent.emit({"page":"add","order":this.orderForm.value});
     }
   }
 

@@ -7,7 +7,7 @@ import { Order } from '../../model/order.model';
   styleUrls: ['./order-list.component.scss'],
 })
 export class OrderListComponent implements OnInit {
-  @Input() orders : Array<Order>;
+  @Input() orders = new Array<Order>();
   @Output() showComponent = new EventEmitter<any>();
   @Input() saleId : number;
   orderSelected : number = 0;
@@ -16,9 +16,7 @@ export class OrderListComponent implements OnInit {
   constructor() {  }
 
   ngOnInit() {
-    if(this.saleId){
-      return this.showComponent.emit({"page":"sale","saleId":this.saleId});
-    }
+   
   }
   
   showDetail(p:Order){

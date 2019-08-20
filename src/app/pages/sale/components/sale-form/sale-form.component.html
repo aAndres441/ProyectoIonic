@@ -6,11 +6,11 @@
     </ion-buttons>
   </ion-toolbar>       
 </ion-header>
-<ion-form [formGroup]="saleForm" >
+<ion-form [formGroup]="saleForm" fullscreen>
   <ion-item>
     <ion-label>Cliente:</ion-label>
-    <ion-select formControlName="clientName" *ngFor="let c of clients">
-      <ion-select-option>{{c.name}}</ion-select-option>
+    <ion-select formControlName="clientName">
+      <ion-select-option *ngFor="let c of clients" >{{c.name}}</ion-select-option>
     </ion-select>
   </ion-item>
   <ion-item>
@@ -19,12 +19,13 @@
   <ion-card>
     <app-order-form 
       [products]="products"
-      [order]="order">
+      [order]="order"
+      (pushOrder)="pushOrder($event)">
     </app-order-form>
   </ion-card>
-  <ion-card *ngIf="orders.length > 0" >
+  <ion-card >
     <app-order-list
-      [saleId]="saleId">
+      [orders]="orders">
     </app-order-list>
   </ion-card>
 </ion-form>
