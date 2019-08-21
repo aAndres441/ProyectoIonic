@@ -19,6 +19,14 @@ export class SaleService {
       )
     )
   } 
+
+  getId(): Observable<number> {
+    return this.http.get<number>(environment.API_BASE + 'sales/-').pipe(
+      map(
+          (data:number) => data
+      )
+    )
+  } 
   
   private saleTransform(data:Array<Sale>):Array<Sale>{
     let resp = new Array<Sale>();

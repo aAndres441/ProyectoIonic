@@ -6,6 +6,8 @@ import { Person } from 'src/app/pages/person/model/person.model';
 import { Product } from 'src/app/pages/product/model/product.model';
 import { PersonService } from 'src/app/services/person.service';
 import { ProductService } from 'src/app/services/product.service';
+import { Order } from 'src/app/pages/order/model/order.model';
+import { OrderService } from 'src/app/services/order.service';
 
 @Component({
   selector: 'app-sale',
@@ -19,10 +21,12 @@ export class SaleComponent implements OnInit {
   showComponent:string = 'list';
   clients = new Array<Person>();
   products = new Array<Product>();
+  unSuscribe : any;
   
   constructor( private saleService: SaleService, 
     private clientService :PersonService,
     private productService:ProductService,
+    private orderService:OrderService,
     private router: Router ) { }
 
   
@@ -30,8 +34,12 @@ export class SaleComponent implements OnInit {
     this.getSales();
   }
 
+  onDestroy(){
+    this.unSuscribe.unSuscribe();
+  }
+  
   getSales():void{
-    this.saleService.getSales().subscribe(
+    this.unSuscribe = this.saleService.getSales().subscribe(
       (data:Array<Sale>) => {
         this.sales = data;
       }
@@ -39,7 +47,7 @@ export class SaleComponent implements OnInit {
   }
 
   getClients(){
-    this.clientService.getPersons().subscribe(
+    this.unSuscribe = this.clientService.getPersons().subscribe(
       (data:Array<Person>)=>{
         this.clients = data,
         this.getProducts()
@@ -48,11 +56,10 @@ export class SaleComponent implements OnInit {
   }
 
   getProducts(){
-    this.productService.getProducts().subscribe(
+    this.unSuscribe = this.productService.getProducts().subscribe(
       (data:Array<Product>)=>{
         this.products = data
         this.showComponent = "form";
-        console.log(data)
       } 
     );
   }
@@ -80,7 +87,7 @@ export class SaleComponent implements OnInit {
         break; 
       }
       case "add": { 
-        this.addSale(obj.sale);
+        this.addSale(obj.sale,obj.orders);
         break; 
       }
       case "delete": { 
@@ -97,10 +104,16 @@ export class SaleComponent implements OnInit {
    } 
   } 
 
-  addSale(sale:Sale){
-    this.saleService.addSale(sale).subscribe(
+  addSale(sale:Sale, orders:Array<Order>){
+    this.unSuscribe = this.saleService.addSale(sale).subscribe(
       (data) => {
-        console.log("Sale agregado!")
+        console.log("Venta agregada!");
+        this.saleService.getId().subscribe( (id) => {
+          orders.forEach(elem => {
+            elem.saleId = id;
+            this.orderService.addOrder(elem).subscribe();
+          })
+        });
         this.getSales();
         this.showComponent = "list";
       },(error) => {

@@ -10,6 +10,7 @@ export class OrderListComponent implements OnInit {
   @Input() orders = new Array<Order>();
   @Output() showComponent = new EventEmitter<any>();
   @Input() saleId : number;
+  @Output() newOrder = new EventEmitter<any>();
   orderSelected : number = 0;
   
 
@@ -25,7 +26,7 @@ export class OrderListComponent implements OnInit {
 
   showForm(p:Order){
     if(!p) {
-      p = new Order();
+      return this.newOrder.emit();
     }
     return this.showComponent.emit({"page":"form","order":p});
   }

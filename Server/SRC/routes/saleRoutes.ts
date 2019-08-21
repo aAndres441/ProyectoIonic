@@ -13,6 +13,7 @@ class SaleRoutes {
         this.router.post('/', saleController.create);
         this.router.delete('/:id', saleController.delete);
         this.router.put('/:id', saleController.update);
+        this.router.get('/-', saleController.getId);
     }
 
 }

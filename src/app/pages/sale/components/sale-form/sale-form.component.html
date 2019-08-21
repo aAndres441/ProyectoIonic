@@ -8,7 +8,7 @@
 </ion-header>
 <ion-form [formGroup]="saleForm" fullscreen>
   <ion-item>
-    <ion-label>Cliente:</ion-label>
+    <h5>Cliente:</h5>
     <ion-select formControlName="clientName">
       <ion-select-option *ngFor="let c of clients" >{{c.name}}</ion-select-option>
     </ion-select>
@@ -16,18 +16,18 @@
   <ion-item>
     <ion-textarea formControlName="description" placeholder="Descripcion" ></ion-textarea>
   </ion-item>
-  <ion-card>
-    <app-order-form 
+ <!--  <ion-card> -->
+    <app-order-form *ngIf="showOrder" #showForm
       [products]="products"
       [order]="order"
       (pushOrder)="pushOrder($event)">
     </app-order-form>
-  </ion-card>
-  <ion-card >
-    <app-order-list
+    <app-order-list *ngIf="!showOrder" #showList
+      (newOrder)="newOrder($event)"
       [orders]="orders">
     </app-order-list>
-  </ion-card>
+  <!-- </ion-card> -->
+ 
 </ion-form>
 <!-- 
 id : new FormControl(this.sale.id, ),

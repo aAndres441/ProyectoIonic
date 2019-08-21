@@ -22,7 +22,7 @@
       <ion-input formControlName="count" type="number" placeholder="Cantidad (Kg/Lt)"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-input formControlName="totalAmount" type="number"  placeholder="Precio (Kg/Lt)" ></ion-input>
+      <ion-input formControlName="totalAmount" type="number"  placeholder="Precio (Kg/Cant)" ></ion-input>
     </ion-item>
     <ion-item *ngIf="total > 0" >
       <ion-label type="number" >Total: ${{order.count*order.totalAmount}}</ion-label>

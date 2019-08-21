@@ -17,7 +17,7 @@ export class SaleFormComponent implements OnInit {
   @Output() showComponent = new EventEmitter<any>();
   @Input() clients = new Array<Person>();
   @Input() products = new Array<Product>();
-
+  showOrder : boolean = true;
   orders = new Array<Order>();
   saleId : number = -1;
   order : Order;
@@ -29,11 +29,9 @@ export class SaleFormComponent implements OnInit {
 
   ngOnInit() {
     this.saleForm = this.fb.group({
-        id : new FormControl(this.sale.id, ),
+        id : new FormControl(null),
         clientName : new FormControl(this.sale.clientName,[Validators.required]),
         description : new FormControl(this.sale.description, [Validators.required]),
-        totalAmount : new FormControl(this.sale.totalAmount,[Validators.required]),
-        tmstmp : new FormControl(this.sale.tmstmp,[Validators.required])
       }
     );
   }
@@ -44,8 +42,8 @@ export class SaleFormComponent implements OnInit {
       this.saleForm.value.id = this.sale.id;
     }
     //else si es agregar nuevo
-    if (this.saleForm.valid){
-      return this.showComponent.emit({"page":"add","sale":this.saleForm.value});
+    if (this.saleForm.valid && this.orders.length > 0){
+      return this.showComponent.emit({"page":"add","sale":this.saleForm.value,"orders":this.orders});
     }
   }
 
@@ -54,9 +52,13 @@ export class SaleFormComponent implements OnInit {
   }
 
   pushOrder(order:Order){
+    this.showOrder = false;
     console.log(order)
     this.orders.push(order);
     console.log(this.orders)
+  }
+  newOrder(){
+    this.showOrder = true;
   }
 
   removeOrder(order:Order){

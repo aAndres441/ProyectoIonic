@@ -2,8 +2,8 @@ import {Request,Response} from 'express';
 import pool from '../database';
 
 class SaleController {
-    
-    public async list (req:Request,res:Response){
+
+    public async list(req: Request, res: Response) {
         res.json(await pool.query('select v.id as id,v.clienteId as clientId,p.nombre as clientName,v.descripcion as description,v.montoTotal as totalAmount,v.tmstmp as tmstmp from venta v , cliente c JOIN persona p on c.id = p.id'));
     }
    /*  id:data[i].id,
@@ -12,6 +12,9 @@ class SaleController {
         description:data[i].description,
         totalAmount:data[i].totalAmount,
         tmstmp:data[i].tmstmp */
+    public async getId (req:Request,res:Response){
+        res.json(await pool.query('select max(id) as id from venta'));
+    }
     public async create (req:Request,res:Response): Promise<any>{
         await pool.query('INSERT INTO venta set ?',[req.body]);
         res.json({message:'Venta creado y guardado!'})
