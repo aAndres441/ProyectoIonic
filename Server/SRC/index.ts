@@ -3,9 +3,11 @@ import morgan from 'morgan';
 import cors from 'cors';
 import express, { Application } from 'express';
 import indexRoutes from './routes/indexRoutes';
-import productosRoutes from './routes/productosRoutes';
+import productRoutes from './routes/productRoutes';
 import employeeRoutes from './routes/employeeRoutes';
 import personRoutes from './routes/personRoutes';
+import orderRoutes from './routes/orderRoutes';
+import saleRoutes from './routes/saleRoutes';
 
 class Server {
 
@@ -25,9 +27,11 @@ class Server {
     }
     routes():void{
         this.app.use('/', indexRoutes);
-        this.app.use('/api/products', productosRoutes);
+        this.app.use('/api/products', productRoutes);
         this.app.use('/api/employees', employeeRoutes);
         this.app.use('/api/persons', personRoutes);
+        this.app.use('/api/orders', orderRoutes);
+        this.app.use('/api/sales', saleRoutes);
     }
     start():void{
         this.app.listen(this.app.get('port'), () => {

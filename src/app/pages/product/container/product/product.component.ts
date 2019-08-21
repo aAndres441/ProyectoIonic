@@ -18,34 +18,83 @@ export class ProductComponent implements OnInit {
 
   
   ngOnInit(): void {
-    this.getProductos();
+    this.getProducts();
   }
 
-  getProductos():void{
-    this.productoService.getProductos().subscribe(
+  getProducts():void{
+    this.productoService.getProducts().subscribe(
       (data) => {
         this.products = data
-        console.log(data);
       }
     );
   }
 
 
-  showPage(obj:any):string {
-    console.log(obj);
-    this.showComponent = obj.page;
-    if(this.showComponent == "detail"){
-      this.detailProduct = obj.product;
-    }else if(this.showComponent == "list"){
-      
-    }else if(this.showComponent == "form"){
-      if(obj.product){
-        this.prod = obj.product;
-      }else {
-        this.prod = null;
+  showPage(obj:any) {
+    let prod;
+    let showAction = obj.page;
+    switch(showAction) { 
+      case "detail": { 
+        this.showComponent = "detail";
+        this.detailProduct = obj.product; 
+        break; 
+      } 
+      case "list": { 
+        this.showComponent = "list";
+        break; 
+      } 
+      case "form": { 
+        this.showComponent = "form";
+        if(obj.product){
+          this.prod = obj.product;
+        }else {
+          this.prod = null;
+        }
+        break; 
       }
-    }
-    
-    return this.showComponent;
+      case "add": { 
+        this.addProduct(obj.product);
+        break; 
+      }
+      case "delete": { 
+        prod = obj.product;
+        if(prod){
+          this.deleteProduct(prod);
+        }
+        break; 
+      }   
+      default: { 
+        this.showComponent = "list";
+        break; 
+      } 
+   } 
   } 
+
+  addProduct(prod:Product){
+    this.productoService.addProduct(prod).subscribe(
+      (data) => {
+        console.log("Producto agregado!")
+        this.getProducts();
+        this.showComponent = "list";
+      },(error) => {
+        console.log('ERROR addProduct:');
+        console.log(error);
+        this.showComponent = "form";
+      }
+    );
+  }
+
+  deleteProduct(prod:Product){
+    this.productoService.deleteProduct(prod).subscribe(
+      (data) => {
+        console.log("Producto borrado!")
+        this.getProducts();
+        this.showComponent = "list";
+      },(error) => {
+        console.log('ERROR deleteProduct:');
+        console.log(error);
+        this.showComponent = "list";
+      }
+    );
+  }
 }

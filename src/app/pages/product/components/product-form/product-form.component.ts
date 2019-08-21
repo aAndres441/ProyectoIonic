@@ -1,14 +1,45 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, forwardRef } from '@angular/core';
+import { Product } from '../../model/product.model';
+import { FormGroup, FormControl, Validators, FormBuilder, NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 
 @Component({
   selector: 'app-product-form',
   templateUrl: './product-form.component.html',
-  styleUrls: ['./product-form.component.scss'],
+  styleUrls: ['./product-form.component.scss']
 })
 export class ProductFormComponent implements OnInit {
+  @Input() product : Product;
+  @Output() showComponent = new EventEmitter<any>();
 
-  constructor() { }
+  public productForm:FormGroup;
 
-  ngOnInit() {}
+  constructor(private fb : FormBuilder) { 
+    
+ 
+  }
 
+  ngOnInit() {
+    if(this.product){
+      this.productForm = this.fb.group({
+        id: new FormControl(this.product.id,),
+        nombre: new FormControl(this.product.name,[Validators.required]),
+        descripcion: new FormControl(this.product.description, [Validators.required])
+      });
+    }
+  }
+
+  onSubmit(){
+    //si es editar
+    if(this.productForm.valid && this.product.id){
+      this.productForm.value.id = this.product.id;
+    }
+    //else si es agregar nuevo
+    if (this.productForm.valid){
+      return this.showComponent.emit({"page":"add","product":this.productForm.value});
+    }
+  }
+
+  showList(){
+    this.showComponent.emit({"page":"list"});
+  }
 }

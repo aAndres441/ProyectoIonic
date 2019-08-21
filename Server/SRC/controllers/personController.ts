@@ -4,8 +4,7 @@ import pool from '../database';
 class PersonController {
     
     public async list (req:Request,res:Response){
-        const person = await pool.query('SELECT * FROM person');
-        res.json({person});
+        res.json(await pool.query('select p.id as id,p.nombre as name,p.apellido as lastname,p.email as email,p.direccion as direction,p.telefono as cellphone,p.tmstmp as tmstmp from persona p join cliente c on p.id = c.id'))
     }
     
     public async create (req:Request,res:Response): Promise<any>{

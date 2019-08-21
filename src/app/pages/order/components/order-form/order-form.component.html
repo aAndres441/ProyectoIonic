@@ -1,0 +1,37 @@
+<ion-header>
+    <ion-toolbar color="primary">
+      <ion-title>Nuevo Pedido</ion-title>
+      <ion-buttons slot="primary">
+        <ion-button (click)="onSubmit()" ><ion-icon name="add-circle-outline"></ion-icon></ion-button>
+      </ion-buttons>
+    </ion-toolbar>       
+  </ion-header>
+  <ion-form [formGroup]="orderForm" novalidate>
+   
+    <ion-item >
+      <ion-label>Producto:</ion-label>
+      <ion-select formControlName="productName" >
+        <ion-select-option *ngFor="let p of products" >{{p.name}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-textarea formControlName="description" placeholder="Descripcion" ></ion-textarea>
+    </ion-item>
+    <ion-item>
+      <ion-input formControlName="count" type="number" placeholder="Cantidad (Kg/Lt)"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input formControlName="totalAmount" type="number"  placeholder="Precio (Kg/Cant)" ></ion-input>
+    </ion-item>
+    <ion-item *ngIf="total > 0" >
+      <ion-label type="number" >Total: ${{order.count*order.totalAmount}}</ion-label>
+    </ion-item>
+  </ion-form>
+<!-- 
+  id : new FormControl(this.order.id, ),
+  productName : new FormControl(this.order.productName,[Validators.required]),
+  description : new FormControl(this.order.description, [Validators.required]),
+  cantidad : new FormControl(this.order.count,[Validators.required]),
+  totalAmount : new FormControl(this.order.totalAmount,[Validators.required]),
+  tmstmp :  -->

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Sale } from '../../model/sale.model';
 
 @Component({
   selector: 'app-sale-list',
@@ -6,9 +7,40 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./sale-list.component.scss'],
 })
 export class SaleListComponent implements OnInit {
+  @Input() sales : Array<Sale>;
+  @Output() showComponent = new EventEmitter<any>();
+  saleSelected : number = 0;
+  constructor() {  }
 
-  constructor() { }
+  ngOnInit() {
+   
+  }
+  
+  showDetail(p:Sale){
+    return this.showComponent.emit({"page":"detail","sale":p});
+  }
 
-  ngOnInit() {}
+  showForm(p:Sale){
+    if(!p) {
+      p = {
+        id:null,
+        clientId:null,
+        clientName:null,
+        description:null,
+        totalAmount:null,
+        tmstmp:null
+      }
+    }
+    return this.showComponent.emit({"page":"form","sale":p});
+  }
+
+  setSale(i:number){
+    this.saleSelected = i
+  }
+
+  deleteSale(i:number){
+    let p = this.sales[i];
+    return this.showComponent.emit({"page":"delete","sale":p});
+  }
 
 }

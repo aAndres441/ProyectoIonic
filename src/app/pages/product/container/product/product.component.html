@@ -1,4 +1,4 @@
-<ion-content>
+
     <app-product-list *ngIf="showComponent == 'list' else list" #list
         [products]="products"
         (showComponent)="showPage($event)">
@@ -11,7 +11,7 @@
         [detailProduct]="detailProduct"
         (showComponent)="showPage($event)">
     </app-product-detail>
-</ion-content>
+
       
       
     
