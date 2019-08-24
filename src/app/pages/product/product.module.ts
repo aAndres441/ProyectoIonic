@@ -2,6 +2,7 @@ import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { SharedModule } from '../../shared/shared.module';
+import { IonicModule } from '@ionic/angular';
 
 import {
   ProductListComponent,
@@ -31,7 +32,8 @@ const CONTAINER = [
     CommonModule,
     ReactiveFormsModule,
     FormsModule,
-    SharedModule
+    SharedModule,
+    IonicModule
   ],
 
   schemas: [CUSTOM_ELEMENTS_SCHEMA]

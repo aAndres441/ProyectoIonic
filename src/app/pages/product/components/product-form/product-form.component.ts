@@ -21,20 +21,14 @@ export class ProductFormComponent implements OnInit {
   title = 'Add/Edit  product';
   public losProducts: Product[] = [];
 
-  constructor(private fb: FormBuilder,  private router: Router) {
+  constructor(private fb: FormBuilder, private router: Router) {
 
   }
 
   ngOnInit() {
-    this.productForm = new FormGroup({
-      /* id : new FormControl(this.product.id, ), */
-      nombre : new FormControl(this.product.nombre, [Validators.required]),
-      descripcion : new FormControl(this.product.descripcion, [Validators.required, Validators.minLength(4)])
+    if (this.product) {
+      this.productForm = this.createForm();
     }
-  );
-
-    /* this.productForm = this.createForm(); */
-
     /* setTimeout(() => {
       alert('Cardona putazo');
     }, 2000); */
@@ -42,20 +36,22 @@ export class ProductFormComponent implements OnInit {
 
   createForm() {
     return this.fb.group({
-      name: ['', Validators.required],
-      description: ['', [Validators.required, Validators.minLength(4)]]
+      /*  id: new FormControl(this.product.id,), */
+      nombre: new FormControl(this.product.nombre, [Validators.required]),
+      descripcion: new FormControl(this.product.descripcion, [Validators.required, Validators.minLength(4)])
     });
   }
-  onSubmit(){
+  onSubmit() {
     console.log("No lee una mierdaa");/* this.productForm.value.nombre +  */
-    // si es editar
-   /*  if(this.productForm.valid && this.product.id){
+
+    //si es editar
+    if (this.productForm.valid && this.product.id) {
       this.productForm.value.id = this.product.id;
-    } */
-    // else si es agregar nuevo
-    /* if (this.productForm.valid){
-      return this.showComponent.emit({' page': ' add', ' product': this.productForm.value});
-    } */
+    }
+    //else si es agregar nuevo
+    if (this.productForm.valid) {
+      return this.showComponent.emit({ "page": "add", "product": this.productForm.value });
+    }
   }
 
   submitForm() {
@@ -72,27 +68,31 @@ export class ProductFormComponent implements OnInit {
   }
 
   showList() {
-    return this.showComponent.emit({' page': 'list'});
+    return this.showComponent.emit({ ' page': 'list' });
   }
+  /*  showList(){
+    this.showComponent.emit({"page":"list"});
+  } */
+  
   showDetail() {
-    return this.showComponent.emit({' page': 'detail'});
+    return this.showComponent.emit({ ' page': 'detail' });
   }
 
   cancel() {
     console.log('cancelo');
     alert('cancelo');
   }
-go(){
-  this.router.navigateByUrl('/layout/shippingForm');
-}
-aInicio(){
-  this.router.navigateByUrl('/');
-/*   <a routerLink="#"> */
-}
+  go() {
+    this.router.navigateByUrl('/layout/shippingForm');
+  }
+  aInicio() {
+    this.router.navigateByUrl('/');
+    /*   <a routerLink="#"> */
+  }
 
- back(){
-  this.router.navigateByUrl('/layout/lst');
- }
-/*  getInputElement() => Promise<HTMLInputElement>
- */
+  back() {
+    this.router.navigateByUrl('/layout/lst');
+  }
+  /*  getInputElement() => Promise<HTMLInputElement>
+   */
 }

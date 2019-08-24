@@ -31,8 +31,8 @@ export class ProductListComponent implements OnInit {
     return this.showComponent.emit({ page: 'form', product: p });
   }
 
-  delete(i: number) {
-    let p = this.products[i];
+  deleteProduct(i: number) {
+    const p = this.products[i];
     return this.showComponent.emit({ ' page': 'delete', ' product': p });
   }
 

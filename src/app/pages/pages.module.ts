@@ -11,11 +11,13 @@ import { SaleModule } from './sale/sale.module';
 import { PurchaseModule } from './purchase/purchase.module';
 import { PersonModule } from './person/person.module';
 import { ShippingModule } from './shipping/shipping.module';
+import { OrderModule } from './order/order.module';
 
 import { SaleService } from '../services/sale.service';
 import { PurchaseService } from '../services/purchase.service';
 import { ProductService } from '../services/product.service';
-import { PersonService } from '../services/person.service'
+import { PersonService } from '../services/person.service';
+import { OrderService } from '../services/order.service';
 
 
 const MODULES = [
@@ -24,6 +26,7 @@ const MODULES = [
   PurchaseModule,
   PersonModule,
   SharedModule,
+  OrderModule,
   ShippingModule
 ];
 
@@ -42,7 +45,8 @@ const MODULES = [
     PersonService,
     ProductService,
     PurchaseService,
-    SaleService
+    SaleService,
+    OrderService
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })

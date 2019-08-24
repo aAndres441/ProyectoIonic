@@ -1,9 +1,8 @@
-export class Sale {
-    id: number;
-    producto: number;
-    cliente: number;
-    fecha: Date;
-    description: string;
-    tmstmp?: Date;
-    constructor() { }
+export interface Sale {
+    id : number;
+    clientId : number;
+    clientName : string;
+    description : string;
+    totalAmount : number;
+    tmstmp: Date
 }

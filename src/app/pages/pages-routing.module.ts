@@ -12,6 +12,7 @@ import { PagesComponent } from './pages.component';
 import { ProductFormComponent} from './product/components/product-form/product-form.component';
 import { ProductListComponent} from './product/components/product-list/product-list.component';
 import { ShippingFormComponent } from './shipping/components';
+import { OrderComponent } from './order/container';
 
 
 
@@ -35,6 +36,10 @@ const routes: Routes = [{
     {
       path: 'lst',
       component: ProductListComponent
+    },
+    {
+      path: 'orders',
+      component: OrderComponent
     },
     {
       path: 'purchase',

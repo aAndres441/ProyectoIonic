@@ -28,14 +28,14 @@
 <ion-content>
 
 <!--   CARDONA -->
-<form [formGroup]="productForm" novalidate>
-    <ion-item>
-      <input type="text" formControlName="nombre" required placeholder="Nombre">
-    </ion-item>  
-    <ion-item>
-      <textarea formControlName="descripcion" placeholder="Descripcion" ></textarea>
-    </ion-item>
-  </form>
+<ion-form [formGroup]="productForm" novalidate>
+  <ion-item>
+    <ion-input type="text" formControlName="nombre" required placeholder="Nombre"></ion-input>
+  </ion-item>  
+  <ion-item>
+    <ion-textarea formControlName="descripcion"  placeholder="Descripcion" name="descripcion"></ion-textarea>
+  </ion-item>
+</ion-form>
 </ion-content>
   <!--  TERMINA CARDONA -->
   
