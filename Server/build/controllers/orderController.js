@@ -12,55 +12,42 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const database_1 = __importDefault(require("../database"));
-class ProductController {
+class OrderController {
     list(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            res.json(yield database_1.default.query('select p.id as id,p.nombre as name,p.descripcion as description, p.tmstmp as tmstmp  from producto p'));
+            res.json(yield database_1.default.query('select i.id as id,p.nombre as productName,i.descripcion as description,i.cantidad as count,i.montoTotal as totalAmount,i.tmstmp as tmstmp from item i join producto p on i.productoId = p.id'));
         });
     }
     create(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield database_1.default.query('INSERT INTO producto set ?', [req.body]);
-            res.json({ message: 'Producto creado y guardado!' });
+            yield database_1.default.query('INSERT INTO item set ?', [req.body]);
+            res.json({ message: 'Pedido creado y guardado!' });
         });
     }
     delete(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            yield database_1.default.query('delete from producto where id = ?', [id]);
-            res.json({ text: 'Producto borrado:' + req.params.id });
+            yield database_1.default.query('delete from item where id = ?', [id]);
+            res.json({ text: 'Pedido borrado:' + req.params.id });
         });
     }
     update(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            yield database_1.default.query('UPDATE producto set ? where id = ?', [req.body, id]);
-            res.json({ text: 'Producto editado!' + req.params.id });
+            yield database_1.default.query('UPDATE item set ? where id = ?', [req.body, id]);
+            res.json({ text: 'Pedido editado:' + req.params.id });
         });
     }
     getOne(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            const prod = yield database_1.default.query('SELECT * FROM producto WHERE id = ?', [id]);
+            const prod = yield database_1.default.query('SELECT * FROM item WHERE id = ?', [id]);
             if (prod.length > 0) {
                 return res.json(prod[0]);
             }
-            res.status(404).json({ message: 'Producto no se ah encontrado!' });
+            res.status(404).json({ message: 'El pedido no se ah encontrado!' });
         });
     }
 }
-const productController = new ProductController();
-exports.default = productController;
-/*
-exports.removeById = (userId) => {
-    return new Promise((resolve, reject) => {
-        User.remove({_id: userId}, (err) => {
-            if (err) {
-                reject(err);
-            } else {
-                resolve(err);
-            }
-        });
-    });
-};
-*/ 
+const orderController = new OrderController();
+exports.default = orderController;

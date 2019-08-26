@@ -18,7 +18,7 @@
     </ion-header> -->
 
 <ion-content class="barra" mode="ios">
-  <form [formGroup]="myForm" (ngSubmit)="saveData()">
+  <form [formGroup]="personForm" (ngSubmit)="saveData()">
     <ion-list>
       <ion-item>
         <ion-icon name="person" item-start></ion-icon>
@@ -61,7 +61,7 @@
         <ion-checkbox slot="start"></ion-checkbox>
       </ion-item>
     </ion-list>
-    <ion-button color="success" expand="full" type="submit" [disabled]="!myForm.valid">Guardar</ion-button>
+    <ion-button color="success" expand="full" type="submit" [disabled]="!personForm.valid">Guardar</ion-button>
 
   </form>
 </ion-content>
@@ -80,6 +80,80 @@
   </ion-button>
 
 </ion-footer>
+<!-- ///////////////  FORM DIV ////////////////////////////// -->
+<div class="form-container">
+  <h1>form</h1>
+  <form [formGroup]="persona" (ngSubmit)="saveData()">
+
+    <input type="text" formControlName="name" placeholder="Nombre">
+    <div class=" alert-danger" *ngIf="name.invalid &&(name.dirty || name.touched)">
+      <div class="container-error-msessage" *ngIf="name.errors.required">
+        Name is required
+      </div>
+      <div class="container-error-msessage" *ngIf="name.errors.minlength">
+        Name must be at least 4 characters
+      </div>
+    </div>
+
+    <input type="text" formControlName="lastName" placeholder="Apellido">
+    <div class=" alert-danger" *ngIf="lastName.invalid &&(lastName.dirty || lastName.touched)">
+      <div class="container-error-msessage"*ngIf="lastName.errors.required">
+        Lastname is required
+      </div>
+    </div>
+
+    <input type="number" formControlName="documentNumber" placeholder="Documento">
+    <div class=" alert-danger" *ngIf="documentNumber.invalid &&(documentNumber.dirty || documentNumber.touched)">
+      <div class="container-error-msessage" *ngIf="documentNumber.errors.required">
+        Documento is required
+      </div>
+    </div>
+
+    <input type="email" formControlName="email" placeholder="E-mail">
+    <div class=" alert-danger" *ngIf="email.invalid &&(email.dirty || email.touched)">
+      <div class="container-error-msessage"*ngIf="email.errors.required">
+        email is required
+      </div>
+      <div class="container-error-msessage" *ngIf="email.invalid && email.errors.pattern && (email.dirty || email.touched)">
+        email has to be a valid email address
+      </div>
+      <div class="container-error-msessage"  *ngIf="email.errors.minlength">
+        email must be at least 4 characters
+      </div>
+    </div>
+
+    <input type="text" formControlName="address" placeholder="Address">
+    <div class=" alert-danger" *ngIf="address.invalid &&(address.dirty || address.touched)">
+      <div class="container-error-msessage" *ngIf="address.errors.required">
+        Address is required
+      </div>
+      <div class="container-error-msessage" *ngIf="address.errors.minlength">
+        address must be at least 4 characters
+      </div>
+      <div class="container-error-msessage" *ngIf="address.errors.maxlength">
+        address must be at max 200 characters
+      </div>
+    </div>
+
+    <input type="text" formControlName="telephone" placeholder="telephone">
+    <div class=" alert-danger" *ngIf="telephone.invalid &&(telephone.dirty || telephone.touched)">
+      <div class="container-error-msessage" *ngIf="telephone.errors.required">
+        Documento is required
+      </div>
+      <div class="container-error-msessage" *ngIf="telephone.errors.minlength">
+        Documento must be at least 4 characters
+      </div>
+    </div>    
+
+    <input type="radio" formControlName="available" name="available" placeholder="available">
+    <div class=" alert-danger" *ngIf="available.invalid &&(available.dirty || available.touched)">
+      <div class="container-error-msessage" *ngIf="available.errors.required">
+          available is required
+      </div>     
+    </div>
+
+  </form>
+</div>
 
 <!-- ///////////////////////////////////////////// -->
 

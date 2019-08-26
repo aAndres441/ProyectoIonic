@@ -1,15 +1,16 @@
-
 <app-header></app-header>
-<ion-header mode="ios"> <!-- no-border --> 
+<ion-header mode="ios">
+  <!-- no-border -->
   <ion-toolbar>
-    
+
     <!-- <ion-buttons slot="start" color="tertiary">
       <ion-back-button text="Principio" (click)="showList()"></ion-back-button>
-      --> <!-- <ion-button (click)="aInicio()">
+      -->
+    <!-- <ion-button (click)="aInicio()">
         <ion-icon name="return-left" item-start></ion-icon>
       </ion-button> -->
-      <!--           <a routerLink="#"><ion-icon name="return-left" item-start></ion-icon></a> -->
-   <!--  </ion-buttons> -->
+    <!--           <a routerLink="#"><ion-icon name="return-left" item-start></ion-icon></a> -->
+    <!--  </ion-buttons> -->
     <ion-buttons color="success">
       <ion-button slot="start" (click)="showList()">
         <ion-icon name="arrow-back" item-start></ion-icon>
@@ -23,27 +24,46 @@
         <ion-icon name="add-circle-outline"></ion-icon>
       </ion-button>
     </ion-buttons>
-    </ion-toolbar>
+  </ion-toolbar>
 </ion-header>
 <ion-content>
 
-<!--   CARDONA -->
-<ion-form [formGroup]="productForm" novalidate>
-  <ion-item>
-    <ion-input type="text" formControlName="nombre" required placeholder="Nombre"></ion-input>
-  </ion-item>  
-  <ion-item>
-    <ion-textarea formControlName="descripcion"  placeholder="Descripcion" name="descripcion"></ion-textarea>
-  </ion-item>
-</ion-form>
+  <ion-form [formGroup]="productForm" novalidate mode="ios">
+
+
+    <ion-item>
+      <ion-input formControlName="name" type="text" required placeholder="Nombre del producto" autofocus></ion-input>
+    </ion-item>
+    <ion-item *ngIf="!name.valid  && (name.dirty || name.touched)">
+      <p>Please enter a valid name.</p>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Description</ion-label>
+      <ion-textarea formControlName="description" name="description" clearOnEdit="true" required maxlength(4)
+        minlength(200)></ion-textarea>
+    </ion-item>
+
+
+  </ion-form>
 </ion-content>
-  <!--  TERMINA CARDONA -->
-  
+
 <!-- [{ngModel}]="product.nombre" -->
 <ion-footer>
   <ion-toolbar>
-      <ion-button  color="light" expand="full" type="submit" (click)="go()">go to shipping Form</ion-button>
-   </ion-toolbar>
+    <ion-buttons>
+      <ion-button color="light" expand="full" type="submit" (click)="go()">go to shipping Form</ion-button>
+      <ion-item>
+        <ion-button color="success" (click)="cancel()" fill="outline" slot="end">
+          <ion-icon name="close-circle-outline"></ion-icon>
+        </ion-button>
+      </ion-item>
+
+      <ion-button color="success" expand="full" fill="outline" shape="round">
+        <ion-icon name="arrow-round-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
 </ion-footer>
 <!-- 
 <ion-item-sliding no-borde>
@@ -95,8 +115,8 @@
     </ion-button>  
   </ion-footer> -->
 
-  <!--(click)=" showDetail() "  -->
-    <!-- (click)=" showList() " -->
+<!--(click)=" showDetail() "  -->
+<!-- (click)=" showList() " -->
 <!-- ///////////////////////////////////////////// -->
 
 

@@ -47,10 +47,10 @@ export class PersonService {
     const body = {
       'id':person.id,
       'name':person.name,
-      'lastname': person.lastname,
+      'lastname': person.lastName,
       'email': person.email,
-      'direction': person.direction,
-      'cellphone': person.cellphone
+      'address': person.address,
+      'telephone': person.telephone
     }
     
     if(person.id){

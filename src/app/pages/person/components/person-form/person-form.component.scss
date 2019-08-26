@@ -1,4 +1,39 @@
 
+
+.alert-danger{
+background-color: rgb(231, 122, 122);
+color: rgb(250, 68, 68);
+border-color: rgb(241, 195, 195);
+margin: 1px;
+}
+.container-error-msessage{
+    padding: 3px;;
+}
+ion-button :hover:not([disabled]){
+    background-color: aqua;
+}
+/* mas */
+p {
+    font-size: 0.8em;
+    color: #d2d2d2;
+}
+
+ion-slides {
+	height: 100%;
+}
+
+ion-slide {
+    display: block;
+}
+
+ion-label, .select-text {
+    margin-left: 10px;
+}
+
+.invalid {
+    border: 1px solid #ea6153;
+}
+/* 
 .barra{
     height:500px;
 }
@@ -42,7 +77,7 @@ textarea{
     padding : 10px;
     margin  : 5px;
     border-radius: 10px
-}
+}*/
 .ng-valid[required], .ng-valid.required  {
     border-left: 5px solid #42A948; /* green */
-  }
+  } 

@@ -1,7 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { NavController } from '@ionic/angular';
-import { Product } from 'src/app/pages/product/model/product.model';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import {Person}  from '../../model/person.model';
 
 @Component({
   selector: 'app-person-form',
@@ -10,24 +9,21 @@ import { Product } from 'src/app/pages/product/model/product.model';
 })
 export class PersonFormComponent implements OnInit {
 
-  /* @IonicPage() */
-
-  myForm: FormGroup;
-
-  @Input() product: Product;
+  @Input() person: Person;
   @Output() submitFormNotification = new EventEmitter<FormGroup>();
   @Output() showListForm = new EventEmitter<any>();
 
-  productForm: FormGroup;
+  personForm: FormGroup;
+  // tslint:disable-next-line: max-line-length
+  emailPattern: any = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   title = 'Add Person';
-  losProducts: Product[] = [];
+  persons: Person[] = [];
 
-  constructor(private fb: FormBuilder, public navCtrl: NavController) {
-
+  constructor(private fb: FormBuilder) {
   }
 
   ngOnInit() {
-    this.productForm = this.createForm();
+    this.personForm = this.createForm2();
   }
   showList() {
     return this.showListForm.emit('list');
@@ -36,17 +32,38 @@ export class PersonFormComponent implements OnInit {
     return this.showListForm.emit('detail');
   }
 
-  createForm() {
-    return this.fb.group({
-      name: ['', Validators.required],
+ /* createForm() {
+     return this.fb.group({
+      name: ['', [Validators.required, Validators.minLength(4)]],
       lastName: ['', Validators.required],
-      email: ['', Validators.required],
-      dateBirth: ['', Validators.required],
-      gender: ['', Validators.required]
+      documentNumber: ['', [Validators.required, Validators.minLength(4)]],
+      email: ['', Validators.required, Validators.pattern(this.emailPattern), Validators.minLength(4)],
+      address: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(200)]],
+      telephone: ['', [Validators.required, Validators.minLength(4)]],
+      available:['', ],
+      gender: ['',[Validators.required] ]
+    }); 
+  }*/
+
+  createForm2():FormGroup {
+    return new FormGroup({
+      name: new FormControl(this.person.name, [Validators.required, Validators.minLength(4)]),
+      lastName: new FormControl(this.person.lastName, [Validators.required]),
+      documentNumber: new FormControl(this.person.documentNumber, [Validators.required]),
+      email: new FormControl(this.person.email, [Validators.required, Validators.pattern(this.emailPattern), Validators.minLength(4)]),
+      address: new FormControl(this.person.address, [Validators.required, Validators.minLength(4), Validators.maxLength(200)]),
+      telephone: new FormControl(this.person.telephone, [Validators.required, Validators.minLength(4)]),
+      available: new FormControl(this.person.available, [Validators.required, ]),
+      gender: new FormControl(this.person.gender, [Validators.required]),
     });
   }
+
   saveData() {
-    console.log(this.myForm.value);
+    if(this.personForm.valid){
+      this.personForm.reset();
+    console.log('VALIDO' + this.personForm.value);
+    }else
+    console.log('NO VALIDO');
   }
 
   cancel() {
@@ -55,17 +72,16 @@ export class PersonFormComponent implements OnInit {
   }
 
   onSubmit(): void {
-    const form: Product = Object.assign({}, this.product);
+   /*  const form: person = Object.assign({}, this.person); */
     console.warn('Your order has been submitted');
-    if (this.productForm.valid) {
-      this.submitFormNotification.emit(this.productForm.value);
-      console.log(form.nombre.toUpperCase());
+    if (this. personForm.valid) {
+      this.submitFormNotification.emit(this.personForm.value);
     }
-    // this.productForm.reset();
+    // this.personForm.reset();
   }
   submit() {
-    if (this.productForm.valid) {
-      console.log(this.productForm.value);
+    if (this.personForm.valid) {
+      console.log(this.personForm.value);
     } else {
       this.showErrorAlert('Debe completar todos los campos.')
     }
@@ -73,4 +89,12 @@ export class PersonFormComponent implements OnInit {
   showErrorAlert(arg0: string) {
     alert(' Method not implemented.');
   }
+
+  get name(){return this.personForm.get('name')}
+  get lastName(){return this.personForm.get('lastName')}
+  get documentNumber(){return this.personForm.get('documentNumber')}
+  get email(){return this.personForm.get('email')}
+  get address(){return this.personForm.get('address')}
+  get telephone(){return this.personForm.get('telephone')}
+  get available(){return this.personForm.get('available')}
 }

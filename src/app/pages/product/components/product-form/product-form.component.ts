@@ -37,8 +37,15 @@ export class ProductFormComponent implements OnInit {
   createForm() {
     return this.fb.group({
       /*  id: new FormControl(this.product.id,), */
-      nombre: new FormControl(this.product.nombre, [Validators.required]),
-      descripcion: new FormControl(this.product.descripcion, [Validators.required, Validators.minLength(4)])
+      /* name: new FormControl(this.product.name, [Validators.required]),
+      description: new FormControl(this.product.description, [Validators.required, Validators.minLength(4), Validators.maxLength(200)]) */
+   
+      /* Usamos la formBuilder.groupfunción para crear nuestro FormGroup al proporcionar 
+      un objeto que contiene cada uno de nuestros FormControls . 
+      También debemos establecer la formGrouppropiedad en el padre
+       <form>para que tenga el mismo nombre que nuestro grupo FormBuilder */
+      name: [this.product.name, [Validators.required]],
+      description:[this.product.description, [Validators.required, Validators.minLength(4), Validators.maxLength(200)]]
     });
   }
   onSubmit() {

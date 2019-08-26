@@ -2,10 +2,10 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder} from '@angular/forms';
 import { Sale } from '../../model/sale.model';
 import { PersonService } from 'src/app/services/person.service';
-import { Person } from 'src/app/pages/person/model/person.model';
 import { Order } from 'src/app/pages/order/model/order.model';
 import { Product } from 'src/app/pages/product/model/product.model';
 import { ProductService } from 'src/app/services/product.service';
+import { Person } from 'src/app/pages/person/model/person.model';
 
 @Component({
   selector: 'app-sale-form',

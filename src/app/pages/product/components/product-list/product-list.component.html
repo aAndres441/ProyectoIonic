@@ -1,55 +1,87 @@
-<ion-header  mode="ios">  <!-- no-border -->
+<ion-header mode="ios">
+  <!-- no-border -->
 
   <app-header></app-header>
 
-  <ion-toolbar>   
-    <ion-title><h3>{{title}}</h3></ion-title>
+  <ion-toolbar>
+    <ion-title>
+      <h3>{{title}}</h3>
+    </ion-title>
 
-    <ion-buttons slot="end"><a  routerLink="/layout/formu">
-      <ion-button >
-        <ion-icon name="add-circle-outline" ></ion-icon>       
-      </ion-button></a>
+    <ion-buttons slot="end"><a routerLink="/layout/formu">
+        <ion-button>
+          <ion-icon name="add-circle-outline"></ion-icon>
+        </ion-button>
+      </a>
     </ion-buttons>
-  </ion-toolbar> 
+  </ion-toolbar>
   <!-- (click)="addNew()" -->
 
   <ion-toolbar color="light">
-    <ion-searchbar aria-placeholder="Buscar"  animated (ionChange)="buscarAlgo($event)"  >      
+    <ion-searchbar aria-placeholder="Buscar" animated (ionChange)="buscarAlgo($event)">
     </ion-searchbar>
-  </ion-toolbar> 
+  </ion-toolbar>
 
 </ion-header>
 
-<ion-content padding [scrollEvents]="true" fullscreen mode="ios">  
-   <ion-tabs color="light" *ngIf="products && products.length; else cargando">
-      <ion-tab *ngFor="let p of products; let i=index" (click)="showDetail(p)" [label]="p.nombre" (ionSelect)="setProduct(i)"> 
-       
-        <ion-list #myList lines="full">
-          <ion-item >
-            <ion-label text-wrap>
-              <h2>{{p.nombre}}</h2>
-            </ion-label>
-            <ion-icon slot="end" name="trash" color="danger" (click)="deleteProduct(i)"></ion-icon>
-            <ion-icon slot="end" name="create" color="tertiary" (click)="showForm(p)"></ion-icon>
-          </ion-item> 
-        </ion-list>
-        
-      </ion-tab>
-    </ion-tabs>
+<ion-content padding [scrollEvents]="true" fullscreen mode="ios">
 
-    <!-- ///////////  PRUEBA ////////// -->
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Pull to refresh" refreshingSpinner="circles"
+      refreshingText="Refreshing...">
+    </ion-refresher-content>
+  </ion-refresher>
 
-    <!-- /    BOON ATRAS    -->
-    
-    
-   <!--  <ion-buttons slot="start"> -->
-<!--       <a href="#"><ion-icon name="arrow-back" item-start></ion-icon></a>-->     
- <!--      <ion-back-button defaultl-href='/' text='Regresa'></ion-back-button>
+  <!-- <ion-grid>
+    <ion-row>
+      <ion-col *ngFor="let p of products; let i=index" (click)="showDetail(p)" [label]="p.nombre" (ionSelect)="setProduct(i)" col-6-no-padding>
+          <ion-card>
+           <ion-card-content class="fixline"></ion-card-content>
+            <ion-item >
+              <ion-label text-wrap>
+                <h2>{{p.nombre}}</h2>
+              </ion-label>
+              <ion-icon slot="end" name="trash" color="danger" (click)="deleteProduct(i)"></ion-icon>
+              <ion-icon slot="end" name="create" color="tertiary" (click)="showForm(p)"></ion-icon>
+            </ion-item> 
+          </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid> -->
+
+  <ion-tabs color="light" *ngIf="products && products.length; else cargando">
+    <ion-list #myList lines="full" *ngFor="let p of products; let i=index" (click)="showDetail(p)" [label]="p.nombre"
+      (ionSelect)="setProduct(i)">
+      <ion-item>
+        <ion-label text-wrap>
+          <h2>{{p.name}}</h2>
+        </ion-label>
+        <ion-icon slot="end" name="trash" color="danger" (click)="deleteProduct(i)"></ion-icon>
+        <ion-icon slot="end" name="create" color="tertiary" (click)="showForm(p)"></ion-icon>
+      </ion-item>
+    </ion-list>
+  </ion-tabs>
+
+  <!-- infinite-scroll -->
+  <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
+    <ion-infinite-scroll-content loadingSpinner="crecent" loadingText="Loading more data...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
+
+  <!-- ///////////  PRUEBA ////////// -->
+
+  <!-- /    BOON ATRAS    -->
+
+
+  <!--  <ion-buttons slot="start"> -->
+  <!--       <a href="#"><ion-icon name="arrow-back" item-start></ion-icon></a>-->
+  <!--      <ion-back-button defaultl-href='/' text='Regresa'></ion-back-button>
     </ion-buttons> -->
 
-    <!-- ///////////////////////////
+  <!-- ///////////////////////////
      -->
- <!-- <ion-list>
+  <!-- <ion-list>
   <ion-item.sliding *ngFor= "let g of products">
     <ion-item>
       <h2>{{g.nombre}}</h2>
@@ -73,7 +105,7 @@
       </ion-item-options>
   </ion-item.sliding>
 </ion-list>  -->
-<!-- 
+  <!-- 
 <ion-list>
   <ion-item *ngFor="let r of [1,2,3,4]">
 <ion-label>fenix </ion-label>
@@ -82,10 +114,10 @@
   <ion-item>lala</ion-item>
   <ion-item>lolo</ion-item>
 </ion-list> -->
-       <!-- /////////// TERMINA  PRUEBA ////////// -->
-  
-       <app-footer></app-footer>
-       
+  <!-- /////////// TERMINA  PRUEBA ////////// -->
+
+  <app-footer></app-footer>
+
 </ion-content>
 <!--<ion-footer>
      <ion-button routerLink='/layout/shippingForm'>Open</ion-button>
