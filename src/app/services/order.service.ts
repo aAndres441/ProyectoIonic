@@ -12,12 +12,12 @@ export class OrderService {
 
   constructor(private http: HttpClient) { }
 
-  getOrders(): Observable<Order[]> {
-    return this.http.get<Order[]>(environment.API_BASE + 'orders'); /* .pipe(
+  getOrders(saleId:number): Observable<Order[]> {
+    return this.http.get<Order[]>(environment.API_BASE + 'orders/' + saleId).pipe(
       map(
           (data:Array<Order>) => this.orderTransform(data)
       )
-    ) */
+    ) 
   }
 
   private orderTransform(data: Array<Order>): Array<Order> {
@@ -39,13 +39,7 @@ export class OrderService {
     }
     return resp;
   }
-  getOrder(id: number): Observable<Order[]> {
-    return this.http.get<Array<Order>>(environment.API_BASE + 'orders/' + id).pipe(
-      map(
-        (data: Array<Order>) => this.orderTransform(data)
-      )
-    )
-  }
+  
   addOrder(order: Order): Observable<any> {
     const httpOptions = {
       headers: new HttpHeaders({

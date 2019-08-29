@@ -13,14 +13,13 @@ export class OrderFormComponent implements OnInit {
   @Input() order : Order;
   @Output() showComponent = new EventEmitter<any>();
   @Input() products = new Array<Product>()
-  @Output() pushOrder = new EventEmitter<any>();
 
   public orderForm:FormGroup;
 
   constructor(private fb : FormBuilder) { }
 
   ngOnInit() {
-    if(isNullOrUndefined(this.order)){
+    if(!this.order){
       this.initOrder();
     }
     this.orderForm = this.fb.group({
@@ -49,14 +48,12 @@ export class OrderFormComponent implements OnInit {
 
   onSubmit(){
     //si es editar
-    if(this.orderForm.valid && this.order.id){
-      this.orderForm.value.id = this.order.id;
+    if(this.orderForm.valid && this.order){
+      return this.showComponent.emit({"page":"edit","order":this.orderForm.value});
     }
     //else si es agregar nuevo
-    if (this.orderForm.valid){
-      this.pushOrder.emit(this.orderForm.value);
-      this.orderForm.reset();
-      //return this.showComponent.emit({"page":"add","order":this.orderForm.value});
+    else if (this.orderForm.valid){
+      return this.showComponent.emit({"page":"add","order":this.orderForm.value});
     }
   }
 

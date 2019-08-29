@@ -16,8 +16,9 @@ import { OrderService } from 'src/app/services/order.service';
 })
 export class SaleComponent implements OnInit {
   sales : Array<Sale> = new Array<Sale>();
-  detailSale : Sale;
   sale : Sale = null;
+  detailSale : Sale;
+  
   showComponent:string = 'list';
   clients = new Array<Person>();
   products = new Array<Product>();

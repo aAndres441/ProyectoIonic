@@ -1,11 +1,9 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder} from '@angular/forms';
 import { Sale } from '../../model/sale.model';
-import { PersonService } from 'src/app/services/person.service';
 import { Person } from 'src/app/pages/person/model/person.model';
 import { Order } from 'src/app/pages/order/model/order.model';
 import { Product } from 'src/app/pages/product/model/product.model';
-import { ProductService } from 'src/app/services/product.service';
 
 @Component({
   selector: 'app-sale-form',
@@ -17,33 +15,42 @@ export class SaleFormComponent implements OnInit {
   @Output() showComponent = new EventEmitter<any>();
   @Input() clients = new Array<Person>();
   @Input() products = new Array<Product>();
-  showOrder : boolean = true;
+  showOrder : string = 'form';
   orders = new Array<Order>();
-  saleId : number = -1;
-  order : Order;
-  
 
   public saleForm:FormGroup;
 
   constructor(private fb : FormBuilder) { }
 
   ngOnInit() {
-    this.saleForm = this.fb.group({
-        id : new FormControl(null),
+    if(this.sale && this.sale.id){
+      this.showOrder = 'list';
+      this.saleForm = this.fb.group({
+        id : new FormControl(this.sale.id),
         clientName : new FormControl(this.sale.clientName,[Validators.required]),
         description : new FormControl(this.sale.description, [Validators.required]),
-      }
-    );
+      });
+    }else {
+      this.showOrder = 'form';
+      this.saleForm = this.fb.group({
+        id : new FormControl(null),
+        clientName : new FormControl(null,[Validators.required]),
+        description : new FormControl(null, [Validators.required]),
+      });
+    }
+    
   }
  
   onSubmit(){
     //si es editar
-    if(this.saleForm.valid && this.sale.id){
+    if(this.saleForm.valid && this.sale){
       this.saleForm.value.id = this.sale.id;
     }
     //else si es agregar nuevo
     if (this.saleForm.valid && this.orders.length > 0){
-      return this.showComponent.emit({"page":"add","sale":this.saleForm.value,"orders":this.orders});
+      console.log(this.saleForm);
+      console.log(this.orders);
+      //return this.showComponent.emit({"page":"add","sale":this.saleForm.value,"orders":this.orders});
     }
   }
 
@@ -51,22 +58,8 @@ export class SaleFormComponent implements OnInit {
     this.showComponent.emit({"page":"list"});
   }
 
-  pushOrder(order:Order){
-    this.showOrder = false;
-    console.log(order)
-    this.orders.push(order);
-    console.log(this.orders)
+  actionOrder(event:any){
+    this.orders = event.orders;
   }
-  newOrder(){
-    this.showOrder = true;
-  }
-
-  removeOrder(order:Order){
-    let index = this.orders.indexOf(order);
-    this.orders.splice(index,1);
-  }
-
-  editOrder(order:Order){
-    
-  }
+  
 }

@@ -23,7 +23,8 @@ const CONTAINER = [OrderComponent]
   ],
   exports:[
     OrderFormComponent,
-    OrderListComponent
+    OrderListComponent,
+    OrderComponent
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })

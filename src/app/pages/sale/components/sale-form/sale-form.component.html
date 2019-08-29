@@ -6,9 +6,10 @@
     </ion-buttons>
   </ion-toolbar>       
 </ion-header>
+
 <ion-form [formGroup]="saleForm" fullscreen>
   <ion-item>
-    <h5>Cliente:</h5>
+    <ion-label>Cliente:</ion-label>
     <ion-select formControlName="clientName">
       <ion-select-option *ngFor="let c of clients" >{{c.name}}</ion-select-option>
     </ion-select>
@@ -16,19 +17,15 @@
   <ion-item>
     <ion-textarea formControlName="description" placeholder="Descripcion" ></ion-textarea>
   </ion-item>
- <!--  <ion-card> -->
-    <app-order-form *ngIf="showOrder" #showForm
-      [products]="products"
-      [order]="order"
-      (pushOrder)="pushOrder($event)">
-    </app-order-form>
-    <app-order-list *ngIf="!showOrder" #showList
-      (newOrder)="newOrder($event)"
-      [orders]="orders">
-    </app-order-list>
-  <!-- </ion-card> -->
- 
 </ion-form>
+
+<app-order
+  [sale]="sale"
+  [products]="products"
+  [showOrder]="showOrder"
+  (actionOrder)="actionOrder($event)">
+</app-order>
+
 <!-- 
 id : new FormControl(this.sale.id, ),
 clientName : new FormControl(this.sale.clientName,[Validators.required]),

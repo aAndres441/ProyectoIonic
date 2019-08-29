@@ -1,5 +1,6 @@
+import { Sale } from './../../../sale/model/sale.model';
 import { ProductService } from './../../../../services/product.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { OrderService } from 'src/app/services/order.service';
 import { Order } from '../../model/order.model';
 import { Router } from '@angular/router';
@@ -11,23 +12,32 @@ import { Product } from 'src/app/pages/product/model/product.model';
   styleUrls: ['./order.component.scss'],
 })
 export class OrderComponent implements OnInit {
-  orders : Array<Order> = new Array<Order>();
+  @Input() sale:Sale;
+  @Input() showOrder:string;
+  @Input() products = new Array<Product>();
+  @Output() actionOrder = new EventEmitter();
+
+  orders = new Array<Order>();
   detailOrder : Order = new Order();
   order : Order = null;
-  showComponent:string = 'list';
-  products = new Array<Product>();
+  showComponent:string;
+
 
   constructor( private orderService: OrderService, 
     private router: Router ) { }
 
   
   ngOnInit(): void {
-    this.getOrders();
+    this.showComponent = this.showOrder;
+    if(this.sale.id>0){
+      this.getOrders(this.sale.id);
+    }
+    
   }
 
-  getOrders():void{
+  getOrders(saleId:number):void{
     let order : Order;
-    this.orderService.getOrders().subscribe(
+    this.orderService.getOrders(saleId).subscribe(
       (data:Array<Order>) => {
         data.forEach(elem => {
           order = new Order();
@@ -42,33 +52,14 @@ export class OrderComponent implements OnInit {
       }
     );
   }
-
-  getOrder(saleId:number):void{
-    let order : Order;
-    this.orderService.getOrder(saleId).subscribe(
-      (data:Array<Order>) => {
-        data.forEach(elem => {
-          order = new Order();
-          order.id = elem.id;
-          order.productName = elem.productName;
-          order.description = elem.description;
-          order.count = elem.count;
-          order.totalAmount = elem. totalAmount;
-          order.tmstmp = elem.tmstmp;
-          this.orders.push(order);
-        });
-      }
-    );
-  }
-
 
   showPage(obj:any) {
     let order;
     let showAction = obj.page;
     switch(showAction) { 
       case "detail": { 
-        this.showComponent = "detail";
         this.detailOrder = obj.order; 
+        this.showComponent = "detail";
         break; 
       } 
       case "list": { 
@@ -76,16 +67,19 @@ export class OrderComponent implements OnInit {
         break; 
       } 
       case "form": { 
-        this.showComponent = "form";
         if(obj.order){
           this.order = obj.order;
         }else {
           this.order = null;
         }
+        this.showComponent = "form";
         break; 
       }
       case "add": { 
         this.addOrder(obj.order);
+        break; 
+      }case "edit": { 
+        this.editOrder(obj.order);
         break; 
       }
       case "delete": { 
@@ -95,42 +89,36 @@ export class OrderComponent implements OnInit {
         }
         break; 
       } 
-      case "sale": { 
-        let saleId = obj.saleId;
-        if(saleId){
-          this.getOrder(saleId);
-        }
-        break; 
-      } 
       default: { 
         this.showComponent = "list";
         break; 
       } 
    } 
   } 
-
   addOrder(order:Order){
-    this.orderService.addOrder(order).subscribe(
-      (data) => {
-        this.getOrders();
-        this.showComponent = "list";
-      },(error) => {
-        console.log(error);
-        this.showComponent = "form";
-      }
-    );
+    this.orders.push(order);
+    this.showComponent = 'list';
+    this.actionOrder.emit({'orders':this.orders});
+  }
+  newOrder(){
+    this.showComponent = 'form';
   }
 
   deleteOrder(order:Order){
-    this.orderService.deleteOrder(order).subscribe(
-      (data) => {
-        this.getOrders();
-        this.showComponent = "list";
-      },(error) => {
-        console.log(error);
-        this.showComponent = "list";
-      }
-    );
+    let index = this.orders.indexOf(order);
+    this.orders.splice(index,1);
+    this.actionOrder.emit({'orders':this.orders});
   }
+
+  editOrder(order:Order){
+    //encuentro y elimino el pedido viejo
+    let index = this.orders.indexOf(order);
+    this.orders.splice(index,1);
+    //agrego el nuevo a la lista y emito el evento
+    this.orders.push(order);
+    this.showComponent = 'list';
+    this.actionOrder.emit({'orders':this.orders});
+  }
+  
 
 }
