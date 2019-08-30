@@ -1,4 +1,60 @@
-<ion-p>{{detailProduct.id}}</ion-p>
-<ion-p>{{detailProduct.nombre}}</ion-p>
-<ion-p>{{detailProduct.descripcion}}</ion-p>
-<ion-p>{{detailProduct.tmstmp}}</ion-p>
+<ion-card no-border mode="ios" color="medium">
+  <ion-card-header>
+    <ion-toolbar>
+      <ion-title> {{title | uppercase}}
+        <!-- <ion-card-title>{{detailProduct.nombre}}</ion-card-title> -->
+      </ion-title>
+      <ion-buttons slot="start">
+        <ion-button (click)="showList()">
+          <ion-icon name="arrow-back" color="dark"> </ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-card-header>
+
+  <ion-card-content mode="ios" color="light">
+    <ion-list>
+      <ion-item>
+        <ion-label>Code</ion-label>
+        <ion-p>{{detailProduct.id}}</ion-p>
+      </ion-item>
+      <ion-item>
+        <ion-label>Description</ion-label>
+        <ion-p>{{detailProduct.descripcion}}</ion-p>
+      </ion-item>
+      <ion-item>
+        <ion-label>Visitado en:</ion-label>
+        <ion-p>{{detailProduct.tmstmp | date}}</ion-p>
+      </ion-item>
+    </ion-list>
+  </ion-card-content>
+  <ion-footer no-border mode="ios" color="success">
+    <ion-tabs>
+      <ion-tab-bar color="succes">
+        <!-- 
+                <ion-button href="#" >   -->
+        <a href="#">
+          <ion-icon size="large" name="arrow-back"></ion-icon>
+        </a>Back
+        <!--  </ion-button> -->
+
+        <ion-icon icon-right size="large" name="edit" (click)="edit(detailProduct)"></ion-icon>
+        <ion-label>Edit</ion-label>
+
+        <ion-icon size="large" name="close-circle-outline" (click)="delete(detailProduct)"></ion-icon>
+        <ion-label>Delete</ion-label>
+
+      </ion-tab-bar>
+    </ion-tabs>
+  </ion-footer>
+
+</ion-card>
+<!-- 
+  <button (click)="showList()">Atras</button>
+  <button (click)="showDetail()">Atras</button> -->
+<!--   <ion-item-sliding no-borde>
+         <ion-item-options side="left">
+          <ion-item-option (click)="showPage()">Unread</ion-item-option>
+        </ion-item-options> 
+      </ion-item-sliding>
+   -->

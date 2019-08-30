@@ -1,11 +1,15 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { PersonFormComponent, PersonListComponent } from './components/index';
-import { PersonComponent } from './container/index';
 import { IonicModule } from '@ionic/angular';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {
+   PersonFormComponent,
+  PersonListComponent,
+  PersonDetailComponent
+  } from './components/index';
+import { PersonComponent } from './container/index';
 
-const COMPONENTS = [PersonFormComponent,PersonListComponent]
+const COMPONENTS = [PersonFormComponent,PersonListComponent,PersonDetailComponent]
 const CONTAINER = [PersonComponent]
 
 

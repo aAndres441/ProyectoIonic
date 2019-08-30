@@ -7,17 +7,23 @@ import { Product } from '../../model/product.model';
   styleUrls: ['./product-detail.component.scss'],
 })
 export class ProductDetailComponent implements OnInit {
+  
   @Output() showComponent = new EventEmitter<any>();
   @Input() detailProduct : Product = new Product();
+  title: string;
 
   constructor() { }
 
   ngOnInit() {
+    this.title = this.detailProduct.name;
     
   }
 
   showPage(){
     return this.showComponent.emit({"page":"list"});
+  }
+  showList(){
+    this.showComponent.emit({"page":"list"});
   }
 
 }

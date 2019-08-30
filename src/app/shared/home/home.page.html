@@ -1,8 +1,104 @@
-<section>
-  <ion-button expand="block" href="/layout/products" >PRODUCTOS</ion-button>
-  <ion-button expand="block" href="/layout/orders" >PEDIDOS</ion-button>
-  <ion-button expand="block" href="/layout/sales" >VENTAS</ion-button>
-</section>
+<ion-content fullscreen no-border>
 
+  <app-header></app-header>
 
+  <ion-card>
+    <ion-button expand="full" fill="outline">
+      <a routerLink="/layout/sales">VENTAS</a>
+    </ion-button>
+  </ion-card>
 
+  <ion-card>
+    <ion-button expand="full" fill="outline">
+      <a routerLink="/layout/orders">PEDIDOS</a>
+    </ion-button>
+  </ion-card>
+
+  <ion-card>
+    <ion-button expand="full" fill="outline">
+      <!-- shape="round" -->
+      <a routerLink="/layout/products">PRODUCTOS</a>
+      <!-- <ion-icon name="arrow-forward" slot="end"></ion-icon> -->
+    </ion-button>
+  </ion-card>
+
+  <ion-card>
+    <ion-button expand="full" fill="outline">
+      <a routerLink="/layout/persons">PERSONAS</a>
+    </ion-button>
+  </ion-card>
+
+  <ion-card>
+    <ion-button expand="full" fill="outline">
+      <a routerLink="/layout/formu">form Product </a>
+    </ion-button>
+  </ion-card>
+
+  <ion-card>
+    <ion-button expand="full" fill="outline">
+      <a routerLink="/layout/shippingForm">shippingForm </a>
+    </ion-button>
+  </ion-card>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button>
+      <ion-icon name="share"></ion-icon>
+    </ion-fab-button>
+    <ion-fab-list side="top">
+      <ion-fab-button><a routerLink="/layout/sales">
+        <ion-icon name="paper-plane" color="primary"></ion-icon></a>
+      </ion-fab-button>
+      <ion-fab-button><a routerLink="/layout/orders">
+        <ion-icon name="cart" color="primary"></ion-icon></a>
+      </ion-fab-button>
+    </ion-fab-list>
+    <ion-fab-list side="start">
+      <ion-fab-button><a routerLink="/layout/products">
+          <ion-icon name="cube" color="primary"></ion-icon>
+        </a>
+      </ion-fab-button>
+    </ion-fab-list>    
+  </ion-fab>
+
+</ion-content>
+
+<!-- fab placed in the center of the content with a list on each side 
+    <ion-fab vertical="center" horizontal="center" slot="fixed">
+        <ion-fab-button>
+          <ion-icon name="share"></ion-icon>
+        </ion-fab-button>
+        <ion-fab-list side="top">
+          <ion-fab-button><ion-icon name="logo-vimeo"></ion-icon></ion-fab-button>
+        </ion-fab-list>
+        <ion-fab-list side="bottom">
+          <ion-fab-button><ion-icon name="logo-facebook"></ion-icon></ion-fab-button>
+        </ion-fab-list>
+        <ion-fab-list side="start">
+          <ion-fab-button><a routerLink="/layout/products"><ion-icon name="logo-instagram"></ion-icon></a></ion-fab-button>
+        </ion-fab-list>
+        <ion-fab-list side="end">
+          <ion-fab-button><ion-icon name="logo-twitter"></ion-icon></ion-fab-button>
+        </ion-fab-list>
+      </ion-fab> -->
+<!--<ion-card>
+ <ion-card-header>
+      <ion-label>mi invento</ion-label>
+    </ion-card-header>
+    <ion-card-content>
+      <p> INVENTO ... </p>      
+    <ion-item>
+      <ion-icon name="pin" slot="start"></ion-icon>
+      <ion-label>ion-item in a card, icon left, button right</ion-label>
+      <ion-button fill="outline" slot="end">View</ion-button>
+    </ion-item>
+    
+    <ion-list no-lines>
+    <a routerLink="/"> -->
+<!--  <a class="nav-link" (click)="back()" >  -->
+<!-- <img src="../footer/../../../assets/cardona.jpg" class="img-responsive  " style="max-height:40px" />           
+          <ion-label slot="end"><span>{{title}}</span> </ion-label>
+    </a>
+</ion-list>   
+    </ion-card-content>
+  </ion-card> -->
+<!-- <app-footer></app-footer> -->
