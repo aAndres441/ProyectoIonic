@@ -14,11 +14,26 @@ export class ProductComponent implements OnInit {
   prod: Product = null;
   showComponent: string = 'list';
 
+  /* para probar*/
+  public misProducts: Product[] = [];
+
   constructor(private productoService: ProductService, private router: Router) { }
 
   ngOnInit(): void {
-    this.getProducts();
+    this.getProducts(); 
   }
+  loadMisProducts() {
+    console.log('Begin async operation');
+
+    setTimeout(() => {
+      console.log('Async operation has ended');
+      // event.complete();
+    }, 1000); 
+  }
+  /* id : number;
+    name : string;
+    description : string;
+    tmstmp : Date */
 
   getProducts(): void {
     this.productoService.getProducts().subscribe(

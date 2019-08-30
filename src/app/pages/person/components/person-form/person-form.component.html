@@ -1,39 +1,124 @@
-
-  <ion-header mode="ios" no-border>
-      <ion-title>
-          <h3>Contactos</h3>
-        </ion-title>
-        <!-- ////////////////////   toogle  ///////////////////////////////// -->
-      <!-- <ion-item>
-        <ion-label>Toggle</ion-label>
-        <ion-toggle slot="end"></ion-toggle>
-      </ion-item> -->
-    
-      <ion-buttons>
-        <ion-icon name="heart" slot="end"></ion-icon>
-      </ion-buttons>
-      
-  </ion-header>
-  <!-- 
+<ion-header mode="ios" no-border>
   <ion-toolbar color="medium">
+    <ion-buttons>
+      <ion-button slot="start" (click)="showList()">
+        <ion-icon name="arrow-back" item-start></ion-icon>
+      </ion-button>
+    </ion-buttons>
     <ion-title>
-      <h3>{{title}}</h3>
+      <h3>Contactos</h3>
     </ion-title>
-    <ion-buttons slot="primary">
-      <ion-button (click)="showForm(null)">
-        <ion-icon name="add-circle-outline" ></ion-icon>
+    <ion-buttons slot="end">
+      <ion-button (click)="onSubmit()">
+        <ion-icon name="add-circle-outline"></ion-icon>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
-</ion-header> -->
-<ion-content>
+</ion-header>
+
+<ion-content mode="ios" fullscreen color="light" padding>
+  <ion-form [formGroup]="personForm" novalidate mode="ios" (submit)="onSubmit()">
+
+    <ion-label position="floating">Nombre:</ion-label>
+    <ion-item>
+      <ion-input formControlName="name" type="text" required placeholder=" * * " autofocus></ion-input>
+    </ion-item>
+    <ion-item class="error" *ngIf="!name.valid  && (name.dirty || name.touched)">
+      <p *ngIf="name.errors.required" color="danger" ion-text>Name is required </p>
+    </ion-item>
+
+    <ion-label position="floating">Apellido:</ion-label>
+    <ion-item>
+      <ion-input formControlName="lastName" type="text" required placeholder=" * * "></ion-input>
+    </ion-item>
+    <ion-item class="error" *ngIf="!lastName.valid  && (namlastNamee.dirty || lastName.touched)">
+      <p *ngIf="lastName.errors.required" color="danger" ion-text>Lastname is required </p>
+    </ion-item>
+
+    <ion-label position="floating">Nº de documento:</ion-label>
+    <ion-item>
+      <ion-input formControlName="documentNumber" type="text" required placeholder=" * * " pattern="[0-9]"  maxlength="15" ></ion-input>
+    </ion-item>
+    <ion-item class="error" *ngIf="!documentNumber.valid  && (documentNumber.dirty || documentNumber.touched)">
+      <p *ngIf="documentNumber.errors.required" color="dangn-teer" ion-text>Document is required </p>
+      <p *ngIf="name.errors.max" color="danger" ioxt>Must be at max 15 numbers</p>
+    </ion-item>
+
+    <ion-label position="floating">E-mail:</ion-label>
+    <ion-item>
+      <!-- <input type="text" pattern="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" name="email" required/> -->
+      <ion-input formControlName="email" type="email" required placeholder=" * * "></ion-input>
+    </ion-item>
+    <ion-item class="error" *ngIf="!email.valid  && (email.dirty || email.touched)">
+      <p *ngIf="email.errors.required" color="danger" ion-text>E-mail is required </p>
+    </ion-item>
+
+    <ion-label position="floating">Address:</ion-label>
+    <ion-item>
+      <ion-input formControlName="address" type="address" required placeholder=" * * "></ion-input>
+    </ion-item>
+    <ion-item class="error" *ngIf="!address.valid  && (address.dirty || address.touched)">
+      <p *ngIf="address.errors.required" color="danger" ion-text>Address is required </p>
+    </ion-item>    
+
+    <ion-label position="floating">Telefono:</ion-label>
+    <ion-item>
+      <ion-input formControlName="telephone" type="tel" required placeholder=" * * "></ion-input>
+    </ion-item>
+    <ion-item class="error" *ngIf="!telephone.valid  && (telephone.dirty || telephone.touched)">
+      <p *ngIf="telephone.errors.required" color="danger" ion-text>Telephone is required </p>
+    </ion-item>
+
+    <ion-label position="floating">Descripcion:</ion-label>
+    <ion-item>
+      <ion-textarea formControlName="description" name="Description:" required placeholder=" * * " minlength="4" maxlength="200">
+      </ion-textarea>
+    </ion-item>
+    <ion-item class="error" *ngIf="!description.valid  && (description.dirty || description.touched)">
+      <p *ngIf="description.errors.required" color="danger"> Description is required</p>
+      <p *ngIf="description.errors.minlength" color="danger">Must be at least 4 characters</p>
+      <p *ngIf="description.errors.maxlength" color="danger">Must be max 200 characters</p>
+    </ion-item>
+
+    <div class="btn">
+      <ion-button type="submit" fill="clear" class="btn-send" [disable]="!productForm.valid" (click)="onSubmit()">
+          <ion-icon name="checkmark"></ion-icon>
+           </ion-button>
+      <ion-button type="button" fill="clear" class="btn-send" (click)="onReset()">
+        <ion-icon name="close"></ion-icon> 
+        </ion-button>
+  </div>
   
+    <!-- mostrar -->
+    <div ng-hide="mostrar">
+      <ion-label>
+        <h3>Imagen</h3>
+      </ion-label>
+    </div>
+    <ion-button (click)="mostrarDiv()">
+      <ion-icon name="heart" slot="end"></ion-icon>
+      mostrar
+    </ion-button>
+
+    <button class='btn btn-primary'
+                      (click)='toggleImage()'>
+                {{showImage ? 'Hide' : 'Show'}} Image
+              </button>
+
+  </ion-form>
 </ion-content>
 
-<!-- "id": 5,
-        "name": "Diego",
-        "lastname": "Vera",
-        "email": "diiegovera94@gmail.com",
-        "direction": "Eduardo Acevedo 1376",
-        "cellphone": "098314010",
-        "tmstmp": "2019-07-31T15:01:51.000Z" -->
+<!-- 
+id: number;
+    name: string;
+    lastName: string;
+    documentNumber: number;
+    email: string;
+    address: string;
+    telephone: string;
+    available?: boolean;
+    tmstmp: string;
+
+ -->
+
+<!-- <img src="img/cardona.jpg" alt=""> -->

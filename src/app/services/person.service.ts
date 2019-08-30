@@ -45,12 +45,15 @@ export class PersonService {
       })
     };
     const body = {
-      'id':person.id,
-      'name':person.name,
-      'lastname': person.lastname,
+      /* 'id':person.id, */
+      'name': person.name,
+      'lastName': person.lastName,
+      'documentNumber': person.documentNumber,
       'email': person.email,
-      'direction': person.direction,
-      'cellphone': person.cellphone
+      'address': person.address,
+      'telephone': person.telephone,
+      'available': person.available,
+      'tmstmp': person.tmstmp,
     }
     
     if(person.id){

@@ -3,5 +3,6 @@ export class Product {
     name : string;
     description : string;
     tmstmp : Date
-    constructor(){}
+
+    constructor() {}
 }

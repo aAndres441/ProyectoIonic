@@ -1,7 +1,8 @@
 import { Component, OnInit, Input, Output, EventEmitter, forwardRef } from '@angular/core';
-import { Product } from '../../model/product.model';
 import { FormGroup, FormControl, Validators, FormBuilder, NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 import { AlertController} from '@ionic/angular';
+import { Product } from '../../model/product.model';
+
 
 @Component({
   selector: 'app-product-form',
@@ -52,19 +53,19 @@ export class ProductFormComponent implements OnInit {
 
   onSubmit(){
     /* console.log(this.productForm.value.description + '--' ); */
-
+    console.log(this.productForm.value.description + '--' );
     //si es editar
-    if(!this.productForm.valid && this.product.id){
+    /* if(!this.productForm.valid && this.product.id){
       this.productForm.value.id = this.product.id;
       console.log("11" + this.productForm.value.name);
 
-    }
+    } */
     //else si es agregar nuevo
-    if (!this.productForm.valid){
+    /* if (!this.productForm.valid){
       console.log("12" + this.productForm.value.description+'*******');
-      // return this.showComponent.emit({"page":"add","product":this.productForm.value});
+      */ // return this.showComponent.emit({"page":"add","product":this.productForm.value});
       
-    }
+    /* } */
   }
 
   showList(){
@@ -87,6 +88,8 @@ async showAlert(){
   await alert.present();
 }
 
-
+onReset(){
+  this.productForm.reset();
+}
 
 }

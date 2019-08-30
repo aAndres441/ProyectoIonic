@@ -1,11 +1,13 @@
 
   <ion-header mode="ios" no-border>
-      <ion-toolbar color="medium">
+    <ion-toolbar color="medium">
       <ion-title>
-          <h3>Contactos</h3>
-        </ion-title>
+        <h3>Contactos</h3>
+      </ion-title>
       <ion-buttons slot="end">
-        <ion-icon name="add-circle-outline" slot="end"></ion-icon>
+        <ion-button (click)="showForm(null)">
+          <ion-icon name="add-circle-outline"></ion-icon>
+        </ion-button>
       </ion-buttons>
     </ion-toolbar>
   </ion-header>
@@ -21,7 +23,7 @@
     <ion-searchbar mode="ios" (ionInput)="GetProduct($event)" animated  autocomplete="on"></ion-searchbar>
   
     <!-- <hr> -->
-    <ion-container  *ngFor="let p of persons; let i=index" (click)="showDetail(p)" [label]="p.name" (ionSelect)="setPerson(i)">
+    <ion-container  *ngFor="let p of lstPeersons; let i=index" (click)="showDetail(p)"  (ionSelect)="setPerson(i)"> <!-- [label]="p.name" -->
     <ion-list #myList lines="full" no-border>
       <ion-item-sliding>
         <ion-item-options side="start">
@@ -31,14 +33,14 @@
         </ion-item-options>
 
         <ion-item>
-          <ion-label >
-            <ion-sub-title>{{p.name | uppercase}} , {{p.tmstmp | date}}</ion-sub-title>
+          <ion-label >{{i+1}}
+            <!-- <ion-sub-title>{{p.name | uppercase}} , {{p.tmstmp | date}}</ion-sub-title> -->
           <!--   <ion-p>{{p.tmstmp | date}} </ion-p> -->
           </ion-label>
         </ion-item>
         <ion-item-options side="end">
           <ion-item-option color="danger">
-            <ion-icon ios="ios-create" md="md-create" (click)="deletePerson(i)"></ion-icon>
+            <ion-icon name="trash" (click)="deletePerson(i)"></ion-icon>
           </ion-item-option>
         </ion-item-options>
       </ion-item-sliding>

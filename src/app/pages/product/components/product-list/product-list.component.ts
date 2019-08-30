@@ -9,6 +9,7 @@ import { LoadingController } from '@ionic/angular';
   styleUrls: ['./product-list.component.scss'],
 })
 export class ProductListComponent implements OnInit {
+  
   @Input() products : Array<Product>;
   @Output() showComponent = new EventEmitter<any>();
   @ViewChild( IonInfiniteScroll, null) infiniteScroll: IonInfiniteScroll; // para usar el componente
@@ -56,7 +57,7 @@ export class ProductListComponent implements OnInit {
 
    loadData(event) {
     setTimeout(() => {
-      console.log('Carga siguientes...');      
+      console.log('Carga siguientes...');
 
       if (this.products.length > 5) {
         this.infiniteScroll.disabled = true;

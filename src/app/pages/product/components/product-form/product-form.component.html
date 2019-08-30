@@ -42,7 +42,7 @@
 
         <ion-label position="floating">Descripcion:</ion-label>
     <ion-item>      
-      <ion-textarea formControlName="description" name="Description:"  required
+      <ion-textarea formControlName="description" name="description:"  required
          placeholder=" * * "><!-- maxlength(200)  minlength(4)-->
       </ion-textarea>
     </ion-item>
@@ -51,11 +51,12 @@
       <p *ngIf="description.errors.minlength"color="danger">Must be at least 4 characters</p>
       <p *ngIf="description.errors.maxlength"color="danger">Must be max 200 characters</p>
     </ion-item>
+    
     <div class="btn">
-        <ion-button type="submit" fill="clear" class="btn-send" [disable]="!productForm.valid">
+        <ion-button type="submit" fill="clear" class="btn-send" [disable]="!productForm.valid" (click)="onSubmit()">
             <ion-icon name="checkmark"></ion-icon>
              </ion-button>
-        <ion-button type="submit" fill="clear" class="btn-send">
+        <ion-button type="button" fill="clear" class="btn-send" (click)="onReset()">
           <ion-icon name="close"></ion-icon> 
           </ion-button>
     </div>

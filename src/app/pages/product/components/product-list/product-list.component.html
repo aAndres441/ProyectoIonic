@@ -5,7 +5,7 @@
     <ion-title>
       <h3>{{title}}</h3>
     </ion-title>
-    <ion-buttons slot="primary">
+    <ion-buttons slot="end">
       <ion-button (click)="showForm(null)">
         <ion-icon name="add-circle-outline" ></ion-icon>
       </ion-button>
@@ -45,7 +45,7 @@
         </ion-item>
         <ion-item-options side="end">
           <ion-item-option color="danger">
-            <ion-icon ios="ios-create" md="md-create" (click)="deleteProduct(i)"></ion-icon>
+            <ion-icon name="trash" (click)="deleteProduct(i)"></ion-icon>
           </ion-item-option>
         </ion-item-options>
       </ion-item-sliding>

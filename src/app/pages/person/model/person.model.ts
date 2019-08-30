@@ -1,9 +1,11 @@
 export interface Person {
-    id:number;
-    name:string;
-    lastname: string;
+    id: number;
+    name: string;
+    lastName: string;
+    documentNumber: number;
     email: string;
-    direction: string;
-    cellphone: string;
+    address: string;
+    telephone: string;
+    available?: boolean;
     tmstmp: string;
 }
