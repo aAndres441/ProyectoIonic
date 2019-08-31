@@ -1,3 +1,50 @@
-<p>
-  person-detail works!
-</p>
+<ion-card no-border mode="ios" color="medium">
+  <ion-card-header>
+    <ion-toolbar>
+      <ion-title> {{title | uppercase}}
+        <!-- <ion-card-title>{{detailPerson.nombre}}</ion-card-title> -->
+      </ion-title>
+      <ion-buttons slot="start">
+        <ion-button (click)="showList()">
+          <ion-icon name="arrow-back" color="dark"> </ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-card-header>
+  <ion-card-content mode="ios" color="light">
+    <ion-list>
+      <ion-item>
+        <ion-label>Code:</ion-label>
+        <ion-p>{{detailPerson.id}}</ion-p>
+      </ion-item>
+      <ion-item>
+        <ion-label>Nombre:</ion-label>
+        <ion-p>{{detailPerson.name}}</ion-p>
+      </ion-item>
+      <ion-item>
+        <ion-label>Apellido:</ion-label>
+        <ion-p>{{detailPerson.lastName}}</ion-p>
+      </ion-item>
+      <ion-item>
+        <ion-label>Documento Nº:</ion-label>
+        <ion-p>{{detailPerson.documentNumber}}</ion-p>
+      </ion-item>
+      <ion-item>
+        <ion-label>E.mail:</ion-label>
+        <ion-p>{{detailPerson.email}}</ion-p>
+      </ion-item>
+      <ion-item>
+        <ion-label>Direccion:</ion-label>
+        <ion-p>{{detailPerson.address}}</ion-p>
+      </ion-item>
+      <ion-item>
+        <ion-label>Teléfono:</ion-label>
+        <ion-p>{{detailPerson.telephone}}</ion-p>
+      </ion-item>
+      <ion-item>
+        <ion-label>Visitado en:</ion-label>
+        <ion-p>{{detailPerson.tmstmp | date}}</ion-p>
+      </ion-item>
+    </ion-list>
+  </ion-card-content>
+</ion-card>

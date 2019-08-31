@@ -20,7 +20,7 @@
       </ion-item>
       <ion-item>
         <ion-label>Description</ion-label>
-        <ion-p>{{detailProduct.descripcion}}</ion-p>
+        <ion-p>{{detailProduct.description}}</ion-p>
       </ion-item>
       <ion-item>
         <ion-label>Visitado en:</ion-label>
@@ -28,33 +28,22 @@
       </ion-item>
     </ion-list>
   </ion-card-content>
-  <ion-footer no-border mode="ios" color="success">
-    <ion-tabs>
-      <ion-tab-bar color="succes">
-        <!-- 
-                <ion-button href="#" >   -->
-        <a href="#">
-          <ion-icon size="large" name="arrow-back"></ion-icon>
-        </a>Back
-        <!--  </ion-button> -->
-
-        <ion-icon icon-right size="large" name="edit" (click)="edit(detailProduct)"></ion-icon>
-        <ion-label>Edit</ion-label>
-
-        <ion-icon size="large" name="close-circle-outline" (click)="delete(detailProduct)"></ion-icon>
-        <ion-label>Delete</ion-label>
-
-      </ion-tab-bar>
-    </ion-tabs>
-  </ion-footer>
-
 </ion-card>
 <!-- 
-  <button (click)="showList()">Atras</button>
-  <button (click)="showDetail()">Atras</button> -->
-<!--   <ion-item-sliding no-borde>
-         <ion-item-options side="left">
-          <ion-item-option (click)="showPage()">Unread</ion-item-option>
-        </ion-item-options> 
-      </ion-item-sliding>
-   -->
+   <ion-footer no-border mode="ios" color="success">
+    <ion-tabs>
+      <ion-tab-bar color="succes">
+       
+                  <a href="#">
+                    <ion-icon size="large" name="arrow-back"></ion-icon>
+                  </a>Back
+
+                  <ion-icon icon-right size="large" name="edit" (click)="edit(detailProduct)"></ion-icon>
+                  <ion-label>Edit</ion-label>
+          
+                  <ion-icon size="large" name="close-circle-outline" (click)="delete(detailProduct)"></ion-icon>
+                  <ion-label>Delete</ion-label>
+          
+                </ion-tab-bar>
+              </ion-tabs>
+            </ion-footer>-->

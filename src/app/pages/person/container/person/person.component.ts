@@ -12,7 +12,7 @@ import { Person } from '../../model/person.model';
 export class PersonComponent implements OnInit {
   persons: Person[];
   detailPerson: Person = null; /* new Person(); */
-  prod: Person = null;
+  per: Person = null;
   showComponent: string = 'list';
 
   /* para probar*/
@@ -45,7 +45,7 @@ export class PersonComponent implements OnInit {
   }
 
   showPage(obj: any) {
-    let prod;
+    let per;
     let showAction = obj.page;
     switch (showAction) {
       case "detail": {
@@ -60,9 +60,9 @@ export class PersonComponent implements OnInit {
       case "form": {
         this.showComponent = "form";
         if (obj.person) {
-          this.prod = obj.person;
+          this.per = obj.person;
         } else {
-          this.prod = null;
+          this.per = null;
         }
         break;
       }
@@ -71,9 +71,9 @@ export class PersonComponent implements OnInit {
         break;
       }
       case "delete": {
-        prod = obj.person;
-        if (prod) {
-          this.deletePerson(prod);
+        per = obj.person;
+        if (per) {
+          this.deletePerson(per);
         }
         break;
       }
@@ -84,8 +84,8 @@ export class PersonComponent implements OnInit {
     }
   }
 
-  addPerson(prod: Person) {
-    this.personoService.addPerson(prod).subscribe(
+  addPerson(per: Person) {
+    this.personoService.addPerson(per).subscribe(
       (data) => {
         console.log("Persono agregado!")
         this.getPersons();
@@ -98,8 +98,8 @@ export class PersonComponent implements OnInit {
     );
   }
 
-  deletePerson(prod: Person) {
-    this.personoService.deletePerson(prod).subscribe(
+  deletePerson(per: Person) {
+    this.personoService.deletePerson(per).subscribe(
       (data) => {
         console.log("Persono borrado!")
         this.getPersons();

@@ -15,6 +15,7 @@ export class PersonListComponent implements OnInit {
   @ViewChild( IonInfiniteScroll, null) infiniteScroll: IonInfiniteScroll; // para usar el componente
   personselected : number = 0;
   title = 'Persons';
+  
   public lstPeersons:any[]=Array(20);
 
   constructor() {  }

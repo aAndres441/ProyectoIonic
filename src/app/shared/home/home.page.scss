@@ -1,12 +1,14 @@
 
 ion-content{
   /* background-color:rgb(73, 124, 90); */
-  display: flex;
+ /*  display: flex;
    flex-direction: row;
    flex-wrap: wrap;
 
    justify-content: center;
-   align-items: center;
+   align-items: center; */
+   height: 100%;
+   background-color: rgb(110, 110, 110); 
 }
 ion-card{
   background-color: rgb(110, 110, 110); 
@@ -19,7 +21,7 @@ ion-button{
     color: #dbf112;
     background-color:  rgb(110, 110, 110); 
     border-radius: 6px;
-    border: 0px solid rgb(110, 110, 110);
+    border: 1px solid rgb(110, 110, 110);
     
       margin-top: 00px;
       height: 90px;
