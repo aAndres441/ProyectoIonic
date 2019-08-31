@@ -1,5 +1,6 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+import { Component, OnInit, Input, Output, EventEmitter, forwardRef } from '@angular/core';
+import { FormGroup, FormControl, Validators, FormBuilder, NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
+import { AlertController} from '@ionic/angular';
 import { Order } from '../../model/order.model';
 import { Product } from 'src/app/pages/product/model/product.model';
 import { isNullOrUndefined } from 'util';
@@ -14,14 +15,15 @@ export class OrderFormComponent implements OnInit {
   @Output() showComponent = new EventEmitter<any>();
   @Input() products = new Array<Product>()
   @Output() pushOrder = new EventEmitter<any>();
-
+  public title: 'FORMULARIO';
   public orderForm:FormGroup;
 
-  constructor(private fb : FormBuilder) { }
+  constructor(private fb: FormBuilder, private alert: AlertController) { }
 
   ngOnInit() {
     if(isNullOrUndefined(this.order)){
       this.initOrder();
+      /* this.productForm = this.createForm(); */
     }
     this.orderForm = this.fb.group({
       id : new FormControl(null, ),
@@ -46,7 +48,12 @@ export class OrderFormComponent implements OnInit {
       tmstmp:null
     }
   }
-
+/* createForm() {
+    return this.fb.group({
+       id: new FormControl(this.product.id),
+       name: new FormControl(this.product.name, [Validators.required]),
+      description: new FormControl(this.product.description, [Validators.required, Validators.minLength(4), Validators.maxLength(200)])
+    */
   onSubmit(){
     //si es editar
     if(this.orderForm.valid && this.order.id){
@@ -63,5 +70,25 @@ export class OrderFormComponent implements OnInit {
   showList(){
     this.showComponent.emit({"page":"list"});
   }
+  
+  get name(){
+    return this.productForm.get('name');
+  }
+  get description(){
+    return this.productForm.get('description');
+  }
+
+async showAlert(){
+  const alert = await this.alert.create({
+    header: 'Howdy',
+    message: 'You have been guarned!!',
+    buttons: ['Kewl']
+  });
+  await alert.present();
+}
+
+onReset(){
+  this.productForm.reset();
+}
 
 }

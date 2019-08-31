@@ -37,9 +37,10 @@ export class ProductListComponent implements OnInit {
     this.productSelected = i
   }
 
-  deleteProduct(i:number){
+  deleteProduct(i:number){ 
     let p = this.products[i];
-    return this.showComponent.emit({"page":"delete","product":p});
+    /*return this.showComponent.emit({"page":"delete","product":p}); */
+    console.log('DELETE PROD ' + p.name);
   }
   /* refresh */
   toggleInfiniteScroll() {

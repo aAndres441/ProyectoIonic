@@ -1,2 +1,25 @@
 
+h3, ion-icon{
+    color: rgb(241, 196, 70);
+    font-weight: bold;
+    margin-top:8px;
+} 
+ion-label{
+    text-transform: uppercase;
+}
 
+ion-p{
+    margin: 0px;
+    font-size: 15px;
+}
+ion-list{
+    display: flex;
+   flex-direction: row;
+   flex-wrap: wrap;
+   justify-content: center;
+   align-items: center;
+   margin:5px;
+}
+ion-container{
+    border-top:3px solid black;
+}

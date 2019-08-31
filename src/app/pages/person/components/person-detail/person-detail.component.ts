@@ -10,7 +10,7 @@ export class PersonDetailComponent implements OnInit {
   @Output() showComponent = new EventEmitter<any>();
   @Input() detailPerson : Person = null;/* new Person(); */
 
-  title: string = "Ver-OnInit()";
+  title: string = "Detalle-Ver-OnInit()";
 
   constructor() { }
 

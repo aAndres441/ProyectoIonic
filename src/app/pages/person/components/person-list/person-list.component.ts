@@ -39,9 +39,10 @@ export class PersonListComponent implements OnInit {
     this.personselected = i
   }
 
-  deletePerson(i:number){
+  deletePerson(i:number){/* 
     let p = this.persons[i];
-    return this.showComponent.emit({"page":"delete","person":p});
+    return this.showComponent.emit({"page":"delete","person":p}); */
+    console.log("DELETE"+i);
   }
   /* refresh */
   toggleInfiniteScroll() {

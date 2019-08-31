@@ -1,4 +1,6 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ViewChild } from '@angular/core';
+import { IonInfiniteScroll } from '@ionic/angular';
+import { LoadingController } from '@ionic/angular';
 import { Order } from '../../model/order.model';
 
 @Component({
@@ -9,34 +11,59 @@ import { Order } from '../../model/order.model';
 export class OrderListComponent implements OnInit {
   @Input() orders = new Array<Order>();
   @Output() showComponent = new EventEmitter<any>();
-  @Input() saleId : number;
+  @Input() saleId: number;
   @Output() newOrder = new EventEmitter<any>();
-  orderSelected : number = 0;
-  
+  orderSelected: number = 0;
+  @ViewChild(IonInfiniteScroll, null) infiniteScroll: IonInfiniteScroll; // para usar el componente
+  title = 'Orders';
 
-  constructor() {  }
+
+  constructor() { }
 
   ngOnInit() {
-   
-  }
-  
-  showDetail(p:Order){
-    return this.showComponent.emit({"page":"detail","order":p});
   }
 
-  showForm(p:Order){
-    if(!p) {
-      return this.newOrder.emit();
+  showDetail(p: Order) {
+    return this.showComponent.emit({ "page": "detail", "order": p });
+  }
+
+  showForm(p: Order) {
+    if (!p) {
+      p = null;/* new Order(); */
     }
-    return this.showComponent.emit({"page":"form","order":p});
+    return this.showComponent.emit({ "page": "form", "order": p });
   }
 
-  setOrder(i:number){
+  setOrder(i: number) {
     this.orderSelected = i
   }
 
-  deleteOrder(i:number){
+  deleteOrder(i: number) {
     let p = this.orders[i];
-    return this.showComponent.emit({"page":"delete","order":p});
+    return this.showComponent.emit({ "page": "delete", "order": p });
+  }
+  /* refresh */
+  toggleInfiniteScroll() {
+    // this.infiniteScroll.disabled = !this.infiniteScroll.disabled;
+  }
+
+  doRefresh(event) {
+    console.log('Begin async operation', event);
+
+    setTimeout(() => {
+      console.log('Async operation has ended');
+      event.complete();
+    }, 1000);
+  }
+
+  loadData(event) {
+    setTimeout(() => {
+      console.log('Carga siguientes...');
+
+      if (this.orders.length > 5) {
+        this.infiniteScroll.disabled = true;
+        return;
+      }
+    }, 1000);
   }
 }

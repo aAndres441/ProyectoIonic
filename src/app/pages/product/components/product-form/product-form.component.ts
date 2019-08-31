@@ -16,9 +16,7 @@ export class ProductFormComponent implements OnInit {
 
   public productForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private alert: AlertController) { 
-    
-  }
+  constructor(private fb: FormBuilder, private alert: AlertController) {  }
 
   ngOnInit() { 
     if (this.product) {

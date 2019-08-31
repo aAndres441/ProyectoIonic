@@ -18,26 +18,13 @@ export class PersonComponent implements OnInit {
   /* para probar*/
   public misPersons: Person[] = [];
 
-  constructor(private personoService: PersonService, private router: Router) { }
+  constructor(private personService: PersonService, private router: Router) { }
 
   ngOnInit(): void {
     this.getPersons();
   }
-  loadMisPersons() {
-    console.log('Begin async operation');
-
-    setTimeout(() => {
-      console.log('Async operation has ended');
-      // event.complete();
-    }, 1000);
-  }
-  /* id : number;
-    name : string;
-    description : string;
-    tmstmp : Date */
-
   getPersons(): void {
-    this.personoService.getPersons().subscribe(
+    this.personService.getPersons().subscribe(
       (data) => {
         this.persons = data;
       }
@@ -70,11 +57,13 @@ export class PersonComponent implements OnInit {
         this.addPerson(obj.person);
         break;
       }
+
       case "delete": {
-        per = obj.person;
+        console.log("DELETE");
+        /* per = obj.person;
         if (per) {
           this.deletePerson(per);
-        }
+        } */
         break;
       }
       default: {
@@ -87,7 +76,7 @@ export class PersonComponent implements OnInit {
   addPerson(per: Person) {
     this.personoService.addPerson(per).subscribe(
       (data) => {
-        console.log("Persono agregado!")
+        console.log("Persona agregado!")
         this.getPersons();
         this.showComponent = "list";
       }, (error) => {
@@ -101,7 +90,7 @@ export class PersonComponent implements OnInit {
   deletePerson(per: Person) {
     this.personoService.deletePerson(per).subscribe(
       (data) => {
-        console.log("Persono borrado!")
+        console.log("Persona borrada!")
         this.getPersons();
         this.showComponent = "list";
       }, (error) => {

@@ -30,10 +30,6 @@ export class ProductComponent implements OnInit {
       // event.complete();
     }, 1000); 
   }
-  /* id : number;
-    name : string;
-    description : string;
-    tmstmp : Date */
 
   getProducts(): void {
     this.productoService.getProducts().subscribe(

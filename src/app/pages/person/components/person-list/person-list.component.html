@@ -23,7 +23,7 @@
     <ion-searchbar mode="ios" (ionInput)="GetProduct($event)" animated  autocomplete="on"></ion-searchbar>
   
     <!-- <hr> -->
-    <ion-container  *ngFor="let p of lstPeersons; let i=index" (click)="showDetail(p)"  (ionSelect)="setPerson(i)"> <!-- [label]="p.name" -->
+    <ion-container  *ngFor="let p of lstPeersons; let i=index" (click)="showDetail(p)"  (ionSelect)="setPerson(i)" > <!-- [label]="p.name" -->
     <ion-list #myList lines="full" no-border>
       <ion-item-sliding>
         <ion-item-options side="start">
