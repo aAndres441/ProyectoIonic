@@ -16,7 +16,6 @@ class SaleRoutes {
         this.router.post('/', saleController_1.default.create);
         this.router.delete('/:id', saleController_1.default.delete);
         this.router.put('/:id', saleController_1.default.update);
-        this.router.get('/-', saleController_1.default.getId);
     }
 }
 const saleRoutes = new SaleRoutes();

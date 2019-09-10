@@ -20,7 +20,6 @@ export class PersonService {
   } 
   
   personTransform(data:Array<Person>):Array<Person>{
-    console.log(data);
     return data;
   }
 

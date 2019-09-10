@@ -27,16 +27,10 @@ export class SaleComponent implements OnInit {
   constructor( private saleService: SaleService, 
     private clientService :PersonService,
     private productService:ProductService,
-    private orderService:OrderService,
-    private router: Router ) { }
+    private orderService:OrderService ) { }
 
-  
   ngOnInit(): void {
     this.getSales();
-  }
-
-  onDestroy(){
-    this.unSuscribe.unSuscribe();
   }
   
   getSales():void{
@@ -49,8 +43,8 @@ export class SaleComponent implements OnInit {
 
   getClients(){
     this.unSuscribe = this.clientService.getPersons().subscribe(
-      (data:Array<Person>)=>{
-        this.clients = data,
+      (data:Array<Person>) => {
+        this.clients = data
         this.getProducts()
       } 
     );
@@ -79,16 +73,13 @@ export class SaleComponent implements OnInit {
         break; 
       } 
       case "form": { 
-        if(obj.sale){
-          this.sale = obj.sale;
-        }else {
-          this.sale = null;
-        }
+        this.sale = obj.sale;
+       
         this.getClients();
         break; 
       }
       case "add": { 
-        this.addSale(obj.sale,obj.orders);
+        this.addSale(obj.sale);
         break; 
       }
       case "delete": { 
@@ -105,21 +96,31 @@ export class SaleComponent implements OnInit {
    } 
   } 
 
-  addSale(sale:Sale, orders:Array<Order>){
+  addSale(sale:any){
+  
     this.unSuscribe = this.saleService.addSale(sale).subscribe(
-      (data) => {
-        console.log("Venta agregada!");
-        this.saleService.getId().subscribe( (id) => {
-          orders.forEach(elem => {
-            elem.saleId = id;
-            this.orderService.addOrder(elem).subscribe();
+      () => {
+        this.saleService.getId().subscribe( (data:any) => {
+          let id = data.id;
+          sale.orders.forEach(elem => {
+            let order : Order = {
+              id : null,
+              purchaseId:null,
+              saleId:id,
+              charterId:-1,
+              productId:elem.productId,
+              productName : elem.productName,
+              description : elem.description,
+              count : elem.count,
+              totalAmount : elem. totalAmount,
+              tmstmp : elem.tmstmp
+            }
+            this.orderService.addOrder(order).subscribe();
           })
         });
         this.getSales();
         this.showComponent = "list";
       },(error) => {
-        console.log('ERROR addSale:');
-        console.log(error);
         this.showComponent = "form";
       }
     );
@@ -128,12 +129,9 @@ export class SaleComponent implements OnInit {
   deleteSale(sale:Sale){
     this.saleService.deleteSale(sale).subscribe(
       (data) => {
-        console.log("Sale borrado!")
         this.getSales();
         this.showComponent = "list";
       },(error) => {
-        console.log('ERROR deleteSale:');
-        console.log(error);
         this.showComponent = "list";
       }
     );

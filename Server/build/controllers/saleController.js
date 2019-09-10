@@ -15,7 +15,7 @@ const database_1 = __importDefault(require("../database"));
 class SaleController {
     list(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            res.json(yield database_1.default.query('select v.id as id,v.clienteId as clientId,p.nombre as clientName,v.descripcion as description,v.montoTotal as totalAmount,v.tmstmp as tmstmp from venta v , cliente c JOIN persona p on c.id = p.id'));
+            res.json(yield database_1.default.query('select distinct v.id as id,v.clienteId as clientId,p.nombre as clientName,v.descripcion as description,v.montoTotal as totalAmount,v.tmstmp as tmstmp from venta v join cliente c on v.clienteId = c.id JOIN persona p on c.id = p.id'));
         });
     }
     /*  id:data[i].id,
@@ -52,11 +52,16 @@ class SaleController {
     getOne(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            const prod = yield database_1.default.query('SELECT * FROM venta WHERE id = ?', [id]);
-            if (prod.length > 0) {
-                return res.json(prod[0]);
+            if (id == 'id') {
+                res.json(yield database_1.default.query('select max(id) as id from venta'));
             }
-            res.status(404).json({ message: 'La venta no se ah encontrado!' });
+            else {
+                const prod = yield database_1.default.query('SELECT * FROM venta WHERE id = ?', [id]);
+                if (prod.length > 0) {
+                    return res.json(prod[0]);
+                }
+                res.status(404).json({ message: 'La venta no se ah encontrado!' });
+            }
         });
     }
 }

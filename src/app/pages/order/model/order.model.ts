@@ -1,15 +1,12 @@
-import { Product } from '../../product/model/product.model';
-import { Sale } from '../../sale/model/sale.model';
-
-export class Order {
+export interface Order {
     id : number;
     productId:number;
     productName : string;
     purchaseId:number;
     saleId:number;
+    charterId:number;
     description : string;
     count : number;
     totalAmount : number;
     tmstmp : Date;
-    constructor(){}
 }

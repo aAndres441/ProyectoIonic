@@ -4,6 +4,7 @@ import { PagesComponent } from './pages.component';
 import { ProductComponent } from './product/container/index';
 import { OrderComponent } from './order/container/index';
 import { SaleComponent } from './sale/container/index';
+import { TravelComponent } from './travel/container/index';
 
   
   const routes: Routes = [{
@@ -21,6 +22,10 @@ import { SaleComponent } from './sale/container/index';
       {
         path: 'sales',
         component: SaleComponent
+      },
+      {
+        path: 'travels',
+        component: TravelComponent
       }
     ]}
   ];

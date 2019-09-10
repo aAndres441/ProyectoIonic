@@ -10,8 +10,8 @@
    
     <ion-item >
       <ion-label>Producto:</ion-label>
-      <ion-select formControlName="productName" >
-        <ion-select-option *ngFor="let p of products" >{{p.name}}</ion-select-option>
+      <ion-select formControlName="productId" (ionChange)="onChange($event)" >
+        <ion-select-option *ngFor="let p of products" value="{{p.id}}" >{{p.name}}</ion-select-option>
       </ion-select>
     </ion-item>
 
@@ -19,16 +19,12 @@
       <ion-textarea formControlName="description" placeholder="Descripcion" ></ion-textarea>
     </ion-item>
     <ion-item>
-      <ion-input formControlName="count" type="number" placeholder="Cantidad (Kg/Lt)"></ion-input>
+      <ion-input formControlName="count" type="number" placeholder="Cantidad (Kg,Lt)"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-input formControlName="totalAmount" type="number"  placeholder="Precio (Kg/Cant)" ></ion-input>
+      <ion-input formControlName="totalAmount" type="number"  placeholder="Precio (Kg,Lt)" ></ion-input>
     </ion-item>
   </ion-form>
-<!-- 
-  id : new FormControl(this.order.id, ),
-  productName : new FormControl(this.order.productName,[Validators.required]),
-  description : new FormControl(this.order.description, [Validators.required]),
-  cantidad : new FormControl(this.order.count,[Validators.required]),
-  totalAmount : new FormControl(this.order.totalAmount,[Validators.required]),
-  tmstmp :  -->
+  <section>
+    <ion-button expand="block" href="/layout/travels" >Asignar pedido a un viaje</ion-button>
+  </section>

@@ -30,6 +30,7 @@ export class OrderService {
         productName: data[i].productName,
         purchaseId: null,
         saleId: null,
+        charterId:data[i].charterId,
         description: data[i].description,
         count: data[i].count,
         totalAmount: data[i].totalAmount,
@@ -49,7 +50,6 @@ export class OrderService {
     const body = {
       'productoId': order.productId,
       'ventaId': order.saleId,
-      'compraId': order.purchaseId,
       'descripcion': order.description,
       'cantidad': order.count,
       'montoTotal': order.totalAmount,

@@ -21,9 +21,9 @@ export class SaleService {
   } 
 
   getId(): Observable<number> {
-    return this.http.get<number>(environment.API_BASE + 'sales/-').pipe(
+    return this.http.get<number>(environment.API_BASE + 'sales/id').pipe(
       map(
-          (data:number) => data
+          (data:number) => data[0]
       )
     )
   } 
@@ -51,13 +51,13 @@ export class SaleService {
         'Content-Type':  'application/json'
       })
     };
-    const body = {
-        'clientId':sale.clientId,
-        'clientName':sale.clientName,
-        'description':sale.description,
-        'totalAmount':sale.totalAmount,
-    }
 
+    const body = {
+      'clienteId':sale.clientId,
+      'descripcion':sale.description,
+      'montoTotal':sale.totalAmount
+    }
+    console.log(body)
     if(sale.id){
       return this.http.put<Sale>(environment.API_BASE + 'sales/' + sale.id,body,httpOptions).pipe(
         map(
@@ -65,7 +65,8 @@ export class SaleService {
         )
       )
     }else{
-      return this.http.post<Sale>(environment.API_BASE + 'sales',body,httpOptions).pipe(
+      console.log('llego al post <Sale>')
+      return this.http.post<Sale>(environment.API_BASE + 'sales/',body,httpOptions).pipe(
         map(
             (data:any) => data
         )
