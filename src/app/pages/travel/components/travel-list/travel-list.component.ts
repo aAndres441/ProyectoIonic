@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Travel } from '../../model/travel.model';
 
 @Component({
   selector: 'app-travel-list',
@@ -6,39 +7,39 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./travel-list.component.scss'],
 })
 export class TravelListComponent implements OnInit {
-  @Input() sales : Array<Sale>;
+  @Input() travels : Array<Travel>;
   @Output() showComponent = new EventEmitter<any>();
-  saleSelected : number = 0;
+  travelSelected : number = 0;
   constructor() {  }
 
   ngOnInit() {
    
   }
   
-  showDetail(p:Sale){
-    return this.showComponent.emit({"page":"detail","sale":p});
+  showDetail(p:Travel){
+    return this.showComponent.emit({"page":"detail","travel":p});
   }
 
-  showForm(p:Sale){
+  showForm(p:Travel){
     if(!p) {
       p = {
-        id:null,
-        clientId:null,
-        clientName:null,
-        description:null,
-        totalAmount:null,
-        tmstmp:null
+        id : null,
+        travelerId : null,
+        travelerName:null,
+        price : null,
+        description : null,
+        tmstmp: null
       }
     }
-    return this.showComponent.emit({"page":"form","sale":p});
+    return this.showComponent.emit({"page":"form","travel":p});
   }
 
-  setSale(i:number){
-    this.saleSelected = i
+  setTravel(i:number){
+    this.travelSelected = i
   }
 
-  deleteSale(i:number){
-    let p = this.sales[i];
-    return this.showComponent.emit({"page":"delete","sale":p});
+  deleteTravel(i:number){
+    let p = this.travels[i];
+    return this.showComponent.emit({"page":"delete","travel":p});
   }
 }

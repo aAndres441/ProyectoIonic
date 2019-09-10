@@ -1,3 +1,12 @@
-<p>
-  travel works!
-</p>
+
+<app-travel-list *ngIf="showComponent == 'list' else list" #list
+[travels]="travels"
+(showComponent)="showPage($event)">
+</app-travel-list >
+<app-travel-form  *ngIf="showComponent == 'form' else form" #form
+  [travel]="travel"
+  [travelers]="travelers"
+  (showComponent)="showPage($event)">
+</app-travel-form>
+
+

@@ -25,6 +25,7 @@ const CONTAINER = [
     IonicModule
   ],
   exports: [
+    CharterComponent,
     CharterFormComponent
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
