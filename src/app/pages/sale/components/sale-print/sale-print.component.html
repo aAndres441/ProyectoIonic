@@ -1,0 +1,87 @@
+
+
+<ion-card-header>
+  <ion-toolbar color="medium">
+      <ion-title>
+          <h4  style="color: rgb(241, 184, 241);">Download</h4><!-- {{title}} -->
+        </ion-title>
+    <ion-buttons slot="start">
+      <ion-button (click)="showList()">
+        <ion-icon name="arrow-back" > </ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-card-header>
+
+  <!-- PDF -->   
+  <ion-content padding [scrollEvents]="true" fullscreen mode="ios" class=" ion-padding ">
+<!-- <div style =”text-align:center”>
+	<img width=”150”
+</div>
+ -->
+
+  <div #reporteDiv style="border:solid 2px red;"> <!-- style="display: none;"  [hidden]="true"-->    
+    <hr/>
+     <h4   style="background-color: red; color: beige; padding-top: 2px; padding-bottom: 2px; text-align: center">Listado de ordenes</h4>
+     <ion-list lines="full" no-border *ngFor="let s of sales" style="margin:1px">
+      <p style="text-align: center"> Venta Nº: {{s.id}} |  {{s.tmstmp | date}}</p>
+      <br>
+      <p>Compra: {{s.id}} | Venta: {{s.id}} </p>
+      <br>
+      <p>{{s.id}}</p>
+      <p><strong>TOTAL: {{s.id}}</strong></p>
+      <hr/>
+      <hr style="color: #0b7236;" />
+    </ion-list>    
+  </div>
+  
+    <!-- TABLA
+    <table border =1>
+  <thead>
+    <tr>
+      <th colspan="4">Search :
+        <input type="text" [(ngModel)]="queryString">
+      </th>
+    </tr>
+    <tr>
+      <th style="width:40px;max-width:40px;">#</th>
+      <th style="width:60px;max-width:100px;">Name</th>
+      <th style="width:60px;max-width:50px;">Age</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let ex of  listofstudent| filterdata: queryString : 'name' ; let i = index ">
+      <td>{{i+1}}</td>
+      <td>{{ex.name}}</td>
+      <td>{{ex.age}}</td>
+    </tr>
+  </tbody>
+ 
+</table>
+
+-->
+
+  <ion-item>
+    <ion-button slot="end" (click)="DownloadtoPDF()" color="medium">
+      <ion-icon slot="start" name="save"> </ion-icon>Confirm download 
+    </ion-button>
+  </ion-item>
+  <!-- termina PDF -->
+
+  <!-- SKELETON -->
+<ion-list *ngIf = " sales.length === 0">
+  <ion-item *ngFor = " let i of [1,1,1,1,1,1]">
+    <ion-label>
+      <ion-skeleton-text width="40%"></ion-skeleton-text>
+      <ion-skeleton-text width="70%"></ion-skeleton-text>
+    </ion-label>
+  </ion-item>
+</ion-list>
+
+<!-- infinite-scroll -->
+<ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
+    <ion-infinite-scroll-content loadingSpinner="crecent" loadingText="Loading more data...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
+</ion-content>

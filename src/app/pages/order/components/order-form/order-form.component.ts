@@ -16,14 +16,14 @@ export class OrderFormComponent implements OnInit {
   @Input() products = new Array<Product>()
   @Output() pushOrder = new EventEmitter<any>();
   public title: 'FORMULARIO';
-  public orderForm:FormGroup;
+  public orderForm: FormGroup;
 
   constructor(private fb: FormBuilder, private alert: AlertController) { }
 
   ngOnInit() {
     if(isNullOrUndefined(this.order)){
       this.initOrder();
-      /* this.productForm = this.createForm(); */
+      /* this.orderForm = this.createForm(); */
     }
     this.orderForm = this.fb.group({
       id : new FormControl(null, ),
@@ -48,12 +48,7 @@ export class OrderFormComponent implements OnInit {
       tmstmp:null
     }
   }
-/* createForm() {
-    return this.fb.group({
-       id: new FormControl(this.product.id),
-       name: new FormControl(this.product.name, [Validators.required]),
-      description: new FormControl(this.product.description, [Validators.required, Validators.minLength(4), Validators.maxLength(200)])
-    */
+  
   onSubmit(){
     //si es editar
     if(this.orderForm.valid && this.order.id){
@@ -72,10 +67,10 @@ export class OrderFormComponent implements OnInit {
   }
   
   get name(){
-    return this.productForm.get('name');
+    return this.orderForm.get('name');
   }
   get description(){
-    return this.productForm.get('description');
+    return this.orderForm.get('description');
   }
 
 async showAlert(){
@@ -88,7 +83,7 @@ async showAlert(){
 }
 
 onReset(){
-  this.productForm.reset();
+  alert ("this.orderForm.reset();" + this.orderForm.value);
 }
 
 }

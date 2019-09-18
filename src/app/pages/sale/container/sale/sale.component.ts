@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Sale } from '../../model/sale.model';
 import { SaleService } from 'src/app/services/sale.service';
 import { Router } from '@angular/router';
@@ -15,21 +15,21 @@ import { OrderService } from 'src/app/services/order.service';
   styleUrls: ['./sale.component.scss'],
 })
 export class SaleComponent implements OnInit {
-  sales : Array<Sale> = new Array<Sale>();
-  detailSale : Sale;
-  sale : Sale = null;
-  showComponent:string = 'list';
+  sales: Array<Sale> = new Array<Sale>();
+  detailSale: Sale;
+  sale: Sale = null;
+  showComponent: string = 'list';
   clients = new Array<Person>();
   products = new Array<Product>();
-  unSuscribe : any;
+  unSuscribe: any;
+  @Input() borrarInput:string;
   
-  constructor( private saleService: SaleService, 
-    private clientService :PersonService,
-    private productService:ProductService,
-    private orderService:OrderService,
-    private router: Router ) { }
+  constructor(private saleService: SaleService,
+              private clientService: PersonService,
+              private productService: ProductService,
+              private orderService: OrderService) 
+  {}
 
-  
   ngOnInit(): void {
     this.getSales();
   }
@@ -38,7 +38,7 @@ export class SaleComponent implements OnInit {
     this.unSuscribe.unSuscribe();
   }
   
-  getSales():void{
+  getSales(): void{
     this.unSuscribe = this.saleService.getSales().subscribe(
       (data:Array<Sale>) => {
         this.sales = data;
@@ -64,10 +64,15 @@ export class SaleComponent implements OnInit {
     );
   }
 
-  showPage(obj:any) {
+  showPage(obj: any) {
     let sale;
     let showAction = obj.page;
-    switch(showAction) { 
+    switch(showAction)
+    {
+      case 'print': {
+        this.showComponent = 'print';
+        break;
+      }
       case "detail": { 
         this.showComponent = "detail";
         this.detailSale = obj.sale; 

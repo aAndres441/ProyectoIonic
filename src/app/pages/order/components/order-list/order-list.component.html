@@ -44,22 +44,24 @@
   <ion-searchbar mode="ios" (ionInput)="GetOrder($event)" animated autocomplete="on"></ion-searchbar>
 
   <!-- <hr> -->
-
+  <div *ngIf="!orders || (orders.length==0)"><h6 class="ion-text-center">No hay elementos.</h6></div>
+  <div *ngIf="orders.length > 0"  style="border:solid 2px rgb(247, 245, 245)">
   <ion-container paddding *ngFor="let o of orders; let i=index" (click)="showDetail(o)" [label]="o.name"
     (ionSelect)="setOrder(i)">
     <ion-list #myList lines="full" no-border>
       <ion-item-sliding>
         <ion-item-options side="start">
           <ion-item-option color="primary">
-            <ion-icon ios="ios-create" (click)="showForm(o)"></ion-icon>
+            <ion-icon ios="ios-create" md="md-create" (click)="showForm(o)"></ion-icon>
           </ion-item-option>
         </ion-item-options>
+
         <ion-item>
           <ion-label>{{o.productName | uppercase}}
-            <ion-sub-title></ion-sub-title>
           </ion-label>
           <ion-p>{{o.tmstmp | date}}</ion-p>
         </ion-item>
+
         <ion-item-options side="end">
           <ion-item-option color="danger">
             <ion-icon name="trash" (click)="deleteOrder(i)"></ion-icon>
@@ -68,6 +70,24 @@
       </ion-item-sliding>
     </ion-list>
   </ion-container>
+
+  <ion-item>
+      <ion-button slot="end" (click)="DownloadtoPDF()" color="medium">
+        <ion-icon  name="save"> </ion-icon>
+      </ion-button>
+    </ion-item>
+    
+  </div>
+  
+  <!-- SKELETON -->
+  <ion-list *ngIf = " orders.length === 0">
+    <ion-item *ngFor = " let i of [1,1,1,1,1,1]">
+      <ion-label>
+        <ion-skeleton-text width="40%"></ion-skeleton-text>
+        <ion-skeleton-text width="70%"></ion-skeleton-text>
+      </ion-label>
+    </ion-item>
+  </ion-list>
 
   <!-- infinite-scroll -->
   <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">

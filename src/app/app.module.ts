@@ -1,14 +1,18 @@
-import { SharedModule } from './shared/shared.module';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { RouteReuseStrategy } from '@angular/router';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AppComponent } from './app.component';
+import { AppRoutingModule } from './app-routing.module';
+import { HttpClientModule } from '@angular/common/http';
 
+import {  SampleModule } from 'angular-pdf-generator'; 
+
+import { RouteReuseStrategy } from '@angular/router';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 
-import { AppComponent } from './app.component';
-import { AppRoutingModule } from './app-routing.module';
+import { SharedModule } from './shared/shared.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
   MatInputModule,
@@ -19,11 +23,11 @@ import {
   MatIconModule,
   MatButtonModule,
   MatCardModule,
-  MatFormFieldModule } from '@angular/material';
+  MatFormFieldModule, 
+  MatRadioModule} from '@angular/material';
+
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { ScrollingModule } from '@angular/cdk/scrolling';
-import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
 import { PagesModule } from './pages/pages.module';
 
 const MODULES = [
@@ -32,8 +36,12 @@ const MODULES = [
 ]
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [
+    AppComponent/* ,
+    SampleModule */
+   ],
   entryComponents: [],
+  
   imports: [
     BrowserModule,
     IonicModule.forRoot(),
@@ -50,7 +58,9 @@ const MODULES = [
     MatButtonModule,
     MatCardModule,
     MatFormFieldModule,
+    MatRadioModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     ...MODULES
   ],

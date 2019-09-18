@@ -68,4 +68,8 @@ export class PersonListComponent implements OnInit {
       }
     }, 1000);
   }
+  
+  getPerson(){
+
+  }
 }

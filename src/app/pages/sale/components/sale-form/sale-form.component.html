@@ -1,34 +1,73 @@
-<ion-header>
-  <ion-toolbar color="primary">
-    <ion-title>Nueva Venta</ion-title>
-    <ion-buttons slot="primary">
-      <ion-button (click)="onSubmit()" ><ion-icon name="add-circle-outline"></ion-icon></ion-button>
+<ion-header mode="ios">
+  <!-- no-border -->
+  <ion-toolbar color="medium">
+    <ion-buttons>
+      <ion-button slot="start" (click)="showList()">
+        <ion-icon name="arrow-back" item-start></ion-icon>
+      </ion-button>
     </ion-buttons>
-  </ion-toolbar>       
+    <ion-title>
+      <h3>New sale</h3>
+      <!-- {{title | uppercase}} -->
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="onSubmit()">
+        <ion-icon name="add-circle-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
 </ion-header>
-<ion-form [formGroup]="saleForm" fullscreen>
+
+<ion-content mode="ios" fullscreen color="light" >
+<ion-form [formGroup]="saleForm"  mode="ios" novalidate>
   <ion-item>
-    <h5>Cliente:</h5>
+   <!--  <ion-label>Client:</ion-label>
+    <ion-select formControlName="productName">
+      <ion-select-option *ngFor="let p of products" required>{{p.name}}</ion-select-option>
+    </ion-select> -->
+  <!-- </ion-item> -->
+  <!-- <ion-item class="error" *ngIf="!productName.valid  && (productName.dirty || productName.touched)">
+    <p *ngIf="productName.errors.required" color="danger" ion-text>productName is required </p>
+  </ion-item> -->
+
+  <!-- <ion-item> -->
+    <ion-label>Cliente:</ion-label>
     <ion-select formControlName="clientName">
-      <ion-select-option *ngFor="let c of clients" >{{c.name}}</ion-select-option>
+      <ion-select-option *ngFor="let c of clients" required>{{c.name}}</ion-select-option>
     </ion-select>
   </ion-item>
-  <ion-item>
-    <ion-textarea formControlName="description" placeholder="Descripcion" ></ion-textarea>
-  </ion-item>
- <!--  <ion-card> -->
-    <app-order-form *ngIf="showOrder" #showForm
-      [products]="products"
-      [order]="order"
-      (pushOrder)="pushOrder($event)">
-    </app-order-form>
-    <app-order-list *ngIf="!showOrder" #showList
-      (newOrder)="newOrder($event)"
-      [orders]="orders">
-    </app-order-list>
-  <!-- </ion-card> -->
- 
+  <!--  <ion-item class="error" *ngIf="!clientName.valid  && (clientName.dirty || clientName.touched)">
+        <p *ngIf="clientName.errors.required" color="danger" ion-text>client is required </p>
+      </ion-item> -->
+   <!--    <ion-item class="error" *ngIf="!productName.valid  && (productName.dirty || productName.touched)">
+          <p *ngIf="productName.errors.required" color="danger" ion-text>productName is required </p>
+        </ion-item> -->
+        <ion-label position="floating">Descripcion:</ion-label>
+        <ion-item>
+          <ion-textarea formControlName="description" name="Description:" required placeholder=" * * " minlength="4" maxlength="200">
+          </ion-textarea>
+        </ion-item>
+        <ion-item class="error" *ngIf="!description.valid  && (description.dirty || description.touched)">
+          <p *ngIf="description.errors.required" color="danger"> Description is required</p>
+          <p *ngIf="description.errors.minlength" color="danger">Must be at least 4 characters</p>
+          <p *ngIf="description.errors.maxlength" color="danger">Must be max 200 characters</p>
+        </ion-item>
+
+  <!-- <app-order-form *ngIf="showOrder" #showForm [products]="products" [order]="order" (pushOrder)="pushOrder($event)">
+  </app-order-form>
+
+  <app-order-list *ngIf="!showOrder" #showList (newOrder)="newOrder($event)" [orders]="orders">
+  </app-order-list> -->
+  <div class="btn">
+      <ion-button type="submit" fill="clear" class="btn-send" [disable]="!productForm.valid" (click)="onSubmit()">
+          <ion-icon name="checkmark"></ion-icon>
+           </ion-button>
+      <ion-button type="button" fill="clear" class="btn-send" (click)="onReset()">
+        <ion-icon name="close"></ion-icon> 
+        </ion-button>
+  </div>
 </ion-form>
+</ion-content>
 <!-- 
 id : new FormControl(this.sale.id, ),
 clientName : new FormControl(this.sale.clientName,[Validators.required]),

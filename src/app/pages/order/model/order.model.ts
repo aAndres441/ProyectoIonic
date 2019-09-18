@@ -1,5 +1,3 @@
-import { Product } from '../../product/model/product.model';
-import { Sale } from '../../sale/model/sale.model';
 
 export class Order {
     id : number;

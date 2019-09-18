@@ -74,7 +74,7 @@ export class PersonComponent implements OnInit {
   }
 
   addPerson(per: Person) {
-    this.personoService.addPerson(per).subscribe(
+    this.personService.addPerson(per).subscribe(
       (data) => {
         console.log("Persona agregado!")
         this.getPersons();
@@ -88,7 +88,7 @@ export class PersonComponent implements OnInit {
   }
 
   deletePerson(per: Person) {
-    this.personoService.deletePerson(per).subscribe(
+    this.personService.deletePerson(per).subscribe(
       (data) => {
         console.log("Persona borrada!")
         this.getPersons();

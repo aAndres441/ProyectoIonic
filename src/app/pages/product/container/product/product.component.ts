@@ -12,16 +12,14 @@ export class ProductComponent implements OnInit {
   products: Product[];
   detailProduct: Product = new Product();
   prod: Product = null;
-  showComponent: string = 'list';
-
-  /* para probar*/
-  public misProducts: Product[] = [];
+  showComponent: string = '';
 
   constructor(private productoService: ProductService, private router: Router) { }
 
   ngOnInit(): void {
     this.getProducts(); 
   }
+  
   loadMisProducts() {
     console.log('Begin async operation');
 
@@ -35,14 +33,22 @@ export class ProductComponent implements OnInit {
     this.productoService.getProducts().subscribe(
       (data) => {
         this.products = data;
+        this.showComponent = 'list';
       }
     );
   }
 
   showPage(obj: any) {
     let prod;
-    let showAction = obj.page;
+    const showAction = obj.page;
     switch (showAction) {
+
+         /* PRINT */          
+      case "print": {
+        this.showComponent = "print";
+        break;
+      }
+      
       case "detail": {
         this.showComponent = "detail";
         this.detailProduct = obj.product;
@@ -65,6 +71,7 @@ export class ProductComponent implements OnInit {
         this.addProduct(obj.product);
         break;
       }
+      
       case "delete": {
         prod = obj.product;
         if (prod) {
@@ -78,6 +85,7 @@ export class ProductComponent implements OnInit {
       }
     }
   }
+  
 
   addProduct(prod: Product) {
     this.productoService.addProduct(prod).subscribe(

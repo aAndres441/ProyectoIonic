@@ -3,18 +3,17 @@ import { FormGroup, FormControl, Validators, FormBuilder, NG_VALUE_ACCESSOR, Con
 import { AlertController} from '@ionic/angular';
 import { Product } from '../../model/product.model';
 
-
 @Component({
   selector: 'app-product-form',
   templateUrl: './product-form.component.html',
   styleUrls: ['./product-form.component.scss']
 })
 export class ProductFormComponent implements OnInit {
+
   @Input() product: Product;
   @Output() showComponent = new EventEmitter<any>();
-  public title: 'FORMULARIO';
-
   public productForm: FormGroup;
+  public title: 'FORMULARIO';  
 
   constructor(private fb: FormBuilder, private alert: AlertController) {  }
 
@@ -34,7 +33,7 @@ export class ProductFormComponent implements OnInit {
       }); 
     }*/
   }
-  createForm() {
+  createForm(): FormGroup {
     return this.fb.group({
        id: new FormControl(this.product.id),
        name: new FormControl(this.product.name, [Validators.required]),
@@ -44,8 +43,6 @@ export class ProductFormComponent implements OnInit {
       un objeto que contiene cada uno de nuestros FormControls . 
       También debemos establecer la formGrouppropiedad en el padre
        <form>para que tenga el mismo nombre que nuestro grupo FormBuilder */
-      /* name: [this.product.name, [Validators.required]],
-      description:[this.product.description, [Validators.required, Validators.minLength(4), Validators.maxLength(200)]] */
     });
   }
 
@@ -86,7 +83,7 @@ async showAlert(){
   await alert.present();
 }
 
-onReset(){
+onReset() {
   this.productForm.reset();
 }
 

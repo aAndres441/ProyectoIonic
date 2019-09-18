@@ -9,13 +9,16 @@ import { ProductModule } from './product/product.module';
 import { OrderModule } from './order/order.module';
 import { SaleModule } from './sale/sale.module';
 import { PersonModule } from './person/person.module';
-
+import { PipesModule } from '../pipes/pipes.module';
 const MODULES = [
   ProductModule,
   OrderModule,
   SaleModule,
   SharedModule,
   PersonModule
+]
+const PIPES = [
+  PipesModule
 ]
 
 @NgModule({
@@ -27,7 +30,9 @@ const MODULES = [
     PagesRoutingModule,
     ReactiveFormsModule,
     FormsModule,
-    ...MODULES
+    ...MODULES,
+    ...PIPES
+    
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })

@@ -1,27 +1,25 @@
-/* ion-list{
-    align-content: center;
-}
-ion-label{
-    align-content: center;
-    margin: auto;
-} */
+
 hr{
     border: solid 2px;
     border-color: gold;
-    margin-top: -10px;    
+    margin-top: -10px;  
 }
 h3{
-    color: gold;
+    color: gold;    
+    text-align: center;
 }
 ion-icon{
     color: gold;
 }
 
 ion-container{   
-   /*  display: flex;
+    display: flex;
    flex-direction: row;
    flex-wrap: wrap;
 
    justify-content: center;
-   align-items: center; */
+   align-items: center; 
+}
+#ww{
+display: none;
 }

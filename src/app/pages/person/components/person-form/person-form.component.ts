@@ -1,5 +1,5 @@
-import { Component, OnInit, Input, Output, EventEmitter, forwardRef } from '@angular/core';
-import { FormGroup, FormControl, Validators, FormBuilder, NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
+import { Component, OnInit, Input, Output, EventEmitter, forwardRef, ViewChild, ElementRef } from '@angular/core';
+import { FormGroup, FormControl, Validators, FormsModule, FormBuilder, NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 import { AlertController } from '@ionic/angular';
 import { Person } from '../../model/person.model';
 
@@ -8,59 +8,108 @@ import { Person } from '../../model/person.model';
   templateUrl: './person-form.component.html',
   styleUrls: ['./person-form.component.scss'],
 })
+
 export class PersonFormComponent implements OnInit {
 
   @Input() person: Person;  
   @Output() showComponent = new EventEmitter<any>();
-
-  private showDiv = false;
-  personForm: FormGroup;
+  public personForm: FormGroup; 
+  public title = 'Add Person';
+  public tab: number;
+  public listFile: any;
+  public radioselecc: string;
+  public gender: string;
+  error: string;
+  ngSwitchCase: any;
+  optionsViewValues = ['Fletero', 'Cliente' , 'Empleado'];
+  @ViewChild('txtAgrega', { static: true }) txtAgrega: ElementRef; 
+  @ViewChild('selectedPeson', { static: true }) selectedPeson: ElementRef; 
+  public showDiv = false; 
   // tslint:disable-next-line: max-line-length
-  emailPattern: any = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-  telPattern: any = [0 - 9];  // "[A-Za-z0-9]+";
-  title = 'Add Person';
-  persons: Person[] = [];
+  public emailPattern: any = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  public telPattern: any = [0 - 9];  // "[A-Za-z0-9]+";
+  
+  public persons: Person[] = [];
 
-  constructor(private fb: FormBuilder, private alert: AlertController) {
+  constructor(private fb: FormBuilder, private alert: AlertController) {     
   }
 
   ngOnInit() {
-    if (this.person) {
-      this.personForm = this.createForm2();
-    }
+   /*  if (this.person) { */
+      this.personForm = this.createForm();
+    /* } */
     /* setTimeout(() => {
       alert('Cardona putazo');
     }, 2000); */
   }
+  
+  getOptions(){
+    return[
+      {valor:'emp', desc:'Empleado'},
+      {valor:'cli', desc:'Cliente'},
+      {valor:'flr', desc:'Fletero'},
+    ]
+  }
 
-  /* createForm() {
-       return this.fb.group({
-        name: ['', [Validators.required, Validators.minLength(4)]],
-        lastName: ['', Validators.required],
-        documentNumber: ['', [Validators.required, Validators.minLength(4)]],
-        email: ['', Validators.required, Validators.pattern(this.emailPattern), Validators.minLength(4)],
-        address: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(200)]],
-        telephone: ['', [Validators.required, Validators.minLength(4)]],
-        available:['', ],
-        gender: ['',[Validators.required] ]
-      }); 
-    }*/
+  setRadio(dato: string) {
+   if ( !dato){
+     this.error = 'ingrese algo';
+    alert(this.error);
+   } else {
+    this.error = '';
+    this.radioselecc = dato;
+    alert(this.radioselecc);
+   }  
+  }
+  valor(selectedPeson:string){
+    alert(selectedPeson);
+  }
+  
+  /*  saveData() {
+    if (this.personForm.valid) {
+      this.personForm.reset();
+      console.log('VALIDO' + this.personForm.value);
+    } else {
+      console.log('NO VALIDO');
+    }
+  } */
 
-  createForm2(): FormGroup {
-    return new FormGroup({
+  mostaraDiv(){
+    switch(this.tab){
+      case 1: ;
+      case 2: ;
+      case 3: ;
+      default: ;
+    }
+  }
+
+  createForm(): FormGroup {
+    return this.fb.group({
       name: new FormControl(this.person.name, [Validators.required, Validators.minLength(4)]),
       lastName: new FormControl(this.person.lastName, [Validators.required]),
       documentNumber: new FormControl(this.person.documentNumber, [Validators.required]),
       email: new FormControl(this.person.email, [Validators.required, Validators.pattern(this.emailPattern), Validators.minLength(4)]),
       address: new FormControl(this.person.address, [Validators.required, Validators.minLength(4), Validators.maxLength(200)]),
       telephone: new FormControl(this.person.telephone, [Validators.required, Validators.minLength(4)]),
-      available: new FormControl(this.person.available, [Validators.required,]),
+      available: new FormControl(this.person.available, [Validators.required]),
     });
   }
 
-  onSubmit(): void {
+/*  createForm2(): FormGroup {
+    return this.fb.group({
+      name: new FormControl(this.person.name, [Validators.required, Validators.minLength(4)]),
+      lastName: new FormControl(this.person.lastName, [Validators.required]),
+      documentNumber: new FormControl(this.person.documentNumber, [Validators.required]),
+      email: new FormControl(this.person.email, [Validators.required, Validators.pattern(this.emailPattern), Validators.minLength(4)]),
+      address: new FormControl(this.person.address, [Validators.required, Validators.minLength(4), Validators.maxLength(200)]),
+      telephone: new FormControl(this.person.telephone, [Validators.required, Validators.minLength(4)]),
+      available: new FormControl(this.person.available, [Validators.required]),
+    });
+  }*/
+
+  onSubmit(){
     /* console.log(this.productForm.value.description + '--' ); */
-    console.log(this.personForm.value.description + '--');
+    console.log(this.personForm.value.description + '--' );
     //si es editar
     /* if(!this.productForm.valid && this.product.id){
       this.productForm.value.id = this.product.id;
@@ -75,6 +124,22 @@ export class PersonFormComponent implements OnInit {
     /* } */
   }
 
+  /* mostaraDiv(){
+    switch(this.tab){
+      case 1: ;
+      case 2: ;
+      case 3: ;
+      default: ;
+    }
+  } */
+  
+/*   submit() {
+    if (this.personForm.valid) {
+      console.log(this.personForm.value);
+    } else {
+      this.showErrorAlert('Debe completar todos los campos.')
+    }
+  } */
   
   showList(){
     this.showComponent.emit({"page":"list"});
@@ -103,36 +168,25 @@ export class PersonFormComponent implements OnInit {
   }
 
 
-  submit() {
-    if (this.personForm.valid) {
-      console.log(this.personForm.value);
-    } else {
-      this.showErrorAlert('Debe completar todos los campos.')
-    }
-  }
   showErrorAlert(arg0: string) {
     alert(' Method not implemented.');
   }
-
-  get name() { return this.personForm.get('name') }
-  get lastName() { return this.personForm.get('lastName') }
-  get documentNumber() { return this.personForm.get('documentNumber') }
-  get email() { return this.personForm.get('email') }
-  get address() { return this.personForm.get('address') }
-  get telephone() { return this.personForm.get('telephone') }
-  get available() { return this.personForm.get('available') }
-
   toggleImage(): void {
     this.showDiv = !this.showDiv;
   }
 
   cancel() {
     console.log('cancelo');
-    alert('cancelo');
-    this.onReset();
-  }
-  onReset() {
+    alert('Cancela datos');
     this.personForm.reset();
   }
 
+/*   get name() { return this.personForm.get('name') }
+  get lastName() { return this.personForm.get('lastName') }
+  get documentNumber() { return this.personForm.get('documentNumber') }
+  get email() { return this.personForm.get('email') }
+  get address() { return this.personForm.get('address') }
+  get telephone() { return this.personForm.get('telephone') }
+  get available() { return this.personForm.get('available') } 
+ */
 }

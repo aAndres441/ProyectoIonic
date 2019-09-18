@@ -11,6 +11,10 @@
         [detailProduct]="detailProduct"
         (showComponent)="showPage($event)">
     </app-product-detail>
+    <app-print *ngIf="showComponent == 'print' else print" #print
+        [products]="products"
+        (showComponent)="showPage($event)">
+    </app-print>
 
       
       

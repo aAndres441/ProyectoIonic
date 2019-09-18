@@ -32,8 +32,7 @@ const routes: Routes = [{
       component: ErrorPage
     } */
   ]
-},
-
+}
 
 ];
 

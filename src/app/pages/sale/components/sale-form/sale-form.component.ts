@@ -17,20 +17,19 @@ export class SaleFormComponent implements OnInit {
   @Output() showComponent = new EventEmitter<any>();
   @Input() clients = new Array<Person>();
   @Input() products = new Array<Product>();
-  showOrder : boolean = true;
+  showOrder: boolean = true;
   orders = new Array<Order>();
-  saleId : number = -1;
-  order : Order;
-  
+  saleId: number = -1;
+  order: Order;
 
-  public saleForm:FormGroup;
+  public saleForm: FormGroup;
 
-  constructor(private fb : FormBuilder) { }
+  constructor(private fb: FormBuilder) { }
 
   ngOnInit() {
     this.saleForm = this.fb.group({
         id : new FormControl(null),
-        clientName : new FormControl(this.sale.clientName,[Validators.required]),
+        clientName : new FormControl(this.sale.clientName, [Validators.required]),
         description : new FormControl(this.sale.description, [Validators.required]),
       }
     );
@@ -38,7 +37,7 @@ export class SaleFormComponent implements OnInit {
  
   onSubmit(){
     //si es editar
-    if(this.saleForm.valid && this.sale.id){
+    if (this.saleForm.valid && this.sale.id) {
       this.saleForm.value.id = this.sale.id;
     }
     //else si es agregar nuevo

@@ -14,11 +14,11 @@ export class OrderComponent implements OnInit {
   orders : Array<Order> = new Array<Order>();
   detailOrder : Order = new Order();
   order : Order = null;
-  showComponent:string = 'list';
+  showComponent: string = 'list';
   products = new Array<Product>();
 
-  constructor( private orderService: OrderService, 
-    private router: Router ) { }
+  constructor( private orderService: OrderService ) 
+  { }
 
   
   ngOnInit(): void {
@@ -62,10 +62,16 @@ export class OrderComponent implements OnInit {
   }
 
 
-  showPage(obj:any) {
+  showPage(obj: any) {
     let order;
     let showAction = obj.page;
     switch(showAction) { 
+
+      /* PRINT */
+      case 'print': {
+        this.showComponent = 'print';
+        break;
+      }
       case "detail": { 
         this.showComponent = "detail";
         this.detailOrder = obj.order; 
@@ -95,10 +101,10 @@ export class OrderComponent implements OnInit {
         }
         break; 
       } 
-      case "sale": { 
-        let saleId = obj.saleId;
-        if(saleId){
-          this.getOrder(saleId);
+      case "order": { 
+        let orderId = obj.saleId;
+        if(orderId){
+          this.getOrder(orderId);
         }
         break; 
       } 

@@ -1,3 +1,38 @@
-<p>
-  sale-detail works!
-</p>
+<ion-card no-border mode="ios" color="medium">
+  <ion-card-header>
+    <ion-toolbar>
+      <ion-title> {{title | uppercase}}
+        <!-- <ion-card-title>{{detailSale.nombre}}</ion-card-title> -->
+      </ion-title>
+      <ion-buttons slot="start">
+        <ion-button (click)="showList()">
+          <ion-icon name="arrow-back" color="dark"> </ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-card-header>
+  <ion-card-content mode="ios" color="light">
+    <ion-list>
+      <ion-item>
+        <ion-label>Code:</ion-label>
+        <ion-p>{{detailSale.id}}</ion-p>
+      </ion-item>
+      <ion-item>
+        <ion-label>Client:</ion-label>
+        <ion-p>{{detailSale.clientName}}</ion-p>
+      </ion-item>
+      <ion-item>
+        <ion-label>Description:</ion-label>
+        <ion-p>{{detailSale.description}}</ion-p>
+      </ion-item>
+      <ion-item>
+        <ion-label>Total Amount:</ion-label>
+        <ion-p>{{detailSale.totalAmount}}</ion-p>
+      </ion-item>
+      <ion-item>
+        <ion-label>Visitado en:</ion-label>
+        <ion-p>{{detailSale.tmstmp | date}}</ion-p>
+      </ion-item>
+    </ion-list>
+  </ion-card-content>
+</ion-card>

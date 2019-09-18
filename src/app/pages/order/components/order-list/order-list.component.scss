@@ -1,11 +1,18 @@
 
-h3, ion-icon{
-    color: rgb(241, 196, 70);
-    font-weight: bold;
-    margin-top:8px;
+h3{
+    color: rgb(253, 148, 78);
+    /* font-weight: bold;
+    margin-top:8px; */
+    text-align: center;
 } 
 ion-label{
     text-transform: uppercase;
+}
+ion-icon{
+    color: gold;
+}
+ion-header ion-icon{
+    color: rgb(253, 148, 78);
 }
 
 ion-p{

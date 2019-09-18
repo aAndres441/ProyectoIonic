@@ -9,6 +9,8 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
 import { ErrorPageModule } from './error/error.module';
+import { FondoMarronDirective } from './fondo-marron.directive';
+import { PipesModule } from './pipes/pipes.module';
 
 const COMPONENTS = [
   HomePage,
@@ -23,12 +25,14 @@ const MODULES = [
   ReactiveFormsModule,
   FormsModule,
   RouterModule,
-  ErrorPageModule
+  ErrorPageModule,
+  PipesModule
 ];
 
 @NgModule({
   declarations: [
-    ...COMPONENTS
+    ...COMPONENTS,
+    FondoMarronDirective
   ],
   exports: [
     ...COMPONENTS,

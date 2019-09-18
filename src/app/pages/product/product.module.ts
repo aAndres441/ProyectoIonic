@@ -5,14 +5,16 @@ import { IonicModule } from '@ionic/angular';
 import {
    ProductListComponent,
    ProductFormComponent,
-   ProductDetailComponent
+   ProductDetailComponent,
+   PrintComponent
    } from './components/index';
 import { ProductComponent } from './container/index';
 
 const COMPONENTS = [
   ProductFormComponent,
   ProductListComponent,
-  ProductDetailComponent
+  ProductDetailComponent,
+  PrintComponent
 ]
 const CONTAINER = [
   ProductComponent

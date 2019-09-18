@@ -13,12 +13,14 @@ ion-toolbar ion-title{
 
 ion-content{   
     padding-top: 33px;
-    position: fixed;
-   /* display: flex;
+   /*  position: fixed; */
+    height: 100%;
+
+   display: flex;
    flex-direction: row;
    flex-wrap: wrap;
    justify-content: center;
-   align-items: center;  */
+   align-items: center;  
 }
 .error p{
     color: rgb(177, 89, 89);
@@ -47,115 +49,34 @@ ion-form{
     top:14px;
     margin  : 0;
 }
-/* #btnAdd, #btncncel {
-    background-color: whitesmoke;
-    border-color: greenyellow;
-    font-size: 18px;
-    text-align: center;
-} */
-
-/* textarea{
-    display : block;
-    padding : 10px;
-    margin  : 0px;  
-} */
-/* .class{
-    padding : 20px;
-    margin  : 5px;
-} */
-
-/* #addProd{
-    padding : 10px;
-    margin  : 5px;
-    border-radius: 10px
-} */
-
-/* .ng-valid[required], .ng-valid.required  {
-    border-left: 5px solid #42A948; 
-  } */
-
- /*  p {
-    font-size: 0.8em;
-    color: #d2d2d2;
+ion-radio-group {
+    /* text-align: center;
+    align-content: center; */
+    padding-top: 12px;
+    background-color:white;
+    width: 100%;
+   display:flex;
+   margin: auto;
 }
- */
-/* ion-button ion-buttons{
-    background-color: rgb(244, 246, 247);
-   padding: 0px;
-   margin: 0px;
-} */
-/* ion-icon {
-    font-size : 24px ;   
- } */
-
- /* ion-card-content ion-item{
-    margin-top: 12px;
-} */
-
-
-
-
- /* ion-list{
-    height:500px;
- } */
- /* ion-card-title{
-     text-align: center;
- } */
-
-/*  .header{
-     size: 22px;
-     color:whitesmoke;
-     
- } */
- /* ion-list{
-    align-content: center;
+ion-checkbox{
+    background-color:rgb(221, 219, 219);    
 }
-ion-label{
-    align-content: center;
+.radio ion-item{
+background-color:rgb(160, 245, 198);
+width: 260px;
+height: 51px;
+padding:2px;
+}
+
+ion-list-header ion-label{
     margin: auto;
-} */
-
-/* 
-ion-slides {
-	height: 100%;
-} */
-
-/* ion-slide {
-    display: block;
-} */
-
-/* ion-label, .select-text {
-    margin-left: 10px;
-} */
-
-/* .invalid {
-    border: 1px solid #ea6153;
-} */
-
-/* ion-button:hover:not([disabled]){
-    background: gray;
-} */
-
-/*  ion-list{
-    height:500px;
- }
- */
-
- /* .header{
-     size: 22px;
-     color:whitesmoke;
-     
- } */
-
-/*  ion-tab-bar{
-    background-color: ;
-} */
-/* ion-button{
-    background-color: lightblue;
-   
 }
+.radio ion-item ion-radio{
+    margin:8px,0px,8px,0px;
+    }
 
-ion-icon {
-    font-size : 14px ;
-    color:  azure;
- } */
+    #emp ion-label{
+        text-align: left;
+        align-content: left;
+        margin-right: 0px;
+        }

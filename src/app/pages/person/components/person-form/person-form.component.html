@@ -16,108 +16,142 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content mode="ios" fullscreen color="light" padding>
-  <ion-form [formGroup]="personForm" novalidate mode="ios" (submit)="onSubmit()">
+<ion-content mode="ios" fullscreen color="light">
+  <input [(ngModel)] = "listFile" />
+  <ion-item>
+    <ion-range [(ngModel)]="brightness">
+      <ion-icon range-left small name="sunny"></ion-icon>
+      <ion-icon range-right name="sunny"></ion-icon>
+    </ion-range>
+  </ion-item>
 
-    <ion-label position="floating">Nombre:</ion-label>
-    <ion-item>
-      <ion-input formControlName="name" type="text" required placeholder=" * * " autofocus></ion-input>
-    </ion-item>
-    <ion-item class="error" *ngIf="!name.valid  && (name.dirty || name.touched)">
-      <p *ngIf="name.errors.required" color="danger" ion-text>Name is required </p>
-    </ion-item>
-
-    <ion-label position="floating">Apellido:</ion-label>
-    <ion-item>
-      <ion-input formControlName="lastName" type="text" required placeholder=" * * "></ion-input>
-    </ion-item>
-    <ion-item class="error" *ngIf="!lastName.valid  && (namlastNamee.dirty || lastName.touched)">
-      <p *ngIf="lastName.errors.required" color="danger" ion-text>Lastname is required </p>
-    </ion-item>
-
-    <ion-label position="floating">Nº de documento:</ion-label>
-    <ion-item>
-      <ion-input formControlName="documentNumber" type="text" required placeholder=" * * " pattern="[0-9]"  maxlength="15" ></ion-input>
-    </ion-item>
-    <ion-item class="error" *ngIf="!documentNumber.valid  && (documentNumber.dirty || documentNumber.touched)">
-      <p *ngIf="documentNumber.errors.required" color="dangn-teer" ion-text>Document is required </p>
-      <p *ngIf="name.errors.max" color="danger" ioxt>Must be at max 15 numbers</p>
-    </ion-item>
-
-    <ion-label position="floating">E-mail:</ion-label>
-    <ion-item>
-      <!-- <input type="text" pattern="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" name="email" required/> -->
-      <ion-input formControlName="email" type="email" required placeholder=" * * "></ion-input>
-    </ion-item>
-    <ion-item class="error" *ngIf="!email.valid  && (email.dirty || email.touched)">
-      <p *ngIf="email.errors.required" color="danger" ion-text>E-mail is required </p>
-    </ion-item>
-
-    <ion-label position="floating">Address:</ion-label>
-    <ion-item>
-      <ion-input formControlName="address" type="address" required placeholder=" * * "></ion-input>
-    </ion-item>
-    <ion-item class="error" *ngIf="!address.valid  && (address.dirty || address.touched)">
-      <p *ngIf="address.errors.required" color="danger" ion-text>Address is required </p>
-    </ion-item>    
-
-    <ion-label position="floating">Telefono:</ion-label>
-    <ion-item>
-      <ion-input formControlName="telephone" type="tel" required placeholder=" * * "></ion-input>
-    </ion-item>
-    <ion-item class="error" *ngIf="!telephone.valid  && (telephone.dirty || telephone.touched)">
-      <p *ngIf="telephone.errors.required" color="danger" ion-text>Telephone is required </p>
-    </ion-item>
-
-    <ion-label position="floating">Descripcion:</ion-label>
-    <ion-item>
-      <ion-textarea formControlName="description" name="Description:" required placeholder=" * * " minlength="4" maxlength="200">
-      </ion-textarea>
-    </ion-item>
-    <ion-item class="error" *ngIf="!description.valid  && (description.dirty || description.touched)">
-      <p *ngIf="description.errors.required" color="danger"> Description is required</p>
-      <p *ngIf="description.errors.minlength" color="danger">Must be at least 4 characters</p>
-      <p *ngIf="description.errors.maxlength" color="danger">Must be max 200 characters</p>
-    </ion-item>
-
-    <div class="btn">
-      <ion-button type="submit" fill="clear" class="btn-send" [disable]="!productForm.valid" (click)="onSubmit()">
-          <ion-icon name="checkmark"></ion-icon>
-           </ion-button>
-      <ion-button type="button" fill="clear" class="btn-send" (click)="onReset()">
-        <ion-icon name="close"></ion-icon> 
-        </ion-button>
+<!-- RADIO -->
+  <div class="radio">
+    <ion-radio-group mode="ios" #selectedPeson >
+      <ion-item>
+        <ion-label>
+          <h6>Client</h6>
+        </ion-label>
+        <ion-radio color="medium" slot="end" (click)="setRadio ('client')" value="client" name="client" checked
+          formControlName="mismo"></ion-radio>
+      </ion-item>
+      <ion-item>
+        <ion-label>
+          <h6>Fletero</h6>
+        </ion-label>
+        <ion-radio color="medium" slot="end" (click)="setRadio ('fletero')" value="fletero" name="fletero" formControlName="mismo">
+        </ion-radio>
+      </ion-item>
+      <ion-item #emp>
+        <ion-label>
+          <h6>Employeed</h6>
+        </ion-label>
+        <ion-radio  color="medium" slot="end" (click)="setRadio ('employeed')" value="employeed" name="employeed"
+          formControlName="mismo"></ion-radio>
+      </ion-item>
+    </ion-radio-group>
   </div>
+  <button (click)="valor(selectedPeson.value)"> valor</button>
+
+  <ion-card>
+    <ion-form [formGroup]="personForm" mode="ios" (submit)="onSubmit()">
+
+      <ion-label position="floating">Nombre:</ion-label>
+      <ion-item>
+        <ion-input formControlName="name" type="text" required placeholder=" * * " minlength="4" autofocus></ion-input>
+      </ion-item>
+      <ion-item class="error" *ngIf="!name.valid  && (name.dirty || name.touched)">
+        <p *ngIf="name.errors.required" color="danger" ion-text>Name is required </p>
+        <p *ngIf="name.errors.minlength" color="danger" ion-text>Must be at least 4 characters </p>
+      </ion-item>
+
+      <ion-label position="floating">Apellido:</ion-label>
+      <ion-item>
+        <ion-input formControlName="lastName" type="text" required placeholder=" * * "></ion-input>
+      </ion-item>
+      <ion-item class="error" *ngIf="!lastName.valid  && (lastName.dirty || lastName.touched)">
+        <p *ngIf="lastName.errors.required" color="danger" ion-text>Lastname is required </p>
+      </ion-item>
+
+      <ion-label position="floating">Nº de documento:</ion-label>
+      <ion-item>
+        <ion-input formControlName="documentNumber" type="text" required placeholder=" * * " pattern="[0-9]"
+          maxlength="15"></ion-input>
+      </ion-item>
+      <ion-item class="error" *ngIf="!documentNumber.valid  && (documentNumber.dirty || documentNumber.touched)">
+        <p *ngIf="documentNumber.errors.required" color="dangn-teer" ion-text>Document is required </p>
+        <p *ngIf="documentNumber.errors.max" color="danger" ioxt>Must be at max 15 numbers</p>
+      </ion-item>
+
+      <ion-label position="floating">E-mail:</ion-label>
+      <ion-item>
+        <!-- <input type="text" pattern="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" name="email" required/> -->
+        <ion-input formControlName="email" type="text" required placeholder=" * * "></ion-input>
+      </ion-item>
+      <ion-item class="error" *ngIf="!email.valid  && (email.dirty || email.touched)">
+        <p *ngIf="email.errors.required" color="danger" ion-text>E-mail is required </p>
+      </ion-item>
+
+      <ion-label position="floating">Address:</ion-label>
+      <ion-item>
+        <ion-input formControlName="address" type="text" required placeholder=" * * "></ion-input>
+      </ion-item>
+      <ion-item class="error" *ngIf="!address.valid  && (address.dirty || address.touched)">
+        <p *ngIf="address.errors.required" color="danger" ion-text>Address is required </p>
+      </ion-item>
+
+      <ion-label position="floating">Telefono:</ion-label>
+      <ion-item>
+        <ion-input formControlName="telephone" type="number" required placeholder=" * * "></ion-input>
+      </ion-item>
+      <ion-item class="error" *ngIf="!telephone.valid  && (telephone.dirty || telephone.touched)">
+        <p *ngIf="telephone.errors.required" color="danger" ion-text>Telephone is required </p>
+      </ion-item>
+
+      <ion-label position="floating">Descripcion:</ion-label>
+      <ion-item>
+        <ion-textarea formControlName="description" name="description:" required placeholder=" * * " minlength="4"
+          maxlength="200">
+        </ion-textarea>
+      </ion-item>
+      <ion-item class="error" *ngIf="!description.valid  && (description.dirty || description.touched)">
+        <p *ngIf="description.errors.required" color="danger"> Description is required</p>
+        <p *ngIf="description.errors.minlength" color="danger">Must be at least 4 characters</p>
+        <p *ngIf="description.errors.maxlength" color="danger">Must be max 200 characters</p>
+      </ion-item>
+
+      <div class="btn">
+        <ion-button type="submit" fill="clear" class="btn-send" [disable]="!productForm.valid" (click)="onSubmit()">
+          <ion-icon name="checkmark"></ion-icon>
+        </ion-button>
+        <ion-button type="button" fill="clear" class="btn-send" (click)="cancel()">
+          <ion-icon name="close"></ion-icon>
+        </ion-button>
+      </div>
+
+
+    </ion-form>
+    
   
-    <!-- mostrar -->
-    <div ng-hide="mostrar">
-      <ion-label>
-        <h3>Imagen</h3>
-      </ion-label>
-    </div>
-    <ion-button (click)="mostrarDiv()">
-      <ion-icon name="heart" slot="end"></ion-icon>
-      mostrar
-    </ion-button>
-
-    <button class='btn btn-primary'
-                      (click)='toggleImage()'>
-                {{showImage ? 'Hide' : 'Show'}} Image
-              </button>
-
-  </ion-form>
+  </ion-card>
 </ion-content>
 
-<!-- 
-id: number;
-    name: string;
-    lastName: string;
-    documentNumber: number;
-    email: string;
-    address: string;
-    telephone: string;
-    available?: boolean;
-    tmstmp: string;
+
+<!-- mostrar -->
+<!--<div ng-hide="mostrar">
+  <ion-label>
+    <h2>Imagen</h2>
+  </ion-label>
+</div>
+<ion-button (click)="mostrarDiv()">
+  <ion-icon name="heart" slot="end"></ion-icon>
+  mostrar
+</ion-button>
+
+<button class='btn btn-primary'
+                  (click)='toggleImage()'>
+            {{showImage ? 'Hide' : 'Show'}} Image
+          </button>
 
  -->
 

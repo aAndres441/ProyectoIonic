@@ -1,6 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter, ViewChild } from '@angular/core';
 import { IonInfiniteScroll } from '@ionic/angular';
-import { LoadingController } from '@ionic/angular';
 import { Order } from '../../model/order.model';
 
 @Component({
@@ -60,10 +59,16 @@ export class OrderListComponent implements OnInit {
     setTimeout(() => {
       console.log('Carga siguientes...');
 
-      if (this.orders.length > 5) {
+      if (this.orders.length > 2) {
         this.infiniteScroll.disabled = true;
         return;
       }
     }, 1000);
+  }
+
+  /* report to page print for pdf */  
+  DownloadtoPDF(){    
+    return this.showComponent.emit({ "page": "print"});
+    /* alert("estos" + this.products.length); */
   }
 }

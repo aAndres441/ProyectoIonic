@@ -1,4 +1,4 @@
-
+<ion-container aligne="center" >
 <ion-card no-border mode="ios" color="medium">
     <ion-card-header>
       <ion-toolbar>
@@ -40,7 +40,7 @@
         </ion-item>
         <ion-item>
           <ion-label>totalAmount:</ion-label>
-          <ion-p>{{detailOrder.totalAmount}}</ion-p>
+          <ion-p>{{detailOrder.totalAmount | currency}</ion-p>
         </ion-item>
         <ion-item>
           <ion-label>Visitado en:</ion-label>
@@ -49,3 +49,12 @@
       </ion-list>
     </ion-card-content>
   </ion-card>
+
+  <ion-button p-4>
+<ion-icon></ion-icon>
+  </ion-button >
+  <ion-button #repote (click)="repote()">
+    <ion-icon  slot="end" name="arrow-back" color="dark"> </ion-icon>
+  </ion-button>
+
+</ion-container>

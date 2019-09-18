@@ -9,7 +9,7 @@ import { Product } from '../../model/product.model';
 export class ProductDetailComponent implements OnInit {
   
   @Output() showComponent = new EventEmitter<any>();
-  @Input() detailProduct : Product = new Product();
+  @Input() detailProduct: Product = new Product();
   title: string;
 
   constructor() { }
@@ -19,9 +19,9 @@ export class ProductDetailComponent implements OnInit {
     
   }
 
-  showPage(){
+ /*  showPage(){
     return this.showComponent.emit({"page":"list"});
-  }
+  } */
   showList(){
     this.showComponent.emit({"page":"list"});
   }

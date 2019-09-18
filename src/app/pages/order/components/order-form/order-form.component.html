@@ -1,102 +1,95 @@
-<!-- <ion-header>
-    <ion-toolbar color="primary">
-      <ion-title>Nuevo Pedido</ion-title>
-      <ion-buttons slot="primary">
-        <ion-button (click)="onSubmit()" ><ion-icon name="add-circle-outline"></ion-icon></ion-button>
-      </ion-buttons>
-    </ion-toolbar>       
-  </ion-header>
-  <ion-form [formGroup]="orderForm" novalidate>
-   
-    <ion-item >
-      <ion-label>Producto:</ion-label>
-      <ion-select formControlName="productName" >
-        <ion-select-option *ngFor="let p of products" >{{p.name}}</ion-select-option>
-      </ion-select>
+
+<ion-header mode="ios">
+  <!-- no-border -->
+  <ion-toolbar color="medium">
+    <ion-buttons>
+      <ion-button slot="start" (click)="showList()">
+        <ion-icon name="arrow-back" item-start></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>
+      <h3>Order</h3>
+      <!--  -->
+      <!-- {{title | uppercase}} -->
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="onSubmit()">
+        <ion-icon name="add-circle-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content mode="ios" fullscreen color="light" padding>
+  <ion-form [formGroup]="orderForm" novalidate mode="ios" (submit)="onSubmit()">
+   <div class="row" padding>
+    <ion-item>
+        <ion-label >Product:</ion-label>
+        <ion-select formControlName="productName" >
+            <ion-select-option *ngFor="let p of products" required >{{p.name}}</ion-select-option>
+          </ion-select>     
+    </ion-item>
+    <ion-item class="error" *ngIf="!productName.valid  && (productName.dirty || productName.touched)">
+      <p *ngIf="productName.errors.required" color="danger" ion-text>productName is required </p>
     </ion-item>
 
     <ion-item>
-      <ion-textarea formControlName="description" placeholder="Descripcion" ></ion-textarea>
+        <ion-label >Purchase:</ion-label>
+        <ion-select formControlName="purchasetName" >
+            <ion-select-option *ngFor="let p of purchase" required >{{p.id}}</ion-select-option>
+          </ion-select>     
     </ion-item>
-    <ion-item>
-      <ion-input formControlName="count" type="number" placeholder="Cantidad (Kg/Lt)"></ion-input>
+    <ion-item class="error" *ngIf="!purchasetName.valid  && (purchasetName.dirty || purchasetName.touched)">
+      <p *ngIf="purchasetName.errors.required" color="danger" ion-text>purchasetName is required </p>
     </ion-item>
-    <ion-item>
-      <ion-input formControlName="totalAmount" type="number"  placeholder="Precio (Kg/Cant)" ></ion-input>
-    </ion-item>
-    <ion-item *ngIf="total > 0" >
-      <ion-label type="number" >Total: ${{order.count*order.totalAmount}}</ion-label>
-    </ion-item>
-  </ion-form> -->
-  <ion-header mode="ios">
-    <!-- no-border -->
-    <ion-toolbar color="medium">
-      <ion-buttons >
-        <ion-button slot="start" (click)="showList()">
-          <ion-icon name="arrow-back" item-start></ion-icon>
-        </ion-button>
-      </ion-buttons>
-      <ion-title>
-          <h3>FORMULARIO</h3>
-        <!--  -->
-          <!-- {{title | uppercase}} -->
-      </ion-title>
-      <ion-buttons slot="end">
-        <ion-button (click)="onSubmit()">
-          <ion-icon name="add-circle-outline"></ion-icon>
-        </ion-button>
-      </ion-buttons>
-    </ion-toolbar>
-  </ion-header>
   
-    <!-- **************************** -->
-  <!-- <ion-form [formGroup]="productForm" novalidate>
     <ion-item>
-        <ion-input formControlName="name" type="text" required placeholder="Nombre del producto" autofocus></ion-input>
-      </ion-item>  
-    <ion-label position="floating">Description</ion-label>
-        <ion-textarea formControlName="description" name="description" clearOnEdit="true" required minlength(4)
-          maxlength(200)>
-        </ion-textarea>
-  </ion-form> -->
-  <ion-content mode="ios" fullscreen color="light" padding >
-    <ion-form [formGroup]="productForm" novalidate mode="ios" (submit)="onSubmit()" >
-      <ion-label position="floating">Nombre del producto:</ion-label>
-      <ion-item >
-        <ion-input formControlName="name" type="text" required placeholder=" * * "  minlength="4" autofocus></ion-input>
+        <ion-label >Sale:</ion-label>
+        <ion-select formControlName="saleId" >
+            <ion-select-option *ngFor="let s of sale" required >{{s.id}}</ion-select-option>
+          </ion-select>     
+    </ion-item>
+    <ion-item class="error" *ngIf="!saleId.valid  && (saleId.dirty || saleId.touched)">
+      <p *ngIf="saleId.errors.required" color="danger" ion-text>saleId is required </p>
+    </ion-item>
+  </div>
+    <ion-label position="floating">Descripcion:</ion-label>
+    <ion-item>
+      <ion-textarea formControlName="description" name="description:" required placeholder=" * * ">
+        <!-- maxlength(200)  minlength(4)-->
+      </ion-textarea>
+    </ion-item>
+    <ion-item class="error" *ngIf="!description.valid  && (description.dirty || description.touched)">
+      <p *ngIf="description.errors.required" color="danger"> Description is required</p>
+      <p *ngIf="description.errors.minlength" color="danger">Must be at least 4 characters</p>
+      <p *ngIf="description.errors.maxlength" color="danger">Must be max 200 characters</p>
+    </ion-item>
+
+    <ion-label position="floating">Cantidad (Kg/Lt):</ion-label>
+    <ion-item>
+        <ion-input formControlName="count" type="number" placeholder="Cantidad (Kg/Lt)"></ion-input>
       </ion-item>
-      <ion-item class="error" *ngIf="!name.valid  && (name.dirty || name.touched)">
-         <p *ngIf="name.errors.required" color="danger" ion-text>Name is required </p>
-         <p *ngIf="name.errors.minlength" color="danger" ion-text>Must be at least 4 characters</p>
-          </ion-item>
-  
-          <ion-label position="floating">Descripcion:</ion-label>
-      <ion-item>      
-        <ion-textarea formControlName="description" name="description:"  required
-           placeholder=" * * "><!-- maxlength(200)  minlength(4)-->
-        </ion-textarea>
+
+      <ion-label position="floating">Precio (Kg/Cant):</ion-label>
+      <ion-item>
+        <ion-input formControlName="totalAmount" type="number"  placeholder="Precio (Kg/Cant)" ></ion-input>
       </ion-item>
-      <ion-item class="error" *ngIf="!description.valid  && (description.dirty || description.touched)">
-        <p *ngIf="description.errors.required" color="danger"> Description is required</p>
-        <p *ngIf="description.errors.minlength"color="danger">Must be at least 4 characters</p>
-        <p *ngIf="description.errors.maxlength"color="danger">Must be max 200 characters</p>
+
+      <ion-label position="floating">Total $ :</ion-label>
+      <ion-item *ngIf="total > 0" >
+        <p type="number" >{{order.count*order.totalAmount}}</p>
       </ion-item>
-      
-      <div class="btn">
-          <ion-button type="submit" fill="clear" class="btn-send" [disable]="!productForm.valid" (click)="onSubmit()">
-              <ion-icon name="checkmark"></ion-icon>
-               </ion-button>
-          <ion-button type="button" fill="clear" class="btn-send" (click)="onReset()">
-            <ion-icon name="close"></ion-icon> 
-            </ion-button>
-      </div>
-          
-    </ion-form>
-  </ion-content>
-<!-- 
-  id : new FormControl(this.order.id, ),
-  productName : new FormControl(this.order.productName,[Validators.required]),
-  description : new FormControl(this.order.description, [Validators.required]),
-  cantidad : new FormControl(this.order.count,[Validators.required]),
-  totalAmount : new FormControl(this.order.totalAmount,[Validators.required]),
-  tmstmp :  -->
+
+   <hr>
+   
+    <div class="btn">
+      <ion-button type="submit" fill="clear" class="btn-send" [disable]="!orderForm.valid" (click)="onSubmit()">
+        <ion-icon name="checkmark"></ion-icon>
+      </ion-button>
+      <ion-button type="button" fill="clear" class="btn-send" (click)="onReset()">
+        <ion-icon name="close"></ion-icon>
+      </ion-button>
+    </div>
+
+  </ion-form>
+</ion-content>
