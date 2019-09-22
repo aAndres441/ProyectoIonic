@@ -14,9 +14,7 @@ export class EmpHoursListComponent implements OnInit {
   public empls: Person[]; 
   employeeds: any[];
   employeedsFilter: any[];
-  interfaceOptions: "ww";
-  otia: any[];
-
+  user: string;
   public horasDia: {
     cantHora: number;
     fecha: Date;
@@ -29,7 +27,7 @@ export class EmpHoursListComponent implements OnInit {
     disponible: string;
   };
 
-  showImage = false;
+  public showDiv = false;
   @ViewChild('table', { static: true }) table: ElementRef;
 
   constructor(private fb: FormBuilder) { }
@@ -37,29 +35,23 @@ export class EmpHoursListComponent implements OnInit {
   ngOnInit() {
     this.createEmps();
     this.hoursForm = this.createForm();
-    
-  }
-
-  valor3(de:string){
-alert(de)
   }
 
   list(): void {
-    this.showImage = !this.showImage;
-  }
-  assign(valor1: string, valor2: string, valor3: Date, valor4: Date){
-    
-    alert(valor1 + ' -- ' + valor2 + ' -- ' + valor3 + ' -- ' + valor4);
-  }
-  assign22(){
-    alert("rrrrrrr");
+    this.showDiv = !this.showDiv;
   }
 
-  ocultar(): void{
-    /* if(this.showImage)
-    this.showImage = false; */
-    this.showImage = !this.showImage;
+  assign(valor1: string, valor2: string, valor3: Date, valor4: Date) {
+    this.user = valor1;
+    // tslint:disable-next-line: prefer-for-of
+    for (let index = 0; index < this.employeeds.length; index++) {
+      if (this.employeeds[index].first === valor1) {
+        this.employeeds[index].horas = valor2;
+      }
+      this.list(); /* return; */
+    }
   }
+
 
   valor(dato: string) {
     /*  if (isNaN(dato) || dato < 10) {
@@ -80,8 +72,8 @@ alert(de)
   
   createForm(): FormGroup {
     return this.fb.group({
-       id: new FormControl(this.emp.id),
-       first: new FormControl(this.emp.first, [Validators.required]),
+       /* id: new FormControl(this.emp.id), */
+       first: new FormControl(this.emp.first, [Validators.required, Validators.minLength(4)]),
        last: new FormControl(this.emp.last, [Validators.required]),
       disable: new FormControl(this.emp.disponible, [Validators.required, Validators.minLength(4), Validators.maxLength(200)])
    
@@ -92,50 +84,59 @@ alert(de)
     });
   }
  
-
+getListEpls(){
+return this.employeeds;
+}
   createEmps() {
     this.employeeds = [
       {
         id: 1,
         first: 'Alice',
         last: 'Smith',
-        disponible: true
+        disponible: true,
+        horas: 0,
       },
       {
         id: 2,
         first: 'Bob',
         last: 'Davis',
-        disponible: true
+        disponible: true,
+        horas: 0,
       },
       {
         id: 3,
         first: 'Charlie',
         last: 'Rosenburg',
-        disponible: true
+        disponible: true,
+        horas: 0,
       },
       {
         id: 4,
         first: 'Ana',
         last: 'Frank',
-        disponible: true
+        disponible: true,
+        horas: 0,
       },
       {
         id: 5,
         first: 'Luca',
         last: 'Sugo',
-        disponible: true
+        disponible: true,
+        horas: 0,
       },
       {
         id: 6,
         first: 'Pepe',
         last: 'Paradise',
-        disponible: false
+        disponible: false,
+        horas: 0,
       },
       {
         id: 7,
         first: 'Shell',
         last: 'winner',
-        disponible: false
+        disponible: false,
+        horas: 0,
       }
     ];
   }
@@ -158,28 +159,9 @@ alert(de)
     console.log("this.employeedsFilter.length")
   }
 
-  
-  insertEnListaFilter() {
-
-    for (let dato = 1; dato <= this.employeeds.length; dato++) {
-      /*  if(!this.employeeds[dato].disponible){
-         this.employeedsFilter.concat(this.employeeds[dato])
-      } else {
-        this.otia.concat(this.employeeds[dato])
-      } */
-      if (!this.employeeds[dato].disponible) {
-        this.employeedsFilter.push("3"); //this.employeeds[dato].first
-        /* alert(this.employeeds[dato].first) */
-      }
-      console.log("hhh");
-    }
-
-    /* alert('si' + this.employeedsFilter.length); */
-
-  }
 
   compareWithFn = (o1, o2) => {
     return o1 && o2 ? o1.id === o2.id : o1 === o2;
-  };
+  }
 
 }
