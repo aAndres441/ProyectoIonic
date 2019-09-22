@@ -4,7 +4,6 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
 import {
-  EmpHoursDetailComponent,
  EmpHoursFormComponent,
  EmpHoursListComponent,
  EmpHoursPrintComponent
@@ -13,7 +12,6 @@ import {
 import { EmpHoursComponent } from './container/index';
 
 const COMPONENTS = [
-  EmpHoursDetailComponent,
   EmpHoursFormComponent,
   EmpHoursListComponent,
   EmpHoursPrintComponent

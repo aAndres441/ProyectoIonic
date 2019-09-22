@@ -6,7 +6,7 @@
       </ion-button>
     </ion-buttons> -->
     <ion-title style="text-align: center">
-      <h3>Horarios</h3>
+      <h3>Horarios {{interfaceOptions}}</h3>
     </ion-title>
     <!--  <ion-buttons slot="end">
       <ion-button (click)="showForm(null)">
@@ -21,32 +21,34 @@
         </ion-card-header> -->
 
 <ion-content mode="ios" fullscreen color="light">
-  <ion-form [formGroup]="hoursForm" (submit)="onSubmit()" > <!-- *ngIf="showImage" -->
-    <ion-grid>
-      <ion-row padding-top="2px">
-        <ion-col size="6" size-lg align-items-center>
-          <ion-label position="floating">Seleccione empleado:</ion-label>
-        </ion-col>
-        <ion-col size="6" size-lg>
-          <select #hourSelect formControlName="hourSelect">
-            <option *ngFor="let user of employeeds">{{user.first + ' ' + user.last}}</option>
-          </select>
-        </ion-col>
-      </ion-row>
-      <br>
-      <ion-row>
+  
+  <ion-form [formGroup]="hoursForm" (submit)="onSubmit()" > <!-- *ngIf="showDiv" -->
+    
+    <ion-grid>     
+      <ion-row padding-top="1px">
         <ion-col size="5" size-lg align-items-center>
           <ion-label position="floating">Ingrese las horas:</ion-label>
         </ion-col>
         <ion-col size="5" offset="1" size-lg>
           <ion-item>
-            <ion-input #selEmpl formControlName="selEmpl" type="number" autofocus required placeholder="(solo numero)">
+            <ion-input #hourSelect formControlName="hourSelect" type="number" autofocus required placeholder="solo numeros">
             </ion-input>
           </ion-item>
         </ion-col>
       </ion-row>
-      <br>
-      <ion-row>
+
+      <ion-row padding-top="1px">
+          <ion-col size="6" size-lg align-items-center>
+            <ion-label position="floating">Seleccione empleado:</ion-label>
+          </ion-col>
+          <ion-col size="6" size-lg>
+            <select #selEmpl formControlName="selEmpl" > 
+              <option *ngFor="let user of employeeds" value={{user.first}}>{{user.first + ' ' + user.last}}</option>
+            </select>
+          </ion-col>
+        </ion-row>
+
+        <ion-row padding-top="1px">
         <ion-col size="6" size-lg align-items-center>
           <ion-label>Fecha de inicio:</ion-label>
         </ion-col>
@@ -69,6 +71,7 @@
         </ion-col>
       </ion-row>
     </ion-grid>
+
   </ion-form>
   
     <ion-card>
@@ -80,7 +83,7 @@
             </ion-button>
           </ion-col>
           <ion-col size="5">
-            <ion-button (click)="assign(hourFin.value,hourIni.value,selEmpl.value, hourSelect.value)" expand="full" color="tertiary">
+            <ion-button (click)="assign(selEmpl.value, hourSelect.value,hourFin.value,hourIni.value)" expand="full" color="tertiary">
               <ion-icon color="light" name="add-circle-outline"></ion-icon>Asignar
             </ion-button>             
           </ion-col>
@@ -88,17 +91,17 @@
       </ion-grid>      
       
         <!-- Tabla -->
-      <div #table class="export-table" style=" align-content: center; padding-left:4px" *ngIf="employeeds && showImage">
+      <div #table class="export-table" style=" align-content: center; padding-left:4px" *ngIf="employeeds && showDiv">
           <hr/>
         <h4 style="background-color: hsl(218, 76%, 45%); color: beige; padding-top: 1px; padding-bottom: 1px; text-align: center">
           Listado de empleados</h4>
         <table >
-          <!-- class="export-table" style="align-self: auto; border:1; margin-top: 2px" -->
           <thead>
             <tr>
               <th>Name</th>
               <th>Apellido</th>
               <th>Disponible</th>
+              <th>Horas</th>
             </tr>
           </thead>
           <tbody>
@@ -106,6 +109,7 @@
               <td>{{ e.first | uppercase}}</td>
               <td>{{e.last | uppercase}}</td>
               <td>{{e.disponible }}</td>
+              <td>{{e.horas }}</td>
             </tr>
           </tbody>
         </table>

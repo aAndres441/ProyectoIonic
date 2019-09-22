@@ -6,10 +6,7 @@
     [empHou]="empHou" 
     (showComponent)="showPage($event)">
 </app-emp-hours-form>
-<app-emp-hours-detail *ngIf="showComponent == 'detail' else detail" #detail 
-    [detailEmpHours]="detailEmpHours"
-    (showComponent)="showPage($event)">
-</app-emp-hours-detail>
+
 <app-emp-hours-print *ngIf="showComponent == 'print' else print" #print 
     [empHours]="empHours"
     (showComponent)="showPage($event)">
