@@ -16,7 +16,6 @@ export class OrderListComponent implements OnInit {
   @ViewChild(IonInfiniteScroll, null) infiniteScroll: IonInfiniteScroll; // para usar el componente
   title = 'Orders';
 
-
   constructor() { }
 
   ngOnInit() {

@@ -62,7 +62,7 @@ export class PersonFormComponent implements OnInit {
    }  
   }
   valor(selectedPeson:string){
-    alert(selectedPeson);
+    alert(selectedPeson + "eee");
   }
   
   /*  saveData() {

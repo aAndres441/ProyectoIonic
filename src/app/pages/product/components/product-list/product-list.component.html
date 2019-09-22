@@ -3,7 +3,7 @@
   <ion-toolbar color="medium">
     <!--  <ion-title>Productos</ion-title> -->
     <ion-title>
-      <h3>{{title}}</h3>
+      <h3>Products</h3><!-- {{title}} -->
     </ion-title>
     <ion-buttons slot="end">
       <ion-button (click)="showForm(null)">
@@ -73,7 +73,7 @@
 </div>
 
 <!-- SKELETON -->
-<ion-list *ngIf = " products.length === 0">
+<ion-list *ngIf = " products.length === 0 || products === null">
   <ion-item *ngFor = " let i of [1,1,1,1,1,1]">
     <ion-label>
       <ion-skeleton-text width="40%"></ion-skeleton-text>
@@ -83,6 +83,8 @@
 </ion-list>
 
   <!-- infinite-scroll -->
+  <div #ver2 *ngIf = " productsFiler.length === 0"><h6 class="ion-text-center">No hay elementos.</h6></div>
+
   <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
     <ion-infinite-scroll-content loadingSpinner="crecent" loadingText="Loading more data...">
     </ion-infinite-scroll-content>

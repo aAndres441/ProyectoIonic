@@ -12,12 +12,12 @@ export class ProductComponent implements OnInit {
   products: Product[];
   detailProduct: Product = new Product();
   prod: Product = null;
-  showComponent: string = '';
+  showComponent: string = 'list';
 
   constructor(private productoService: ProductService, private router: Router) { }
 
   ngOnInit(): void {
-    this.getProducts(); 
+    this.getProducts();
   }
   
   loadMisProducts() {

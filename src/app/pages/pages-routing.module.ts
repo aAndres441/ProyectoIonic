@@ -5,6 +5,7 @@ import { ProductComponent } from './product/container/index';
 import { OrderComponent } from './order/container/index';
 import { SaleComponent } from './sale/container/index';
 import { PersonComponent } from './person/container/index';
+import { EmpHoursComponent } from './employee-hours/container/index';
 
 
 const routes: Routes = [{
@@ -26,13 +27,28 @@ const routes: Routes = [{
     {
       path: 'persons',
       component: PersonComponent
-    }/* ,
+    },
+    {
+      path: 'empHours',
+      component: EmpHoursComponent
+    }
+    /* ,
     {
       path: 'error',
       component: ErrorPage
     } */
   ]
 }
+/* 
+  { path: 'employee-hours', loadChildren: './components/employee-hours/employee-hours.module#EmployeeHoursPageModule' },
+  { path: 'employee-hours2', loadChildren: './employee-hours2/employee-hours2.module#EmployeeHours2PageModule' } */
+/*  import { EmpHoursComponent } from './employee-hours/container/index';
+ */
+    /* ,
+    {
+      path: 'EmployeeHoursComponent',
+      component: EmpHoursComponent
+    }  */ 
 
 ];
 

@@ -74,8 +74,10 @@
 </ion-item>
 </ion-list>
 
-<!-- infinite-scroll -->
-<ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
+<!-- infinite-scroll hidden-->
+<div #ver2 *ngIf = " sales.length === 0"><h6 class="ion-text-center">No hay elementos.</h6></div>
+
+<ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)" #vetr>
 <ion-infinite-scroll-content loadingSpinner="crecent" loadingText="Loading more data...">
 </ion-infinite-scroll-content>
 </ion-infinite-scroll>

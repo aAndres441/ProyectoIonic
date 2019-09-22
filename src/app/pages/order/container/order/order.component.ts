@@ -25,10 +25,10 @@ export class OrderComponent implements OnInit {
     this.getOrders();
   }
 
-  getOrders():void{
-    let order : Order;
+  getOrders(): void{
+    let order: Order;
     this.orderService.getOrders().subscribe(
-      (data:Array<Order>) => {
+      (data: Array<Order>) => {
         data.forEach(elem => {
           order = new Order();
           order.id = elem.id;

@@ -10,12 +10,15 @@ import { OrderModule } from './order/order.module';
 import { SaleModule } from './sale/sale.module';
 import { PersonModule } from './person/person.module';
 import { PipesModule } from '../pipes/pipes.module';
+import { EmployeeHoursModule } from './employee-hours/employee-hours.module';
+
 const MODULES = [
   ProductModule,
   OrderModule,
   SaleModule,
   SharedModule,
-  PersonModule
+  PersonModule,
+  EmployeeHoursModule
 ]
 const PIPES = [
   PipesModule
@@ -25,6 +28,7 @@ const PIPES = [
   declarations: [
     PagesComponent
   ],
+
   imports: [ 
     CommonModule,
     PagesRoutingModule,
@@ -32,8 +36,8 @@ const PIPES = [
     FormsModule,
     ...MODULES,
     ...PIPES
-    
   ],
+  
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })
 

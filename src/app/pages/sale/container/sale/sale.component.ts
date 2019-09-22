@@ -83,6 +83,7 @@ export class SaleComponent implements OnInit {
         break; 
       } 
       case "form": { 
+        this.showComponent = "form";
         if(obj.sale){
           this.sale = obj.sale;
         }else {

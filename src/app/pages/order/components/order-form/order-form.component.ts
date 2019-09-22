@@ -15,7 +15,7 @@ export class OrderFormComponent implements OnInit {
   @Output() showComponent = new EventEmitter<any>();
   @Input() products = new Array<Product>()
   @Output() pushOrder = new EventEmitter<any>();
-  public title: 'FORMULARIO';
+  public title: 'Order';
   public orderForm: FormGroup;
 
   constructor(private fb: FormBuilder, private alert: AlertController) { }

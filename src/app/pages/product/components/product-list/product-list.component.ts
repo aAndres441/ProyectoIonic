@@ -20,7 +20,7 @@ export class ProductListComponent implements OnInit {
   @Output() showComponent = new EventEmitter<any>();
   @ViewChild(IonInfiniteScroll, null) infiniteScroll: IonInfiniteScroll; // para usar el componente
   productSelected: number = 0;
-  title = 'Products';
+  public title = 'Products';
   productoBuscado: string = '';
   productsFiler = new Array<Product>();
 
@@ -38,6 +38,7 @@ export class ProductListComponent implements OnInit {
   }
   ngOnInit() {
     this.productsFiler = this.products;
+    console.log(this.products.values)
    }
 
   /* enviarMensaje() {

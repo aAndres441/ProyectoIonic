@@ -7,11 +7,17 @@ import {
   PersonListComponent,
   PersonDetailComponent
   } from './components/index';
+
 import { PersonComponent } from './container/index';
 
-const COMPONENTS = [PersonFormComponent,PersonListComponent,PersonDetailComponent]
-const CONTAINER = [PersonComponent]
+const COMPONENTS = [
+  PersonFormComponent,
+  PersonListComponent,
+  PersonDetailComponent];
 
+const CONTAINER = [
+  PersonComponent
+];
 
 @NgModule({
   declarations: [

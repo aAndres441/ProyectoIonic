@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter, ViewChild } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
 import { IonInfiniteScroll } from '@ionic/angular';
 import { Sale } from '../../model/sale.model';
 
@@ -35,6 +35,7 @@ export class SaleListComponent implements OnInit {
         tmstmp: null
       }
     }
+    
     return this.showComponent.emit({ "page": "form", "sale": s });
   }
 
@@ -66,7 +67,7 @@ export class SaleListComponent implements OnInit {
   loadData(event) {
     setTimeout(() => {
       console.log('Carga siguientes...');
-
+   
       if (this.sales.length > 5) {
         this.infiniteScroll.disabled = true;
         return;

@@ -1,0 +1,86 @@
+table th{  
+    color: hsl(218, 76%, 45%);
+}
+.export-table{
+    background-color: aquamarine;
+    width: 100%; 
+}
+option{
+--ion-color-contrast: #237ad4;
+color: #237ad4;
+}
+select{
+    /* height: 224px; */
+    width: 154px;
+}
+
+table{
+    width: 100%; /* 
+    box-sizing: content-box; */
+}
+
+hr{    
+    border: solid 1px;
+    border-color: rgb(240, 113, 113);
+    margin-top: 1px;  
+}
+.error p{
+    color: rgb(188, 92, 207);
+    font-size: 16px;
+}
+
+h3, ion-icon, h4{
+    color:hsl(218, 76%, 45%);
+    font-weight: bold;
+    margin-top:2px;
+}
+ion-card{
+    height: auto; 
+}
+
+ion-content{   
+    padding-top: 3px;
+    height: 100%;
+   display: flex;
+   flex-direction: row;
+   flex-wrap: wrap;
+   justify-content: center;
+   align-items: center;      
+}
+.btn-send:hover{
+    background-color:rgb(221, 219, 219); 
+    color:gold;
+}
+.btn-send{
+    width: 95px;
+    padding: 1px;
+    margin:25px;
+    background-color:  hsl(218, 76%, 45%);
+}
+.btn{
+    width: 100%;
+    background-color:  hsl(218, 76%, 45%);
+}
+/* ion-form{
+    position: relative;
+    top:14px;
+    margin  : 0;
+} */
+/* ion-radio-group { */
+    /* text-align: center;
+    align-content: center; */
+ /*    padding-top: 12px;
+    background-color:white;
+    width: 100%;
+   display:flex;
+   margin: auto;
+} */
+
+/* ion-list-header ion-label{
+    margin: auto;
+}
+    #emp ion-label{
+        text-align: left;
+        align-content: left;
+        margin-right: 0px;
+        } */

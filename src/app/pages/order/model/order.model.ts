@@ -9,5 +9,6 @@ export class Order {
     count : number;
     totalAmount : number;
     tmstmp : Date;
+    
     constructor(){}
 }
