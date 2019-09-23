@@ -19,7 +19,6 @@
 </ion-header>
 
 <ion-content mode="ios" fullscreen color="light">
-    <div style="background-color: rebeccapurple"></div>
   <ion-form [formGroup]="saleForm" mode="ios" novalidate>
     <ion-item>
       <!--  <ion-label>Client:</ion-label>
@@ -45,7 +44,7 @@
         </ion-item> -->
     <ion-label position="floating">Descripcion:</ion-label>
     <ion-item>
-      <ion-textarea  formControlName="description" name="Description:" required placeholder=" * * " minlength="4"
+      <ion-textarea formControlName="description" name="Description:" required placeholder=" * * " minlength="4"
         maxlength="200">
       </ion-textarea>
     </ion-item>
@@ -68,14 +67,15 @@
         <ion-icon name="close"></ion-icon>
       </ion-button>
     </div>
-  </ion-form>
-   <ion-button expand="full" color="danger"(click)="presentToast()">presentToast()</ion-button>
 
-  
-<!--   <app-order [sale]="venta" [products]="products" [showOrder]="showOrder" [orders]="orders"
-    (actionOrder)="actionOrder($event)">
-  </app-order>
- -->
+    <app-order-form *ngIf="showOrder" #showForm [products]="products" [order]="order" (pushOrder)="pushOrder($event)">
+    </app-order-form>
+    <app-order-list *ngIf="!showOrder" #showList (newOrder)="newOrder($event)" [orders]="orders">
+    </app-order-list>
+
+  </ion-form>
+  <ion-button expand="full" color="danger" (click)="presentToast()">AVISO</ion-button>
+
 </ion-content>
 <!-- 
 id : new FormControl(this.sale.id, ),

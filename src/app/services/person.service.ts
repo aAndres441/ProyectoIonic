@@ -54,7 +54,7 @@ export class PersonService {
       map(
         (data: Person) => data
       )
-    )
+    );
   }
 
   addPerson(person: Person): Observable<any> {
@@ -65,7 +65,7 @@ export class PersonService {
       })
     };
     const body = {
-      /* 'id':person.id, */
+       'id':person.id, 
       'name': person.name,
       'lastName': person.lastName,
       'documentNumber': person.documentNumber,
@@ -74,7 +74,7 @@ export class PersonService {
       'telephone': person.telephone,
       'available': person.available,
       'tmstmp': person.tmstmp,
-    }
+    };
     if (person.id) {
       return this.http.put<Person>(environment.API_BASE + 'persons/' + person.id, body, httpOptions).pipe(
         map(

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpHeaders } from '@angular/common/http';
+import {HttpClient } from '@angular/common/http';
+import { Product } from '../pages/product/model/product.model';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { map } from 'rxjs/operators';
@@ -15,7 +16,7 @@ export class SaleService {
   getSales(): Observable<Sale[]> {
     return this.http.get<Array<Sale>>(environment.API_BASE + 'sales').pipe(
       map(
-          (data:Array<Sale>) => this.saleTransform(data)
+          (data: Array<Sale>) => this.saleTransform(data)
       )
     )
   } 

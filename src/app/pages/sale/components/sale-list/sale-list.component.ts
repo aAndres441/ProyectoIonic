@@ -45,9 +45,8 @@ export class SaleListComponent implements OnInit {
 
   deleteSale(i: number) {
     const s = this.sales[i];
-    /*  return this.showComponent.emit({"page":"delete","sale":s}); */
-
-    console.log('DELETE PROD ' + s.clientName);
+     /* console.log('DELETE PROD ' + s.clientName); */
+    return this.showComponent.emit({"page":"delete","sale":s});
   }
 
   /* refresh */
