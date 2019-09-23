@@ -8,7 +8,7 @@ const routes: Routes = [
   { path: 'home', component: HomePage },
   { path: 'layout', loadChildren: '../app/pages/pages.module#PagesModule'},
   { path: '**', redirectTo: 'error' },
-  { path: 'error', component: ErrorPage  } 
+  { path: 'error', component: ErrorPage  }
 
 // './app/shared/error/error.module#ErrorPageModule'
 ];

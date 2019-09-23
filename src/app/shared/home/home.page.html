@@ -16,6 +16,12 @@
 
   <ion-card>
     <ion-button expand="full" fill="outline">
+      <a routerLink="/layout/empHours">Hours/Emp </a>
+    </ion-button>
+  </ion-card>
+
+  <ion-card>
+    <ion-button expand="full" fill="outline">
       <!-- shape="round" -->
       <a routerLink="/layout/products">PRODUCTOS</a>
       <!-- <ion-icon name="arrow-forward" slot="end"></ion-icon> -->
@@ -28,38 +34,41 @@
     </ion-button>
   </ion-card>
 
-  <ion-card>
-    <ion-button expand="full" fill="outline">
-      <a routerLink="/layout/empHours">Hours/Emp </a>
-    </ion-button>
-  </ion-card>
-
+<!-- 
   <ion-card>
     <ion-button expand="full" fill="outline">
       <a routerLink="/layout/shippingForm">shippingForm </a>
     </ion-button>
-  </ion-card>
+  </ion-card> -->
 
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button>
+    <ion-fab-button color="medium">
       <ion-icon name="share"></ion-icon>
     </ion-fab-button>
     <ion-fab-list side="top">
       <ion-fab-button><a routerLink="/layout/sales">
-        <ion-icon name="paper-plane" color="primary"></ion-icon></a>
+          <ion-icon name="paper-plane" color="primary"></ion-icon>
+        </a>
       </ion-fab-button>
       <ion-fab-button><a routerLink="/layout/orders">
-        <ion-icon name="cart" color="primary"></ion-icon></a>
+          <ion-icon name="cart" color="primary"></ion-icon>
+        </a>
       </ion-fab-button>
     </ion-fab-list>
     <ion-fab-list side="start">
       <ion-fab-button><a routerLink="/layout/products">
-          <ion-icon name="cube" color="primary"></ion-icon> </a>
+          <ion-icon name="cube" color="primary"></ion-icon>
+        </a>
+      </ion-fab-button>
+      <ion-fab-button><a routerLink="/layout/persons">
+          <ion-icon name="body" color="primary"></ion-icon>
+        </a>
       </ion-fab-button>
       <ion-fab-button><a routerLink="/layout/empHours">
-        <ion-icon name="body" color="tertiary"></ion-icon> </a>
+        <ion-icon name="time" color="primary"></ion-icon>
+      </a>
     </ion-fab-button>
-    </ion-fab-list>    
+    </ion-fab-list>
   </ion-fab>
 
 </ion-content>

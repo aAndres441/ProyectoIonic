@@ -18,55 +18,64 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content mode="ios" fullscreen color="light" >
-<ion-form [formGroup]="saleForm"  mode="ios" novalidate>
-  <ion-item>
-   <!--  <ion-label>Client:</ion-label>
+<ion-content mode="ios" fullscreen color="light">
+    <div style="background-color: rebeccapurple"></div>
+  <ion-form [formGroup]="saleForm" mode="ios" novalidate>
+    <ion-item>
+      <!--  <ion-label>Client:</ion-label>
     <ion-select formControlName="productName">
       <ion-select-option *ngFor="let p of products" required>{{p.name}}</ion-select-option>
     </ion-select> -->
-  <!-- </ion-item> -->
-  <!-- <ion-item class="error" *ngIf="!productName.valid  && (productName.dirty || productName.touched)">
+      <!-- </ion-item> -->
+      <!-- <ion-item class="error" *ngIf="!productName.valid  && (productName.dirty || productName.touched)">
     <p *ngIf="productName.errors.required" color="danger" ion-text>productName is required </p>
   </ion-item> -->
 
-  <!-- <ion-item> -->
-    <ion-label>Cliente:</ion-label>
-    <ion-select formControlName="clientName">
-      <ion-select-option *ngFor="let c of clients" required>{{c.name}}</ion-select-option>
-    </ion-select>
-  </ion-item>
-  <!--  <ion-item class="error" *ngIf="!clientName.valid  && (clientName.dirty || clientName.touched)">
+      <!-- <ion-item> -->
+      <ion-label>Cliente:</ion-label>
+      <ion-select formControlName="clientName" (ionChange)="onChange($event)">
+        <ion-select-option *ngFor="let c of clients" value="{{c.id}}" required>{{c.name}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <!--  <ion-item class="error" *ngIf="!clientName.valid  && (clientName.dirty || clientName.touched)">
         <p *ngIf="clientName.errors.required" color="danger" ion-text>client is required </p>
       </ion-item> -->
-   <!--    <ion-item class="error" *ngIf="!productName.valid  && (productName.dirty || productName.touched)">
+    <!--    <ion-item class="error" *ngIf="!productName.valid  && (productName.dirty || productName.touched)">
           <p *ngIf="productName.errors.required" color="danger" ion-text>productName is required </p>
         </ion-item> -->
-        <ion-label position="floating">Descripcion:</ion-label>
-        <ion-item>
-          <ion-textarea formControlName="description" name="Description:" required placeholder=" * * " minlength="4" maxlength="200">
-          </ion-textarea>
-        </ion-item>
-        <ion-item class="error" *ngIf="!description.valid  && (description.dirty || description.touched)">
-          <p *ngIf="description.errors.required" color="danger"> Description is required</p>
-          <p *ngIf="description.errors.minlength" color="danger">Must be at least 4 characters</p>
-          <p *ngIf="description.errors.maxlength" color="danger">Must be max 200 characters</p>
-        </ion-item>
+    <ion-label position="floating">Descripcion:</ion-label>
+    <ion-item>
+      <ion-textarea  formControlName="description" name="Description:" required placeholder=" * * " minlength="4"
+        maxlength="200">
+      </ion-textarea>
+    </ion-item>
+    <ion-item class="error" *ngIf="!description.valid  && (description.dirty || description.touched)">
+      <p *ngIf="description.errors.required" color="danger"> Description is required</p>
+      <p *ngIf="description.errors.minlength" color="danger">Must be at least 4 characters</p>
+      <p *ngIf="description.errors.maxlength" color="danger">Must be max 200 characters</p>
+    </ion-item>
 
-  <!-- <app-order-form *ngIf="showOrder" #showForm [products]="products" [order]="order" (pushOrder)="pushOrder($event)">
+    <!-- <app-order-form *ngIf="showOrder" #showForm [products]="products" [order]="order" (pushOrder)="pushOrder($event)">
   </app-order-form>
 
   <app-order-list *ngIf="!showOrder" #showList (newOrder)="newOrder($event)" [orders]="orders">
   </app-order-list> -->
-  <div class="btn">
+    <div class="btn">
       <ion-button type="submit" fill="clear" class="btn-send" [disable]="!productForm.valid" (click)="onSubmit()">
-          <ion-icon name="checkmark"></ion-icon>
-           </ion-button>
+        <ion-icon name="checkmark"></ion-icon>
+      </ion-button>
       <ion-button type="button" fill="clear" class="btn-send" (click)="onReset()">
-        <ion-icon name="close"></ion-icon> 
-        </ion-button>
-  </div>
-</ion-form>
+        <ion-icon name="close"></ion-icon>
+      </ion-button>
+    </div>
+  </ion-form>
+   <ion-button expand="full" color="danger"(click)="presentToast()">presentToast()</ion-button>
+
+  
+<!--   <app-order [sale]="venta" [products]="products" [showOrder]="showOrder" [orders]="orders"
+    (actionOrder)="actionOrder($event)">
+  </app-order>
+ -->
 </ion-content>
 <!-- 
 id : new FormControl(this.sale.id, ),
