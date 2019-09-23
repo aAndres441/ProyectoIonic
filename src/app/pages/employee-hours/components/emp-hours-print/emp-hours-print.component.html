@@ -1,3 +1,57 @@
-<p>
-  emp-hours-print works!
-</p>
+
+
+<ion-card-header>
+  <ion-toolbar color="medium">
+      <ion-title>
+          <h4  style="color: rgb(253, 148, 78)">Download</h4><!-- {{title}} -->
+        </ion-title>
+    <ion-buttons slot="start">
+      <ion-button (click)="showList()">
+        <ion-icon name="arrow-back" > </ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-card-header>
+
+  <!-- PDF -->   
+  <ion-content padding [scrollEvents]="true" fullscreen mode="ios" class=" ion-padding ">
+
+  <div #reporteDiv style="border:solid 2px red;"> <!-- style="display: none;"  [hidden]="true"-->    
+   
+     <h4   style="background-color: red; color: beige; padding-top: 2px; padding-bottom: 2px; text-align: center">Listado de Empleados</h4>
+     <ion-list lines="full" no-border *ngFor="let p of persons" style="margin:1px">
+      <p style="text-align: center"> Empleado: {{p.first}}   {{p.last}} Fecha:  {{p.tmstmp | date}}</p>
+      <br>
+      <!-- <p>Compra: {{p.productName}} +"|"+ Venta: {{p.productName}} </p> -->
+      <p>Estado:{{p.disponible}}</p>
+      
+      <p>Total: {{p.horas}}</p>
+      <p><strong>TOTAL: {{p.id}}</strong></p>
+      <hr/>
+    </ion-list>    
+  </div>
+  
+  <ion-item>
+    <ion-button slot="end" (click)="DownloadtoPDF()" color="medium">
+      <ion-icon slot="start" name="save"> </ion-icon>Confirm download 
+    </ion-button>
+  </ion-item>
+  <!-- termina PDF -->
+
+  <!-- SKELETON -->
+<ion-list *ngIf = " persons.length === 0">
+  <ion-item *ngFor = " let i of [1,1,1,1,1,1]">
+    <ion-label>
+      <ion-skeleton-text width="40%"></ion-skeleton-text>
+      <ion-skeleton-text width="70%"></ion-skeleton-text>
+    </ion-label>
+  </ion-item>
+</ion-list>
+
+<!-- infinite-scroll -->
+<ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
+    <ion-infinite-scroll-content loadingSpinner="crecent" loadingText="Loading more data...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
+</ion-content>

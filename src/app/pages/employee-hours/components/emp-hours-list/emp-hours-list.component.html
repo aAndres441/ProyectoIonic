@@ -15,40 +15,48 @@
     </ion-buttons> -->
   </ion-toolbar>
 </ion-header>
-<!-- select -->
-
-<!-- <ion-card-header style="text-align: center; color:  rgb(15, 32, 129)"><strong>Select Employee</strong>
-        </ion-card-header> -->
 
 <ion-content mode="ios" fullscreen color="light">
-  
-  <ion-form [formGroup]="hoursForm" (submit)="onSubmit()" > <!-- *ngIf="showDiv" -->
-    
-    <ion-grid>     
+  <ion-form [formGroup]="hoursForm" (submit)="onSubmit()">
+    <ion-grid>
       <ion-row padding-top="1px">
         <ion-col size="5" size-lg align-items-center>
           <ion-label position="floating">Ingrese las horas:</ion-label>
         </ion-col>
         <ion-col size="5" offset="1" size-lg>
           <ion-item>
-            <ion-input #hourSelect formControlName="hourSelect" type="number" autofocus required placeholder="solo numeros">
+            <ion-input #hourSelect formControlName="hourSelect" type="number" autofocus required
+              placeholder="solo numeros">
             </ion-input>
           </ion-item>
         </ion-col>
       </ion-row>
+      <ion-row *ngIf=" hourSelect.value === '' ">
+        <!--  hourSelect.value === 0  || -->
+        <ion-col size="12" style="text-align: center">
+          <p class="error" #errorDiv style="border:solid 1px rgb(0, 255, 42);background-color: pink; color:red"> Debe
+            ingresar las horas </p>
+        </ion-col>
+      </ion-row>
 
       <ion-row padding-top="1px">
-          <ion-col size="6" size-lg align-items-center>
-            <ion-label position="floating">Seleccione empleado:</ion-label>
-          </ion-col>
-          <ion-col size="6" size-lg>
-            <select #selEmpl formControlName="selEmpl" > 
-              <option *ngFor="let user of employeeds" value={{user.first}}>{{user.first + ' ' + user.last}}</option>
-            </select>
-          </ion-col>
-        </ion-row>
+        <ion-col size="6" size-lg align-items-center>
+          <ion-label position="floating">Seleccione empleado:</ion-label>
+        </ion-col>
+        <ion-col size="6" size-lg>
+          <select #selEmpl formControlName="selEmpl">
+            <option *ngFor="let user of employeeds" value={{user.first}}>{{user.first + ' ' + user.last}}</option>
+          </select>
+        </ion-col>
+      </ion-row>
+      <ion-row *ngIf="selEmpl.value === ''">
+        <ion-col size="12" style="text-align: center">
+          <p class="error" #errorDiv style="border:solid 1px rgb(0, 255, 42);background-color: pink; color:red"> Debe
+            seleccionar un empleado </p>
+        </ion-col>
+      </ion-row>
 
-        <ion-row padding-top="1px">
+      <ion-row padding-top="1px">
         <ion-col size="6" size-lg align-items-center>
           <ion-label>Fecha de inicio:</ion-label>
         </ion-col>
@@ -72,94 +80,64 @@
       </ion-row>
     </ion-grid>
 
-  </ion-form>
-  
-    <ion-card>
+    <ion-item-divider>
       <ion-grid>
         <ion-row>
-          <ion-col size="5" offset="1">
+          <ion-col size="4">
             <ion-button (click)="list()" expand="full" color="tertiary">
               <ion-icon color="light" name="list"></ion-icon>Listado
             </ion-button>
           </ion-col>
-          <ion-col size="5">
-            <ion-button (click)="assign(selEmpl.value, hourSelect.value,hourFin.value,hourIni.value)" expand="full" color="tertiary">
+          <ion-col size="4">
+            <ion-button (click)="deleteHoras(selEmpl)" expand="full" color="tertiary">
+              <ion-icon color="light" name="remove-circle-outline"></ion-icon>Quitar
+            </ion-button>
+          </ion-col>
+          <ion-col size="4">
+            <ion-button (click)="assign(selEmpl, hourSelect,hourFin,hourIni)" expand="full" color="tertiary">
               <ion-icon color="light" name="add-circle-outline"></ion-icon>Asignar
-            </ion-button>             
+            </ion-button>
           </ion-col>
         </ion-row>
-      </ion-grid>      
-      
-        <!-- Tabla -->
-      <div #table class="export-table" style=" align-content: center; padding-left:4px" *ngIf="employeeds && showDiv">
-          <hr/>
-        <h4 style="background-color: hsl(218, 76%, 45%); color: beige; padding-top: 1px; padding-bottom: 1px; text-align: center">
-          Listado de empleados</h4>
-        <table >
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Apellido</th>
-              <th>Disponible</th>
-              <th>Horas</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let e of employeeds; let i=index">
-              <td>{{ e.first | uppercase}}</td>
-              <td>{{e.last | uppercase}}</td>
-              <td>{{e.disponible }}</td>
-              <td>{{e.horas }}</td>
-            </tr>
-          </tbody>
-        </table>
-        
-      </div>
-  <!-- new form -->
-  <ion-form [formGroup]="hoursFormulario" (submit)="onSubmit()">
-    <ion-label position="floating">Horas:</ion-label>
-    <!--    <ion-item>
-          <ion-input #selEmpl formControlName="hour" type="number" required placeholder=" * * "></ion-input>
-        </ion-item>
-        <ion-item class="error" *ngIf="!hour.valid  && (hour.dirty || hour.touched)">
-          <p *ngIf="hour.errors.required" color="danger" ion-text>Hour is required </p>
-        </ion-item> -->
+        <div class="alert" *ngIf="hourIni.value > hourFin.value" style="text-align: center">
+          <!-- [hidden]="true" -->
+          <p class="error" #errorDiv style="border:solid 1px rgb(0, 255, 42);background-color: pink; color:red"> Fecha
+            de inicio debe ser anterior a fecha final </p>
+        </div>
+      </ion-grid>
+    </ion-item-divider>
   </ion-form>
-  <!-- termina -->
-
-  
-
-  <!--  <ion-form [formGroup]="hoursForm" (submit)="onSubmit()">      
-       
-      <ion-label position="floating">Horas:</ion-label>
-      <ion-item>
-        <ion-input #selEmpl formControlName="hour" type="number" required placeholder=" * * "></ion-input>
-      </ion-item>
-      <ion-item class="error" *ngIf="!hour.valid  && (hour.dirty || hour.touched)">
-        <p *ngIf="hour.errors.required" color="danger" ion-text>Hour is required </p>
-      </ion-item>
-
-      <ion-label position="floating">Descripcion:</ion-label>
-      <ion-item>
-        <ion-textarea formControlName="description" name="description:" required placeholder=" * * " minlength="4"
-          maxlength="200">
-        </ion-textarea>
-      </ion-item>
-      <ion-item class="error" *ngIf="!description.valid  && (description.dirty || description.touched)">
-        <p *ngIf="description.errors.required" color="danger"> Description is required</p>
-        <p *ngIf="description.errors.minlength" color="danger">Must be at least 4 characters</p>
-        <p *ngIf="description.errors.maxlength" color="danger">Must be max 200 characters</p>
-      </ion-item>
-
-      <div class="btn">
-        <ion-button type="submit" fill="clear" class="btn-send" [disable]="!productForm.valid" (click)="onSubmit()">
-          <ion-icon name="checkmark"></ion-icon>
-        </ion-button>
-        <ion-button type="button" fill="clear" class="btn-send" (click)="cancel()">
-          <ion-icon name="close"></ion-icon>
-        </ion-button>
-      </div>
-    
-    </ion-form> -->
+<!--   <ion-button expand="full" color="danger"(click)="presentToast()">presentToast()</ion-button>
+ -->
+  <ion-card>
+    <!-- style="display: none;"  [hidden]="true"-->
+    <!-- Tabla -->
+    <div #table class="export-table" style=" align-content: center; padding-left:4px" *ngIf="employeeds && showDiv">
+      <hr />
+      <h4
+        style="background-color: hsl(218, 76%, 45%); color: beige; padding-top: 1px; padding-bottom: 1px; text-align: center">
+        Listado de empleados</h4>
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Apellido</th>
+            <th>Inicio</th>
+            <th>Final</th>
+            <th>Horas</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let e of employeeds; let i=index">
+            <td>{{ e.first | uppercase}}</td>
+            <td>{{e.last | uppercase}}</td>
+            <td>{{e.fechaI  | date:'shortDate'}}</td>
+            <td>{{e.fechaF  | date:'M/d/yy' }}</td>
+            <td>{{e.horas }}</td>            
+          </tr>
+        </tbody>
+      </table>
+    </div>    
   </ion-card>
+
 </ion-content>
