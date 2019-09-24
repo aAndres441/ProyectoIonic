@@ -19,7 +19,9 @@ export class EmpHoursListComponent implements OnInit {
   public empls: Person[];
   employeeds: any[];
   employeedsFilter: any[];
-  @ViewChild('errorDiv', { static: true }) errorDiv: ElementRef;
+  @Output() showComponent = new EventEmitter<any>();
+  @ViewChild('errorDiv', { static: true }) errorDiv: ElementRef; 
+  @ViewChild('reporteDiv', { static: true }) reporteDiv: ElementRef;
   public horasDia: {
     cantHora: number;
     fecha: Date;
@@ -205,5 +207,8 @@ export class EmpHoursListComponent implements OnInit {
     });
     toast.present();
   }
-
+  DownloadtoPDF(){    
+    return this.showComponent.emit({ 'page': 'print'});
+    /* alert("estos" + this.products.length); */
+  }
 }

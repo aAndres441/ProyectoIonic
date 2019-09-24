@@ -34,7 +34,7 @@ export class EmpHoursPrintComponent implements OnInit {
     /* alert(this.reporteDiv.nativeElement.innerHTML); */
     const pdf = new jsPDF('p', 'pt', 'a4');
     pdf.addHTML(this.reporteDiv.nativeElement, () => {
-      pdf.save( 'Orden.pdf');
+      pdf.save( 'Horarios.pdf');
     });
   }
 

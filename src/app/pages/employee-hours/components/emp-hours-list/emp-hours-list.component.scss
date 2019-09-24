@@ -2,7 +2,7 @@ table th{
     color: hsl(218, 76%, 45%);
 }
 .export-table{
-    background-color: rgb(208, 250, 236);
+    /* background-color: rgb(208, 250, 236); */
     width: 100%; 
 }
 option{
@@ -43,6 +43,14 @@ ion-content{
    justify-content: center;
    align-items: center;      
 }
+/* ion-item{
+    color:hsl(218, 76%, 45%);
+    background-color: hsl(218, 76%, 45%);
+}
+ion-button{
+    color:hsl(218, 76%, 45%);
+    background-color: hsl(218, 76%, 45%);
+} */
 .btn-send:hover{
     background-color:rgb(221, 219, 219); 
     color:gold;

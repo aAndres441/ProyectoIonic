@@ -107,7 +107,7 @@
       </ion-grid>
     </ion-item-divider>
   </ion-form>
-<!--   <ion-button expand="full" color="danger"(click)="presentToast()">presentToast()</ion-button>
+  <!--   <ion-button expand="full" color="danger"(click)="presentToast()">presentToast()</ion-button>
  -->
   <ion-card>
     <!-- style="display: none;"  [hidden]="true"-->
@@ -133,11 +133,20 @@
             <td>{{e.last | uppercase}}</td>
             <td>{{e.fechaI  | date:'shortDate'}}</td>
             <td>{{e.fechaF  | date:'M/d/yy' }}</td>
-            <td>{{e.horas }}</td>            
+            <td>{{e.horas }}</td>
           </tr>
         </tbody>
       </table>
-    </div>    
+
+      <ion-toolbar>
+        <ion-buttons slot="end">
+          <ion-button (click)="DownloadtoPDF()">
+            <ion-icon name="save"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+
+    </div>
   </ion-card>
 
 </ion-content>
