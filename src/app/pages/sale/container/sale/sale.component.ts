@@ -74,7 +74,6 @@ export class SaleComponent implements OnInit {
       } 
       case "form": { 
         this.sale = obj.sale;
-       
         this.getClients();
         break; 
       }
@@ -107,7 +106,6 @@ export class SaleComponent implements OnInit {
               id : null,
               purchaseId:null,
               saleId:id,
-              charterId:-1,
               productId:elem.productId,
               productName : elem.productName,
               description : elem.description,

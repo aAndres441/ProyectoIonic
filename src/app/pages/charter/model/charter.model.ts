@@ -1,9 +1,11 @@
 export interface Charter {
     id : number;
-    travelId : number;
+    travelerId : number;
+    travelerName : string;
+    date : Date;
     sourceAddress : string;
     destinationAddress : string;
     price:number;
     description : string;
-    tmstmp: Date
+    tmstmp: Date;
 }

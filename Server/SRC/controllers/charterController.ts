@@ -4,7 +4,7 @@ import pool from '../database';
 class CharterController {
 
     public async list(req: Request, res: Response) {
-        res.json(await pool.query('select distinct f.id as id,f.viajeId as travelId,f.direccion_origen as sourceAddress,f.direccion_destino as destinationAddress,f.descripcion as description,f.tmstmp as tmstmp from flete f'));
+        res.json(await pool.query('select distinct f.id as id,p.id as travelerId,p.nombre as travelerName,f.fecha as date,f.direccion_origen as sourceAddress,f.direccion_destino as destinationAddress,f.descripcion as description,f.tmstmp as tmstmp from flete f left join persona p on f.fleteroId = p.id'));
     }
   
     public async getId (req:Request,res:Response){

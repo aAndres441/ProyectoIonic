@@ -9,16 +9,16 @@ import { PagesRoutingModule } from './pages-routing.module';
 import { ProductModule } from './product/product.module';
 import { OrderModule } from './order/order.module';
 import { SaleModule } from './sale/sale.module';
-import { TravelModule } from './travel/travel.module';
+import { ExtraExpensesModule } from './extra-expenses/extra-expenses.module';
 
 const MODULES = [
   SharedModule,
   ProductModule,
   OrderModule,
   SaleModule,
-  TravelModule,
   CharterModule,
-  AssignCharterModule
+  AssignCharterModule,
+  ExtraExpensesModule
 ]
 
 @NgModule({

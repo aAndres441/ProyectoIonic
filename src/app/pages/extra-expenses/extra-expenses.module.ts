@@ -2,18 +2,16 @@ import { NgModule ,CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
+import { ExtraExpensesFormComponent,ExtraExpensesListComponent } from './components/index';
+import { ExtraExpensesComponent } from './container/index';
 
-import { TravelService } from 'src/app/services/travel.service';
-import { TravelFormComponent, TravelListComponent } from './components/index'
-import { TravelComponent } from './container/index'
-const COMPONENTS = [
-  TravelFormComponent,
-  TravelListComponent
+const COMPONENTS =[
+  ExtraExpensesFormComponent,
+  ExtraExpensesListComponent
 ]
 const CONTAINER = [
-  TravelComponent
+  ExtraExpensesComponent
 ]
-
 
 @NgModule({
   declarations: [
@@ -26,9 +24,9 @@ const CONTAINER = [
     FormsModule,
     IonicModule
   ],
-  schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
-  providers: [
-    TravelService
-  ]
+  exports:[
+    
+  ],
+  schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })
-export class TravelModule { }
+export class ExtraExpensesModule { }

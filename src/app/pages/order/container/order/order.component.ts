@@ -12,21 +12,19 @@ import { Product } from 'src/app/pages/product/model/product.model';
 })
 export class OrderComponent implements OnInit {
   @Input() sale:Sale;
-  @Input() showOrder:string;
   @Input() products = new Array<Product>();
   @Output() actionOrder = new EventEmitter();
   @Input() orders = new Array<Order>();
   
   detailOrder : Order = null;
   order : Order = null;
-  showComponent:string;
+  showComponent:string = 'form';
 
   constructor( private orderService: OrderService, 
     private router: Router ) { }
 
-  ngOnInit(): void {
-    this.showComponent = this.showOrder;
-    if(this.sale.id>0){
+  ngOnInit() {
+    if(this.sale && this.sale.id){
       this.getOrders(this.sale.id);
     }
   }
@@ -40,7 +38,6 @@ export class OrderComponent implements OnInit {
       productName : null,
       purchaseId : null,
       saleId : null,
-      charterId:-1,
       tmstmp : null,
       totalAmount : null
     }
@@ -55,7 +52,6 @@ export class OrderComponent implements OnInit {
             id : elem.id,
             purchaseId:null,
             saleId:null,
-            charterId:-1,
             productId:null,
             productName : elem.productName,
             description : elem.description,
@@ -65,6 +61,8 @@ export class OrderComponent implements OnInit {
           }
           this.orders.push(order);
         });
+        console.log(this.orders)
+        this.showComponent = 'list';
       }
     );
   }

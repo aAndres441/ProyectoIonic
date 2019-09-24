@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { map } from 'rxjs/operators';
-import { Charter } from '../pages/charter/model/charter';
+import { Charter } from '../pages/charter/model/charter.model';
 
 @Injectable({
   providedIn: 'root'
@@ -26,7 +26,9 @@ export class CharterService {
     for (let i = 0; i < data.length; i++) {
       charter = {
         id: data[i].id,
-        travelId : null,
+        travelerId : data[i].travelerId,
+        travelerName: data[i].travelerName,
+        date :data[i].date,
         sourceAddress : data[i].sourceAddress,
         destinationAddress : data[i].destinationAddress,
         price:data[i].price,
@@ -45,9 +47,10 @@ export class CharterService {
       })
     };
     const body = {
-      'travelId': charter.travelId,
+      'travelerId': charter.travelerId,
+      'date':charter.date,
       'sourceAddress': charter.sourceAddress,
-      'destinationAddress': charter.description,
+      'destinationAddress': charter.destinationAddress,
       'price': charter.price,
       'description': charter.description
     }

@@ -17,7 +17,9 @@ export class OrderListComponent implements OnInit {
   constructor() {  }
 
   ngOnInit() {
-   
+   if(this.saleId){
+     
+   }
   }
   
   showDetail(p:Order){

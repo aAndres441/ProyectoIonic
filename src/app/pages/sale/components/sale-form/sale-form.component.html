@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar color="primary">
-    <ion-title>Nueva Venta</ion-title>
+    <ion-title>Venta</ion-title>
     <ion-buttons slot="primary">
       <ion-button (click)="onSubmit()" ><ion-icon name="add-circle-outline"></ion-icon></ion-button>
     </ion-buttons>
@@ -23,7 +23,6 @@
 <app-order
   [sale]="sale"
   [products]="products"
-  [showOrder]="showOrder"
   [orders]="orders"
   (actionOrder)="actionOrder($event)">
 </app-order>

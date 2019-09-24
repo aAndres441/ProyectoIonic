@@ -30,7 +30,6 @@ export class OrderService {
         productName: data[i].productName,
         purchaseId: null,
         saleId: null,
-        charterId:data[i].charterId,
         description: data[i].description,
         count: data[i].count,
         totalAmount: data[i].totalAmount,

@@ -7,7 +7,7 @@ import { Product } from '../../model/product.model';
   styleUrls: ['./product-list.component.scss'],
 })
 export class ProductListComponent implements OnInit {
-  @Input() products : Array<Product>;
+  @Input() products = new Array<Product>();
   @Output() showComponent = new EventEmitter<any>();
   productSelected : number = 0;
   constructor() {  }
@@ -22,7 +22,12 @@ export class ProductListComponent implements OnInit {
 
   showForm(p:Product){
     if(!p) {
-      p = new Product();
+      p = {
+        id:null,
+        name:null,
+        description:null,
+        tmstmp:null
+      }
     }
     return this.showComponent.emit({"page":"form","product":p});
   }

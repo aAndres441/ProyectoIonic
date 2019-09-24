@@ -15,7 +15,7 @@ const database_1 = __importDefault(require("../database"));
 class TravelController {
     list(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            res.json(yield database_1.default.query('select distinct v.id as id,v.idfletero as travelerId,p.nombre as travelerName,v.precio as price,v.descripcion as description,v.tmstmp as tmstmp from viaje v , fletero f JOIN persona p on f.id = p.id where v.idfletero = f.id'));
+            res.json(yield database_1.default.query('select distinct v.id as id,v.idfletero as travelerId,p.nombre as travelerName,v.precio as price,v.direccion_origen as sourceAddress,v.direccion_destino as destinationAddress,v.descripcion as description,v.tmstmp as tmstmp from viaje v , fletero f JOIN persona p on f.id = p.id where v.idfletero = f.id'));
         });
     }
     getId(req, res) {

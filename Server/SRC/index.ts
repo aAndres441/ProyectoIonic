@@ -9,6 +9,7 @@ import personRoutes from './routes/personRoutes';
 import orderRoutes from './routes/orderRoutes';
 import saleRoutes from './routes/saleRoutes';
 import travelRoutes from './routes/travelRoutes';
+import extraExpense from './routes/extraExpensesRoutes';
 
 class Server {
 
@@ -34,6 +35,7 @@ class Server {
         this.app.use('/api/orders', orderRoutes);
         this.app.use('/api/sales', saleRoutes);
         this.app.use('/api/travels', travelRoutes);
+        this.app.use('/api/extraExpenses', extraExpense);
     }
     start():void{
         this.app.listen(this.app.get('port'), () => {

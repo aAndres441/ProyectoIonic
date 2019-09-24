@@ -15,7 +15,7 @@ const database_1 = __importDefault(require("../database"));
 class CharterController {
     list(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            res.json(yield database_1.default.query('select distinct f.id as id,f.viajeId as travelId,f.direccion_origen as sourceAddress,f.direccion_destino as destinationAddress,f.descripcion as description,f.tmstmp as tmstmp from flete f'));
+            res.json(yield database_1.default.query('select distinct f.id as id,p.id as travelerId,p.nombre as travelerName,f.fecha as date,f.direccion_origen as sourceAddress,f.direccion_destino as destinationAddress,f.descripcion as description,f.tmstmp as tmstmp from flete f left join persona p on f.fleteroId = p.id'));
         });
     }
     getId(req, res) {

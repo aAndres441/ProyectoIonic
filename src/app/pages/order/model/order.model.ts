@@ -4,7 +4,6 @@ export interface Order {
     productName : string;
     purchaseId:number;
     saleId:number;
-    charterId:number;
     description : string;
     count : number;
     totalAmount : number;

@@ -4,7 +4,7 @@ import pool from '../database';
 class TravelController {
 
     public async list(req: Request, res: Response) {
-        res.json(await pool.query('select distinct v.id as id,v.idfletero as travelerId,p.nombre as travelerName,v.precio as price,v.descripcion as description,v.tmstmp as tmstmp from viaje v , fletero f JOIN persona p on f.id = p.id where v.idfletero = f.id'));
+        res.json(await pool.query('select distinct v.id as id,v.idfletero as travelerId,p.nombre as travelerName,v.precio as price,v.direccion_origen as sourceAddress,v.direccion_destino as destinationAddress,v.descripcion as description,v.tmstmp as tmstmp from viaje v , fletero f JOIN persona p on f.id = p.id where v.idfletero = f.id'));
     }
 
     public async getId (req:Request,res:Response){

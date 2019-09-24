@@ -10,11 +10,11 @@ import { Router } from '@angular/router';
 })
 export class ProductComponent implements OnInit {
   products : Product[];
-  detailProduct : Product = new Product();
+  detailProduct : Product = null;
   prod : Product = null;
   showComponent:string = 'list';
   
-  constructor( private productoService: ProductService, private router: Router ) { }
+  constructor( private productService: ProductService, private router: Router ) { }
 
   
   ngOnInit(): void {
@@ -22,7 +22,7 @@ export class ProductComponent implements OnInit {
   }
 
   getProducts():void{
-    this.productoService.getProducts().subscribe(
+    this.productService.getProducts().subscribe(
       (data) => {
         this.products = data
       }
@@ -71,7 +71,7 @@ export class ProductComponent implements OnInit {
   } 
 
   addProduct(prod:Product){
-    this.productoService.addProduct(prod).subscribe(
+    this.productService.addProduct(prod).subscribe(
       (data) => {
         console.log("Producto agregado!")
         this.getProducts();
@@ -85,7 +85,7 @@ export class ProductComponent implements OnInit {
   }
 
   deleteProduct(prod:Product){
-    this.productoService.deleteProduct(prod).subscribe(
+    this.productService.deleteProduct(prod).subscribe(
       (data) => {
         console.log("Producto borrado!")
         this.getProducts();

@@ -4,7 +4,8 @@ import { PagesComponent } from './pages.component';
 import { ProductComponent } from './product/container/index';
 import { OrderComponent } from './order/container/index';
 import { SaleComponent } from './sale/container/index';
-import { TravelComponent } from './travel/container/index';
+import { CharterComponent } from './charter/container/index';
+import { ExtraExpensesComponent } from './extra-expenses/container/index';
 
   
   const routes: Routes = [{
@@ -16,16 +17,16 @@ import { TravelComponent } from './travel/container/index';
         component: ProductComponent
       },
       {
-        path: 'orders',
-        component: OrderComponent
-      },
-      {
         path: 'sales',
         component: SaleComponent
       },
       {
-        path: 'travels',
-        component: TravelComponent
+        path: 'charters',
+        component: CharterComponent
+      },
+      {
+        path: 'extra-expenses',
+        component: ExtraExpensesComponent
       }
     ]}
   ];

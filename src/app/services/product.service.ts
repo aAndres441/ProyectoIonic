@@ -51,7 +51,6 @@ export class ProductService {
   } 
   
   addProduct(prod:Product): Observable<any>{
-    console.log('llego al post =>')
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type':  'application/json'
