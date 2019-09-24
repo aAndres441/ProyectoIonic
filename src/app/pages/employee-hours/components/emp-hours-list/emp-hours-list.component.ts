@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter, ElementRef, ViewChild } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder, NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
-import { ToastController } from '@ionic/angular';
+import { ToastController, SelectValueAccessor } from '@ionic/angular';
 import { Person } from '../../../person/model/person.model';
 @Component({
   selector: 'app-emp-hours-list',
@@ -14,7 +14,7 @@ export class EmpHoursListComponent implements OnInit {
   public hoursForm: FormGroup;
   public showDiv = false;
   public hidden = false;
-  public message = 'FENIX';
+  public message = '';
   public personSelect: string;
   public empls: Person[];
   employeeds: any[];
@@ -46,7 +46,6 @@ export class EmpHoursListComponent implements OnInit {
 
 
   assign(selEmpl, hourSelect, hourFin, hourIni) {
-    /*    alert(this.hoursForm.value); */
     if (hourFin.value >= hourIni.value && hourSelect.value > 0 && selEmpl.value !== '') {
       // tslint:disable-next-line: prefer-for-of
       for (let index = 0; index < this.employeeds.length; index++) {
@@ -56,7 +55,7 @@ export class EmpHoursListComponent implements OnInit {
           this.employeeds[index].fechaF = hourFin.value;
           this.reset(selEmpl, hourSelect, hourFin, hourIni);
         }
-        this.list();
+        this.succes();
       }
     } else {
       this.presentToast();
@@ -72,19 +71,18 @@ export class EmpHoursListComponent implements OnInit {
   }
 
   deleteHoras(selEmpl) {
+    if (selEmpl.value !== '') {
     // tslint:disable-next-line: prefer-for-of
     for (let index = 0; index < this.employeeds.length; index++) {
       if (this.employeeds[index].first === selEmpl.value) {
         this.employeeds[index].horas = 0;
-        selEmpl.value = '';
-        selEmpl.focus();
       }
+      this.succes();
     }
-    this.list();
+  } else {
+    this.presentToast();
   }
-
-
-
+}
   createForm(): FormGroup {
     return this.fb.group({
       /* id: new FormControl(this.emp.id), */
@@ -93,7 +91,6 @@ export class EmpHoursListComponent implements OnInit {
       disponible: new FormControl(this.emp.disponible, [Validators.required, Validators.minLength(4), Validators.maxLength(200)]),
       horas: new FormControl(this.emp.horas, [Validators.required])
     });
-
   }
 
   getListEpls() {
@@ -199,30 +196,14 @@ export class EmpHoursListComponent implements OnInit {
     });
     toast.present();
   }
-
-/*   async presentToastWithOptions() {
+  async succes(){
     const toast = await this.toastController.create({
-      header: 'Toast header',
-      message: 'Click to Close',
+      message: 'Cambio exitoso',
       position: 'top',
-      buttons: [
-        {
-          side: 'start',
-          icon: 'star',
-          text: 'Favorite',
-          handler: () => {
-            console.log('Favorite clicked');
-          }
-        }, {
-          text: 'Done',
-          role: 'cancel',
-          handler: () => {
-            console.log('Cancel clicked');
-          }
-        }
-      ]
+      color: 'success',
+      duration: 3000
     });
     toast.present();
-  } */
+  }
 
 }
