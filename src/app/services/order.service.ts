@@ -32,6 +32,7 @@ export class OrderService {
         saleId: null,
         description: data[i].description,
         count: data[i].count,
+        unitPrice:data[i].unitPrice,
         totalAmount: data[i].totalAmount,
         tmstmp: data[i].tmstmp
       }

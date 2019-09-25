@@ -42,7 +42,7 @@ export class SaleComponent implements OnInit {
   }
 
   getClients(){
-    this.unSuscribe = this.clientService.getPersons().subscribe(
+    this.unSuscribe = this.clientService.getPersonsType("Cliente").subscribe(
       (data:Array<Person>) => {
         this.clients = data
         this.getProducts()
@@ -110,6 +110,7 @@ export class SaleComponent implements OnInit {
               productName : elem.productName,
               description : elem.description,
               count : elem.count,
+              unitPrice:elem.unitPrice,
               totalAmount : elem. totalAmount,
               tmstmp : elem.tmstmp
             }

@@ -55,6 +55,7 @@ export class SaleService {
     const body = {
       'clienteId':sale.clientId,
       'descripcion':sale.description,
+      'fleteId':null,
       'montoTotal':sale.totalAmount
     }
     console.log(body)

@@ -22,9 +22,10 @@ export class OrderFormComponent implements OnInit {
         id : new FormControl(null, ),
         productId: new FormControl(this.order.productId, [Validators.required]),
         productName: new FormControl(this.order.productName,),
-        description : new FormControl(this.order.description, [Validators.required]),
+        description : new FormControl(this.order.description, ),
         count : new FormControl(this.order.count,[Validators.required]),
-        totalAmount : new FormControl(this.order.totalAmount,[Validators.required]),
+        totalAmount : new FormControl(this.order.totalAmount,),
+        unitPrice : new FormControl(this.order.unitPrice,[Validators.required]),
         tmstmp : new FormControl(this.order.tmstmp,)
       });
     } else {
@@ -32,9 +33,10 @@ export class OrderFormComponent implements OnInit {
         id : new FormControl(null, ),
         productId: new FormControl(null, [Validators.required]),
         productName : new FormControl(null, ),
-        description : new FormControl(null, [Validators.required]),
+        description : new FormControl(null, ),
         count : new FormControl(null,[Validators.required]),
-        totalAmount : new FormControl(null,[Validators.required]),
+        totalAmount : new FormControl(null,),
+        unitPrice : new FormControl(null,[Validators.required]),
         tmstmp : new FormControl(null,)
       });
     }
@@ -46,6 +48,7 @@ export class OrderFormComponent implements OnInit {
     let prod:Product = this.products.filter(elem => elem.id == id)[0];
     this.orderForm.value.productName = prod.name;
     //si es editar
+    this.orderForm.value.totalAmount = this.orderForm.value.count * this.orderForm.value.unitPrice;
     if(this.orderForm.valid && this.order){
       return this.showComponent.emit({"page":"edit","order":this.orderForm.value});
     }

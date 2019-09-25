@@ -27,7 +27,7 @@ export class SaleFormComponent implements OnInit {
         id : new FormControl(this.sale.id),
         clientId : new FormControl(this.sale.clientId,[Validators.required]),
         clientName : new FormControl(this.sale.clientName,),
-        description : new FormControl(this.sale.description, [Validators.required]),
+        description : new FormControl(this.sale.description,  ),
         orders : new FormControl(this.orders,),
         totalAmount : new FormControl(this.sale.totalAmount,)
       });
@@ -36,7 +36,7 @@ export class SaleFormComponent implements OnInit {
         id : new FormControl(null,),
         clientId : new FormControl(null,[Validators.required]),
         clientName : new FormControl(null,),
-        description : new FormControl(null, [Validators.required]),
+        description : new FormControl(null,  ),
         orders : new FormControl(null,),
         totalAmount : new FormControl(null)
       });
@@ -93,7 +93,7 @@ export class SaleFormComponent implements OnInit {
     let resp:number = 0;
     this.orders.forEach(
       (elem:Order) => {
-        resp += elem.count * elem.totalAmount;
+        resp += elem.totalAmount;
       }
     );
     return resp;

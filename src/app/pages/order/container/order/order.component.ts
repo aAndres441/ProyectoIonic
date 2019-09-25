@@ -39,6 +39,7 @@ export class OrderComponent implements OnInit {
       purchaseId : null,
       saleId : null,
       tmstmp : null,
+      unitPrice:null,
       totalAmount : null
     }
   }
@@ -57,6 +58,7 @@ export class OrderComponent implements OnInit {
             description : elem.description,
             count : elem.count,
             totalAmount : elem. totalAmount,
+            unitPrice: elem.unitPrice,
             tmstmp : elem.tmstmp
           }
           this.orders.push(order);

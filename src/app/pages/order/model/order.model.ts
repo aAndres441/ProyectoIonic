@@ -7,5 +7,6 @@ export interface Order {
     description : string;
     count : number;
     totalAmount : number;
+    unitPrice:number;
     tmstmp : Date;
 }
