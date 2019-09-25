@@ -22,15 +22,21 @@ export class ProductFormComponent implements OnInit {
     if(this.product){
       this.productForm = this.fb.group({
         id: new FormControl(this.product.id,),
-        nombre: new FormControl(this.product.name,[Validators.required]),
-        descripcion: new FormControl(this.product.description, [Validators.required])
+        name: new FormControl(this.product.name,[Validators.required]),
+        description: new FormControl(this.product.description, )
+      });
+    }else{
+      this.productForm = this.fb.group({
+        id: new FormControl(null,),
+        name: new FormControl(null,[Validators.required]),
+        description: new FormControl(null,)
       });
     }
   }
 
   onSubmit(){
     //si es editar
-    if(this.productForm.valid && this.product.id){
+    if(this.productForm.valid && this.product){
       this.productForm.value.id = this.product.id;
     }
     //else si es agregar nuevo

@@ -1,0 +1,18 @@
+
+<app-extra-expenses-list *ngIf="showComponent == 'list' else list" #list
+    [extraExpenses]="extraExpenses"
+    (showComponent)="showPage($event)">
+</app-extra-expenses-list >
+<app-extra-expenses-form  *ngIf="showComponent == 'form' else form" #form
+    [extraExpense]="extExp"
+    (showComponent)="showPage($event)">
+</app-extra-expenses-form>
+<app-extra-expenses-detail *ngIf="showComponent == 'detail' else detail" #detail
+    [detailExtraExpense]="detailExtraExpense"
+    (showComponent)="showPage($event)">
+</app-extra-expenses-detail>
+
+  
+  
+
+

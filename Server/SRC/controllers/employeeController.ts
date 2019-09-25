@@ -4,12 +4,12 @@ import pool from '../database';
 class EmployeeController {
     
     public async list (req:Request,res:Response){
-        res.json(await pool.query('SELECT p.* FROM empleado e join persona p on e.id = p.id'));
+        res.json(await pool.query('select p.id as id,p.nombre as name,p.apellido as lastname,p.email as email,p.direccion as direction,p.telefono as cellphone,p.tmstmp as tmstmp from persona p join empleado c on p.id = c.id'));
     }
     
     public async create (req:Request,res:Response): Promise<any>{
         //await pool.query('INSERT INTO empleado set ?',[req.body]);
-        await pool.query('insert into persona set ? ',[req.body]);
+        await pool.query('insert into empleado set ? ',[req.body]);
         //await pool.query('insert into empleado set @@identity'); //values (@@identity)
         res.json({message:'Empleado creado y guardado!'})
     }
@@ -37,17 +37,3 @@ class EmployeeController {
 }
 const employeeController = new EmployeeController();
 export default employeeController;
-
-/*
-exports.removeById = (userId) => {
-    return new Promise((resolve, reject) => {
-        User.remove({_id: userId}, (err) => {
-            if (err) {
-                reject(err);
-            } else {
-                resolve(err);
-            }
-        });
-    });
-};
-*/

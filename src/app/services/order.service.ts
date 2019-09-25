@@ -12,12 +12,12 @@ export class OrderService {
 
   constructor(private http: HttpClient) { }
 
-  getOrders(): Observable<Order[]> {
-    return this.http.get<Order[]>(environment.API_BASE + 'orders'); /* .pipe(
+  getOrders(saleId:number): Observable<Order[]> {
+    return this.http.get<Order[]>(environment.API_BASE + 'orders/' + saleId).pipe(
       map(
           (data:Array<Order>) => this.orderTransform(data)
       )
-    ) */
+    ) 
   }
 
   private orderTransform(data: Array<Order>): Array<Order> {
@@ -32,6 +32,7 @@ export class OrderService {
         saleId: null,
         description: data[i].description,
         count: data[i].count,
+        unitPrice:data[i].unitPrice,
         totalAmount: data[i].totalAmount,
         tmstmp: data[i].tmstmp
       }
@@ -39,13 +40,7 @@ export class OrderService {
     }
     return resp;
   }
-  getOrder(id: number): Observable<Order[]> {
-    return this.http.get<Array<Order>>(environment.API_BASE + 'orders/' + id).pipe(
-      map(
-        (data: Array<Order>) => this.orderTransform(data)
-      )
-    )
-  }
+  
   addOrder(order: Order): Observable<any> {
     const httpOptions = {
       headers: new HttpHeaders({
@@ -55,9 +50,9 @@ export class OrderService {
     const body = {
       'productoId': order.productId,
       'ventaId': order.saleId,
-      'compraId': order.purchaseId,
       'descripcion': order.description,
       'cantidad': order.count,
+      'precioUnitario':order.unitPrice,
       'montoTotal': order.totalAmount,
     }
 

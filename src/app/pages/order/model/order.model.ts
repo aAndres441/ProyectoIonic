@@ -1,7 +1,4 @@
-import { Product } from '../../product/model/product.model';
-import { Sale } from '../../sale/model/sale.model';
-
-export class Order {
+export interface Order {
     id : number;
     productId:number;
     productName : string;
@@ -10,6 +7,6 @@ export class Order {
     description : string;
     count : number;
     totalAmount : number;
+    unitPrice:number;
     tmstmp : Date;
-    constructor(){}
 }

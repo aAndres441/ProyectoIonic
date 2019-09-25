@@ -7,8 +7,7 @@
   </ion-toolbar>       
 </ion-header>
 <ion-content  fullscreen >
-    <ion-tabs>
-      <ion-tab *ngFor="let p of products; let i=index" (click)="showDetail(p)" [label]="p.name" (ionSelect)="setProduct(i)"> 
+      <div *ngFor="let p of products; let i=index" (click)="showDetail(p)" (ionSelect)="setProduct(i)"> 
         <ion-list #myList lines="full">
           <ion-item >
             <ion-label text-wrap>
@@ -19,8 +18,7 @@
             <ion-icon slot="end" name="trash" color="danger" (click)="deleteProduct(i)" ></ion-icon>
           </ion-item> 
         </ion-list>
-      </ion-tab>
-    </ion-tabs>
+      </div>
 </ion-content>
 
 

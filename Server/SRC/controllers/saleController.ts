@@ -4,7 +4,7 @@ import pool from '../database';
 class SaleController {
 
     public async list(req: Request, res: Response) {
-        res.json(await pool.query('select v.id as id,v.clienteId as clientId,p.nombre as clientName,v.descripcion as description,v.montoTotal as totalAmount,v.tmstmp as tmstmp from venta v , cliente c JOIN persona p on c.id = p.id'));
+        res.json(await pool.query('select distinct v.id as id,v.clienteId as clientId,p.nombre as clientName,v.descripcion as description,v.montoTotal as totalAmount,v.tmstmp as tmstmp from venta v join cliente c on v.clienteId = c.id JOIN persona p on c.id = p.id'));
     }
    /*  id:data[i].id,
         clientId:data[i].clientId,
@@ -12,9 +12,6 @@ class SaleController {
         description:data[i].description,
         totalAmount:data[i].totalAmount,
         tmstmp:data[i].tmstmp */
-    public async getId (req:Request,res:Response){
-        res.json(await pool.query('select max(id) as id from venta'));
-    }
     public async create (req:Request,res:Response): Promise<any>{
         await pool.query('INSERT INTO venta set ?',[req.body]);
         res.json({message:'Venta creado y guardado!'})
@@ -34,11 +31,16 @@ class SaleController {
 
     public async getOne (req:Request,res:Response):Promise<any>{
         const {id} = req.params;
-        const prod = await pool.query('SELECT * FROM venta WHERE id = ?', [id]);
-        if(prod.length>0) {
-            return res.json(prod[0]);
+        if(id=='id'){
+            res.json(await pool.query('select max(id) as id from venta'));
+        }else{
+            const prod = await pool.query('SELECT * FROM venta WHERE id = ?', [id]);
+            if(prod.length>0) {
+                return res.json(prod[0]);
+            }
+            res.status(404).json({message:'La venta no se ah encontrado!'})
         }
-        res.status(404).json({message:'La venta no se ah encontrado!'})
+        
     }
 }
 const saleController = new SaleController();

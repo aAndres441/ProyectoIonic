@@ -18,5 +18,5 @@ class ProductRoutes {
         this.router.put('/:id', productController_1.default.update);
     }
 }
-const prodRoutes = new ProductRoutes();
-exports.default = prodRoutes.router;
+const productRoutes = new ProductRoutes();
+exports.default = productRoutes.router;

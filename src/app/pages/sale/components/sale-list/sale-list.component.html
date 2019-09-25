@@ -7,13 +7,12 @@
   </ion-toolbar>       
 </ion-header>
 <ion-content  fullscreen >
-    <ion-tabs>
       <div *ngIf="!sales || (sales.length==0)"><h6 class="ion-text-center">No hay elementos.</h6></div>
-      <ion-tab *ngFor="let s of sales; let i=index" (click)="showDetail(s)" [label]="s.id" (ionSelect)="setSale(i)"> 
+      <div *ngFor="let s of sales; let i=index" (click)="showDetail(s)" (ionSelect)="setSale(i)"> 
         <ion-list #myList lines="full">
           <ion-item >
             <ion-label text-wrap>
-              <h2>#{{s.id}} {{s.clientName}}  ${{s.totalAmount}}</h2>
+              <h2>Venta Nº: {{s.id}} - {{s.clientName}} - ${{s.totalAmount}}</h2>
               <p>{{s.description}}</p>
               <p>{{s.tmstmp}}</p>
             </ion-label>
@@ -21,8 +20,7 @@
             <ion-icon slot="end" name="trash" color="danger" (click)="deleteSale(i)" ></ion-icon>
           </ion-item> 
         </ion-list>
-      </ion-tab>
-    </ion-tabs>
+      </div>
 </ion-content>
 
 

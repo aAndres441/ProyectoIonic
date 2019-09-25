@@ -8,7 +8,7 @@ import { Order } from '../../model/order.model';
 })
 export class OrderDetailComponent implements OnInit {
   @Output() showComponent = new EventEmitter<any>();
-  @Input() detailOrder : Order = new Order();
+  @Input() detailOrder : Order = null;
 
   constructor() { }
 

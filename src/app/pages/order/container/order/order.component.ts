@@ -1,5 +1,5 @@
-import { ProductService } from './../../../../services/product.service';
-import { Component, OnInit } from '@angular/core';
+import { Sale } from './../../../sale/model/sale.model';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { OrderService } from 'src/app/services/order.service';
 import { Order } from '../../model/order.model';
 import { Router } from '@angular/router';
@@ -11,64 +11,75 @@ import { Product } from 'src/app/pages/product/model/product.model';
   styleUrls: ['./order.component.scss'],
 })
 export class OrderComponent implements OnInit {
-  orders : Array<Order> = new Array<Order>();
-  detailOrder : Order = new Order();
+  @Input() sale:Sale;
+  @Input() products = new Array<Product>();
+  @Output() actionOrder = new EventEmitter();
+  @Input() orders = new Array<Order>();
+  @Input() showDetail : string = null;
+
+  detailOrder : Order = null;
   order : Order = null;
-  showComponent:string = 'list';
-  products = new Array<Product>();
+  showComponent:string = 'form';
 
   constructor( private orderService: OrderService, 
     private router: Router ) { }
 
-  
-  ngOnInit(): void {
-    this.getOrders();
+  ngOnInit() {
+    if(this.showDetail){
+      this.showComponent = this.showDetail;
+    }
+    if(this.sale && this.sale.id){
+      this.getOrders(this.sale.id);
+    }
   }
 
-  getOrders():void{
+  initOrder(){
+    this.order = {
+      id : null,
+      count : null,
+      description : null,
+      productId : null,
+      productName : null,
+      purchaseId : null,
+      saleId : null,
+      tmstmp : null,
+      unitPrice:null,
+      totalAmount : null
+    }
+  }
+
+  getOrders(saleId:number):void{
     let order : Order;
-    this.orderService.getOrders().subscribe(
+    this.orderService.getOrders(saleId).subscribe(
       (data:Array<Order>) => {
         data.forEach(elem => {
-          order = new Order();
-          order.id = elem.id;
-          order.productName = elem.productName;
-          order.description = elem.description;
-          order.count = elem.count;
-          order.totalAmount = elem. totalAmount;
-          order.tmstmp = elem.tmstmp;
+          order = {
+            id : elem.id,
+            purchaseId:null,
+            saleId:null,
+            productId:null,
+            productName : elem.productName,
+            description : elem.description,
+            count : elem.count,
+            totalAmount : elem. totalAmount,
+            unitPrice: elem.unitPrice,
+            tmstmp : elem.tmstmp
+          }
           this.orders.push(order);
         });
+        console.log(this.orders)
+        this.showComponent = 'list';
       }
     );
   }
-
-  getOrder(saleId:number):void{
-    let order : Order;
-    this.orderService.getOrder(saleId).subscribe(
-      (data:Array<Order>) => {
-        data.forEach(elem => {
-          order = new Order();
-          order.id = elem.id;
-          order.productName = elem.productName;
-          order.description = elem.description;
-          order.count = elem.count;
-          order.totalAmount = elem. totalAmount;
-          order.tmstmp = elem.tmstmp;
-          this.orders.push(order);
-        });
-      }
-    );
-  }
-
 
   showPage(obj:any) {
     let order;
     let showAction = obj.page;
     switch(showAction) { 
       case "detail": { 
-        this.showComponent = "detail";
         this.detailOrder = obj.order; 
+        this.showComponent = "detail";
         break; 
       } 
       case "list": { 
@@ -76,16 +87,15 @@ export class OrderComponent implements OnInit {
         break; 
       } 
       case "form": { 
+        this.order = obj.order;
         this.showComponent = "form";
-        if(obj.order){
-          this.order = obj.order;
-        }else {
-          this.order = null;
-        }
         break; 
       }
       case "add": { 
         this.addOrder(obj.order);
+        break; 
+      }case "edit": { 
+        this.editOrder(obj.order);
         break; 
       }
       case "delete": { 
@@ -95,42 +105,31 @@ export class OrderComponent implements OnInit {
         }
         break; 
       } 
-      case "sale": { 
-        let saleId = obj.saleId;
-        if(saleId){
-          this.getOrder(saleId);
-        }
-        break; 
-      } 
       default: { 
         this.showComponent = "list";
         break; 
       } 
    } 
   } 
-
   addOrder(order:Order){
-    this.orderService.addOrder(order).subscribe(
-      (data) => {
-        this.getOrders();
-        this.showComponent = "list";
-      },(error) => {
-        console.log(error);
-        this.showComponent = "form";
-      }
-    );
+    this.showComponent = 'list';
+    this.actionOrder.emit({'action':'add','order':order});
+  }
+  newOrder(){
+    this.showComponent = 'form';
   }
 
   deleteOrder(order:Order){
-    this.orderService.deleteOrder(order).subscribe(
-      (data) => {
-        this.getOrders();
-        this.showComponent = "list";
-      },(error) => {
-        console.log(error);
-        this.showComponent = "list";
-      }
-    );
+    this.actionOrder.emit({'action':'delete','order':order});
   }
 
+  editOrder(order:Order){
+    //encuentro y elimino el pedido viejo
+    let index = this.orders.indexOf(order);
+    this.orders.splice(index,1);
+    //agrego el nuevo a la lista y emito el evento
+    this.orders.push(order);
+    this.showComponent = 'list';
+    this.actionOrder.emit({'orders':this.orders});
+  }
 }

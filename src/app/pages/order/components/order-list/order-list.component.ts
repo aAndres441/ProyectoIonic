@@ -17,7 +17,9 @@ export class OrderListComponent implements OnInit {
   constructor() {  }
 
   ngOnInit() {
-   
+   if(this.saleId){
+     
+   }
   }
   
   showDetail(p:Order){
@@ -26,7 +28,7 @@ export class OrderListComponent implements OnInit {
 
   showForm(p:Order){
     if(!p) {
-      return this.newOrder.emit();
+      return this.showComponent.emit({"page":"form","order":null});
     }
     return this.showComponent.emit({"page":"form","order":p});
   }
