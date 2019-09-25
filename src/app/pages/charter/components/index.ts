@@ -1,1 +1,0 @@
-export * from './charter-form/charter-form.component'

@@ -1,1 +1,0 @@
-export * from './assign-charter/assign-charter.component'
