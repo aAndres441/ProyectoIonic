@@ -1,4 +1,32 @@
-<ion-p>{{detailProduct.id}}</ion-p>
-<ion-p>{{detailProduct.name}}</ion-p>
-<ion-p>{{detailProduct.description}}</ion-p>
-<ion-p>{{detailProduct.tmstmp}}</ion-p>
+
+
+<ion-card no-border mode="ios" color="medium">
+        <ion-card-header>
+          <ion-toolbar>
+            <ion-title> {{title | uppercase}}
+            </ion-title>
+            <ion-buttons slot="start">
+              <ion-button (click)="showList()">
+                <ion-icon name="arrow-back" color="dark"> </ion-icon>
+              </ion-button>
+            </ion-buttons>
+          </ion-toolbar>
+        </ion-card-header>
+      
+        <ion-card-content mode="ios" color="light">  
+          <ion-list>
+            <ion-item>
+              <ion-label>Code</ion-label>
+              <ion-p>{{detailProduct.id}}</ion-p>
+            </ion-item>
+            <ion-item>
+              <ion-label>Description</ion-label>
+              <ion-p>{{detailProduct.description}}</ion-p>
+            </ion-item>
+            <ion-item>
+              <ion-label>Visitado en:</ion-label>
+              <ion-p>{{detailProduct.tmstmp | date:'shortDate'}}</ion-p>
+            </ion-item>
+          </ion-list>
+        </ion-card-content>
+      </ion-card>

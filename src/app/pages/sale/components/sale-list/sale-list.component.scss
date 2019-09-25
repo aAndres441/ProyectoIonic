@@ -1,0 +1,25 @@
+/* 
+hr{
+    border: solid 2px;
+    border-color: gold;
+    margin-top: -10px;  
+}
+h3{
+    color: gold;    
+    text-align: center;
+}
+ion-icon{
+    color: gold;
+} */
+
+ion-container{   
+    display: flex;
+   flex-direction: row;
+   flex-wrap: wrap;
+
+   justify-content: center;
+   align-items: center; 
+}
+#ww{
+display: none;
+}

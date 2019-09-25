@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-  title = 'Barraca Cardona'
+  title = 'BARRACA CARDONA';
   constructor() { }
   
   ngOnInit(){

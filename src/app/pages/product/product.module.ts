@@ -1,4 +1,4 @@
-import { ProductListComponent,ProductFormComponent,ProductDetailComponent } from './components/index';
+import { ProductListComponent,PrintComponent,ProductFormComponent,ProductDetailComponent } from './components/index';
 import { ProductComponent } from './container/index';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -8,7 +8,8 @@ import { IonicModule } from '@ionic/angular';
 const COMPONENTS = [
   ProductFormComponent,
   ProductListComponent,
-  ProductDetailComponent
+  ProductDetailComponent,
+  PrintComponent
 ]
 const CONTAINER = [
   ProductComponent

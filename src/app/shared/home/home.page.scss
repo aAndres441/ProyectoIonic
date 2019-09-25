@@ -1,9 +1,50 @@
 
-section {
+/* section {
     margin-top: 1em;
     margin-bottom: 2.5em;
 }
 section:not(.full-width),
     .full-width > header {
     padding: 0 10px;
-}
+} */
+
+
+ion-content{
+    /* background-color:rgb(73, 124, 90); */
+   /*  display: flex;
+     flex-direction: row;
+     flex-wrap: wrap;
+  
+     justify-content: center;
+     align-items: center; */
+     height: 100%;
+     background-color: rgb(110, 110, 110); 
+  }
+  ion-card{
+    background-color: rgb(110, 110, 110);
+    margin: 0%;
+    border: 0px solid rgb(110, 110, 110);
+  }
+  ion-button{
+      font-size: 25px; 
+      color: #dbf112;
+      background-color:  rgb(110, 110, 110); 
+      border-radius: 6px;
+      border: 1px solid rgb(110, 110, 110);      
+      margin-top: 00px;
+      height: 90px;
+    }
+    ion-button:hover{
+      background-color:  rgb(18, 8, 117);
+    }
+  
+  a {
+      color:  #c4c9c4;
+      text-decoration: none;
+      text-transform: uppercase;
+    } 
+    a:hover {
+      color:whitesmoke;
+      cursor: pointer;
+    }
+  

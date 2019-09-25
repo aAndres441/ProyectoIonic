@@ -1,5 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Product } from '../../model/product.model';
+import { ViewChild, ViewChildren, ElementRef} from '@angular/core';
+import { IonInfiniteScroll } from '@ionic/angular';
 
 @Component({
   selector: 'app-product-list',
@@ -9,6 +11,9 @@ import { Product } from '../../model/product.model';
 export class ProductListComponent implements OnInit {
   @Input() products = new Array<Product>();
   @Output() showComponent = new EventEmitter<any>();
+  @ViewChild(IonInfiniteScroll, null) infiniteScroll: IonInfiniteScroll; // para usar el componente
+  @ViewChild('reporteDiv', { static: true }) reporteDiv: ElementRef;
+
   productSelected : number = 0;
   constructor() {  }
 
@@ -39,5 +44,31 @@ export class ProductListComponent implements OnInit {
   deleteProduct(i:number){
     let p = this.products[i];
     return this.showComponent.emit({"page":"delete","product":p});
+  }
+  DownloadtoPDF(){    
+    return this.showComponent.emit({ 'page': 'print'});
+  }
+  toggleInfiniteScroll() {
+    // this.infiniteScroll.disabled = !this.infiniteScroll.disabled;
+  }
+
+  doRefresh(event) {
+    console.log('Begin async operation', event);
+
+    setTimeout(() => {
+      console.log('Async operation has ended');
+      event.complete();
+    }, 1000);
+  }
+
+  loadData(event) {
+    setTimeout(() => {
+      console.log('Carga siguientes...');
+
+      if (this.products.length > 5) {
+        this.infiniteScroll.disabled = true;
+        return;
+      }
+    }, 1000);
   }
 }

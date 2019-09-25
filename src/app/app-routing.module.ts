@@ -1,12 +1,15 @@
 import { HomePage } from './shared/home/home.page';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { ErrorPage } from './shared/error/error.page';
+
 
 const routes: Routes = [
   { path: '',   redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomePage },
   { path: 'layout', loadChildren: '../app/pages/pages.module#PagesModule'},
-  { path: '**', redirectTo: 'layout' }
+  { path: '**', redirectTo: 'error' },
+  { path: 'error', component: ErrorPage  }
 ];
 
 @NgModule({

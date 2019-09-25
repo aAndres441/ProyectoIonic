@@ -1,7 +1,89 @@
-<section>
+<!-- <section>
+  <ion-button expand="block" href="/layout/sales" >VENTAS</ion-button>
   <ion-button expand="block" href="/layout/persons" >PERSONAS</ion-button>
   <ion-button expand="block" href="/layout/products" >PRODUCTOS</ion-button>
-  <ion-button expand="block" href="/layout/sales" >VENTAS</ion-button>
-  <ion-button expand="block" href="/layout/extra-expenses" >GASTOS EXTRAS</ion-button>
+  <ion-button expand="block" href="/layout/charters" >FLETES</ion-button>
   <ion-button expand="block" href="/layout/hours-employee" >HORAS EMPLEADOS</ion-button>
-</section>
+  <ion-button expand="block" href="/layout/extra-expenses" >GASTOS EXTRAS</ion-button>
+</section> -->
+<!--  <ion-button  color="medium" expand="block" href="/layout/sales" >VENTAS</ion-button>
+  <ion-button  color="medium" expand="block" href="/layout/persons" >PERSONAS</ion-button>
+  <ion-button  color="medium" expand="block" href="/layout/products" >PRODUCTOS</ion-button>
+        <ion-button  color="medium" expand="block" href="/layout/charters" >FLETES</ion-button>
+<ion-button  color="medium" expand="block" href="/layout/hours-employee" >HORAS EMPLEADOS</ion-button>
+      <ion-button  color="medium" expand="block" href="/layout/extra-expenses" >GASTOS EXTRAS</ion-button>
+    </ion-content> -->
+
+<ion-content fullscreen no-border>
+
+  <app-header></app-header>
+
+  <ion-card>
+    <ion-button expand="full" fill="outline">
+      <a routerLink="/layout/sales">VENTAS</a>
+    </ion-button>
+  </ion-card>
+  <ion-card>
+    <ion-button expand="full" fill="outline">
+      <a routerLink="/layout/persons">PERSONAS</a>
+    </ion-button>
+  </ion-card>
+  <ion-card>
+    <ion-button expand="full" fill="outline">
+      <a routerLink="/layout/products">PRODUCTOS</a>
+    </ion-button>
+  </ion-card>
+  <ion-card>
+    <ion-button expand="full" fill="outline">
+      <a routerLink="/layout/charters">FLETES</a>
+    </ion-button>
+  </ion-card>
+  <ion-card>
+      <ion-button expand="full" fill="outline">
+        <a routerLink="/layout/hours-employee">Hours/Emp </a>
+      </ion-button>
+    </ion-card>
+
+  <ion-card>
+    <ion-button expand="full" fill="outline">
+      <a routerLink="/layout/extra-expenses">GASTOS EXTRAS</a>
+    </ion-button>
+  </ion-card>
+
+  
+
+
+
+
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button color="medium">
+      <ion-icon name="share"></ion-icon>
+    </ion-fab-button>
+    <ion-fab-list side="top">
+      <ion-fab-button><a routerLink="/layout/sales">
+          <ion-icon name="paper-plane" color="primary"></ion-icon>
+        </a>
+      </ion-fab-button>
+      <ion-fab-button><a routerLink="/layout/orders">
+          <ion-icon name="cart" color="primary"></ion-icon>
+        </a>
+      </ion-fab-button>
+    </ion-fab-list>
+    <ion-fab-list side="start">
+      <ion-fab-button><a routerLink="/layout/products">
+          <ion-icon name="cube" color="primary"></ion-icon>
+        </a>
+      </ion-fab-button>
+      <ion-fab-button><a routerLink="/layout/persons">
+          <ion-icon name="body" color="primary"></ion-icon>
+        </a>
+      </ion-fab-button>
+      <ion-fab-button><a routerLink="/layout/empHours">
+        <ion-icon name="time" color="primary"></ion-icon>
+      </a>
+    </ion-fab-button>
+    </ion-fab-list>
+  </ion-fab>
+
+</ion-content>

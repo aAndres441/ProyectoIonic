@@ -18,6 +18,7 @@ import {
   MatIconModule,
   MatButtonModule,
   MatCardModule,
+  MatRadioModule,
   MatFormFieldModule } from "@angular/material";
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { ScrollingModule } from '@angular/cdk/scrolling';
@@ -32,7 +33,9 @@ const MODULES = [
 
 @NgModule({
   declarations: [AppComponent],
+  
   entryComponents: [],
+
   imports: [
     BrowserModule,
     IonicModule.forRoot(),

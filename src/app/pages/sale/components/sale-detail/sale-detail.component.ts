@@ -15,4 +15,11 @@ export class SaleDetailComponent implements OnInit {
 
   ngOnInit() {}
 
+  showPage(){
+    return this.showComponent.emit({"page":"list"});
+  }
+  showList(){
+    this.showComponent.emit({"page":"list"});
+  }
+
 }

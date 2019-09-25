@@ -1,4 +1,4 @@
-<ion-header>
+<!-- <ion-header>
   <ion-toolbar color="primary">
     <ion-title>Producto</ion-title>
     <ion-buttons slot="primary">
@@ -13,4 +13,62 @@
   <ion-item>
     <ion-textarea formControlName="description"  placeholder="Descripcion" name="description"></ion-textarea>
   </ion-item>
-</ion-form>
+</ion-form> -->
+
+<ion-header mode="ios">
+    <!-- no-border -->
+    <ion-toolbar color="medium">
+      <ion-buttons >
+        <ion-button slot="start" (click)="showList()">
+          <ion-icon name="arrow-back" item-start></ion-icon>
+        </ion-button>
+      </ion-buttons>
+      <ion-title>
+          <h3>FORMULARIO</h3>
+        <!--  -->
+          <!-- {{title | uppercase}} -->
+      </ion-title>
+      <ion-buttons slot="end">
+        <ion-button (click)="onSubmit()">
+          <ion-icon name="add-circle-outline"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+  
+    <!-- **************************** -->
+ 
+  <ion-content mode="ios" fullscreen color="light" padding >
+    <ion-form [formGroup]="productForm" novalidate mode="ios" (submit)="onSubmit()" >
+      
+      <ion-label position="floating">Nombre del producto:</ion-label>
+      <ion-item >
+        <ion-input formControlName="name" type="text" required placeholder=" * * "  minlength="4" autofocus></ion-input>
+      </ion-item>
+      <ion-item class="error" *ngIf="!name.valid  && (name.dirty || name.touched)">
+         <p *ngIf="name.errors.required" color="danger" ion-text>Name is required </p>
+         <p *ngIf="name.errors.minlength" color="danger" ion-text>Must be at least 4 characters</p>
+          </ion-item>
+  
+          <ion-label position="floating">Descripcion:</ion-label>
+      <ion-item>      
+        <ion-textarea formControlName="description" name="description:"  required
+           placeholder=" * * "><!-- maxlength(200)  minlength(4)-->
+        </ion-textarea>
+      </ion-item>
+      <ion-item class="error" *ngIf="!description.valid  && (description.dirty || description.touched)">
+        <p *ngIf="description.errors.required" color="danger"> Description is required</p>
+        <p *ngIf="description.errors.minlength"color="danger">Must be at least 4 characters</p>
+        <p *ngIf="description.errors.maxlength"color="danger">Must be max 200 characters</p>
+      </ion-item>
+      
+      <div class="btn">
+        <ion-button type="submit" fill="clear" class="btn-send" [disable]="!productForm.valid" (click)="onSubmit()">
+          <ion-icon name="checkmark"></ion-icon>
+        </ion-button>
+        <ion-button type="button" fill="clear" class="btn-send" (click)="onReset()">
+          <ion-icon name="close"></ion-icon>
+        </ion-button>
+      </div>
+    </ion-form>
+  </ion-content>

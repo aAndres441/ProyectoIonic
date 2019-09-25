@@ -1,28 +1,47 @@
-<ion-header>
+<!-- <ion-header>
   <ion-toolbar color="primary">
     <ion-title>Venta</ion-title>
     <ion-buttons slot="primary">
       <ion-button (click)="onSubmit()" ><ion-icon name="add-circle-outline"></ion-icon></ion-button>
     </ion-buttons>
   </ion-toolbar>       
+</ion-header> -->
+<ion-header mode="ios">
+  <!-- no-border -->
+  <ion-toolbar color="medium">
+    <ion-buttons>
+      <ion-button slot="start" (click)="showList()">
+        <ion-icon name="arrow-back" item-start></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>
+      <h3>New sale</h3>
+      <!-- {{title | uppercase}} -->
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="onSubmit()">
+        <ion-icon name="add-circle-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
 </ion-header>
+<!-- sssssssss -->
+<ion-content mode="ios" fullscreen color="light">
 
-<ion-form [formGroup]="saleForm" fullscreen>
-  <ion-item>
-    <h4>Cliente:</h4>
-    <ion-select formControlName="clientId" (ionChange)="onChange($event)">
-      <ion-select-option *ngFor="let c of clients" value="{{c.id}}">{{c.name}}</ion-select-option>
-    </ion-select>
-  </ion-item>
+  <ion-form [formGroup]="saleForm" mode="ios">
+    <ion-item>
+      <h4>Cliente:</h4>
+      <ion-select formControlName="clientId" (ionChange)="onChange($event)">
+        <ion-select-option *ngFor="let c of clients" value="{{c.id}}">{{c.name}}</ion-select-option>
+      </ion-select>
+    </ion-item>
 
-  <ion-item>
-    <ion-textarea formControlName="description" placeholder="Descripcion" ></ion-textarea>
-  </ion-item>
-</ion-form>
+    <ion-item>
+      <ion-textarea formControlName="description" placeholder="Descripcion"></ion-textarea>
+    </ion-item>
+  </ion-form>
 
-<app-order
-  [sale]="sale"
-  [products]="products"
-  [orders]="orders"
-  (actionOrder)="actionOrder($event)">
-</app-order>
+  <app-order [sale]="sale" [products]="products" [orders]="orders" (actionOrder)="actionOrder($event)">
+  </app-order>
+
+</ion-content>

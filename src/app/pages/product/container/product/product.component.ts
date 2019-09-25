@@ -34,6 +34,10 @@ export class ProductComponent implements OnInit {
     let prod;
     let showAction = obj.page;
     switch(showAction) { 
+      case "print": {
+        this.showComponent = "print";
+        break;
+      }
       case "detail": { 
         this.showComponent = "detail";
         this.detailProduct = obj.product; 

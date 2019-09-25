@@ -25,7 +25,7 @@ export class SaleComponent implements OnInit {
   unSuscribe : any;
   
   constructor( private saleService: SaleService, 
-    private clientService :PersonService,
+    private clientService : PersonService,
     private productService:ProductService,
     private orderService:OrderService ) { }
 
@@ -62,7 +62,12 @@ export class SaleComponent implements OnInit {
   showPage(obj:any) {
     let sale;
     let showAction = obj.page;
-    switch(showAction) { 
+    switch(showAction) 
+    {
+      case 'print': {
+        this.showComponent = 'print';
+        break;
+      }
       case "detail": { 
         this.showComponent = "detail";
         this.detailSale = obj.sale; 

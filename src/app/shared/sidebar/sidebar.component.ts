@@ -8,7 +8,7 @@ import { Router, NavigationEnd } from '@angular/router';
 })
 export class SidebarComponent implements OnInit {
   title;
-  constructor(private route:Router) { }
+  constructor(private route: Router) { }
   
   ngOnInit(){
     /* this.route.events.subscribe(
