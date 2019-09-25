@@ -1,0 +1,16 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Gasto Extra</ion-title>
+    <ion-buttons slot="primary">
+      <ion-button (click)="onSubmit()" ><ion-icon name="add-circle-outline"></ion-icon></ion-button>
+    </ion-buttons>
+  </ion-toolbar>       
+</ion-header>
+<ion-form [formGroup]="extraExpenseForm" novalidate>
+  <ion-item>
+    <ion-textarea type="text" formControlName="description" required placeholder="Descripcion"></ion-textarea>
+  </ion-item>  
+  <ion-item>
+    <ion-input type="number" formControlName="price"  placeholder="Monto" name="precio"></ion-input>
+  </ion-item>
+</ion-form>

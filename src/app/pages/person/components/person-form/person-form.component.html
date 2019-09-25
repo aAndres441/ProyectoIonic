@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Persona</ion-title>
+    <ion-buttons slot="primary">
+      <ion-button (click)="onSubmit()" ><ion-icon name="add-circle-outline"></ion-icon></ion-button>
+    </ion-buttons>
+  </ion-toolbar>       
+</ion-header>
+<ion-form [formGroup]="personForm" novalidate>
+  <ion-item>      
+    <ion-label>Tipo:</ion-label>
+    <ion-select formControlName="personType" (ionChange)="onChange($event)">
+      <ion-select-option *ngFor="let e of personTypes" value="{{e.name}}">{{e.name}}</ion-select-option>
+    </ion-select>
+  </ion-item>
+  <ion-item>
+    <ion-input type="text" formControlName="name" required placeholder="Nombre"></ion-input>
+  </ion-item>  
+  <ion-item>
+    <ion-input type="text" formControlName="lastname"  placeholder="Apellido" name="lastname"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-input type="email" formControlName="email"  placeholder="Email" name="email"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-input type="text" formControlName="direction"  placeholder="Direccion" name="direction"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-input type="text" formControlName="cellphone"  placeholder="Celular" name="cellphone"></ion-input>
+  </ion-item>
+</ion-form>
