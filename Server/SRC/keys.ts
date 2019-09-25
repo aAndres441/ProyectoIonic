@@ -1,9 +1,9 @@
 export default{
     database: {
-        host: 'barracabase.cjhnbwblq7zm.us-east-2.rds.amazonaws.com',  //'localhost', /
-        user: 'BarracaBase',  
-        password: 'BarracaBase', //'', //BarracaBaseDatos // BarracaCardona  //  baseBarraca
-        database:  'BarracaBase' //ebdb // 'barracadb'   //  'ng_prueba_db  //  baseBarraca
+        host: 'barracadb.clrktn6bfcqj.us-east-2.rds.amazonaws.com',  //'localhost', /
+        user: 'barracaDB',  
+        password: 'barracaDB', //'', //BarracaBaseDatos // BarracaCardona  //  baseBarraca
+        database:  'barracaDB' //ebdb // 'barracadb'   //  'ng_prueba_db  //  baseBarraca
        // port:'3306'
     }
 }

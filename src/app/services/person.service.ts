@@ -18,6 +18,34 @@ export class PersonService {
       )
     )
   } 
+
+  getPersonsType(type:string): Observable<Person[]> {
+    switch(type) { 
+      case "Empleado": { 
+        return this.http.get<Array<Person>>(environment.API_BASE + 'employees').pipe(
+          map(
+              (data:Array<Person>) => this.personTransform(data)
+          )
+        )
+      } 
+      case "Cliente": { 
+        return this.http.get<Array<Person>>(environment.API_BASE + 'clients').pipe(
+          map(
+              (data:Array<Person>) => this.personTransform(data)
+          )
+        )
+      }
+      case "Fletero": { 
+        return this.http.get<Array<Person>>(environment.API_BASE + 'travelers').pipe(
+          map(
+              (data:Array<Person>) => this.personTransform(data)
+          )
+        )
+      } default :{
+        console.log("Sin tipo de persona!")
+      }
+    }
+  } 
   
   personTransform(data:Array<Person>):Array<Person>{
     return data;
@@ -37,7 +65,6 @@ export class PersonService {
   } 
   
   addPerson(person:Person): Observable<any>{
-    console.log('llego al post =>')
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type':  'application/json'
@@ -45,11 +72,11 @@ export class PersonService {
     };
     const body = {
       'id':person.id,
-      'name':person.name,
-      'lastname': person.lastname,
+      'nombre':person.name,
+      'apellido': person.lastname,
       'email': person.email,
-      'direction': person.direction,
-      'cellphone': person.cellphone
+      'direccion': person.direction,
+      'telefono': person.cellphone,
     }
     
     if(person.id){
@@ -66,7 +93,49 @@ export class PersonService {
       )
     }
   }
-
+  getId(): Observable<number> {
+    return this.http.get<number>(environment.API_BASE + 'persons/id').pipe(
+      map(
+          (data:number) => data[0]
+      )
+    )
+  } 
+  addPersonType(person:Person): Observable<any>{
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json'
+      })
+    };
+    const body = {
+      'id':person.id
+    }
+    switch(person.personType) { 
+      case "Empleado": { 
+        return this.http.post<Person>(environment.API_BASE + 'employees',body,httpOptions).pipe(
+          map(
+              (data:any) => data
+          )
+        )
+      } 
+      case "Cliente": { 
+        return this.http.post<Person>(environment.API_BASE + 'client',body,httpOptions).pipe(
+          map(
+              (data:any) => data
+          )
+        )
+      }
+      case "Fletero": { 
+        return this.http.post<Person>(environment.API_BASE + 'traveler',body,httpOptions).pipe(
+          map(
+              (data:any) => data
+          )
+        )
+      } default :{
+        console.log("Sin tipo de persona!")
+      }
+   } 
+  }
+  
   deletePerson(prod:Person): Observable<any>{
     const httpOptions = {
       headers: new HttpHeaders({

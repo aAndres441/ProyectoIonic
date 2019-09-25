@@ -12,9 +12,6 @@ class SaleController {
         description:data[i].description,
         totalAmount:data[i].totalAmount,
         tmstmp:data[i].tmstmp */
-    public async getId (req:Request,res:Response){
-        res.json(await pool.query('select max(id) as id from venta'));
-    }
     public async create (req:Request,res:Response): Promise<any>{
         await pool.query('INSERT INTO venta set ?',[req.body]);
         res.json({message:'Venta creado y guardado!'})

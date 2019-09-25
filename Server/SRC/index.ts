@@ -8,8 +8,10 @@ import employeeRoutes from './routes/employeeRoutes';
 import personRoutes from './routes/personRoutes';
 import orderRoutes from './routes/orderRoutes';
 import saleRoutes from './routes/saleRoutes';
-import travelRoutes from './routes/travelRoutes';
-import extraExpense from './routes/extraExpensesRoutes';
+import extraExpensesRoutes from './routes/extraExpensesRoutes';
+import hoursEmployeeRoutes from './routes/hoursEmployeeRoutes'
+import clientRoutes from './routes/clientRoutes';
+import travelerRoutes from './routes/travelerRoutes';
 
 class Server {
 
@@ -31,11 +33,13 @@ class Server {
         this.app.use('/', indexRoutes);
         this.app.use('/api/products', productRoutes);
         this.app.use('/api/employees', employeeRoutes);
+        this.app.use('/api/clients', clientRoutes);
+        this.app.use('/api/travelers', travelerRoutes);
         this.app.use('/api/persons', personRoutes);
         this.app.use('/api/orders', orderRoutes);
         this.app.use('/api/sales', saleRoutes);
-        this.app.use('/api/travels', travelRoutes);
-        this.app.use('/api/extraExpenses', extraExpense);
+        this.app.use('/api/extraExpenses', extraExpensesRoutes);
+        this.app.use('/api/hoursEmployees', hoursEmployeeRoutes);
     }
     start():void{
         this.app.listen(this.app.get('port'), () => {

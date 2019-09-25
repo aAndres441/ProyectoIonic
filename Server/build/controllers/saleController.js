@@ -24,11 +24,6 @@ class SaleController {
          description:data[i].description,
          totalAmount:data[i].totalAmount,
          tmstmp:data[i].tmstmp */
-    getId(req, res) {
-        return __awaiter(this, void 0, void 0, function* () {
-            res.json(yield database_1.default.query('select max(id) as id from venta'));
-        });
-    }
     create(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             yield database_1.default.query('INSERT INTO venta set ?', [req.body]);

@@ -1,11 +1,12 @@
+import { PersonComponent } from './person/container/index';
 import { RouterModule, Routes ,ActivatedRoute} from '@angular/router';
 import { NgModule } from '@angular/core';
 import { PagesComponent } from './pages.component';
 import { ProductComponent } from './product/container/index';
-import { OrderComponent } from './order/container/index';
 import { SaleComponent } from './sale/container/index';
 import { CharterComponent } from './charter/container/index';
 import { ExtraExpensesComponent } from './extra-expenses/container/index';
+import { HoursEmployeeComponent } from './hours-employee/container/index';
 
   
   const routes: Routes = [{
@@ -27,6 +28,14 @@ import { ExtraExpensesComponent } from './extra-expenses/container/index';
       {
         path: 'extra-expenses',
         component: ExtraExpensesComponent
+      },
+      {
+        path: 'persons',
+        component: PersonComponent
+      },
+      {
+        path: 'hours-employee',
+        component: HoursEmployeeComponent
       }
     ]}
   ];

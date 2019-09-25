@@ -1,3 +1,5 @@
+import { HoursEmployeeModule } from './hours-employee/hours-employee.module';
+import { PersonModule } from './person/person.module';
 import { AssignCharterModule } from './assign-charter/assign-charter.module';
 import { CharterModule } from './charter/charter.module';
 import { NgModule ,CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
@@ -18,7 +20,9 @@ const MODULES = [
   SaleModule,
   CharterModule,
   AssignCharterModule,
-  ExtraExpensesModule
+  ExtraExpensesModule,
+  PersonModule,
+  HoursEmployeeModule
 ]
 
 @NgModule({

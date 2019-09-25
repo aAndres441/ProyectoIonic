@@ -16,5 +16,5 @@ class ProductRoutes {
     }
 
 }
-const prodRoutes = new ProductRoutes();
-export default prodRoutes.router;
+const productRoutes = new ProductRoutes();
+export default productRoutes.router;

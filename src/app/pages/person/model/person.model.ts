@@ -5,5 +5,6 @@ export interface Person {
     email: string;
     direction: string;
     cellphone: string;
+    personType : string;
     tmstmp: string;
 }

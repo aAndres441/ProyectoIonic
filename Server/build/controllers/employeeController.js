@@ -15,13 +15,13 @@ const database_1 = __importDefault(require("../database"));
 class EmployeeController {
     list(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            res.json(yield database_1.default.query('SELECT p.* FROM empleado e join persona p on e.id = p.id'));
+            res.json(yield database_1.default.query('select p.id as id,p.nombre as name,p.apellido as lastname,p.email as email,p.direccion as direction,p.telefono as cellphone,p.tmstmp as tmstmp from persona p join empleado c on p.id = c.id'));
         });
     }
     create(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             //await pool.query('INSERT INTO empleado set ?',[req.body]);
-            yield database_1.default.query('insert into persona set ? ', [req.body]);
+            yield database_1.default.query('insert into empleado set ? ', [req.body]);
             //await pool.query('insert into empleado set @@identity'); //values (@@identity)
             res.json({ message: 'Empleado creado y guardado!' });
         });
@@ -53,16 +53,3 @@ class EmployeeController {
 }
 const employeeController = new EmployeeController();
 exports.default = employeeController;
-/*
-exports.removeById = (userId) => {
-    return new Promise((resolve, reject) => {
-        User.remove({_id: userId}, (err) => {
-            if (err) {
-                reject(err);
-            } else {
-                resolve(err);
-            }
-        });
-    });
-};
-*/ 

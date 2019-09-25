@@ -15,37 +15,42 @@ const database_1 = __importDefault(require("../database"));
 class PersonController {
     list(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            res.json(yield database_1.default.query('select p.id as id,p.nombre as name,p.apellido as lastname,p.email as email,p.direccion as direction,p.telefono as cellphone,p.tmstmp as tmstmp from persona p join cliente c on p.id = c.id'));
+            res.json(yield database_1.default.query('select p.id as id,p.nombre as name,p.apellido as lastname,p.email as email,p.direccion as direction,p.telefono as cellphone,p.tmstmp as tmstmp from persona p'));
         });
     }
     create(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield database_1.default.query('INSERT INTO person set ?', [req.body]);
+            yield database_1.default.query('INSERT INTO persona set ?', [req.body]);
             res.json({ message: 'Person creado y guardado!' });
         });
     }
     delete(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            yield database_1.default.query('delete person where id = ?', [id]);
+            yield database_1.default.query('delete persona where id = ?', [id]);
             res.json({ text: 'borrando person :' + req.params.id });
         });
     }
     update(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            yield database_1.default.query('UPDATE person set ? where id = ?', [req.body, id]);
+            yield database_1.default.query('UPDATE persona set ? where id = ?', [req.body, id]);
             res.json({ text: 'editando prod' + req.params.id });
         });
     }
     getOne(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            const prod = yield database_1.default.query('SELECT * FROM person WHERE id = ?', [id]);
-            if (prod.length > 0) {
-                return res.json(prod[0]);
+            if (id == 'id') {
+                res.json(yield database_1.default.query('select max(id) as id from persona'));
             }
-            res.status(404).json({ message: 'La persona no se ah encontrado!' });
+            else {
+                const prod = yield database_1.default.query('SELECT * FROM persona WHERE id = ?', [id]);
+                if (prod.length > 0) {
+                    return res.json(prod[0]);
+                }
+                res.status(404).json({ message: 'La persona no se ah encontrado!' });
+            }
         });
     }
 }

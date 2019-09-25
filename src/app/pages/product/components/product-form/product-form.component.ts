@@ -22,14 +22,14 @@ export class ProductFormComponent implements OnInit {
     if(this.product){
       this.productForm = this.fb.group({
         id: new FormControl(this.product.id,),
-        nombre: new FormControl(this.product.name,[Validators.required]),
-        descripcion: new FormControl(this.product.description, [Validators.required])
+        name: new FormControl(this.product.name,[Validators.required]),
+        description: new FormControl(this.product.description, )
       });
     }else{
       this.productForm = this.fb.group({
         id: new FormControl(null,),
-        nombre: new FormControl(null,[Validators.required]),
-        descripcion: new FormControl(null, [Validators.required])
+        name: new FormControl(null,[Validators.required]),
+        description: new FormControl(null,)
       });
     }
   }
