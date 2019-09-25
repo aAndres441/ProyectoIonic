@@ -15,7 +15,8 @@ export class OrderComponent implements OnInit {
   @Input() products = new Array<Product>();
   @Output() actionOrder = new EventEmitter();
   @Input() orders = new Array<Order>();
-  
+  @Input() showDetail : string = null;
+
   detailOrder : Order = null;
   order : Order = null;
   showComponent:string = 'form';
@@ -24,6 +25,9 @@ export class OrderComponent implements OnInit {
     private router: Router ) { }
 
   ngOnInit() {
+    if(this.showDetail){
+      this.showComponent = this.showDetail;
+    }
     if(this.sale && this.sale.id){
       this.getOrders(this.sale.id);
     }

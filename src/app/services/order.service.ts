@@ -52,6 +52,7 @@ export class OrderService {
       'ventaId': order.saleId,
       'descripcion': order.description,
       'cantidad': order.count,
+      'precioUnitario':order.unitPrice,
       'montoTotal': order.totalAmount,
     }
 

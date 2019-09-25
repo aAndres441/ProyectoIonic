@@ -15,7 +15,7 @@ const database_1 = __importDefault(require("../database"));
 class OrderController {
     list(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            res.json(yield database_1.default.query('select i.id as id,p.nombre as productName,i.descripcion as description,i.cantidad as count,i.montoTotal as totalAmount,i.tmstmp as tmstmp from item i join producto p on i.productoId = p.id'));
+            res.json(yield database_1.default.query('select i.id as id,p.nombre as productName,i.descripcion as description,i.cantidad as count,i.precioUnitario as unitPrice,i.montoTotal as totalAmount,i.tmstmp as tmstmp from item i join producto p on i.productoId = p.id'));
         });
     }
     create(req, res) {
@@ -41,9 +41,9 @@ class OrderController {
     getOne(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            const prod = yield database_1.default.query('SELECT * FROM item WHERE id = ?', [id]);
-            if (prod.length > 0) {
-                return res.json(prod[0]);
+            const orders = yield database_1.default.query('select i.id as id,p.nombre as productName,i.descripcion as description,i.cantidad as count,i.precioUnitario as unitPrice,i.montoTotal as totalAmount,i.tmstmp as tmstmp from item i join producto p on i.productoId = p.id WHERE ventaId = ?', [id]);
+            if (orders.length > 0) {
+                return res.json(orders);
             }
             res.status(404).json({ message: 'El pedido no se ah encontrado!' });
         });

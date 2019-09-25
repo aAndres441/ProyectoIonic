@@ -10,7 +10,7 @@
     (showComponent)="showPage($event)">
 </app-sale-form>
 <app-sale-detail *ngIf="showComponent == 'detail' else detail" #detail
-    [detailOrder]="detailSale"
+    [detailSale]="detailSale"
     (showComponent)="showPage($event)">
 </app-sale-detail>
 
