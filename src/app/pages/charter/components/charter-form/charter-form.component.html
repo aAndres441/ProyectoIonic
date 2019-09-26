@@ -11,7 +11,7 @@
   <ion-item>
     <ion-label type="text">Fleteros:</ion-label>
     <ion-select formControlName="travelerId" (ionChange)="onChange($event)">
-      <ion-select-option *ngFor="let t of travelers" value="{{t.id}}">{{t.name}}</ion-select-option>
+      <ion-select-option *ngFor="let t of travelers" value="{{t.id}}">{{t.name}} {{t.lastname}}</ion-select-option>
     </ion-select>
   </ion-item>
   <ion-item>

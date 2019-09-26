@@ -7,6 +7,7 @@ import { SaleComponent } from './sale/container/index';
 import { CharterComponent } from './charter/container/index';
 import { ExtraExpensesComponent } from './extra-expenses/container/index';
 import { HoursEmployeeComponent } from './hours-employee/container/index';
+import { PurchaseComponent } from './purchase/container/index';
 
 
   const routes: Routes = [{
@@ -20,6 +21,10 @@ import { HoursEmployeeComponent } from './hours-employee/container/index';
       {
         path: 'sales',
         component: SaleComponent
+      },
+      {
+        path: 'purchases',
+        component: PurchaseComponent
       },
       {
         path: 'charters',

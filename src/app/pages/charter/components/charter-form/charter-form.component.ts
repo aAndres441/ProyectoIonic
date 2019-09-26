@@ -22,7 +22,7 @@ export class CharterFormComponent implements OnInit {
     totalAmount:null,
     tmstmp:null,
   };
-  
+
   @Output() showComponent = new EventEmitter<any>();
   @Input() travelers = new Array<Person>();
 
@@ -31,6 +31,17 @@ export class CharterFormComponent implements OnInit {
   constructor(private fb : FormBuilder) { }
 
   ngOnInit() {
+    this.charterForm = this.fb.group({
+      id : new FormControl(null),
+      travelerId : new FormControl(null,[Validators.required]),
+      travelerName : new FormControl(null),
+      date : new FormControl(null,[Validators.required]),
+      sourceAddress : new FormControl(null,[Validators.required]),
+      destinationAddress : new FormControl(null,[Validators.required]),
+      price : new FormControl(null,[Validators.required]),
+      description : new FormControl(null)
+    });
+
     if(this.charter){
       this.charterForm = this.fb.group({
         id : new FormControl(this.charter.id),
@@ -42,18 +53,7 @@ export class CharterFormComponent implements OnInit {
         price : new FormControl(this.charter.price,[Validators.required]),
         description : new FormControl(this.charter.description)
       });
-    } else {
-      this.charterForm = this.fb.group({
-        id : new FormControl(null),
-        travelerId : new FormControl(null,[Validators.required]),
-        travelerName : new FormControl(null),
-        date : new FormControl(null,[Validators.required]),
-        sourceAddress : new FormControl(null,[Validators.required]),
-        destinationAddress : new FormControl(null,[Validators.required]),
-        price : new FormControl(null,[Validators.required]),
-        description : new FormControl(null)
-      });
-    }
+    } 
   }
  
   onSubmit(){
@@ -66,8 +66,8 @@ export class CharterFormComponent implements OnInit {
     }
     //else si es agregar nuevo
     if (this.charterForm.valid ){
-      console.log(this.charterForm);
-      return this.showComponent.emit({"page":"add","charter":this.charterForm.value,"sale":this.saleObjSelected});
+      this.showComponent.emit({"page":"add","charter":this.charterForm.value,"sale":this.saleObjSelected});
+      this.charterForm.reset();
     }
   }
 

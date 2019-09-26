@@ -11,7 +11,7 @@
   <ion-item>
     <ion-label>Cliente:</ion-label>
     <ion-select formControlName="clientId" (ionChange)="onChange($event)">
-      <ion-select-option *ngFor="let c of clients" value="{{c.id}}">{{c.name}}</ion-select-option>
+      <ion-select-option *ngFor="let c of clients" value="{{c.id}}">{{c.name}} {{c.lastname}}</ion-select-option>
     </ion-select>
   </ion-item>
 

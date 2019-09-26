@@ -23,9 +23,9 @@ export class PersonFormComponent implements OnInit {
         id: new FormControl(this.person.id,),
         name: new FormControl(this.person.name,[Validators.required]),
         lastname: new FormControl(this.person.lastname, [Validators.required]),
-        email: new FormControl(this.person.email, [Validators.required,Validators.email]),
+        email: new FormControl(this.person.email, [Validators.email]),
         direction: new FormControl(this.person.direction, [Validators.required]),
-        cellphone: new FormControl(this.person.cellphone, [Validators.required,Validators.maxLength(9)]),
+        cellphone: new FormControl(this.person.cellphone, [Validators.required,Validators.minLength(4),Validators.maxLength(20)]),
         personType: new FormControl("Empleado", [Validators.required])
       });
     }else{
@@ -33,9 +33,9 @@ export class PersonFormComponent implements OnInit {
         id: new FormControl(null,),
         name: new FormControl(null,[Validators.required]),
         lastname: new FormControl(null, [Validators.required]),
-        email: new FormControl(null, [Validators.required,Validators.email]),
+        email: new FormControl(null, [Validators.email]),
         direction: new FormControl(null, [Validators.required]),
-        cellphone: new FormControl(null, [Validators.required,Validators.maxLength(9)]),
+        cellphone: new FormControl(null, [Validators.required,Validators.minLength(4),Validators.maxLength(20)]),
         personType: new FormControl("Empleado", [Validators.required])
       });
     }

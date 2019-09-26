@@ -10,7 +10,7 @@
   <ion-item>      
     <ion-label>Empleado:</ion-label>
     <ion-select formControlName="employeeId" (ionChange)="onChange($event)">
-      <ion-select-option *ngFor="let e of employees" value="{{e.id}}">{{e.name}}</ion-select-option>
+      <ion-select-option *ngFor="let e of employees" value="{{e.id}}">{{e.name}} {{e.lastname}}</ion-select-option>
     </ion-select>
   </ion-item>
   <ion-item>

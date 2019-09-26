@@ -11,6 +11,7 @@ import { ProductModule } from './product/product.module';
 import { OrderModule } from './order/order.module';
 import { SaleModule } from './sale/sale.module';
 import { ExtraExpensesModule } from './extra-expenses/extra-expenses.module';
+import { PurchaseModule } from './purchase/purchase.module';
 
 const MODULES = [
   SharedModule,
@@ -20,7 +21,8 @@ const MODULES = [
   CharterModule,
   ExtraExpensesModule,
   PersonModule,
-  HoursEmployeeModule
+  HoursEmployeeModule,
+  PurchaseModule
 ]
 
 @NgModule({

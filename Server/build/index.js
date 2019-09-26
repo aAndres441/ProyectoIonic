@@ -17,6 +17,7 @@ const hoursEmployeeRoutes_1 = __importDefault(require("./routes/hoursEmployeeRou
 const clientRoutes_1 = __importDefault(require("./routes/clientRoutes"));
 const travelerRoutes_1 = __importDefault(require("./routes/travelerRoutes"));
 const charterRoutes_1 = __importDefault(require("./routes/charterRoutes"));
+const purchaseRoutes_1 = __importDefault(require("./routes/purchaseRoutes"));
 class Server {
     constructor() {
         this.app = express_1.default();
@@ -39,6 +40,7 @@ class Server {
         this.app.use('/api/persons', personRoutes_1.default);
         this.app.use('/api/orders', orderRoutes_1.default);
         this.app.use('/api/sales', saleRoutes_1.default);
+        this.app.use('/api/purchases', purchaseRoutes_1.default);
         this.app.use('/api/charters', charterRoutes_1.default);
         this.app.use('/api/extraExpenses', extraExpensesRoutes_1.default);
         this.app.use('/api/hoursEmployees', hoursEmployeeRoutes_1.default);

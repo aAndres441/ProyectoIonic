@@ -13,6 +13,7 @@ import hoursEmployeeRoutes from './routes/hoursEmployeeRoutes'
 import clientRoutes from './routes/clientRoutes';
 import travelerRoutes from './routes/travelerRoutes';
 import chartersRoutes from './routes/charterRoutes';
+import purchaseRoutes from './routes/purchaseRoutes';
 
 class Server {
 
@@ -39,6 +40,7 @@ class Server {
         this.app.use('/api/persons', personRoutes);
         this.app.use('/api/orders', orderRoutes);
         this.app.use('/api/sales', saleRoutes);
+        this.app.use('/api/purchases', purchaseRoutes);
         this.app.use('/api/charters', chartersRoutes);
         this.app.use('/api/extraExpenses', extraExpensesRoutes);
         this.app.use('/api/hoursEmployees', hoursEmployeeRoutes);
