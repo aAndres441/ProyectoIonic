@@ -14,14 +14,13 @@ export class HoursEmployeeComponent implements OnInit {
   hoursEmployees : HoursEmployee[];
   detailHoursEmployee : HoursEmployee = null;
   prod : HoursEmployee = null;
-  showComponent:string = 'list';
+  showComponent:string = '';
   employees = new Array<Person>();
 
   constructor( private hoursEmployeeService: HoursEmployeeService,private employeeService:PersonService, private router: Router ) { }
 
   
   ngOnInit(): void {
-    this.getHoursEmployees();
     this.getEmployees();
   }
 
@@ -29,6 +28,7 @@ export class HoursEmployeeComponent implements OnInit {
     this.employeeService.getPersonsType("Empleado").subscribe(
       data => {
         this.employees = data
+        this.getHoursEmployees();
       }
     )
   }
@@ -37,6 +37,7 @@ export class HoursEmployeeComponent implements OnInit {
     this.hoursEmployeeService.getHoursEmployees().subscribe(
       (data) => {
         this.hoursEmployees = data
+        this.showComponent = 'list'
       }
     );
   }

@@ -9,7 +9,7 @@
 
 <ion-form [formGroup]="charterForm" fullscreen>
   <ion-item>
-    <ion-label>Fleteros:</ion-label>
+    <ion-label type="text">Fleteros:</ion-label>
     <ion-select formControlName="travelerId" (ionChange)="onChange($event)">
       <ion-select-option *ngFor="let t of travelers" value="{{t.id}}">{{t.name}}</ion-select-option>
     </ion-select>
@@ -30,11 +30,25 @@
     <ion-textarea formControlName="description" placeholder="Descripcion" ></ion-textarea>
   </ion-item>
 </ion-form>
-<ion-content  fullscreen >
+<div *ngIf="sales && (sales.length>0) && saleSelected == -1"><h5 class="ion-text-center">Asignar a una venta.</h5></div>
+  <div *ngIf="sales && (sales.length>0) && saleSelected != -1 && saleObjSelected">
+    <ion-item color="secondary">
+        <ion-label text-wrap>
+          <h2>Venta Nº: {{saleObjSelected.id}} - {{saleObjSelected.clientName}} - ${{saleObjSelected.totalAmount}}</h2>
+          <p>{{saleObjSelected.description}}</p>
+          <p>{{saleObjSelected.tmstmp}}</p>
+        </ion-label>
+      </ion-item> 
+  </div>
+<ion-content >
+  <ion-header  >
+      <ion-toolbar color="primary">
+      <ion-title>Ventas sin Fletes</ion-title>
+    </ion-toolbar>
+  </ion-header>
   <div *ngIf="!sales || (sales.length==0)"><h6 class="ion-text-center">No hay elementos.</h6></div>
-  <div *ngIf="sales && (sales.length>0) && saleSelected == -1"><h6 class="ion-text-center">Asignar a una venta.</h6></div>
-  <div *ngFor="let s of sales; let i=index" (ionSelect)="setSale(i)"> 
-    <ion-list #myList lines="full">
+  <div > 
+    <ion-list #myList lines="full" *ngFor="let s of sales; let i=index" (click)="setSale(i)">
       <ion-item >
         <ion-label text-wrap>
           <h2>Venta Nº: {{s.id}} - {{s.clientName}} - ${{s.totalAmount}}</h2>

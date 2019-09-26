@@ -27,7 +27,7 @@ class PersonController {
     delete(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            yield database_1.default.query('delete persona where id = ?', [id]);
+            yield database_1.default.query('delete from persona where id = ?', [id]);
             res.json({ text: 'borrando person :' + req.params.id });
         });
     }

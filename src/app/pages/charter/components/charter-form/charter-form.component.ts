@@ -13,6 +13,7 @@ export class CharterFormComponent implements OnInit {
   @Input() charter : Charter;
   @Input() sales : Array<Sale>;
   saleSelected : number = -1;
+  saleObjSelected : Sale = null;
   @Output() showComponent = new EventEmitter<any>();
   @Input() travelers = new Array<Person>();
 
@@ -69,9 +70,9 @@ export class CharterFormComponent implements OnInit {
     this.charterForm.value.clientId = $event.target.value;
   }
 
-
   setSale(i:number){
-    this.saleSelected = i
+    this.saleSelected = i;
+    this.saleObjSelected = this.sales[i];
   }
 
 }

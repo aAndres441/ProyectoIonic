@@ -12,7 +12,7 @@ export class ExtraExpensesComponent implements OnInit {
   extraExpenses : ExtraExpense[];
   detailExtraExpense : ExtraExpense = null;
   extExp : ExtraExpense = null;
-  showComponent:string = 'list';
+  showComponent:string = '';
   
   constructor( private extraExpenseService: ExtraExpenseService, private router: Router ) { }
 
@@ -25,6 +25,7 @@ export class ExtraExpensesComponent implements OnInit {
     this.extraExpenseService.getExtraExpenses().subscribe(
       (data) => {
         this.extraExpenses = data
+        this.showComponent = 'list'
       }
     );
   }

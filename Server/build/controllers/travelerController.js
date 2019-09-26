@@ -29,7 +29,7 @@ class TravelerController {
     delete(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            yield database_1.default.query('delete fletero where id = ?', [id]);
+            yield database_1.default.query('delete from fletero where id = ?', [id]);
             res.json({ text: 'borrar fletero :' + req.params.id });
         });
     }

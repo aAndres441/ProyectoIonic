@@ -16,7 +16,7 @@ class TravelerController {
 
     public async delete (req:Request,res:Response):Promise<any>{
         const {id} = req.params;
-        await pool.query('delete fletero where id = ?', [id]); 
+        await pool.query('delete from fletero where id = ?', [id]); 
         res.json({text:'borrar fletero :'+ req.params.id});
     }
 

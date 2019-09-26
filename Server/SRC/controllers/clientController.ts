@@ -16,7 +16,7 @@ class ClientController {
 
     public async delete (req:Request,res:Response):Promise<any>{
         const {id} = req.params;
-        await pool.query('delete cliente where id = ?', [id]); 
+        await pool.query('delete from cliente where id = ?', [id]); 
         res.json({text:'borrar Cliente :'+ req.params.id});
     }
 

@@ -12,7 +12,7 @@ export class ProductComponent implements OnInit {
   products : Product[];
   detailProduct : Product = null;
   prod : Product = null;
-  showComponent:string = 'list';
+  showComponent:string = '';
   
   constructor( private productService: ProductService, private router: Router ) { }
 
@@ -24,7 +24,8 @@ export class ProductComponent implements OnInit {
   getProducts():void{
     this.productService.getProducts().subscribe(
       (data) => {
-        this.products = data
+        this.products = data;
+        this.showComponent = 'list'
       }
     );
   }
@@ -35,8 +36,8 @@ export class ProductComponent implements OnInit {
     let showAction = obj.page;
     switch(showAction) { 
       case "detail": { 
-        this.showComponent = "detail";
         this.detailProduct = obj.product; 
+        this.showComponent = "detail";
         break; 
       } 
       case "list": { 

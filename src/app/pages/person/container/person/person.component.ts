@@ -12,7 +12,7 @@ export class PersonComponent implements OnInit {
   persons : Person[];
   detailPerson : Person = null;
   person : Person = null;
-  showComponent:string = 'list';
+  showComponent:string = '';
   
   constructor( private personService: PersonService, private router: Router ) { }
 
@@ -91,11 +91,20 @@ export class PersonComponent implements OnInit {
   }
 
   deletePerson(person:Person){
-    this.personService.deletePerson(person).subscribe(
+    console.log(person)
+    this.personService.deletePersonType(person).subscribe(
       (data) => {
-        console.log("Persona borrado!")
-        this.getPersons();
-        this.showComponent = "list";
+        console.log("Persona tipo borrada!")
+        this.personService.deletePerson(person).subscribe(
+          (data) => {
+            console.log("Persona tipo borrada!")
+            this.getPersons();
+          },(error) => {
+            console.log('ERROR deletePerson:');
+            console.log(error);
+            this.showComponent = "list";
+          }
+        );
       },(error) => {
         console.log('ERROR deletePerson:');
         console.log(error);
@@ -103,4 +112,6 @@ export class PersonComponent implements OnInit {
       }
     );
   }
+
+
 }

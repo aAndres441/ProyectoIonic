@@ -19,7 +19,7 @@ export class SaleComponent implements OnInit {
   sale : Sale = null;
   detailSale : Sale;
   
-  showComponent:string = 'list';
+  showComponent:string = '';
   clients = new Array<Person>();
   products = new Array<Product>();
   unSuscribe : any;
@@ -37,6 +37,7 @@ export class SaleComponent implements OnInit {
     this.unSuscribe = this.saleService.getSales().subscribe(
       (data:Array<Sale>) => {
         this.sales = data;
+        this.showComponent = 'list'
       }
     );
   }

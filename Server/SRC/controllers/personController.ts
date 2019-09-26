@@ -14,7 +14,7 @@ class PersonController {
 
     public async delete (req:Request,res:Response):Promise<any>{
         const {id} = req.params;
-        await pool.query('delete persona where id = ?', [id]); 
+        await pool.query('delete from persona where id = ?', [id]); 
         res.json({text:'borrando person :'+ req.params.id});
     }
 

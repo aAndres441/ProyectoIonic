@@ -18,7 +18,7 @@ export class CharterComponent implements OnInit {
   charter : Charter = null;
   travelers = new Array<Person>();
   unSuscribe : any;
-  showComponent:string = 'form';
+  showComponent:string = '';
 
   constructor(private charterService: CharterService,
     private saleService: SaleService, 
@@ -32,6 +32,7 @@ export class CharterComponent implements OnInit {
     this.unSuscribe = this.charterService.getSalesWithoutCharter().subscribe(
       (data:Array<Sale>) => {
         this.sales = data;
+        this.showComponent = 'form'
       }
     );
   }
@@ -58,7 +59,7 @@ export class CharterComponent implements OnInit {
         break; 
       }  
       default: { 
-        this.showComponent = "list";
+        this.showComponent = "";
         break; 
       } 
    } 
@@ -73,7 +74,6 @@ export class CharterComponent implements OnInit {
           this.unSuscribe = this.saleService.addSale(this.sale).subscribe();
         });
         this.getSalesWithoutCharters();
-        this.showComponent = "form";
       },(error) => {
       }
     );

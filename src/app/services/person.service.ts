@@ -100,6 +100,7 @@ export class PersonService {
       )
     )
   } 
+
   addPersonType(person:Person): Observable<any>{
     const httpOptions = {
       headers: new HttpHeaders({
@@ -118,14 +119,14 @@ export class PersonService {
         )
       } 
       case "Cliente": { 
-        return this.http.post<Person>(environment.API_BASE + 'client',body,httpOptions).pipe(
+        return this.http.post<Person>(environment.API_BASE + 'clients',body,httpOptions).pipe(
           map(
               (data:any) => data
           )
         )
       }
       case "Fletero": { 
-        return this.http.post<Person>(environment.API_BASE + 'traveler',body,httpOptions).pipe(
+        return this.http.post<Person>(environment.API_BASE + 'travelers',body,httpOptions).pipe(
           map(
               (data:any) => data
           )
@@ -136,14 +137,39 @@ export class PersonService {
    } 
   }
   
-  deletePerson(prod:Person): Observable<any>{
+  deletePersonType(person:Person): Observable<any>{
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json'
+      })
+    };
+    console.log(person)
+    let resp = this.http.delete<Person>(environment.API_BASE + 'employees/'+person.id,httpOptions).pipe(
+      map(
+          (data:any) => data
+      )
+    );
+    resp = this.http.delete<Person>(environment.API_BASE + 'travelers/'+person.id,httpOptions).pipe(
+      map(
+          (data:any) => data
+      )
+    );
+    resp = this.http.delete<Person>(environment.API_BASE + 'clients/'+person.id,httpOptions).pipe(
+      map(
+          (data:any) => data
+      )
+    );
+    return resp;
+  }
+
+  deletePerson(person:Person): Observable<any>{
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type':  'application/json'
       })
     };
 
-    return this.http.delete<any>(environment.API_BASE + 'persons/' + prod.id , httpOptions).pipe(
+    return this.http.delete<any>(environment.API_BASE + 'persons/' + person.id , httpOptions).pipe(
       map(
           (data:any) => data
       )

@@ -29,7 +29,7 @@ class EmployeeController {
     delete(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             const { id } = req.params;
-            yield database_1.default.query('delete empleado where id = ?', [id]);
+            yield database_1.default.query('delete from empleado where id = ?', [id]);
             res.json({ text: 'borrar Empleado :' + req.params.id });
         });
     }

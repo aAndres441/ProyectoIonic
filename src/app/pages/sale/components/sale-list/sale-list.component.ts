@@ -36,6 +36,7 @@ export class SaleListComponent implements OnInit {
   }
 
   setSale(i:number){
+    console.log(i)
     this.saleSelected = i
   }
 
