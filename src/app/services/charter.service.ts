@@ -94,7 +94,7 @@ export class CharterService {
   }
 
   getSalesWithoutCharter(): Observable<any> {
-    return this.http.get<Array<Sale>>(environment.API_BASE + 'sales/salesWC').pipe(
+    return this.http.get<Array<Sale>>(environment.API_BASE + 'charters/salesWC').pipe(
       map(
           (data:Array<Sale>) => data
       )
