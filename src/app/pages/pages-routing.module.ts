@@ -8,7 +8,7 @@ import { CharterComponent } from './charter/container/index';
 import { ExtraExpensesComponent } from './extra-expenses/container/index';
 import { HoursEmployeeComponent } from './hours-employee/container/index';
 
-  
+
   const routes: Routes = [{
     path: '',
     component: PagesComponent,

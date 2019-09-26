@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { map } from 'rxjs/operators';
 import { Charter } from '../pages/charter/model/charter.model';
+import { Sale } from '../pages/sale/model/sale.model';
 
 @Injectable({
   providedIn: 'root'
@@ -12,13 +13,21 @@ export class CharterService {
 
   constructor(private http: HttpClient) { }
 
-  getCharters(travelId:number): Observable<Charter[]> {
-    return this.http.get<Charter[]>(environment.API_BASE + 'charters/' + travelId).pipe(
+  getCharters(): Observable<Charter[]> {
+    return this.http.get<Charter[]>(environment.API_BASE + 'charters/').pipe(
       map(
           (data:Array<Charter>) => this.charterTransform(data)
       )
     ) 
   }
+
+  getId(): Observable<number> {
+    return this.http.get<number>(environment.API_BASE + 'sales/id').pipe(
+      map(
+          (data:number) => data[0]
+      )
+    )
+  } 
 
   private charterTransform(data: Array<Charter>): Array<Charter> {
     let charter: Charter;
@@ -80,6 +89,14 @@ export class CharterService {
     return this.http.delete<any>(environment.API_BASE + 'charters/' + charter.id, httpOptions).pipe(
       map(
         (data: any) => data
+      )
+    )
+  }
+
+  getSalesWithoutCharter(): Observable<any> {
+    return this.http.get<Array<Sale>>(environment.API_BASE + 'sales/salesWC').pipe(
+      map(
+          (data:Array<Sale>) => data
       )
     )
   }

@@ -30,17 +30,18 @@ export class SaleService {
   
   private saleTransform(data:Array<Sale>):Array<Sale>{
     let resp = new Array<Sale>();
-    let ord : Sale;
+    let sale : Sale;
     for(let i=0;i<data.length;i++){
-      ord = {
+      sale = {
         id:data[i].id,
         clientId:data[i].clientId,
         clientName:data[i].clientName,
+        charterId:data[i].charterId,
         description:data[i].description,
         totalAmount:data[i].totalAmount,
         tmstmp:data[i].tmstmp
       };
-      resp.push(ord);
+      resp.push(sale);
     }
     return resp;
   }
@@ -55,10 +56,9 @@ export class SaleService {
     const body = {
       'clienteId':sale.clientId,
       'descripcion':sale.description,
-      'fleteId':null,
+      'fleteId':sale.charterId,
       'montoTotal':sale.totalAmount
     }
-    console.log(body)
     if(sale.id){
       return this.http.put<Sale>(environment.API_BASE + 'sales/' + sale.id,body,httpOptions).pipe(
         map(
@@ -66,7 +66,6 @@ export class SaleService {
         )
       )
     }else{
-      console.log('llego al post <Sale>')
       return this.http.post<Sale>(environment.API_BASE + 'sales/',body,httpOptions).pipe(
         map(
             (data:any) => data

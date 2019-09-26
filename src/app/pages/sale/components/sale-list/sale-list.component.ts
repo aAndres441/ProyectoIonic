@@ -26,6 +26,7 @@ export class SaleListComponent implements OnInit {
         id:null,
         clientId:null,
         clientName:null,
+        charterId:null,
         description:null,
         totalAmount:null,
         tmstmp:null

@@ -31,6 +31,8 @@ class CharterController {
         const {id} = req.params;
         if(id=='id'){
             res.json(await pool.query('select max(id) as id from flete'));
+        }else if(id=='salesWC'){ //sales without charters
+            res.json(await pool.query('select distinct v.id as id,v.clienteId as clientId,p.nombre as clientName,v.descripcion as description,v.montoTotal as totalAmount,v.tmstmp as tmstmp from venta v join cliente c on v.clienteId = c.id JOIN persona p on c.id = p.id where fleteId is null'));
         }else{
             const prod = await pool.query('SELECT * FROM flete WHERE id = ?', [id]);
             if(prod.length>0) {
