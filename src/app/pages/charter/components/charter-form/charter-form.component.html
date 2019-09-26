@@ -5,8 +5,8 @@
         <ion-icon name="arrow-back" item-start></ion-icon>
       </ion-button>
     </ion-buttons>
-    <ion-title style="align-content: center">
-      <h3>CHARTER</h3>
+    <ion-title style=" text-align:center ">
+      <h3>LADING</h3>
     </ion-title>
     <ion-buttons slot="end">
       <ion-button (click)="onSubmit()">
@@ -17,25 +17,58 @@
 </ion-header>
 
 <ion-content mode="ios" fullscreen color="light">
-  <ion-card>
-    <ion-form [formGroup]="charterForm" novalidate>
-      
-      <ion-item>
-        <ion-input type="text" formControlName="name" required placeholder="Nombre"></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-input type="text" formControlName="lastname" placeholder="Apellido" name="lastname"></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-input type="email" formControlName="email" placeholder="Email" name="email"></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-input type="text" formControlName="direction" placeholder="Direccion" name="direction"></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-input type="text" formControlName="cellphone" placeholder="Celular" name="cellphone"></ion-input>
-      </ion-item>
-    </ion-form>
-  </ion-card>
+
+  <ion-form [formGroup]="charterForm" fullscreen>
+    <ion-item>
+      <ion-label type="text">Fleteros:</ion-label>
+      <ion-select formControlName="travelerId" (ionChange)="onChange($event)">
+        <ion-select-option *ngFor="let t of travelers" value="{{t.id}}">{{t.name}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-input type="Date" formControlName="date" placeholder="Fecha" ></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input type="text" formControlName="sourceAddress" placeholder="Origen" ></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input type="text" formControlName="destinationAddress" placeholder="Destino" ></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input type="Number" formControlName="price" placeholder="Precio" ></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-textarea formControlName="description" placeholder="Descripcion" ></ion-textarea>
+    </ion-item>
+  </ion-form>
+  <div *ngIf="sales && (sales.length>0) && saleSelected == -1"><h5 class="ion-text-center">Asignar a una venta.</h5></div>
+    <div *ngIf="sales && (sales.length>0) && saleSelected != -1 && saleObjSelected">
+      <ion-item color="secondary">
+          <ion-label text-wrap>
+            <h2>Venta Nº: {{saleObjSelected.id}} - {{saleObjSelected.clientName}} - ${{saleObjSelected.totalAmount}}</h2>
+            <p>{{saleObjSelected.description}}</p>
+            <p>{{saleObjSelected.tmstmp}}</p>
+          </ion-label>
+        </ion-item> 
+    </div>
+  <ion-content >
+    <ion-header  >
+        <ion-toolbar color="medium">
+        <ion-title style=" text-align:center ">Ventas sin Fletes</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <div *ngIf="!sales || (sales.length==0)"><h6 class="ion-text-center">No hay elementos.</h6></div>
+    <div > 
+      <ion-list #myList lines="full" *ngFor="let s of sales; let i=index" (click)="setSale(i)">
+        <ion-item >
+          <ion-label text-wrap>
+            <h2>Venta Nº: {{s.id}} - {{s.clientName}} - ${{s.totalAmount}}</h2>
+            <p>{{s.description}}</p>
+            <p>{{s.tmstmp}}</p>
+          </ion-label>
+        </ion-item> 
+      </ion-list>
+    </div>
+  </ion-content>
 
 </ion-content>

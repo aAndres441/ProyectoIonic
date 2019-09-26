@@ -42,6 +42,11 @@ export class ExtraExpensesListComponent implements OnInit {
     let p = this.extraExpenses[i];
     return this.showComponent.emit({"page":"delete","extraExpense":p});
   }
+  DownloadtoPDF(){    
+    alert('dd')
+    return this.showComponent.emit({ 'page': 'print'});
+  }
+
   toggleInfiniteScroll() {
    }
  

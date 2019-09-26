@@ -1,6 +1,7 @@
 import { ExtraExpense } from './../../model/extra-expense.model';
 import { Component, OnInit, Input, Output, EventEmitter, forwardRef } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder, NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-extra-expenses-form',
@@ -13,7 +14,7 @@ export class ExtraExpensesFormComponent implements OnInit {
 
   public extraExpenseForm:FormGroup;
 
-  constructor(private fb : FormBuilder) { 
+  constructor(private fb : FormBuilder, public toastController: ToastController) { 
  
   }
 
@@ -40,11 +41,30 @@ export class ExtraExpensesFormComponent implements OnInit {
     }
     //else si es agregar nuevo
     if (this.extraExpenseForm.valid){
+      this.succes();
       return this.showComponent.emit({"page":"add","extraExpense":this.extraExpenseForm.value});
     }
   }
 
   showList(){
     this.showComponent.emit({"page":"list"});
+  }
+  async presentToast() {
+    const toast = await this.toastController.create({
+      message: 'Verifique los datos',
+      position: 'top',
+      color: 'danger',
+      duration: 3000
+    });
+    toast.present();
+  }
+  async succes(){
+    const toast = await this.toastController.create({
+      message: 'Cambio exitoso',
+      position: 'top',
+      color: 'success',
+      duration: 3000
+    });
+    toast.present();
   }
 }

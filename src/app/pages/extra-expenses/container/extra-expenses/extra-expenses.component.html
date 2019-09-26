@@ -11,6 +11,10 @@
     [detailExtraExpense]="detailExtraExpense"
     (showComponent)="showPage($event)">
 </app-extra-expenses-detail>
+<app-extra-print *ngIf="showComponent == 'print' else print" #print
+    [extraExpenses]="extraExpenses"
+    (showComponent)="showPage($event)">
+</app-extra-print>
 
   
   
