@@ -30,6 +30,7 @@ class ProductController {
         if(prod.length>0) {
             return res.json(prod[0]);
         }
+        
         res.status(404).json({message:'Producto no se ah encontrado!'})
     }
 }
