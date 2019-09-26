@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { HoursEmployee } from '../../model/hours-employee.model';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+import { ToastController, SelectValueAccessor } from '@ionic/angular';
 import { Person } from 'src/app/pages/person/model/person.model';
 
 @Component({
@@ -15,7 +16,7 @@ export class HoursEmployeeFormComponent implements OnInit {
 
   public hoursEmployeeForm:FormGroup;
 
-  constructor(private fb : FormBuilder) { 
+  constructor(private fb : FormBuilder, public toastController: ToastController) {
   }
 
   ngOnInit() {
@@ -28,6 +29,7 @@ export class HoursEmployeeFormComponent implements OnInit {
         hoursWorked: new FormControl(this.hoursEmployee.hoursWorked, [Validators.required]),
         amount: new FormControl(this.hoursEmployee.amount, [Validators.required])
       });
+      
     }else{
       this.hoursEmployeeForm = this.fb.group({
         id: new FormControl(null,),
@@ -37,6 +39,7 @@ export class HoursEmployeeFormComponent implements OnInit {
         hoursWorked: new FormControl(null, [Validators.required]),
         amount: new FormControl(null, [Validators.required])
       });
+      
     }
   }
 
@@ -53,6 +56,8 @@ export class HoursEmployeeFormComponent implements OnInit {
     //si es editar
     if(this.hoursEmployeeForm.valid && this.hoursEmployee){
       this.hoursEmployeeForm.value.id = this.hoursEmployee.id;
+      
+      this.succes();
     }
     //else si es agregar nuevo
     if (this.hoursEmployeeForm.valid){
@@ -65,6 +70,23 @@ export class HoursEmployeeFormComponent implements OnInit {
   }
 
   employeeForm(){
-
+  }
+  async presentToast() {
+    const toast = await this.toastController.create({
+      message: 'Verifique los datos',
+      position: 'top',
+      color: 'danger',
+      duration: 3000
+    });
+    toast.present();
+  }
+  async succes(){
+    const toast = await this.toastController.create({
+      message: 'Cambio exitoso',
+      position: 'top',
+      color: 'success',
+      duration: 3000
+    });
+    toast.present();
   }
 }

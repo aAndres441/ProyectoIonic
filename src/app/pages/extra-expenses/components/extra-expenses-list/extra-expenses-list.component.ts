@@ -1,5 +1,6 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ViewChild } from '@angular/core';
 import { ExtraExpense } from '../../model/extra-expense.model';
+import { IonInfiniteScroll } from '@ionic/angular';
 
 @Component({
   selector: 'app-extra-expenses-list',
@@ -9,6 +10,7 @@ import { ExtraExpense } from '../../model/extra-expense.model';
 export class ExtraExpensesListComponent implements OnInit {
   @Input() extraExpenses = new Array<ExtraExpense>();
   @Output() showComponent = new EventEmitter<any>();
+  @ViewChild( IonInfiniteScroll, null) infiniteScroll: IonInfiniteScroll;
   extraExpenseSelected : number = 0;
   constructor() {  }
 
@@ -39,5 +41,27 @@ export class ExtraExpensesListComponent implements OnInit {
   deleteExtraExpense(i:number){
     let p = this.extraExpenses[i];
     return this.showComponent.emit({"page":"delete","extraExpense":p});
+  }
+  toggleInfiniteScroll() {
+   }
+ 
+   doRefresh(event) {
+     console.log('Begin async operation', event);
+ 
+     setTimeout(() => {
+       console.log('Async operation has ended');
+       event.complete();
+     }, 1000);
+   }
+
+   loadData(event) {
+    setTimeout(() => {
+      console.log('Carga siguientes...');
+
+      if (this.extraExpenses.length > 1) {
+        this.infiniteScroll.disabled = true;
+        return;
+      }
+    }, 1000);
   }
 }

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Person } from '../../model/person.model';
 
 @Component({
   selector: 'app-person-detail',
@@ -7,8 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PersonDetailComponent implements OnInit {
 
+  @Output() showComponent = new EventEmitter<any>();
+  @Input() detailPerson : Person = null;/* new Person(); */
+  title = '';
   constructor() { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.title = this.detailPerson.name;
+  }
+  showList(){
+    this.showComponent.emit({"page":"list"});
+  }
 
 }

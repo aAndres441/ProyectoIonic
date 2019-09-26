@@ -63,7 +63,7 @@ export class SaleListComponent implements OnInit {
     setTimeout(() => {
       console.log('Carga siguientes...');
    
-      if (this.sales.length > 5) {
+      if (this.sales.length > 1) {
         this.infiniteScroll.disabled = true;
         return;
       }

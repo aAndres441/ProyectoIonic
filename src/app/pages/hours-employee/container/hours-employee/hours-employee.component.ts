@@ -17,7 +17,7 @@ export class HoursEmployeeComponent implements OnInit {
   showComponent:string = 'list';
   employees = new Array<Person>();
 
-  constructor( private hoursEmployeeService: HoursEmployeeService,private employeeService:PersonService, private router: Router ) { }
+  constructor( private hoursEmployeeService: HoursEmployeeService, private employeeService: PersonService, private router: Router ) { }
 
   
   ngOnInit(): void {
@@ -46,6 +46,10 @@ export class HoursEmployeeComponent implements OnInit {
     let prod;
     let showAction = obj.page;
     switch(showAction) { 
+      case "print": {
+        this.showComponent = "print";
+        break;
+      }
       case "detail": { 
         this.showComponent = "detail";
         this.detailHoursEmployee = obj.hoursEmployee; 

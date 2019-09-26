@@ -40,7 +40,7 @@ export class PrintComponent implements OnInit {
     setTimeout(() => {
       console.log('Carga siguientes...');
 
-      if (this.products.length > 5) {
+      if (this.products.length > 1) {
         this.infiniteScroll.disabled = true;
         return;
       }

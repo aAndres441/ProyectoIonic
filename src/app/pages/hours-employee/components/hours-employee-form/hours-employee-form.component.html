@@ -1,25 +1,38 @@
-<ion-header>
-  <ion-toolbar color="primary">
-    <ion-title>Horas Empleado</ion-title>
-    <ion-buttons slot="primary">
-      <ion-button (click)="onSubmit()" ><ion-icon name="add-circle-outline"></ion-icon></ion-button>
+<ion-header mode="ios">
+  <!-- no-border -->
+  <ion-toolbar color="medium">
+    <ion-buttons>
+      <ion-button slot="start" (click)="showList()">
+        <ion-icon name="arrow-back" item-start></ion-icon>
+      </ion-button>
     </ion-buttons>
-  </ion-toolbar>       
+    <ion-title>
+      <h3>HORARIOS</h3>
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="onSubmit()">
+        <ion-icon name="add-circle-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
 </ion-header>
-<ion-form [formGroup]="hoursEmployeeForm" novalidate>
-  <ion-item>      
-    <ion-label>Empleado:</ion-label>
-    <ion-select formControlName="employeeId" (ionChange)="onChange($event)">
-      <ion-select-option *ngFor="let e of employees" value="{{e.id}}">{{e.name}}</ion-select-option>
-    </ion-select>
-  </ion-item>
-  <ion-item>
-    <ion-input type="date" formControlName="date" required placeholder="Fecha"></ion-input>
-  </ion-item>  
-  <ion-item>
-    <ion-input formControlName="hoursWorked"  name="hoursWorked" placeholder="Horas trabajadas"></ion-input>
-  </ion-item>
-  <ion-item>
-      <ion-input formControlName="amount"  name="amount" placeholder="Precio ($)"></ion-input>
+
+<ion-content mode="ios" fullscreen color="light" padding>
+  <ion-form [formGroup]="hoursEmployeeForm" novalidate>
+    <ion-item>
+      <ion-label>Empleado:</ion-label>
+      <ion-select formControlName="employeeId" (ionChange)="onChange($event)">
+        <ion-select-option *ngFor="let e of employees" value="{{e.id}}">{{e.name}}</ion-select-option>
+      </ion-select>
     </ion-item>
-</ion-form>
+    <ion-item>
+      <ion-input type="date" formControlName="date" required placeholder="Fecha"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input formControlName="hoursWorked" name="hoursWorked" placeholder="Horas trabajadas"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input formControlName="amount" name="amount" placeholder="Precio ($)"></ion-input>
+    </ion-item>
+  </ion-form>
+</ion-content>

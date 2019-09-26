@@ -31,12 +31,13 @@
       </ion-item>
       <ion-item>
         <ion-label>Fecha:</ion-label>
-        <ion-p>{{detailSale.tmstmp | date}}</ion-p>
+        <ion-p>{{detailSale.tmstmp | date: 'shortDate'}}</ion-p>
       </ion-item>
     </ion-list>
   </ion-card-content>
-</ion-card>
+
 
 
 <app-order [sale]="detailSale" [showDetail]="showDetail">
 </app-order>
+</ion-card>

@@ -1,3 +1,47 @@
-<p>
-  hours-employee-detail works!
-</p>
+
+
+<ion-card no-border mode="ios" color="medium">
+  <ion-card-header>
+    <ion-toolbar color="medium">
+      <ion-title> {{title | uppercase}}
+      </ion-title>
+      <ion-buttons slot="start">
+        <ion-button (click)="showList()">
+          <ion-icon name="arrow-back" > </ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-card-header>
+  
+  <ion-card-content mode="ios" color="light">  
+    <ion-list>
+      <ion-item>
+        <ion-label>Code</ion-label>
+        <ion-p>{{detailHoursEmployee.number}}</ion-p>
+      </ion-item>
+      <ion-item>
+        <ion-label>Nombre</ion-label>
+        <ion-p>{{detailHoursEmployee.employeeName}}</ion-p>
+      </ion-item>
+      <ion-item>
+        <ion-label>Fecha:</ion-label>
+        <ion-p>{{detailHoursEmployee.date | date:'shortDate'}}</ion-p>
+      </ion-item>
+      <ion-item>
+        <ion-label>Horas trabajadas:</ion-label>
+        <ion-p>{{detailHoursEmployee.hoursWorked}}</ion-p>
+      </ion-item>
+      <ion-item>
+        <ion-label>$ total:</ion-label>
+        <ion-p>{{detailHoursEmployee.amount}}</ion-p>
+      </ion-item>
+    </ion-list>
+  </ion-card-content>
+  
+ <!--  <ion-item>
+    <ion-button slot="end" (click)="DownloadtoPDF()" color="medium">
+      <ion-icon  name="save"> </ion-icon>
+    </ion-button>
+  </ion-item> -->
+  
+</ion-card>

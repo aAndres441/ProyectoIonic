@@ -1,3 +1,45 @@
-<p>
-  person-detail works!
-</p>
+<ion-card no-border mode="ios" color="medium">
+  <ion-card-header>
+    <ion-toolbar color="medium">
+      <ion-title> {{title | uppercase}}
+      </ion-title>
+      <ion-buttons slot="start">
+        <ion-button (click)="showList()">
+          <ion-icon name="arrow-back" > </ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-card-header>
+  <ion-card-content mode="ios" color="light">
+    <ion-list>
+      <ion-item>
+        <ion-label>Code:</ion-label>
+        <ion-p>{{detailPerson.id}}</ion-p>
+      </ion-item>
+      <ion-item>
+        <ion-label>Nombre:</ion-label>
+        <ion-p>{{detailPerson.name}}</ion-p>
+      </ion-item>
+      <ion-item>
+        <ion-label>Apellido:</ion-label>
+        <ion-p>{{detailPerson.lastName}}</ion-p>
+      </ion-item>      
+      <ion-item>
+        <ion-label>E.mail:</ion-label>
+        <ion-p>{{detailPerson.email}}</ion-p>
+      </ion-item>
+      <ion-item>
+        <ion-label>Direccion:</ion-label>
+        <ion-p>{{detailPerson.direction}}</ion-p>
+      </ion-item>
+      <ion-item>
+        <ion-label>Teléfono:</ion-label>
+        <ion-p>{{detailPerson.cellphone}}</ion-p>
+      </ion-item>
+      <ion-item>
+        <ion-label>Visitado en:</ion-label>
+        <ion-p>{{detailPerson.tmstmp | date:'shortDate'}}</ion-p>
+      </ion-item>
+    </ion-list>
+  </ion-card-content>
+</ion-card>

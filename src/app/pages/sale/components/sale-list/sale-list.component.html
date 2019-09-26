@@ -46,13 +46,7 @@
             </ion-item-sliding>
           </ion-list>
         </ion-list>
-      
-        <!-- <ion-item>
-          <ion-button slot="end" (click)="DownloadtoPDF()" color="medium">
-            <ion-icon name="save"> </ion-icon>
-          </ion-button>
-        </ion-item>
- -->
+        
       <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
           <ion-infinite-scroll-content loadingSpinner="crecent" loadingText="Loading more data...">
           </ion-infinite-scroll-content>

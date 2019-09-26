@@ -1,6 +1,5 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter,ViewChild, ViewChildren, ElementRef } from '@angular/core';
 import { Product } from '../../model/product.model';
-import { ViewChild, ViewChildren, ElementRef} from '@angular/core';
 import { IonInfiniteScroll } from '@ionic/angular';
 
 @Component({
@@ -11,8 +10,7 @@ import { IonInfiniteScroll } from '@ionic/angular';
 export class ProductListComponent implements OnInit {
   @Input() products = new Array<Product>();
   @Output() showComponent = new EventEmitter<any>();
-  @ViewChild(IonInfiniteScroll, null) infiniteScroll: IonInfiniteScroll; // para usar el componente
-  @ViewChild('reporteDiv', { static: true }) reporteDiv: ElementRef;
+  @ViewChild(IonInfiniteScroll, null) infiniteScroll: IonInfiniteScroll; 
 
   productSelected : number = 0;
   constructor() {  }
@@ -65,7 +63,7 @@ export class ProductListComponent implements OnInit {
     setTimeout(() => {
       console.log('Carga siguientes...');
 
-      if (this.products.length > 5) {
+      if (this.products.length > 1) {
         this.infiniteScroll.disabled = true;
         return;
       }

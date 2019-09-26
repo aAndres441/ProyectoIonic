@@ -1,5 +1,6 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ViewChild } from '@angular/core';
 import { Person } from '../../model/person.model';
+import { IonInfiniteScroll } from '@ionic/angular';
 
 @Component({
   selector: 'app-person-list',
@@ -9,6 +10,7 @@ import { Person } from '../../model/person.model';
 export class PersonListComponent implements OnInit {
   @Input() persons = new Array<Person>();
   @Output() showComponent = new EventEmitter<any>();
+  @ViewChild( IonInfiniteScroll, null) infiniteScroll: IonInfiniteScroll; // para usar el componente
   personSelected : number = 0;
   constructor() {  }
 
@@ -43,5 +45,29 @@ export class PersonListComponent implements OnInit {
   deletePerson(i:number){
     let p = this.persons[i];
     return this.showComponent.emit({"page":"delete","person":p});
+  }
+  /* refresh */
+  toggleInfiniteScroll() {
+    // this.infiniteScroll.disabled = !this.infiniteScroll.disabled;
+   }
+ 
+   doRefresh(event) {
+     console.log('Begin async operation', event);
+ 
+     setTimeout(() => {
+       console.log('Async operation has ended');
+       event.complete();
+     }, 1000);
+   }
+
+   loadData(event) {
+    setTimeout(() => {
+      console.log('Carga siguientes...');
+
+      if (this.persons.length > 1) {
+        this.infiniteScroll.disabled = true;
+        return;
+      }
+    }, 1000);
   }
 }

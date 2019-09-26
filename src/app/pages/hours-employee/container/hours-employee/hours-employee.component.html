@@ -11,6 +11,15 @@
     [detailHoursEmployee]="detailHoursEmployee"
     (showComponent)="showPage($event)">
 </app-hours-employee-detail>
+<app-emp-hours-print *ngIf="showComponent == 'print' else print" #print 
+    [hoursEmployees]="hoursEmployees"
+    (showComponent)="showPage($event)">
+</app-emp-hours-print>
+<!-- hoursEmployees : HoursEmployee[];
+  detailHoursEmployee : HoursEmployee = null;
+  prod : HoursEmployee = null;
+  showComponent:string = 'list';
+  employees = new Array<Person>(); -->
 
   
   
