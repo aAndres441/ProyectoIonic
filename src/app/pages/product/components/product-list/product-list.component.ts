@@ -13,6 +13,7 @@ export class ProductListComponent implements OnInit {
   @ViewChild(IonInfiniteScroll, null) infiniteScroll: IonInfiniteScroll; 
 
   productSelected : number = 0;
+  
   constructor() {  }
 
   ngOnInit() {

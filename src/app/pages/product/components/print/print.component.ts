@@ -22,7 +22,6 @@ export class PrintComponent implements OnInit {
 
   ngOnInit() {
     this.title = 'Download';
-    console.log("estos son: " +this.products)
   }
 
   showList() {
@@ -30,7 +29,6 @@ export class PrintComponent implements OnInit {
   }
 
   DownloadtoPDF() {
-    /* alert(this.reporteDiv.nativeElement.innerHTML); */
     const pdf = new jsPDF('p', 'pt', 'a4');
     pdf.addHTML(this.reporteDiv.nativeElement, () => {
       pdf.save( 'Productos.pdf');

@@ -4,7 +4,7 @@
       <ion-button slot="start" (click)="showList()">
         <ion-icon name="arrow-back" item-start></ion-icon>
       </ion-button>
-    </ion-buttons>
+    </ion-buttons> 
     <ion-title style="align-content: center">
       <h3>PERSONA</h3>
     </ion-title>
@@ -17,7 +17,7 @@
 </ion-header>
 
 <ion-content mode="ios" fullscreen color="light">
-  <ion-card>
+  
     <ion-form [formGroup]="personForm" novalidate>
       <ion-item>
         <ion-label>Tipo:</ion-label>
@@ -41,6 +41,5 @@
         <ion-input type="text" formControlName="cellphone" placeholder="Celular" name="cellphone"></ion-input>
       </ion-item>
     </ion-form>
-  </ion-card>
 
 </ion-content>

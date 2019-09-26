@@ -2,6 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { Order } from '../../model/order.model';
 import { Product } from 'src/app/pages/product/model/product.model';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-order-form',
@@ -14,7 +15,8 @@ export class OrderFormComponent implements OnInit {
   @Input() products = new Array<Product>()
 
   public orderForm:FormGroup;
-  constructor(private fb : FormBuilder) { }
+
+  constructor(private fb : FormBuilder, public toastController: ToastController) { }
 
   ngOnInit() {
     if(this.order){
@@ -64,6 +66,25 @@ export class OrderFormComponent implements OnInit {
 
   onChange($event){
     this.orderForm.value.productId = $event.target.value;
+  }
+
+  async presentToast() {
+    const toast = await this.toastController.create({
+      message: 'Verifique los datos',
+      position: 'top',
+      color: 'danger',
+      duration: 3000
+    });
+    toast.present();
+  }
+  async succes(){
+    const toast = await this.toastController.create({
+      message: 'Cambio exitoso',
+      position: 'top',
+      color: 'success',
+      duration: 3000
+    });
+    toast.present();
   }
 
 }

@@ -1,4 +1,43 @@
-<ion-p>{{detailOrder.id}}</ion-p>
-<ion-p>{{detailOrder.productName}}</ion-p>
-<ion-p>{{detailOrder.description}}</ion-p>
-<ion-p>{{detailOrder.tmstmp}}</ion-p>
+
+
+<ion-card no-border mode="ios" color="medium">
+    <ion-card-header>
+      <ion-toolbar color="medium">
+        <ion-title> Detalle de orden 
+        </ion-title>
+        <ion-buttons slot="start">
+          <ion-button (click)="showList()">
+            <ion-icon name="arrow-back" > </ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-card-header>
+    <ion-card-content mode="ios" color="light">
+      <ion-list>
+        <ion-item>
+          <ion-label>Producto:</ion-label>
+          <ion-p>{{detailOrder.productName}}</ion-p>
+        </ion-item>
+        <ion-item>
+            <ion-label>Cantidad:</ion-label>
+            <ion-p>{{detailOrder.count}}</ion-p>
+          </ion-item>
+          <ion-item>
+              <ion-label>Precio unitario:</ion-label>
+              <ion-p>{{detailOrder.unitPrice}}</ion-p>
+            </ion-item>
+        <ion-item>
+          <ion-label>Descripcion:</ion-label>
+          <ion-p>{{detailOrder.description}}</ion-p>
+        </ion-item>
+        <ion-item>
+          <ion-label>Total $ :</ion-label>
+          <ion-p>{{detailOrder.totalAmount}}</ion-p>
+        </ion-item>      
+        <ion-item>
+          <ion-label>Fecha:</ion-label>
+          <ion-p>{{detailOrder.tmstmp | date:'shortDate'}}</ion-p>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>

@@ -107,7 +107,15 @@ export class SaleFormComponent implements OnInit {
     });
     toast.present();
   }
-
+  async succes(){
+    const toast = await this.toastController.create({
+      message: 'Cambio exitoso',
+      position: 'top',
+      color: 'success',
+      duration: 3000
+    });
+    toast.present();
+  }
   onReset() {
     this.saleForm.reset();
     this.presentToast();

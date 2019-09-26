@@ -1,11 +1,22 @@
-<ion-header>
-    <ion-toolbar color="primary">
-      <ion-title>Nuevo Pedido</ion-title>
-      <ion-buttons slot="primary">
-        <ion-button (click)="onSubmit()" ><ion-icon name="add-circle-outline"></ion-icon></ion-button>
-      </ion-buttons>
-    </ion-toolbar>       
-  </ion-header>
+<ion-header mode="ios" no-border>
+  <ion-toolbar color="medium">
+    <ion-buttons>
+      <ion-button slot="start" (click)="showList()">
+        <ion-icon name="arrow-back" item-start></ion-icon>
+      </ion-button>
+    </ion-buttons> 
+    <ion-title style="align-content: center">
+      <h3>Nuevo pedido</h3>
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="onSubmit()">
+        <ion-icon name="add-circle-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+
   <ion-form [formGroup]="orderForm" fullscreen>
 
     <ion-item >

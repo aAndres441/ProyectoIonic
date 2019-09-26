@@ -1,9 +1,4 @@
-/* ion-textarea{
-  width: 100px;
-}
-app-order-list{
-  border: 20px;
-} */
+
 
 ion-textarea{
   width: 40px;
@@ -11,12 +6,6 @@ ion-textarea{
 app-order-list{
   border: 20px;
 }
-/* 
-h3, ion-icon  {
-  color: rgb(18, 8, 117);
-  margin: 5px 0 4px 0; 
-  text-align: center;
-} */
 ion-toolbar{
 position: relative; 
 }
@@ -39,12 +28,12 @@ ion-content{
 .error p{
   color: rgb(177, 89, 89);
   font-size: 16px;
-}/* 
+} 
 hr{
   border: solid 1px;
   border-color: rgb(18, 8, 117);
   margin-top: -10px;    
-} */
+} 
 .btn-send:hover{
   background-color:rgb(221, 219, 219); 
   color:rrgb(18, 8, 117);

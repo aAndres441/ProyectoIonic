@@ -1,5 +1,4 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { FormGroup, FormControl, Validators, FormBuilder} from '@angular/forms';
 import { Sale } from '../../model/sale.model';
 
 @Component({
@@ -21,5 +20,8 @@ export class SaleDetailComponent implements OnInit {
   showList(){
     this.showComponent.emit({"page":"list"});
   }
-
+  DownloadtoPDF(){  
+    /* alert('iii')  */ 
+    return this.showComponent.emit({ 'page': 'print'});
+  }
 }

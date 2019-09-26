@@ -15,7 +15,7 @@
       </ion-button>
     </ion-buttons>
     <ion-title>
-      <h3>New sale</h3>
+      <h3 color="medium">NUEVA VENTA</h3>
       <!-- {{title | uppercase}} -->
     </ion-title>
     <ion-buttons slot="end">
@@ -25,7 +25,7 @@
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
-<!-- sssssssss -->
+
 <ion-content mode="ios" fullscreen color="light">
 
   <ion-form [formGroup]="saleForm" mode="ios">
@@ -40,6 +40,8 @@
       <ion-textarea formControlName="description" placeholder="Descripcion"></ion-textarea>
     </ion-item>
   </ion-form>
+
+<hr/>
 
   <app-order [sale]="sale" [products]="products" [orders]="orders" (actionOrder)="actionOrder($event)">
   </app-order>

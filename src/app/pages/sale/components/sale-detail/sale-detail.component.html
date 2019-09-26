@@ -34,10 +34,17 @@
         <ion-p>{{detailSale.tmstmp | date: 'shortDate'}}</ion-p>
       </ion-item>
     </ion-list>
+
+    <ion-item>
+        <ion-button slot="end" (click)="DownloadtoPDF()" color="medium">
+          <ion-icon  name="save"> </ion-icon>
+        </ion-button>
+      </ion-item>
+      
   </ion-card-content>
 
 
-
+<!-- 
 <app-order [sale]="detailSale" [showDetail]="showDetail">
-</app-order>
+</app-order> -->
 </ion-card>

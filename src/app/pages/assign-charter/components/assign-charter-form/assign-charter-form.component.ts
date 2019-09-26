@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, forwardRef } from '@angular/core';
+import { FormGroup, FormControl, Validators, FormBuilder, NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
+
 
 @Component({
   selector: 'app-assign-charter-form',
@@ -7,7 +9,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AssignCharterFormComponent implements OnInit {
 
-  constructor() { }
+  asignCharterForm: FormGroup;
+  @Output() showComponent = new EventEmitter<any>();
+
+  constructor(private fb : FormBuilder) { 
+  }
 
   ngOnInit() {}
 

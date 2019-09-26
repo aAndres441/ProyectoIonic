@@ -10,7 +10,8 @@ import { IonInfiniteScroll } from '@ionic/angular';
   styleUrls: ['./sale-print.component.scss'],
 })
 export class SalePrintComponent implements OnInit {
-
+  
+  @Input() detailSale: Sale;
   @Input() sales: Sale[];
   @Output() showComponent = new EventEmitter<any>();
   @ViewChild(IonInfiniteScroll, null) infiniteScroll: IonInfiniteScroll; // para usar el componente
@@ -24,21 +25,19 @@ export class SalePrintComponent implements OnInit {
   ngOnInit() {
     
      this.title = 'Download';
-     console.log("llegan" + this.sales.length +"con"+ this.sales);
   }
 
   showList() {
-    this.showComponent.emit({ page: 'list' });
+    this.showComponent.emit({ "page": 'list' });
   }
 
   DownloadtoPDF() {
-    /* alert(this.reporteDiv.nativeElement.innerHTML); */
     const pdf = new jsPDF('p', 'pt', 'a4');
     pdf.addHTML(this.reporteDiv.nativeElement, () => {
       pdf.save( 'Venta.pdf');
     });
   }
-  loadData(event) {
+  /* loadData(event) {
     setTimeout(() => {
       console.log('Carga siguientes...');
 
@@ -47,5 +46,5 @@ export class SalePrintComponent implements OnInit {
         return;
       }
     }, 1000);
-  }
+  } */
 }
