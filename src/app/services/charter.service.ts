@@ -22,7 +22,7 @@ export class CharterService {
   }
 
   getId(): Observable<number> {
-    return this.http.get<number>(environment.API_BASE + 'sales/id').pipe(
+    return this.http.get<number>(environment.API_BASE + 'charters/id').pipe(
       map(
           (data:number) => data[0]
       )
@@ -56,12 +56,12 @@ export class CharterService {
       })
     };
     const body = {
-      'travelerId': charter.travelerId,
-      'date':charter.date,
-      'sourceAddress': charter.sourceAddress,
-      'destinationAddress': charter.destinationAddress,
-      'price': charter.price,
-      'description': charter.description
+      'fleteroId': charter.travelerId,
+      'fecha':charter.date,
+      'direccion_origen': charter.sourceAddress,
+      'direccion_destino': charter.destinationAddress,
+      'precio': charter.price,
+      'descripcion': charter.description
     }
 
     if (charter.id) {

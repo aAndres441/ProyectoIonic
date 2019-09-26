@@ -14,7 +14,6 @@ import { CharterService } from 'src/app/services/charter.service';
 })
 export class CharterComponent implements OnInit {
   sales : Array<Sale> = new Array<Sale>();
-  sale : Sale = null;
   charter : Charter = null;
   travelers = new Array<Person>();
   unSuscribe : any;
@@ -32,14 +31,16 @@ export class CharterComponent implements OnInit {
     this.unSuscribe = this.charterService.getSalesWithoutCharter().subscribe(
       (data:Array<Sale>) => {
         this.sales = data;
+        this.getTravelers();
         this.showComponent = 'form'
       }
     );
   }
 
   getTravelers(){
-    this.unSuscribe = this.travelerService.getPersonsType("Travelere").subscribe(
+    this.unSuscribe = this.travelerService.getPersonsType("Fletero").subscribe(
       (data:Array<Person>) => {
+        console.log(data)
         this.travelers = data
       } 
     );
@@ -55,7 +56,7 @@ export class CharterComponent implements OnInit {
         break; 
       }
       case "add": { 
-        this.addCharter(obj.charter);
+        this.addCharter(obj.charter,obj.sale);
         break; 
       }  
       default: { 
@@ -65,15 +66,20 @@ export class CharterComponent implements OnInit {
    } 
   } 
 
-  addCharter(charter:any){
+  addCharter(charter:any,sale:Sale){
     this.unSuscribe = this.charterService.addCharter(charter).subscribe(
       () => {
-        this.charterService.getId().subscribe( (data:any) => {
+        this.unSuscribe = this.charterService.getId().subscribe( (data:any) => {
+          console.log('id de flete')
+          console.log(data)
           let id = data.id;
-          this.sale.charterId = id;
-          this.unSuscribe = this.saleService.addSale(this.sale).subscribe();
+          sale.charterId = id;
+          console.log('venta a editar')
+          console.log(data)
+          this.unSuscribe = this.saleService.addSale(sale).subscribe(
+            () => this.getSalesWithoutCharters()
+          );
         });
-        this.getSalesWithoutCharters();
       },(error) => {
       }
     );

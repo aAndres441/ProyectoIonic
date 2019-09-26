@@ -13,7 +13,16 @@ export class CharterFormComponent implements OnInit {
   @Input() charter : Charter;
   @Input() sales : Array<Sale>;
   saleSelected : number = -1;
-  saleObjSelected : Sale = null;
+  saleObjSelected : Sale = {
+    id:null,
+    clientId:null,
+    clientName:null,
+    charterId:null,
+    description:null,
+    totalAmount:null,
+    tmstmp:null,
+  };
+  
   @Output() showComponent = new EventEmitter<any>();
   @Input() travelers = new Array<Person>();
 
@@ -48,9 +57,9 @@ export class CharterFormComponent implements OnInit {
   }
  
   onSubmit(){
-    let id = this.charterForm.value.clientId;
+    let id = this.charterForm.value.travelerId;
     let trav :Person = this.travelers.filter(elem => elem.id == id)[0];
-    this.charterForm.value.clientName = trav.name;
+    this.charterForm.value.travelerName = trav.name;
     //si es editar
     if(this.charterForm.valid && this.charter){
       this.charterForm.value.id = this.charter.id;
@@ -58,7 +67,7 @@ export class CharterFormComponent implements OnInit {
     //else si es agregar nuevo
     if (this.charterForm.valid ){
       console.log(this.charterForm);
-      return this.showComponent.emit({"page":"add","charter":this.charterForm.value});
+      return this.showComponent.emit({"page":"add","charter":this.charterForm.value,"sale":this.saleObjSelected});
     }
   }
 

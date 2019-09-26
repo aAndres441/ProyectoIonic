@@ -59,6 +59,9 @@ export class SaleService {
       'fleteId':sale.charterId,
       'montoTotal':sale.totalAmount
     }
+    console.log('VENTA EDITADA')
+    console.log(sale)
+    console.log(body)
     if(sale.id){
       return this.http.put<Sale>(environment.API_BASE + 'sales/' + sale.id,body,httpOptions).pipe(
         map(
