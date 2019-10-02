@@ -36,9 +36,9 @@ export class ProductListComponent implements OnInit {
 
   constructor(private router: Router) {
   }
-  ngOnInit() {
-    this.productsFiler = this.products;
-    console.log(this.products.values)
+  ngOnInit() {    
+    /* this.productsFiler = this.products;
+    console.log(this.products.values) */
    }
 
   /* enviarMensaje() {
@@ -71,7 +71,12 @@ export class ProductListComponent implements OnInit {
 
   showForm(p: Product) {
     if (!p) {
-      p = new Product();
+      p = {
+        id:null,
+        name:null,
+        description:null,
+        tmstmp:null
+      }
     }
     return this.showComponent.emit({ "page": "form", "product": p });
   }
@@ -103,7 +108,7 @@ export class ProductListComponent implements OnInit {
     setTimeout(() => {
       console.log('Carga siguientes...');
 
-      if (this.products.length > 5) {
+      if (this.products.length > 1) {
         this.infiniteScroll.disabled = true;
         return;
       }

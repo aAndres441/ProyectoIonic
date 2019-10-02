@@ -25,20 +25,19 @@
     <ion-searchbar mode="ios" (ionChange)="SearchProduct($event)" animated autocomplete="on" color="light"></ion-searchbar>
   </ion-toolbar>
 
-  <ion-list>
-    <ion-item *ngFor="let p of productsFiler"> <!-- | filtroProduct:'' -->
-      <ion-label>
+  <!-- <ion-list>
+    <ion-item *ngFor="let p of productsFiler"> -->
+       <!-- | filtroProduct:'' -->
+      <!-- <ion-label>
         <h4>{{p.name | uppercase}}</h4>
       </ion-label>
-
     </ion-item>
-
   </ion-list>
 
   <hr/> 
-
+ -->
 <div *ngIf="products.length > 0"  style="border:solid 2px rgb(247, 245, 245)">
-  <ion-card  *ngFor="let p of productsFiler; let i=index " (click)="showDetail(p)" 
+  <ion-card  *ngFor="let p of products; let i=index " (click)="showDetail(p)" 
     (ionSelect)="setProduct(i)">
     <!-- | filtroProduct:productoBuscado -->
     <ion-list lines="full" no-border >
